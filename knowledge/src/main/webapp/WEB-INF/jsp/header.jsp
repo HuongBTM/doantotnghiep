@@ -14,6 +14,7 @@
   <link rel="stylesheet" type="text/css" href="/resources/assets/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="/resources/assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/resources/assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="/resources/assets/css/question.css">
   <script language="javascript" type="text/javascript" src="/resources/assets/bootstrap/js/bootstrap.min.js"></script>
   <script language="javascript" type="text/javascript" src="/resources/assets/js/jquery-1.11.1.min.js"></script>
   <script language="javascript" type="text/javascript" src="/resources/assets/bootstrap/js/custom.js"></script>
@@ -35,7 +36,7 @@
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-left">
           <li><a href="/home"><i class="fa fa-home"></i> Home</a><div></div></li>
-          <li><a href="/home"><i class="fa fa-question-circle"></i> Câu hỏi</a><div></div></li>
+          <li><a href="/question"><i class="fa fa-question-circle"></i> Câu hỏi</a><div></div></li>
           <li><a href="/post"><i class= "fa fa-file-text-o"></i> Bài viết</a></li>
           <li><a href="/notification"><i class="fa fa-bell"></i> Thông báo</a></li>
           </ul>
