@@ -16,7 +16,7 @@
   <link rel="stylesheet" type="text/css" href="/resources/assets/css/style.css">
   <link rel="stylesheet" type="text/css" href="/resources/assets/css/question.css">
   <script language="javascript" type="text/javascript" src="/resources/assets/bootstrap/js/bootstrap.min.js"></script>
-  <script language="javascript" type="text/javascript" src="/resources/assets/js/jquery-1.11.1.min.js"></script>
+  <script language="javascript" type="text/javascript" src="/resources/assets/bootstrap/js/jquery.min.js"></script>
   <script language="javascript" type="text/javascript" src="/resources/assets/bootstrap/js/custom.js"></script>
  
 </head>
@@ -40,16 +40,6 @@
           <li><a href="/post"><i class= "fa fa-file-text-o"></i> Bài viết</a></li>
           <li><a href="/notification"><i class="fa fa-bell"></i> Thông báo</a></li>
           </ul>
-          <%-- <div class="col-sm-3 col-md-3">
-		        <form class="navbar-form" role="search">
-		        <div class="input-group">
-		            <input type="text" class="form-control" placeholder="Search" name="q">
-		            <div class="input-group-btn">
-		                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-		            </div>
-		        </div>
-		        </form>
-		    </div> --%>
        	 
        	 <ul class="nav navbar-nav navbar-right">
        	 <li>
@@ -78,6 +68,6 @@
       </div>
     </div>
     <script language="javascript" type="text/javascript" src="/resources/assets/bootstrap/js/bootstrap.min.js"></script>
-  	<script language="javascript" type="text/javascript" src="/resources/assets/js/jquery-1.11.1.min.js"></script>
+  	<script language="javascript" type="text/javascript" src="/resources/assets/bootstrap/js/jquery.min.js"></script>
   	<script language="javascript" type="text/javascript" src="/resources/assets/bootstrap/js/custom.js"></script>
   </nav>

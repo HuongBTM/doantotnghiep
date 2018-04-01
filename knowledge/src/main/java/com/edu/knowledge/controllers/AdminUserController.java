@@ -9,9 +9,15 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/admin")
 public class AdminUserController {
 
-	@RequestMapping(value="/home", method=RequestMethod.GET)
+	@RequestMapping(value="/dashboard", method=RequestMethod.GET)
 	public ModelAndView hello(){
-		ModelAndView model = new ModelAndView("admin_home_page");
+		ModelAndView model = new ModelAndView("admin_dashboard");
+		return model;
+	}
+	
+	@RequestMapping(value="/table", method=RequestMethod.GET)
+	public ModelAndView user(){
+		ModelAndView model = new ModelAndView("admin_user");
 		return model;
 	}
 }

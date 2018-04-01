@@ -18,15 +18,7 @@
         <link rel="stylesheet" href="/resources/assets/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="/resources/assets/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="/resources/assets/css/form-elements.css">
-        <link rel="stylesheet" href="/resources/assets/css/style.css">
-
-        <!-- Favicon and touch icons -->
-        <link rel="shortcut icon" href="assets/ico/favicon.png">
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resources/assets/ico/apple-touch-icon-144-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/resources/assets/ico/apple-touch-icon-114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/resources/assets/ico/apple-touch-icon-72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" href="/resources/assets/ico/apple-touch-icon-57-precomposed.png">
-
+        <link rel="stylesheet" href="/resources/assets/css/style.css">   
     </head>
 
     <body>
@@ -99,9 +91,9 @@
         </div>
 
         <!-- Javascript -->
-        <script src="/resources/assets/js/jquery-1.11.1.min.js"></script>
+        <script src="/resources/assets/bootstrap/js/jquery.min.js"></script>
         <script src="/resources/assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="/resources/assets/js/jquery.backstretch.min.js"></script>
+        <script src="/resources/assets/bootstrap/js/jquery.backstretch.min.js"></script>
         <script src="/resources/assets/js/scripts.js"></script>
         
         <!--[if lt IE 10]>
