@@ -28,6 +28,9 @@
     <!-- Morris Charts CSS -->
     <link href="/resources/assets/metisMenu/morris.css" rel="stylesheet">
 
+	<!-- DataTables CSS -->
+    <link href="/resources/assets/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+    
     <!-- Custom Fonts -->
     <link href="/resources/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
