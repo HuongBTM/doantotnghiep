@@ -1,4 +1,4 @@
-package com.edu.knowledge.controllers;
+package com.edu.knowledge.controllers.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
