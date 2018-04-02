@@ -24,7 +24,6 @@ public class UserController {
 		return userService.findAllUser();
 	}
 	
-	
 	@RequestMapping(value="/home", method=RequestMethod.GET)
 	@ResponseBody
 	public ModelAndView home() {

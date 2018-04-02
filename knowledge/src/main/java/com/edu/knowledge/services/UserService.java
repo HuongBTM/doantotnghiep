@@ -1,6 +1,5 @@
 package com.edu.knowledge.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +17,7 @@ public class UserService {
 	UserRepositery userRepositery;
 	
 	public List<User> findAllUser() {
-		List<User> users = new ArrayList<>();
-		for (User user : userRepositery.findAll()) {
-			users.add(user);
-		}
-		return users;
+		return userRepositery.findAll();
 	}
 	
 	public boolean checkExistedUserByEmail(String emailAddress) {
