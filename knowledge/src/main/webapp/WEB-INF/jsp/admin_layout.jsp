@@ -175,7 +175,7 @@
                                     <a href="/admin/table">User</a>
                                 </li>
                                 <li>
-                                    <a href="/admin/table">Chuyên gia</a>
+                                    <a href="/admin/sector/allsector">Sector - Lĩnh vực</a>
                                 </li>
                                 <li>
                                     <a href="notifications.html">Lĩnh vực</a>

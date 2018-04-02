@@ -33,15 +33,8 @@ public class SectorController {
 		return modelAndView;
 	}
 	
-	public Sector addSector(@ModelAttribute("sector") Sector sector) {
-		if (sectorService.checkExistedSectorName(sector.getSectorName())) {
-			return null;
-		}
-		return sectorService.saveSector(sector);
-	}
-	
 	@RequestMapping(value = "/updateSector/", method=RequestMethod.PUT)
-	public String updateSector(@PathVariable(value = "id") Integer sectorId, @ModelAttribute("sector") Sector sector) {
+	public String saveSector(@PathVariable(value = "id") Integer sectorId, @ModelAttribute("sector") Sector sector) {
 		Sector updateSector = sectorService.getSectorById(sectorId);
 		if(updateSector == null) {
 			return "entity not found";
