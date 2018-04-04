@@ -1,5 +1,7 @@
 package com.edu.knowledge.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +11,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tbl_linh_vuc")
-public class Sector {
+public class Sector implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -47,6 +54,12 @@ public class Sector {
 		super();
 		this.sectorName = sectorName;
 		this.describeSector = describeSector;
+	}
+	
+	@Override
+	public String toString() {
+		return "Sector [sectorId=" + sectorId + ", sectorName=" + sectorName + ", describeSector=" + describeSector
+				+ "]";
 	}
 
 }

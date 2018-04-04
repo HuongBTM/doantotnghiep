@@ -69,7 +69,7 @@ public class LoginController {
 			user.setCreateDate(new Date());
 			userService.saveUser(user);
 			//System.out.println(Charset.defaultCharset());
-			model.setViewName("header");
+			model.setViewName("home");
 		} else {
 			user.setPassword(null);
 			user.setConfirmpassword(null);

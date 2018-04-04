@@ -42,5 +42,10 @@ public class VoteType {
 	public void setVoteTypeName(String voteTypeName) {
 		this.voteTypeName = voteTypeName;
 	}
+
+	@Override
+	public String toString() {
+		return "VoteType [voteTypeId=" + voteTypeId + ", voteTypeName=" + voteTypeName + "]";
+	}
 	
 }

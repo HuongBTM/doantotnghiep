@@ -31,6 +31,11 @@ public class UserService {
 	}
 	
 	public User saveUser(User user) {
-		return (userRepositery.save(user));
+		return userRepositery.save(user);
 	}
+	
+	public User getOne(int userId) {
+		return userRepositery.findUserById(userId);
+	}
+	
 }

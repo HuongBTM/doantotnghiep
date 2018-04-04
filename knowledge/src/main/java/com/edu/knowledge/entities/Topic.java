@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tbl_linh_vuc")
+@Table(name = "tbl_chu_de")
 public class Topic {
 
 	@Id
@@ -53,6 +53,11 @@ public class Topic {
 		super();
 		this.topicName = topicName;
 		this.topicDescribe = topicDescribe;
+	}
+
+	@Override
+	public String toString() {
+		return "Topic [topicId=" + topicId + ", topicName=" + topicName + ", topicDescribe=" + topicDescribe + "]";
 	}
 	
 }
