@@ -163,38 +163,89 @@
                         </li>
                        
                         <li>
-                        	<a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements</a>
-                            </a>
+                        	<a href="#"><i class="fa fa-check-square-o fa-fw"></i> Phê duyệt</a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/admin/">Câu hỏi mới</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/">Bài viết mới</a>
+                                </li>
+                            </ul>
                         </li>
                        
                         <li>
-                            <a href="#"><i class="fa fa-table fa-fw"></i> Tables<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-table fa-fw"></i> Static Tables<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                
                                 <li>
-                                    <a href="/admin/table">User</a>
+                                    <a href="/admin/votetype/allvotetype">Quản lý vote</a>
                                 </li>
                                 <li>
-                                    <a href="/admin/sector/allsector">Sector - Lĩnh vực</a>
+                                    <a href="/admin/role/allrole">Quản lý quyền</a>
                                 </li>
                                 <li>
-                                    <a href="notifications.html">Lĩnh vực</a>
+                                    <a href="/admin/sector/allsector">Lĩnh vực - sector</a>
                                 </li>
                                 <li>
-                                    <a href="notifications.html">Role</a>
+                                    <a href="/admin/pendingtag/allpendingtag">Trạng thái câu hỏi</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         
                         <li>
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-table fa-fw"></i> Dynamic Tables<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                
+                                <li>
+                                    <a href="/admin/table">Quản lý thành viên</a>
+                                </li>
+                                <li>
+                                    <a href="#">Quản lý câu hỏi <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="#">Danh mục câu hỏi</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Danh mục câu trả lời</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Comment</a>
+                                        </li>
+                                        
+                                    </ul>
+                                    <!-- /.nav-third-level -->
+                                </li>
+                                <li>
+                                    <a href="#">Quản lý bài viết <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="#">Danh mục bài viết</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Danh mục câu hỏi</a>
+                                        </li>
+                                    </ul>
+                                    <!-- /.nav-third-level -->
+                                </li>
+                                <li>
+                                    <a href="/admin/role/allrole">Quản lý chủ đề</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bell fa-fw"></i> Member notification<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="blank.html">Blank Page</a>
+                                    <a href="blank.html">Bookmark</a>
                                 </li>
-                               
+                               	
                             </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Thống kê</a>
                             <!-- /.nav-second-level -->
                         </li>
                     </ul>

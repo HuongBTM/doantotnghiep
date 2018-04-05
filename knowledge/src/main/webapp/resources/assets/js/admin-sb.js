@@ -45,3 +45,19 @@ $(function() {
         }
     }
 });
+
+$(document).ready(function() {
+	$('#dataTables-sector, #dataTables-votetype, #dataTables-pendingTag, #dataTables-role').DataTable({
+		responsive : true
+	});
+});
+
+function showConfirm(id) {
+	var cf = confirm("Bạn muốn xóa lĩnh vực này?");
+	if(cf == true){
+		window.location = "/admin/votetype/delete/"+id;
+		consol.log("deleteuser");
+	} else {
+		
+	}
+}

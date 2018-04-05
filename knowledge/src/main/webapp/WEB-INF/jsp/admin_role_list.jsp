@@ -19,36 +19,36 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Sector: Lĩnh vực
+                            Role: Quyền
                         </div>
                         
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                         <div style="padding-left: 20px;">
-                        	<a href="/admin/sector/addsector" id="btnAddSector" class="btn btn-primary btn-xs addBtn" style="width: 100px; height: 30px; margin-bottom: 10px; padding-top: 5px;"><i class="fa fa-plus"></i> Add 
+                        	<a href="/admin/role/addrole" id="btnAddRole" class="btn btn-primary btn-xs addBtn" style="width: 100px; height: 30px; margin-bottom: 10px; padding-top: 5px;"><i class="fa fa-plus"></i> Add 
                         	</a>
                         </div>
-                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-sector">
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-role">
                                 <thead>
                                     <tr>
                                     	<th>STT</th>
                                         <th>ID</th>
-                                        <th>Tên lĩnh vực</th>
-                                        <th>Mô tả</th>
+                                        <th>Tên quyền</th>
+                                        <th>Mô tả quyền</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${lstSector}" var="sector" varStatus="sectorId">
+                                <c:forEach items="${lstRole}" var="role" varStatus="roleId">
                                     <tr class="odd gradeX">
-                                    	<td class="center"><c:out value="${sectorId.index+1}"></c:out></td>
-                                        <td class="center"><c:out value="${sector.sectorId}"></c:out></td>
-                                        <td><c:out value="${sector.sectorName}"></c:out></td>
-                                        <td><c:out value="${sector.describeSector}"></c:out></td>
+                                    	<td class="center"><c:out value="${roleId.index+1}"></c:out></td>
+                                        <td class="center"><c:out value="${role.roleId}"></c:out></td>
+                                        <td><c:out value="${role.roleName}"></c:out></td>
+                                        <td><c:out value="${role.roleDescrib}"></c:out></td>
                                         <td>
-				                            <%-- <a href="/admin/sector/editsector/${sector.sectorId}" data-id="${sector.sectorId}" class="btn btn-info btn-xs eBtn" data-target="#editSector" data-toggle="modal"><i class="fa fa-pencil"></i> Edit </a> --%>
-				                            <a href="/admin/sector/editsector/${sector.sectorId}" data-id="${sector.sectorId}" class="btn btn-info btn-xs eBtn"><i class="fa fa-pencil"></i> Edit </a>
-				                            <a href="javascript:showConfirm(${sector.sectorId})" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+				                            <%-- <a href="/admin/role/editrole/${role.roleId}" data-id="${role.roleId}" class="btn btn-info btn-xs eBtn" data-target="#editrole" data-toggle="modal"><i class="fa fa-pencil"></i> Edit </a> --%>
+				                            <a href="/admin/role/editrole/${role.roleId}" data-id="${role.roleId}" class="btn btn-info btn-xs eBtn"><i class="fa fa-pencil"></i> Edit </a>
+				                            <a href="javascript:showConfirm(${role.roleId})" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
 				                          </td>
                                     </tr>
                                     </c:forEach>
@@ -71,7 +71,7 @@
 
 	<!-- datamodal -->
 	<%-- 
-		<div class="modal fade" id="editSector" role="dialog">
+		<div class="modal fade" id="editrole" role="dialog">
 		    <div class="modal-dialog">
 		      <!-- Modal content no 1-->
 		      <div class="modal-content">
@@ -80,20 +80,20 @@
 		          <h4 class="modal-title">Thêm/ sửa lĩnh vực</h4>
 		        </div>
 		        <!-- ./modal-header -->
-		         <form:form id="updateSectorForm" action="/admin/sector/savesector" method="post" modelAttribute="sector" class="form-horizontal">
+		         <form:form id="updateroleForm" action="/admin/role/saverole" method="post" modelAttribute="role" class="form-horizontal">
 		        <div class="modal-body">
 			       
 			          <div class="login-box-body">
 					    <div class="form-group">
-					        <label for="sectorName" class="col-xs-3 control-label">Tên lĩnh vực</label>
+					        <label for="roleName" class="col-xs-3 control-label">Tên lĩnh vực</label>
 					        <div class="col-xs-9">
-					            <form:input type="text" class="form-control" placeholder="Tên lĩnh vực..." id="sectorName" name="sectorName" path="sectorName"/>
+					            <form:input type="text" class="form-control" placeholder="Tên lĩnh vực..." id="roleName" name="roleName" path="roleName"/>
 					        </div>
 					    </div>
 					    <div class="form-group">
-					        <label for="describeSector" class="col-xs-3 control-label">Mô tả</label>
+					        <label for="describerole" class="col-xs-3 control-label">Mô tả</label>
 					        <div class="col-xs-9">
-					            <form:textarea type="text" class="form-control" rows="5" cols="30" placeholder="Mô tả lĩnh vực..." name="describeSector" id="describeSector" path="describeSector"/>
+					            <form:textarea type="text" class="form-control" rows="5" cols="30" placeholder="Mô tả lĩnh vực..." name="describerole" id="describerole" path="describerole"/>
 					        </div>
 					    </div>
 					    
