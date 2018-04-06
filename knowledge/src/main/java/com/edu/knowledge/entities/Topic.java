@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tbl_chu_de")
@@ -17,6 +18,7 @@ public class Topic {
 	private int topicId;
 	
 	@Column(name="ten_chu_de")
+	@NotNull
 	private String topicName;
 	
 	@Column(name="mo_ta_chu_de")

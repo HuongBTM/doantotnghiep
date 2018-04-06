@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tbl_linh_vuc")
@@ -24,6 +25,7 @@ public class Sector implements Serializable{
 	private int sectorId;
 	
 	@Column(name="ten_linh_vuc")
+	@NotNull
 	private String sectorName;
 	
 	@Column(name="mo_ta_linh_vuc")

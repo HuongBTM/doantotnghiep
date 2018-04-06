@@ -40,9 +40,10 @@ public class User implements Serializable{
 	@Column(name="password")
 	@NotEmpty(message = "*Hãy điền tên đăng nhập")
 	@Length(min = 8, max= 25, message = "Nhập mật khẩu từ 8-25 ký tự")
-	@Transient
 	private String password;
 	
+	@Transient
+	@NotEmpty
 	private String confirmpassword;
 	
 	@Column(name="ten_hien_thi")

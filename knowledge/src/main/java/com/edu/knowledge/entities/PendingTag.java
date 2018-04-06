@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="tbl_pending_tag")
@@ -22,6 +23,7 @@ public class PendingTag implements Serializable{
 	@Column(name="id_pending")
 	private int pendingId;
 	@Column(name="ten_trang_thai")
+	@NotNull
 	private String pendingName;
 	@Column(name="mo_ta_trang_thai")
 	private String pendingDescrib;

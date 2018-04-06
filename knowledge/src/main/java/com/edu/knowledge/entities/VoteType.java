@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="tbl_vote_type")
@@ -24,6 +25,7 @@ public class VoteType implements Serializable{
 	private int voteTypeId;
 	
 	@Column(name="ten_loai_vote")
+	@NotNull
 	private String voteTypeName;
 	
 	public VoteType() {

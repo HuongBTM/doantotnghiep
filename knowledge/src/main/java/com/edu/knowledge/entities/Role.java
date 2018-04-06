@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tbl_role")
@@ -22,6 +23,7 @@ public class Role implements Serializable{
 	@Column(name="id_role")
 	private int roleId;
 	@Column(name="ten_quyen")
+	@NotNull
 	private String roleName;
 	@Column(name="mo_ta_quyen")
 	private String roleDescrib;
