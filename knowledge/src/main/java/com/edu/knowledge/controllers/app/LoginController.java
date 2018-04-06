@@ -1,4 +1,4 @@
-package com.edu.knowledge.controllers;
+package com.edu.knowledge.controllers.app;
 
 import java.util.Date;
 

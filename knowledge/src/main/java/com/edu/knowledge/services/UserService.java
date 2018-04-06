@@ -37,5 +37,5 @@ public class UserService {
 	public User getOne(int userId) {
 		return userRepositery.findUserById(userId);
 	}
-	
+
 }

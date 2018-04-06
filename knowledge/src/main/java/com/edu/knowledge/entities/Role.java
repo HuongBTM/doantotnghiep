@@ -1,12 +1,16 @@
 package com.edu.knowledge.entities;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -28,6 +32,15 @@ public class Role implements Serializable{
 	@Column(name="mo_ta_quyen")
 	private String roleDescrib;
 	
+	@OneToMany(mappedBy = "role", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Set<User> user;
+	
+	public Set<User> getUser() {
+		return user;
+	}
+	public void setUser(Set<User> user) {
+		this.user = user;
+	}
 	public int getRoleId() {
 		return roleId;
 	}
@@ -53,9 +66,40 @@ public class Role implements Serializable{
 		this.roleName = roleName;
 		this.roleDescrib = roleDescrib;
 	}
-	@Override
-	public String toString() {
-		return "Role [roleId=" + roleId + ", roleName=" + roleName + ", roleDescrib=" + roleDescrib + "]";
+	public Role(@NotNull String roleName, String roleDescrib, Set<User> user) {
+		super();
+		this.roleName = roleName;
+		this.roleDescrib = roleDescrib;
+		this.user = user;
 	}
-	
+	/*@Override
+	public String toString() {
+		String role="";
+		JSONObject jsonObject = new JSONObject();
+		try {
+			jsonObject.put("id", this.roleId);
+			jsonObject.put("name", this.roleName);
+			jsonObject.put("describ", this.roleDescrib);
+			
+			JSONArray userArray = new JSONArray();
+			if(userArray !=null) {
+				this.user.forEach(user->{
+	                JSONObject subJson = new JSONObject();
+	                try {
+						subJson.put("name", user.getUsername());
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+	                userArray.put(subJson);
+	            });
+			}
+			jsonObject.put("user", userArray);
+			role=jsonObject.toString();
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		
+		return role;
+	}*/
+
 }

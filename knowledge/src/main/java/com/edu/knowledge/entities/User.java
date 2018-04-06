@@ -5,9 +5,12 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -82,6 +85,10 @@ public class User implements Serializable{
 	private Integer rankId;
 	@Column(name = "id_chuyen_gia")
 	private Integer chuyengiaId;
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="id_role")
+	private Role role;
 	
 	public User() {}
 
@@ -209,6 +216,18 @@ public class User implements Serializable{
 		this.confirmpassword = confirmpassword;
 	}
 
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
 	public User(
 			@NotEmpty(message = "*Hãy điền tên đăng nhập") @Length(min = 8, max = 25, message = "Tên đăng nhập từ 8-25 ký tự") String username,
 			@NotEmpty(message = "*Hãy điền tên đăng nhập") @Length(min = 8, max = 25, message = "Nhập mật khẩu từ 8-25 ký tự") String password,
@@ -232,14 +251,32 @@ public class User implements Serializable{
 		this.rankId = rankId;
 		this.chuyengiaId = chuyengiaId;
 	}
-
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", fullname=" + fullname
-				+ ", email=" + email + ", createDate=" + createDate + ", lastVisit=" + lastVisit + ", address="
-				+ address + ", abouts=" + abouts + ", downvotesNum=" + downvotesNum + ", upvotesNum=" + upvotesNum
-				+ ", viewsNum=" + viewsNum + ", image=" + image + ", rankId=" + rankId + ", chuyengiaId=" + chuyengiaId
-				+ "]";
+	
+	public User(
+			@NotEmpty(message = "*Hãy điền tên đăng nhập") @Length(min = 8, max = 25, message = "Tên đăng nhập từ 8-25 ký tự") String username,
+			@NotEmpty(message = "*Hãy điền tên đăng nhập") @Length(min = 8, max = 25, message = "Nhập mật khẩu từ 8-25 ký tự") String password,
+			@NotEmpty String confirmpassword,
+			@NotEmpty(message = "*Hãy điền tên hiển thị") @Length(min = 8, max = 25, message = "Tên hiển thị từ 8-25 ký tự") String fullname,
+			@Email(message = "*Hãy điền email hợp lệ") @NotEmpty(message = "*Hãy nhập địa chỉ email") String email,
+			Date createDate, Date lastVisit, String address, String abouts, Integer downvotesNum, Integer upvotesNum,
+			Integer viewsNum, String image, Integer rankId, Integer chuyengiaId, Role role) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.confirmpassword = confirmpassword;
+		this.fullname = fullname;
+		this.email = email;
+		this.createDate = createDate;
+		this.lastVisit = lastVisit;
+		this.address = address;
+		this.abouts = abouts;
+		this.downvotesNum = downvotesNum;
+		this.upvotesNum = upvotesNum;
+		this.viewsNum = viewsNum;
+		this.image = image;
+		this.rankId = rankId;
+		this.chuyengiaId = chuyengiaId;
+		this.role = role;
 	}
 	
 }
