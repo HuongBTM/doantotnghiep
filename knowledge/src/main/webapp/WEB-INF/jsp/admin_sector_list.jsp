@@ -136,6 +136,7 @@
     
     <!-- Custom Theme JavaScript -->
     <script src="/resources/assets/js/admin-sb.js"></script>
+    <script src="/resources/assets/js/admin-add-edit.js"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     

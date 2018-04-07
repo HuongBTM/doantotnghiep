@@ -12,11 +12,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="tbl_cau_tra_loi")
@@ -66,6 +69,13 @@ public class Answer implements Serializable{
 	@OneToMany(mappedBy = "answer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Comment> comments;
 	
+	@NotEmpty
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "tbl_chi_tiet_vote", 
+             joinColumns = { @JoinColumn(name = "id_cau_tra_loi") }, 
+             inverseJoinColumns = { @JoinColumn(name = "id_vote_type") })
+	private Set<VoteType> voteTypes;
+	
 	public Answer() {
 	}
 
@@ -84,7 +94,13 @@ public class Answer implements Serializable{
 		this.comments = comments;
 	}
 
+	public int getAnswerId() {
+		return answerId;
+	}
 
+	public void setAnswerId(int answerId) {
+		this.answerId = answerId;
+	}
 
 	public String getAnswerContent() {
 		return answerContent;
@@ -164,6 +180,14 @@ public class Answer implements Serializable{
 
 	public void setComments(Set<Comment> comments) {
 		this.comments = comments;
+	}
+
+	public Set<VoteType> getVoteTypes() {
+		return voteTypes;
+	}
+
+	public void setVoteTypes(Set<VoteType> voteTypes) {
+		this.voteTypes = voteTypes;
 	}
 	
 }

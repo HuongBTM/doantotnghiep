@@ -64,6 +64,14 @@ public class Bookmark implements Serializable{
 		this.user = user;
 	}
 
+	public int getBookmarkId() {
+		return bookmarkId;
+	}
+
+	public void setBookmarkId(int bookmarkId) {
+		this.bookmarkId = bookmarkId;
+	}
+
 	public Bookmark() {
 	}
 

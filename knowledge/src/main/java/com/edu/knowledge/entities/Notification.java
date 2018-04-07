@@ -97,5 +97,13 @@ public class Notification implements Serializable{
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	public int getNotificationId() {
+		return notificationId;
+	}
+
+	public void setNotificationId(int notificationId) {
+		this.notificationId = notificationId;
+	}
 	
 }

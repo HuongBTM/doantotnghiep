@@ -43,6 +43,12 @@ public class Expect implements Serializable{
 	@Column(name="don_vi")
 	private String department;
 	
+	public String getExpectId() {
+		return expectId;
+	}
+	public void setExpectId(String expectId) {
+		this.expectId = expectId;
+	}
 	public int getPoint() {
 		return point;
 	}
@@ -73,7 +79,6 @@ public class Expect implements Serializable{
 	public void setDepartment(String department) {
 		this.department = department;
 	}
-	
 	
 	public int getUserId() {
 		return userId;

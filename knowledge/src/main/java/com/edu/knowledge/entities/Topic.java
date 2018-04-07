@@ -9,7 +9,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -34,6 +36,10 @@ public class Topic {
 	
 	@ManyToMany(mappedBy = "topics", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Question> questions;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_user")
+	private User user;
 	
 	public Topic() {
 	}
@@ -60,6 +66,22 @@ public class Topic {
 
 	public void setTopicDescribe(String topicDescribe) {
 		this.topicDescribe = topicDescribe;
+	}
+
+	public Set<Question> getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(Set<Question> questions) {
+		this.questions = questions;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Topic(String topicName, String topicDescribe) {

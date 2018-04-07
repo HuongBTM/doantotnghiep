@@ -39,16 +39,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${lstPendingTag}" var="pendingTag" varStatus="pendingTagId">
+                                <c:forEach items="${lstPendingTag}" var="pendingTag" varStatus="pendingId">
                                     <tr class="odd gradeX">
-                                    	<td class="center"><c:out value="${pendingTagId.index+1}"></c:out></td>
-                                        <td class="center"><c:out value="${pendingTag.pendingTagId}"></c:out></td>
-                                        <td><c:out value="${pendingTag.pendingTagName}"></c:out></td>
+                                    	<td class="center"><c:out value="${pendingId.index+1}"></c:out></td>
+                                        <td class="center"><c:out value="${pendingTag.pendingId}"></c:out></td>
+                                        <td><c:out value="${pendingTag.pendingName}"></c:out></td>
                                         <td><c:out value="${pendingTag.pendingDescrib}"></c:out></td>
                                         <td>
 				                            <%-- <a href="/admin/pendingTag/editpendingTag/${pendingTag.pendingTagId}" data-id="${pendingTag.pendingTagId}" class="btn btn-info btn-xs eBtn" data-target="#editpendingTag" data-toggle="modal"><i class="fa fa-pencil"></i> Edit </a> --%>
-				                            <a href="/admin/pendingTag/editpendingTag/${pendingTag.pendingTagId}" data-id="${pendingTag.pendingTagId}" class="btn btn-info btn-xs eBtn"><i class="fa fa-pencil"></i> Edit </a>
-				                            <a href="javascript:showConfirm(${pendingTag.pendingTagId})" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+				                            <a href="/admin/pendingTag/editpendingTag/${pendingTag.pendingId}" data-id="${pendingTag.pendingId}" class="btn btn-info btn-xs eBtn"><i class="fa fa-pencil"></i> Edit </a>
+				                            <a href="javascript:showConfirm(${pendingTag.pendingId})" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
 				                          </td>
                                     </tr>
                                     </c:forEach>
@@ -135,20 +135,10 @@
     
     <!-- Custom Theme JavaScript -->
     <script src="/resources/assets/js/admin-sb.js"></script>
+    <script src="/resources/assets/js/admin-add-edit.js"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
-	      function showConfirm(pendingTagId) {
-	    		var cf = confirm("Bạn muốn xóa lĩnh vực này?");
-	    		if(cf == true){
-	    			window.location = ""+userId;
-	    			consol.log("deleteuser");
-	    		} else {
-	    			
-	    		}
-	    	}
-	     
-	</script>
+
 </body>
 
 </html>

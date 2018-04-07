@@ -1,12 +1,16 @@
 package com.edu.knowledge.entities;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -27,6 +31,18 @@ public class VoteType implements Serializable{
 	@Column(name="ten_loai_vote")
 	@NotNull
 	private String voteTypeName;
+	
+	@ManyToMany(mappedBy = "voteTypes", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Set<Post> posts;
+	
+	@ManyToMany(mappedBy = "voteTypes", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Set<Question> questions;
+	
+	@ManyToMany(mappedBy = "voteTypes", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Set<Answer> answers;
+	
+	@ManyToMany(mappedBy = "voteTypes", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Set<User> users;
 	
 	public VoteType() {
 	}
@@ -50,6 +66,38 @@ public class VoteType implements Serializable{
 
 	public void setVoteTypeName(String voteTypeName) {
 		this.voteTypeName = voteTypeName;
+	}
+
+	public Set<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(Set<Post> posts) {
+		this.posts = posts;
+	}
+
+	public Set<Question> getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(Set<Question> questions) {
+		this.questions = questions;
+	}
+
+	public Set<Answer> getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(Set<Answer> answers) {
+		this.answers = answers;
+	}
+
+	public Set<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Set<User> users) {
+		this.users = users;
 	}
 
 	@Override

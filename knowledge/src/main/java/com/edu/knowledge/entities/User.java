@@ -120,6 +120,16 @@ public class User implements Serializable{
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Post> posts;
 	
+	@NotEmpty
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "tbl_chi_tiet_vote", 
+             joinColumns = { @JoinColumn(name = "id_thanh_vien") }, 
+             inverseJoinColumns = { @JoinColumn(name = "id_vote_type") })
+	private Set<VoteType> voteTypes;
+	
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Set<Topic> topics;
+	
 	public String getUsername() {
 		return username;
 	}
@@ -302,6 +312,30 @@ public class User implements Serializable{
 
 	public void setPosts(Set<Post> posts) {
 		this.posts = posts;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public Set<VoteType> getVoteTypes() {
+		return voteTypes;
+	}
+
+	public void setVoteTypes(Set<VoteType> voteTypes) {
+		this.voteTypes = voteTypes;
+	}
+
+	public Set<Topic> getTopics() {
+		return topics;
+	}
+
+	public void setTopics(Set<Topic> topics) {
+		this.topics = topics;
 	}
 
 	public User() {
