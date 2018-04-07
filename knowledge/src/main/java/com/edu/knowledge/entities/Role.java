@@ -32,7 +32,7 @@ public class Role implements Serializable{
 	@Column(name="mo_ta_quyen")
 	private String roleDescrib;
 	
-	@OneToMany(mappedBy = "role", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "role", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<User> users;
 	
 	public Set<User> getUser() {
