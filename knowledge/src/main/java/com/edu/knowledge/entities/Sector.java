@@ -1,12 +1,16 @@
 package com.edu.knowledge.entities;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -31,6 +35,15 @@ public class Sector implements Serializable{
 	@Column(name="mo_ta_linh_vuc")
 	private String describeSector;
 	
+	@ManyToMany(mappedBy = "sectors", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	private Set<User> users;
+	
+	public Set<User> getUsers() {
+		return users;
+	}
+	public void setUsers(Set<User> users) {
+		this.users = users;
+	}
 	public int getSectorId() {
 		return sectorId;
 	}
@@ -57,11 +70,11 @@ public class Sector implements Serializable{
 		this.sectorName = sectorName;
 		this.describeSector = describeSector;
 	}
-	
-	@Override
-	public String toString() {
-		return "Sector [sectorId=" + sectorId + ", sectorName=" + sectorName + ", describeSector=" + describeSector
-				+ "]";
+	public Sector(@NotNull String sectorName, String describeSector, Set<User> users) {
+		super();
+		this.sectorName = sectorName;
+		this.describeSector = describeSector;
+		this.users = users;
 	}
-
+	
 }

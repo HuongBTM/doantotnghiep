@@ -229,7 +229,7 @@
                                     <!-- /.nav-third-level -->
                                 </li>
                                 <li>
-                                    <a href="/admin/role/allrole">Quản lý chủ đề</a>
+                                    <a href="#">Quản lý chủ đề</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

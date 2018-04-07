@@ -2,6 +2,7 @@ package com.edu.knowledge.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -90,6 +93,22 @@ public class User implements Serializable{
 	@JoinColumn(name="id_role")
 	private Role role;
 	
+	@NotEmpty
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "tbl_chuyen_gia", 
+             joinColumns = { @JoinColumn(name = "id_thanh_vien") }, 
+             inverseJoinColumns = { @JoinColumn(name = "id_linh_vuc") })
+	private Set<Sector> sectors;
+	
+	
+	public Set<Sector> getSectors() {
+		return sectors;
+	}
+
+	public void setSectors(Set<Sector> sectors) {
+		this.sectors = sectors;
+	}
+
 	public User() {}
 
 	public String getUsername() {
@@ -277,6 +296,35 @@ public class User implements Serializable{
 		this.rankId = rankId;
 		this.chuyengiaId = chuyengiaId;
 		this.role = role;
+	}
+
+	public User(
+			@NotEmpty(message = "*Hãy điền tên đăng nhập") @Length(min = 8, max = 25, message = "Tên đăng nhập từ 8-25 ký tự") String username,
+			@NotEmpty(message = "*Hãy điền tên đăng nhập") @Length(min = 8, max = 25, message = "Nhập mật khẩu từ 8-25 ký tự") String password,
+			@NotEmpty String confirmpassword,
+			@NotEmpty(message = "*Hãy điền tên hiển thị") @Length(min = 8, max = 25, message = "Tên hiển thị từ 8-25 ký tự") String fullname,
+			@Email(message = "*Hãy điền email hợp lệ") @NotEmpty(message = "*Hãy nhập địa chỉ email") String email,
+			Date createDate, Date lastVisit, String address, String abouts, Integer downvotesNum, Integer upvotesNum,
+			Integer viewsNum, String image, Integer rankId, Integer chuyengiaId, Role role,
+			@NotEmpty Set<Sector> sectors) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.confirmpassword = confirmpassword;
+		this.fullname = fullname;
+		this.email = email;
+		this.createDate = createDate;
+		this.lastVisit = lastVisit;
+		this.address = address;
+		this.abouts = abouts;
+		this.downvotesNum = downvotesNum;
+		this.upvotesNum = upvotesNum;
+		this.viewsNum = viewsNum;
+		this.image = image;
+		this.rankId = rankId;
+		this.chuyengiaId = chuyengiaId;
+		this.role = role;
+		this.sectors = sectors;
 	}
 	
 }

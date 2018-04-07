@@ -33,13 +33,13 @@ public class Role implements Serializable{
 	private String roleDescrib;
 	
 	@OneToMany(mappedBy = "role", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Set<User> user;
+	private Set<User> users;
 	
 	public Set<User> getUser() {
-		return user;
+		return users;
 	}
 	public void setUser(Set<User> user) {
-		this.user = user;
+		this.users = user;
 	}
 	public int getRoleId() {
 		return roleId;
@@ -66,11 +66,11 @@ public class Role implements Serializable{
 		this.roleName = roleName;
 		this.roleDescrib = roleDescrib;
 	}
-	public Role(@NotNull String roleName, String roleDescrib, Set<User> user) {
+	public Role(@NotNull String roleName, String roleDescrib, Set<User> users) {
 		super();
 		this.roleName = roleName;
 		this.roleDescrib = roleDescrib;
-		this.user = user;
+		this.users = users;
 	}
 	/*@Override
 	public String toString() {
