@@ -19,7 +19,7 @@ public class PendingTag implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_pending")
 	private int pendingId;
 	@Column(name="ten_trang_thai")

@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 public class Topic {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_chu_de")
 	private int topicId;
 	

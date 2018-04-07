@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -34,7 +36,7 @@ public class User implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_thanh_vien")
 	private int userId;
 	
@@ -89,7 +91,7 @@ public class User implements Serializable{
 	@Column(name = "id_chuyen_gia")
 	private Integer chuyengiaId;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_role")
 	private Role role;
 	
@@ -100,6 +102,8 @@ public class User implements Serializable{
              inverseJoinColumns = { @JoinColumn(name = "id_linh_vuc") })
 	private Set<Sector> sectors;
 	
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Set<Notification> notifications;
 	
 	public Set<Sector> getSectors() {
 		return sectors;

@@ -24,7 +24,7 @@ public class Sector implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_linh_vuc")
 	private int sectorId;
 	
@@ -35,7 +35,7 @@ public class Sector implements Serializable{
 	@Column(name="mo_ta_linh_vuc")
 	private String describeSector;
 	
-	@ManyToMany(mappedBy = "sectors", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@ManyToMany(mappedBy = "sectors", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<User> users;
 	
 	public Set<User> getUsers() {

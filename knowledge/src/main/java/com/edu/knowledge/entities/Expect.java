@@ -25,7 +25,7 @@ public class Expect implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_chuyen_gia")
 	private String expectId;
 	@Column(name="id_thanh_vien")
