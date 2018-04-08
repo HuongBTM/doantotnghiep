@@ -31,19 +31,19 @@
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-votetype">
                                 <thead>
                                     <tr>
-                                    	<th>STT</th>
-                                        <th>ID</th>
-                                        <th>Tên loại vote</th>
+                                    	<th align="center">STT</th>
+                                        <th align="center">ID</th>
+                                        <th align="center">Tên loại vote</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 <c:forEach items="${lstVoteType}" var="voteType" varStatus="voteTypeId">
                                     <tr class="odd gradeX">
-                                    	<td class="center"><c:out value="${voteTypeId.index+1}"></c:out></td>
-                                        <td class="center"><c:out value="${voteType.voteTypeId}"></c:out></td>
+                                    	<td align="center"><c:out value="${voteTypeId.index+1}"></c:out></td>
+                                        <td align="center"><c:out value="${voteType.voteTypeId}"></c:out></td>
                                         <td><c:out value="${voteType.voteTypeName}"></c:out></td>
-                                        <td>
+                                        <td align="center">
 				                            <a href="/admin/votetype/findone/${voteType.voteTypeId}" id="editVoteType" data-id="${voteType.voteTypeId}" class="btn btn-info btn-xs eVoteBtn"><i class="fa fa-pencil"></i> Edit </a>
 				                            <a href="#" class="btn btn-danger btn-xs delVoteTypeBtn" id="delete" data-id="${voteType.voteTypeId}"><i class="fa fa-trash-o"></i> Delete </a>
 				                          </td>

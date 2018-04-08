@@ -198,7 +198,7 @@
                             <ul class="nav nav-second-level">
                                 
                                 <li>
-                                    <a href="/admin/table">Quản lý thành viên</a>
+                                    <a href="/admin/user/alluser">Quản lý thành viên</a>
                                 </li>
                                 <li>
                                     <a href="#">Quản lý câu hỏi <span class="fa arrow"></span></a>

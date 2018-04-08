@@ -31,22 +31,21 @@
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-sector">
                                 <thead>
                                     <tr>
-                                    	<th>STT</th>
-                                        <th>ID</th>
-                                        <th>Tên lĩnh vực</th>
-                                        <th>Mô tả</th>
+                                    	<th align="center">STT</th>
+                                        <th align="center">ID</th>
+                                        <th align="center">Tên lĩnh vực</th>
+                                        <th align="center">Mô tả</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 <c:forEach items="${lstSector}" var="sector" varStatus="sectorId">
                                     <tr class="odd gradeX">
-                                    	<td class="center"><c:out value="${sectorId.index+1}"></c:out></td>
-                                        <td class="center"><c:out value="${sector.sectorId}"></c:out></td>
+                                    	<td align="right"><c:out value="${sectorId.index+1}"></c:out></td>
+                                        <td align="right"><c:out value="${sector.sectorId}"></c:out></td>
                                         <td><c:out value="${sector.sectorName}"></c:out></td>
                                         <td><c:out value="${sector.describeSector}"></c:out></td>
-                                        <td>
-				                            <%-- <a href="/admin/sector/editsector/${sector.sectorId}" data-id="${sector.sectorId}" class="btn btn-info btn-xs eBtn" data-target="#editSector" data-toggle="modal"><i class="fa fa-pencil"></i> Edit </a> --%>
+                                        <td align="center">
 				                            <a href="/admin/sector/editsector/${sector.sectorId}" data-id="${sector.sectorId}" class="btn btn-info btn-xs eBtn"><i class="fa fa-pencil"></i> Edit </a>
 				                            <a href="javascript:showConfirm(${sector.sectorId})" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
 				                          </td>

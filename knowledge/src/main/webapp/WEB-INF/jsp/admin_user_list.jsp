@@ -30,27 +30,28 @@
                              <table width="100%" id="dataTables-user" class="table table-bordered table-striped table-hover">
 				                <thead>
 				                  <tr>
-				                    <th>ID</th>
-				                    <th>Tên hiển thị</th>
-				                    <th>Email</th>
-				                    <th>Số điện thoại</th>
-				                    <th>Ngày đăng ký</th>
-				                    <th>Role</th>
-				                    <th>Edit</th>
-				                    <th>Delete</th>
+				                  	 <th align="center">STT</th>
+				                    <th align="center">ID</th>
+				                    <th align="center">Tên hiển thị</th>
+				                    <th align="center">Email</th>
+				                    <th align="center">Số điện thoại</th>
+				                    <th align="center">Ngày đăng ký</th>
+				                    <th align="center">Role</th>
+				                    <th></th>
 				                  </tr>
 				                </thead>
 				                <tbody>
-				                  <c:forEach items="${users}" var="user" >
+				                  <c:forEach items="${users}" var="user" varStatus="userId">
 				                    <tr>
-				                      <td align="center">${user.userId}</td>
+				                      <td align="right"><c:out value="${userId.index+1}"></c:out></td>
+				                      <td align="right">${user.userId}</td>
 				                      <td>
 				                        <%-- <img src="<c:url value='/upload/${user.avatar}' />" class="avatar-table" alt="User avatar"> --%>
 				                        <a href="<c:url value="/admin/user/${user.userId}" />">${user.fullname}</a>
 				                      </td>
 				                      <td>${user.email}</td>
-				                      <td align="center">${user.phoneNum}</td>
-				                      <td align="center">${user.creatDate}</td>
+				                      <td align="right">${user.phoneNum}</td>
+				                      <td align="left">${user.createDate}</td>
 				                      <td align="center">
 				                        <c:choose>
 				                          <c:when test="${user.admin}">
@@ -62,16 +63,9 @@
 				                        </c:choose>
 				                      </td>
 				                      <td align="center">
-				                        <a href="<c:url value="/admin/user/${user.userId}/edit" />" title="Edit user">
-				                          <i class="fa fa-pencil"></i>
-				                        </a>
-				                      </td>
-				                      <td align="center">
-				                        <a href="<c:url value="/admin/user/${user.userId}/delete" />" title="Delete user"
-				                           onclick="return confirmDelete('user');">
-				                          <i class="fa fa-trash"></i>
-				                        </a>
-				                      </td>
+				                            <a href="/admin/user/edit/${user.userId}" id="editUser" data-id="${user.userId}" class="btn btn-info btn-xs eBtn"><i class="fa fa-pencil"></i> Edit </a>
+				                            <a href="#" class="btn btn-danger btn-xs delVoteTypeBtn" id="delete" data-id="${user.userId}"><i class="fa fa-trash-o"></i> Delete </a>
+				                          </td>
 				                    </tr>
 				                  </c:forEach>
 				                </tbody>

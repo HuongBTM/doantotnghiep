@@ -3,6 +3,7 @@ package com.edu.knowledge.controllers.admin;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,7 +16,9 @@ import com.edu.knowledge.services.UserService;
 @RequestMapping("/admin/user")
 public class AdminUserController {
 
+	@Autowired
 	private UserService userService;
+	
 	@RequestMapping(value ="/alluser", method=RequestMethod.GET)
 	public ModelAndView findAllUser() {
 		ModelAndView modelAndView = new ModelAndView("admin_user_list");
@@ -24,5 +27,6 @@ public class AdminUserController {
 		modelAndView.addObject("users", users);
 		return modelAndView;
 	}
+	
 	
 }

@@ -23,6 +23,9 @@ public interface UserRepositery extends JpaRepository<User, Integer>{
 	@Query("SELECT u FROM User u WHERE u.userId = ?1")
 	User findUserById(int userId);
 	
-	@Query("SELECT u FROM User u WHERE u.userId=1")
+	@Query("SELECT distinct u FROM User u JOIN fetch u.role")
 	List<User> findAllUser();
+	
+/*	@Query("select u.role.roleId form User u where u.userId = 1")
+	int getRoleId();*/
 }

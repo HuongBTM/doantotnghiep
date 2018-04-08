@@ -31,21 +31,21 @@
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-role">
                                 <thead>
                                     <tr>
-                                    	<th>STT</th>
-                                        <th>ID</th>
-                                        <th>Tên quyền</th>
-                                        <th>Mô tả quyền</th>
+                                    	<th align="center">STT</th>
+                                        <th align="center">ID</th>
+                                        <th align="center">Tên quyền</th>
+                                        <th align="center">Mô tả quyền</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 <c:forEach items="${lstRole}" var="role" varStatus="roleId">
                                     <tr class="odd gradeX">
-                                    	<td class="center"><c:out value="${roleId.index+1}"></c:out></td>
-                                        <td class="center"><c:out value="${role.roleId}"></c:out></td>
+                                    	<td align="right"><c:out value="${roleId.index+1}"></c:out></td>
+                                        <td align="right"><c:out value="${role.roleId}"></c:out></td>
                                         <td><c:out value="${role.roleName}"></c:out></td>
                                         <td><c:out value="${role.roleDescrib}"></c:out></td>
-                                        <td>
+                                        <td align="center">
 				                            <%-- <a href="/admin/role/editrole/${role.roleId}" data-id="${role.roleId}" class="btn btn-info btn-xs eBtn" data-target="#editrole" data-toggle="modal"><i class="fa fa-pencil"></i> Edit </a> --%>
 				                            <a href="/admin/role/editrole/${role.roleId}" data-id="${role.roleId}" class="btn btn-info btn-xs eBtn"><i class="fa fa-pencil"></i> Edit </a>
 				                            <a href="javascript:showConfirm(${role.roleId})" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
