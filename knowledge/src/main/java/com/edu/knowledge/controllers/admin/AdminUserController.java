@@ -3,14 +3,24 @@ package com.edu.knowledge.controllers.admin;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.edu.knowledge.entities.Role;
 import com.edu.knowledge.entities.User;
+import com.edu.knowledge.services.RoleService;
 import com.edu.knowledge.services.UserService;
+import com.edu.knowledge.validator.UserValidator;
 
 @Controller
 @RequestMapping("/admin/user")
@@ -18,6 +28,12 @@ public class AdminUserController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private RoleService roleService;
+	
+	@Autowired
+	private UserValidator userValidator;
 	
 	@RequestMapping(value ="/alluser", method=RequestMethod.GET)
 	public ModelAndView findAllUser() {
@@ -28,5 +44,46 @@ public class AdminUserController {
 		return modelAndView;
 	}
 	
+	@RequestMapping(value="/adduser", method=RequestMethod.GET)
+	public ModelAndView addUser() {
+		ModelAndView modelAndView = new ModelAndView("admin_user_edit");
+		User user = new User();
+		modelAndView.addObject("user", user);
+		return modelAndView;
+	}
+	
+	@RequestMapping(value= "/edit/{id}", method=RequestMethod.GET)
+	public ModelAndView editUser(@PathVariable("id") int id) {
+		ModelAndView modelAndView = new ModelAndView();
+		User user = userService.getOne(id);
+		if(user == null) {
+			modelAndView.setViewName("404");
+		} else {
+			modelAndView.addObject("user", user);
+			modelAndView.setViewName("admin_user_edit");
+		}
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/save", method=RequestMethod.POST)
+	public ModelAndView saveUserEdit(@ModelAttribute("user") User user, BindingResult result, 
+			@RequestParam("role") String role, RedirectAttributes redirect) {
+		ModelAndView modelAndView = new ModelAndView("admin_user_edit");
+		userValidator.validate(user, result);
+		if(result.hasErrors()) {
+			System.out.println(result);
+			return modelAndView;
+		}
+		if(user.getUserId() ==0) {
+			System.out.println("go to save");
+			userService.createUser(user , role);
+		} else {
+			if(userService.updateUser(user, role)) {
+				redirect.addFlashAttribute("error", "Saved user " + user.getFullname() + " error!");
+			}
+		}
+		redirect.addFlashAttribute("success", "Saved user " + user.getFullname() + " successfully!");
+		return modelAndView;
+	}
 	
 }

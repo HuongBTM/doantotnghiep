@@ -41,13 +41,9 @@ public class User implements Serializable{
 	private int userId;
 	
 	@Column(name="username")
-	@NotEmpty(message = "*Hãy điền tên đăng nhập")
-	@Length(min = 8, max= 25, message = "Tên đăng nhập từ 8-25 ký tự")
 	private String username;
 	
 	@Column(name="password")
-	@NotEmpty(message = "*Hãy điền tên đăng nhập")
-	@Length(min = 8, max= 25, message = "Nhập mật khẩu từ 8-25 ký tự")
 	private String password;
 	
 	@Transient
@@ -55,13 +51,9 @@ public class User implements Serializable{
 	private String confirmpassword;
 	
 	@Column(name="ten_hien_thi")
-	@NotEmpty(message = "*Hãy điền tên hiển thị")
-	@Length(min = 8, max= 25, message = "Tên hiển thị từ 8-25 ký tự")
 	private String fullname;
 	
 	@Column(name = "email")
-	@Email(message = "*Hãy điền email hợp lệ")
-	@NotEmpty(message = "*Hãy nhập địa chỉ email")
 	private String email;
 	
 	@Column(nullable = false, updatable = false, name="ngay_dang_ky")
@@ -77,12 +69,7 @@ public class User implements Serializable{
 	private String address;
 	@Column(name = "abouts")
 	private String abouts;
-	@Column(name = "downvotes")
-	private Integer downvotesNum;
-	@Column(name = "upvotes")
-	private Integer upvotesNum;
-	@Column(name = "luot_view")
-	private Integer viewsNum;
+	
 	@Column(name = "image")
 	private String image;
 	
@@ -205,30 +192,6 @@ public class User implements Serializable{
 		this.abouts = abouts;
 	}
 
-	public Integer getDownvotesNum() {
-		return downvotesNum;
-	}
-
-	public void setDownvotesNum(Integer downvotesNum) {
-		this.downvotesNum = downvotesNum;
-	}
-
-	public Integer getUpvotesNum() {
-		return upvotesNum;
-	}
-
-	public void setUpvotesNum(Integer upvotesNum) {
-		this.upvotesNum = upvotesNum;
-	}
-
-	public Integer getViewsNum() {
-		return viewsNum;
-	}
-
-	public void setViewsNum(Integer viewsNum) {
-		this.viewsNum = viewsNum;
-	}
-
 	public String getImage() {
 		return image;
 	}
@@ -332,67 +295,14 @@ public class User implements Serializable{
 	}
 
 	public User() {
+		role = new Role("ROLE_MEMBER");
 		createDate = new Date();
 	}
-	
-	public User(
-			@NotEmpty(message = "*Hãy điền tên đăng nhập") @Length(min = 8, max = 25, message = "Tên đăng nhập từ 8-25 ký tự") String username,
-			@NotEmpty(message = "*Hãy điền tên đăng nhập") @Length(min = 8, max = 25, message = "Nhập mật khẩu từ 8-25 ký tự") String password,
-			@NotEmpty(message = "*Hãy điền tên hiển thị") @Length(min = 8, max = 25, message = "Tên hiển thị từ 8-25 ký tự") String fullname,
-			@Email(message = "*Hãy điền email hợp lệ") @NotEmpty(message = "*Hãy nhập địa chỉ email") String email,
-			Date createDate, Date lastVisit, String address, String abouts,Integer phoneNum, Integer downvotesNum, Integer upvotesNum,
-			Integer viewsNum, String image) {
-		super();
-		this.username = username;
-		this.password = password;
-		this.fullname = fullname;
-		this.email = email;
-		this.createDate = createDate;
-		this.lastVisit = lastVisit;
-		this.address = address;
-		this.abouts = abouts;
-		this.phoneNum = phoneNum;
-		this.downvotesNum = downvotesNum;
-		this.upvotesNum = upvotesNum;
-		this.viewsNum = viewsNum;
-		this.image = image;
-		
-	}
-	
-	public User(
-			@NotEmpty(message = "*Hãy điền tên đăng nhập") @Length(min = 8, max = 25, message = "Tên đăng nhập từ 8-25 ký tự") String username,
-			@NotEmpty(message = "*Hãy điền tên đăng nhập") @Length(min = 8, max = 25, message = "Nhập mật khẩu từ 8-25 ký tự") String password,
-			@NotEmpty String confirmpassword,
-			@NotEmpty(message = "*Hãy điền tên hiển thị") @Length(min = 8, max = 25, message = "Tên hiển thị từ 8-25 ký tự") String fullname,
-			@Email(message = "*Hãy điền email hợp lệ") @NotEmpty(message = "*Hãy nhập địa chỉ email") String email,
-			Date createDate, Date lastVisit, String address, String abouts, Integer downvotesNum, Integer upvotesNum,
-			Integer viewsNum, String image, Role role) {
-		super();
-		this.username = username;
-		this.password = password;
-		this.confirmpassword = confirmpassword;
-		this.fullname = fullname;
-		this.email = email;
-		this.createDate = createDate;
-		this.lastVisit = lastVisit;
-		this.address = address;
-		this.abouts = abouts;
-		this.downvotesNum = downvotesNum;
-		this.upvotesNum = upvotesNum;
-		this.viewsNum = viewsNum;
-		this.image = image;
-		this.role = role;
-	}
 
-	public User(
-			@NotEmpty(message = "*Hãy điền tên đăng nhập") @Length(min = 8, max = 25, message = "Tên đăng nhập từ 8-25 ký tự") String username,
-			@NotEmpty(message = "*Hãy điền tên đăng nhập") @Length(min = 8, max = 25, message = "Nhập mật khẩu từ 8-25 ký tự") String password,
-			@NotEmpty String confirmpassword,
-			@NotEmpty(message = "*Hãy điền tên hiển thị") @Length(min = 8, max = 25, message = "Tên hiển thị từ 8-25 ký tự") String fullname,
-			@Email(message = "*Hãy điền email hợp lệ") @NotEmpty(message = "*Hãy nhập địa chỉ email") String email,
-			Date createDate, Date lastVisit, String address, String abouts, Integer downvotesNum, Integer upvotesNum,
-			Integer viewsNum, String image, Role role,
-			@NotEmpty Set<Sector> sectors) {
+	public User(String username, String password, @NotEmpty String confirmpassword, String fullname, String email,
+			Date createDate, Date lastVisit, Integer phoneNum, String address, String abouts, String image, Role role,
+			Set<Sector> sectors, Set<Notification> notifications, Set<Bookmark> bookmarks, Set<Question> questions,
+			Set<Answer> answers, Set<Comment> comments, Set<Post> posts, Set<VoteType> voteTypes, Set<Topic> topics) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -401,14 +311,20 @@ public class User implements Serializable{
 		this.email = email;
 		this.createDate = createDate;
 		this.lastVisit = lastVisit;
+		this.phoneNum = phoneNum;
 		this.address = address;
 		this.abouts = abouts;
-		this.downvotesNum = downvotesNum;
-		this.upvotesNum = upvotesNum;
-		this.viewsNum = viewsNum;
 		this.image = image;
 		this.role = role;
 		this.sectors = sectors;
+		this.notifications = notifications;
+		this.bookmarks = bookmarks;
+		this.questions = questions;
+		this.answers = answers;
+		this.comments = comments;
+		this.posts = posts;
+		this.voteTypes = voteTypes;
+		this.topics = topics;
 	}
 	
 }

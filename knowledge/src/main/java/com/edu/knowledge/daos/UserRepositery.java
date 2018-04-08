@@ -26,6 +26,9 @@ public interface UserRepositery extends JpaRepository<User, Integer>{
 	@Query("SELECT distinct u FROM User u JOIN fetch u.role")
 	List<User> findAllUser();
 	
-/*	@Query("select u.role.roleId form User u where u.userId = 1")
-	int getRoleId();*/
+	@Query("SELECT count(*) FROM User")
+	int countUser();
+	
+	@Query("UPDATE User u SET u.fullname=?1, u.username=?2, u.password =?3, u.phoneNum=?4, u.address=?5, u.abouts=?6 WHERE u.userId=?7")
+	int updateUser(String fullname, String username, String password, int phoneNum, String abouts, int userId);
 }

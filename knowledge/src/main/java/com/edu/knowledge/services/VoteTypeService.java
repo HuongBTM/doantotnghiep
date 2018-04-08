@@ -36,7 +36,7 @@ public class VoteTypeService {
 
 	@Transactional
 	public VoteType updateVoteType(VoteType voteType) {
-		//int rowUpdate = typeRepositery.updateVoteType(voteType.getVoteTypeName(), voteType.getVoteTypeId());
+		int rowUpdate = typeRepositery.updateVoteType(voteType.getVoteTypeName(), voteType.getVoteTypeId());
 		return getVoteTypeById(voteType.getVoteTypeId());
 	}
 	

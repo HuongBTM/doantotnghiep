@@ -43,22 +43,6 @@ public class AdminVotetypeController {
 		return voteTypeService.getVoteTypeById(id);
 	}
 	
-	/*@RequestMapping(value = "/addvotetype", method = RequestMethod.GET)
-	public ModelAndView addVoteType() {
-		ModelAndView modelAndView = new ModelAndView("admin_votetype_edit");
-		VoteType voteType = new VoteType();
-		modelAndView.addObject("voteType", voteType);
-		return modelAndView;
-	}
-	
-	@RequestMapping(value = "/editvotetype/{id}", method = RequestMethod.GET)
-	public ModelAndView editVoteType(@PathVariable("id") Integer id) {
-		ModelAndView modelAndView = new ModelAndView("admin_VoteType_edit");
-		VoteType voteType = voteTypeService.getVoteTypeById(id);
-		modelAndView.addObject("voteType", voteType);
-		return modelAndView;
-	}*/
-	
 	@RequestMapping(value = "/savevotetype", method=RequestMethod.POST)
 	public ModelAndView saveVoteType(@ModelAttribute("voteType") VoteType voteType, BindingResult result, HttpServletRequest request) {
 		ModelAndView model = new ModelAndView("admin_votetype_edit");

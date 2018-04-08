@@ -14,7 +14,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @ComponentScan(basePackages={"com.edu.knowledge.controllers", 
-		"com.edu.knowledge.services", "com.edu.knowledge.daos"})
+		"com.edu.knowledge.services", "com.edu.knowledge.daos", "com.edu.knowledge.validator"})
 @EntityScan("com.edu.knowledge.entities")
 @EnableJpaRepositories(basePackages= {"com.edu.knowledge.daos"})
 public class KnowledgeApplication {

@@ -68,7 +68,7 @@ public class LoginController {
 		
 		if(errMessage.isEmpty()) {
 			user.setCreateDate(new Date());
-			userService.saveUser(user, "member");
+			userService.createUser(user, "member");
 			//System.out.println(Charset.defaultCharset());
 			model.setViewName("home");
 		} else {

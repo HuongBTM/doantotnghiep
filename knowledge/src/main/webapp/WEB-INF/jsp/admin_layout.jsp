@@ -49,7 +49,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">LOGO</a>
+                <a class="navbar-brand" href="index.html"><span>LOGO</span></a>
             </div>
             <!-- /.navbar-header -->
 
@@ -159,93 +159,97 @@
                     <ul class="nav" id="side-menu">
                         
                         <li>
-                            <a href="/admin/dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="/admin/dashboard"><i class="fa fa-dashboard fa-fw"></i> <span>Dashboard</span></a>
                         </li>
                        
                         <li>
-                        	<a href="#"><i class="fa fa-check-square-o fa-fw"></i> Phê duyệt</a>
+                        	<a href="#"><i class="fa fa-check-square-o fa-fw"></i> <span>Phê duyệt</span><span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="/admin/">Câu hỏi mới</a>
+                                    <a href="/admin/"><span>Câu hỏi mới</span></a>
                                 </li>
                                 <li>
-                                    <a href="/admin/">Bài viết mới</a>
+                                    <a href="/admin/"><span>Bài viết mới</span></a>
                                 </li>
                             </ul>
                         </li>
                        
                         <li>
-                            <a href="#"><i class="fa fa-table fa-fw"></i> Static Tables<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-table fa-fw"></i> <span>Static Tables</span><span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="/admin/votetype/allvotetype">Quản lý vote</a>
+                                    <a href="/admin/votetype/allvotetype"><span>Quản lý vote</span></a>
                                 </li>
                                 <li>
-                                    <a href="/admin/role/allrole">Quản lý quyền</a>
+                                    <a href="/admin/role/allrole"><span>Quản lý quyền</span></a>
                                 </li>
                                 <li>
-                                    <a href="/admin/sector/allsector">Lĩnh vực - sector</a>
+                                    <a href="/admin/sector/allsector"><span>Lĩnh vực - sector</span></a>
                                 </li>
                                 <li>
-                                    <a href="/admin/pendingtag/allpendingtag">Trạng thái câu hỏi</a>
+                                    <a href="/admin/pendingtag/allpendingtag"><span>Trạng thái câu hỏi</span></a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         
                         <li>
-                            <a href="#"><i class="fa fa-table fa-fw"></i> Dynamic Tables<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-table fa-fw"></i> <span>Dynamic Tables</span><span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 
                                 <li>
-                                    <a href="/admin/user/alluser">Quản lý thành viên</a>
+                                    <a href="/admin/user/alluser"><span>Quản lý thành viên</span></a>
                                 </li>
                                 <li>
-                                    <a href="#">Quản lý câu hỏi <span class="fa arrow"></span></a>
+                                    <a href="#"><span>Quản lý câu hỏi </span><span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
                                         <li>
-                                            <a href="#">Danh mục câu hỏi</a>
+                                            <a href="#"><span>Danh mục câu hỏi</span></a>
                                         </li>
                                         <li>
-                                            <a href="#">Danh mục câu trả lời</a>
+                                            <a href="#"><span>Danh mục câu trả lời</span></a>
                                         </li>
                                         <li>
-                                            <a href="#">Comment</a>
+                                            <a href="#"><span>Comment</span></a>
                                         </li>
                                         
                                     </ul>
                                     <!-- /.nav-third-level -->
                                 </li>
                                 <li>
-                                    <a href="#">Quản lý bài viết <span class="fa arrow"></span></a>
+                                    <a href="#"><span>Quản lý bài viết </span><span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
                                         <li>
-                                            <a href="#">Danh mục bài viết</a>
+                                            <a href="#"><span>Danh mục bài viết</span></a>
                                         </li>
                                         <li>
-                                            <a href="#">Danh mục câu hỏi</a>
+                                            <a href="#"><span>Danh mục câu hỏi</span></a>
                                         </li>
                                     </ul>
                                     <!-- /.nav-third-level -->
                                 </li>
                                 <li>
-                                    <a href="#">Quản lý chủ đề</a>
+                                    <a href="#"><span>Quản lý chủ đề</span></a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bell fa-fw"></i> Member notification<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bell fa-fw"></i> <span>Member notification</span><span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="blank.html">Bookmark</a>
+                                    <a href="blank.html"><span>Bookmark</span></a>
                                 </li>
                                	
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Thống kê</a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> <span>Thống kê</span></a>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="/home"><i class="fa fa-globe fa-fw"></i> <span>Go to website</span></a>
                             <!-- /.nav-second-level -->
                         </li>
                     </ul>
