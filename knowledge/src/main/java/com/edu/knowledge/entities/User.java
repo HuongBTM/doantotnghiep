@@ -66,14 +66,13 @@ public class User implements Serializable{
 	
 	@Column(nullable = false, updatable = false, name="ngay_dang_ky")
     @Temporal(TemporalType.TIMESTAMP)
-    /*@CreatedDate*/
 	private Date createDate;
 	
 	@Column(name="truy_cap_cuoi")
     @Temporal(TemporalType.TIMESTAMP)
-    /*@LastModifiedDate*/
 	private Date lastVisit;
-	
+	@Column(name = "so_dien_thoai")
+	private Integer phoneNum;
 	@Column(name = "dia_chi")
 	private String address;
 	@Column(name = "abouts")
@@ -86,16 +85,11 @@ public class User implements Serializable{
 	private Integer viewsNum;
 	@Column(name = "image")
 	private String image;
-	@Column(name = "id_rank")
-	private Integer rankId;
-	@Column(name = "id_chuyen_gia")
-	private Integer chuyengiaId;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_role")
 	private Role role;
 	
-	@NotEmpty
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "tbl_chuyen_gia", 
              joinColumns = { @JoinColumn(name = "id_thanh_vien") }, 
@@ -120,7 +114,6 @@ public class User implements Serializable{
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Post> posts;
 	
-	@NotEmpty
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "tbl_chi_tiet_vote", 
              joinColumns = { @JoinColumn(name = "id_thanh_vien") }, 
@@ -130,6 +123,16 @@ public class User implements Serializable{
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Topic> topics;
 	
+	
+
+	public Integer getPhoneNum() {
+		return phoneNum;
+	}
+
+	public void setPhoneNum(Integer phoneNum) {
+		this.phoneNum = phoneNum;
+	}
+
 	public String getUsername() {
 		return username;
 	}
@@ -234,22 +237,6 @@ public class User implements Serializable{
 		this.image = image;
 	}
 
-	public Integer getRankId() {
-		return rankId;
-	}
-
-	public void setRankId(Integer rankId) {
-		this.rankId = rankId;
-	}
-
-	public Integer getChuyengiaId() {
-		return chuyengiaId;
-	}
-
-	public void setChuyengiaId(Integer chuyengiaId) {
-		this.chuyengiaId = chuyengiaId;
-	}
-
 	public Role getRole() {
 		return role;
 	}
@@ -337,8 +324,15 @@ public class User implements Serializable{
 	public void setTopics(Set<Topic> topics) {
 		this.topics = topics;
 	}
+	public boolean isAdmin() {
+		if (role.getRoleName().equals("ROLE_ADMIN")) {
+			return true;
+		}
+		return false;
+	}
 
 	public User() {
+		createDate = new Date();
 	}
 	
 	public User(
@@ -346,8 +340,8 @@ public class User implements Serializable{
 			@NotEmpty(message = "*Hãy điền tên đăng nhập") @Length(min = 8, max = 25, message = "Nhập mật khẩu từ 8-25 ký tự") String password,
 			@NotEmpty(message = "*Hãy điền tên hiển thị") @Length(min = 8, max = 25, message = "Tên hiển thị từ 8-25 ký tự") String fullname,
 			@Email(message = "*Hãy điền email hợp lệ") @NotEmpty(message = "*Hãy nhập địa chỉ email") String email,
-			Date createDate, Date lastVisit, String address, String abouts, Integer downvotesNum, Integer upvotesNum,
-			Integer viewsNum, String image, Integer rankId, Integer chuyengiaId) {
+			Date createDate, Date lastVisit, String address, String abouts,Integer phoneNum, Integer downvotesNum, Integer upvotesNum,
+			Integer viewsNum, String image) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -357,12 +351,12 @@ public class User implements Serializable{
 		this.lastVisit = lastVisit;
 		this.address = address;
 		this.abouts = abouts;
+		this.phoneNum = phoneNum;
 		this.downvotesNum = downvotesNum;
 		this.upvotesNum = upvotesNum;
 		this.viewsNum = viewsNum;
 		this.image = image;
-		this.rankId = rankId;
-		this.chuyengiaId = chuyengiaId;
+		
 	}
 	
 	public User(
@@ -372,7 +366,7 @@ public class User implements Serializable{
 			@NotEmpty(message = "*Hãy điền tên hiển thị") @Length(min = 8, max = 25, message = "Tên hiển thị từ 8-25 ký tự") String fullname,
 			@Email(message = "*Hãy điền email hợp lệ") @NotEmpty(message = "*Hãy nhập địa chỉ email") String email,
 			Date createDate, Date lastVisit, String address, String abouts, Integer downvotesNum, Integer upvotesNum,
-			Integer viewsNum, String image, Integer rankId, Integer chuyengiaId, Role role) {
+			Integer viewsNum, String image, Role role) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -387,8 +381,6 @@ public class User implements Serializable{
 		this.upvotesNum = upvotesNum;
 		this.viewsNum = viewsNum;
 		this.image = image;
-		this.rankId = rankId;
-		this.chuyengiaId = chuyengiaId;
 		this.role = role;
 	}
 
@@ -399,7 +391,7 @@ public class User implements Serializable{
 			@NotEmpty(message = "*Hãy điền tên hiển thị") @Length(min = 8, max = 25, message = "Tên hiển thị từ 8-25 ký tự") String fullname,
 			@Email(message = "*Hãy điền email hợp lệ") @NotEmpty(message = "*Hãy nhập địa chỉ email") String email,
 			Date createDate, Date lastVisit, String address, String abouts, Integer downvotesNum, Integer upvotesNum,
-			Integer viewsNum, String image, Integer rankId, Integer chuyengiaId, Role role,
+			Integer viewsNum, String image, Role role,
 			@NotEmpty Set<Sector> sectors) {
 		super();
 		this.username = username;
@@ -415,8 +407,6 @@ public class User implements Serializable{
 		this.upvotesNum = upvotesNum;
 		this.viewsNum = viewsNum;
 		this.image = image;
-		this.rankId = rankId;
-		this.chuyengiaId = chuyengiaId;
 		this.role = role;
 		this.sectors = sectors;
 	}

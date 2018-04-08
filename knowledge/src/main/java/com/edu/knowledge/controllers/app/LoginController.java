@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.edu.knowledge.entities.Role;
 import com.edu.knowledge.entities.User;
 import com.edu.knowledge.services.UserService;
 
@@ -67,7 +68,7 @@ public class LoginController {
 		
 		if(errMessage.isEmpty()) {
 			user.setCreateDate(new Date());
-			userService.saveUser(user);
+			userService.saveUser(user, "member");
 			//System.out.println(Charset.defaultCharset());
 			model.setViewName("home");
 		} else {

@@ -20,9 +20,11 @@ public class UserController {
 	private UserService userService;
 	
 	@RequestMapping(value="/alluser", method=RequestMethod.GET)
-	@ResponseBody
-	public List<User> getAllUser() {
-		return userService.findAllUser();
+	public ModelAndView getAllUser() {
+		ModelAndView mav = new ModelAndView("");
+		/*mav.addObject(attributeValue)
+		return userService.findAllUser();*/
+		return mav;
 	}
 	
 	@RequestMapping(value="/home", method=RequestMethod.GET)

@@ -34,19 +34,10 @@ public class VoteTypeService {
 		return (typeRepositery.getExistVoteTypeName(name) !=null) ? true : false;
 	}
 
-	/*@Transactional
-	public boolean updateVoteType(VoteType voteType) {
-		int rowUpdate = typeRepositery.updateVoteType(voteType.getVoteTypeName(), voteType.getVoteTypeId());
-		return (rowUpdate==0) ? false :true;
-	}*/
 	@Transactional
 	public VoteType updateVoteType(VoteType voteType) {
-		int rowUpdate = typeRepositery.updateVoteType(voteType.getVoteTypeName(), voteType.getVoteTypeId());
-		/*if (rowUpdate !=0) {*/
+		//int rowUpdate = typeRepositery.updateVoteType(voteType.getVoteTypeName(), voteType.getVoteTypeId());
 		return getVoteTypeById(voteType.getVoteTypeId());
-		/*} else {
-			return null;
-		}*/
 	}
 	
 	@Transactional

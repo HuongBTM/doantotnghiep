@@ -12,6 +12,9 @@ public interface RoleRepositery extends JpaRepository<Role, Integer>{
 
 	@Query("SELECT p FROM Role p WHERE p.roleId=?1")
 	Role findRoleById(int roleId);
+	
+	@Query("SELECT p FROM Role p WHERE p.roleName=?1")
+	Role findRoleByName(String name);
 
 	@Query("SELECT p.roleName FROM Role p WHERE p.roleName=?1")
 	String getExistRoleName(String roleName);

@@ -52,6 +52,12 @@ $(document).ready(function() {
 	});
 });
 
+$(document).ready(function() {
+	$('#dataTables-user').DataTable({
+		responsive : true
+	});
+});
+
 function showConfirm(id) {
 	var cf = confirm("Bạn muốn xóa lĩnh vực này?");
 	if(cf == true){

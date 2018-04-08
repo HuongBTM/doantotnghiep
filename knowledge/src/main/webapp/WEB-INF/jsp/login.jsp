@@ -43,14 +43,14 @@
 								<form:form action="/login" method="post" class="login-form" modelAttribute="user">
 									<form:errors path="email" cssStyle="color:red;display:block"></form:errors>
 									<div class="form-group">
-										<label class="sr-only" for="form-username">Email</label>
-										<form:input path="email" type="text" name="form-email" placeholder="Email..." pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-z]{2,7}$"  
+										<label class="sr-only" for="email">Email</label>
+										<form:input path="email" type="text" name="email" placeholder="Email..." pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-z]{2,7}$"  
 												title="Hãy nhập email hợp lệ. e.g: huongbt@gmail.com" 
 												class="form-username form-control" id="l-form-username" />
 									</div>
 									<div class="form-group"> 
-										<label class="sr-only" for="l-form-password">Password</label>
-										<form:input path="password" type="password" name="form-password" placeholder="Password..." 
+										<label class="sr-only" for="password">Password</label>
+										<form:input path="password" type="password" name="password" placeholder="Password..." 
 												pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"  
 												title="Mật khẩu phải chứa ký tự hoa, ký tự thường, chữ số và ít nhất 8 ký tự"
 												class="form-password form-control" id="l-form-password" />

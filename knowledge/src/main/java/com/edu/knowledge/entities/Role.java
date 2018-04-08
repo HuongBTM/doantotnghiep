@@ -61,6 +61,11 @@ public class Role implements Serializable{
 	}
 	public Role() {
 	}
+	
+	public Role(@NotNull String roleName) {
+		super();
+		this.roleName = roleName;
+	}
 	public Role(String roleName, String roleDescrib) {
 		super();
 		this.roleName = roleName;
@@ -72,34 +77,5 @@ public class Role implements Serializable{
 		this.roleDescrib = roleDescrib;
 		this.users = users;
 	}
-	/*@Override
-	public String toString() {
-		String role="";
-		JSONObject jsonObject = new JSONObject();
-		try {
-			jsonObject.put("id", this.roleId);
-			jsonObject.put("name", this.roleName);
-			jsonObject.put("describ", this.roleDescrib);
-			
-			JSONArray userArray = new JSONArray();
-			if(userArray !=null) {
-				this.user.forEach(user->{
-	                JSONObject subJson = new JSONObject();
-	                try {
-						subJson.put("name", user.getUsername());
-					} catch (JSONException e) {
-						e.printStackTrace();
-					}
-	                userArray.put(subJson);
-	            });
-			}
-			jsonObject.put("user", userArray);
-			role=jsonObject.toString();
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		
-		return role;
-	}*/
 
 }
