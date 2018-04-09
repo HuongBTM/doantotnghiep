@@ -42,23 +42,7 @@ public class AdminRoleController {
 	public Role findOne(@PathVariable("id") Integer id) {
 		return roleService.getRoleById(id);
 	}
-	
-	/*@RequestMapping(value = "/addrole", method = RequestMethod.GET)
-	public ModelAndView addRole() {
-		ModelAndView modelAndView = new ModelAndView("admin_role_edit");
-		Role role = new Role();
-		modelAndView.addObject("role", role);
-		return modelAndView;
-	}
-	
-	@RequestMapping(value = "/editrole/{id}", method = RequestMethod.GET)
-	public ModelAndView editPending(@PathVariable("id") Integer id) {
-		ModelAndView modelAndView = new ModelAndView("admin_role_edit");
-		Role role = roleService.getRoleById(id);
-		modelAndView.addObject("role", role);
-		return modelAndView;
-	}*/
-	
+
 	@RequestMapping(value = "/saverole", method=RequestMethod.POST)
 	public ModelAndView savePending(@ModelAttribute("role") Role role, BindingResult result, HttpServletRequest request) {
 		ModelAndView model = new ModelAndView("admin_role_edit");

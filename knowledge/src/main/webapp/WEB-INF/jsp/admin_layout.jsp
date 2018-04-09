@@ -189,6 +189,9 @@
                                 <li>
                                     <a href="/admin/pendingtag/allpendingtag"><span>Trạng thái câu hỏi</span></a>
                                 </li>
+                                <li>
+                                    <a href="/admin/topic/alltopic"><span>Quản lý chủ đề</span></a>
+                                </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
@@ -228,9 +231,7 @@
                                     </ul>
                                     <!-- /.nav-third-level -->
                                 </li>
-                                <li>
-                                    <a href="#"><span>Quản lý chủ đề</span></a>
-                                </li>
+                                
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>

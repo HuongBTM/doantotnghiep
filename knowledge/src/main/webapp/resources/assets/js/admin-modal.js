@@ -253,4 +253,68 @@ $(document).ready(function() {
 			}
 	    });
 	});
+	//topic
+	$('.btnAddTopic, .table .etopicBtn').on('click', function(event) {
+		event.preventDefault();
+		var href = $(this).attr('href');
+		var text = $(this).className;
+		if ($(this).hasClass('etopicBtn')) {
+			$.get(href, function(topic, status) {
+				$('#topicName').val(topic.topicName);
+				$('#topicDescribe').val(topic.topicDescribe);
+				$('#idHidden').val(topic.topicId);
+			});
+			$('#modalUpdateTopic').modal();
+			$('#modalUpdateTopic').find('.modal-title').text('Edit topic');
+		} else {
+			$('#topicName').val('');
+			$('#topicDescribe').val('');
+			$('#idHidden').val('0');
+			$('#modalUpdateTopic').modal();
+			$('#modalUpdateTopic').find('.modal-title').text('Add new topic');
+		}
+		
+	});
+
+	$('#updateTopicForm').submit(function(e) {
+		e.preventDefault();
+		$.ajax({
+	        type: $(this).attr('method'),
+	        url: $(this).attr("action"),
+	        data: $(this).serialize(),
+	        dataType: 'text',
+	        success: function (data) {
+	        	window.location.href="alltopic";
+	        },
+	        error: function() {
+				$('div.error').text('Tên chủ đề đã tồn tại!');
+            	$('div.error').show();
+			}
+	    });
+	});
+	$('.delVoteTypeBtn').on('click', function(event) {
+		var id= $(this).attr("data-id");
+		console.log(id);
+		$('#delVoteTypeModal').modal();
+		$('#delVoteTypeModal #idHidden').val(id);
+	});
+	$('#delVoteTypeBtn').on('click', function(event) {
+		var id= $('#delVoteTypeModal').find('#idHidden').attr('value');
+		console.log(id);
+		$.ajax({
+	        type: 'GET',
+	        url: "/admin/votetype/deletevotetype?votetypeid=" + id,
+	        dataType: 'text',
+	        success: function (data) {
+	        	if(data == "SUCCESS") {
+	        		window.location.href = "allvotetype";
+	            } else {
+	            	console.log('cannot delete');
+	            }
+	        },
+	        error: function() {
+				
+			}
+	    });
+	});
 });
