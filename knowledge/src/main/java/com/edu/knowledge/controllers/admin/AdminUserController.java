@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -20,6 +21,7 @@ import com.edu.knowledge.entities.Role;
 import com.edu.knowledge.entities.User;
 import com.edu.knowledge.services.RoleService;
 import com.edu.knowledge.services.UserService;
+import com.edu.knowledge.utils.Constant;
 import com.edu.knowledge.validator.UserValidator;
 
 @Controller
@@ -67,23 +69,38 @@ public class AdminUserController {
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public ModelAndView saveUserEdit(@ModelAttribute("user") User user, BindingResult result, 
-			@RequestParam("role") String role, RedirectAttributes redirect) {
+			@RequestParam("role") String roleName, RedirectAttributes redirect, HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView("admin_user_edit");
+		Role dbRole = roleService.findRoleByName(roleName);
+		user.setRole(dbRole);
+		int idHidden= Integer.parseInt(request.getParameter("idHidden").toString());
+		user.setUserId(idHidden);
 		userValidator.validate(user, result);
+		
 		if(result.hasErrors()) {
 			System.out.println(result);
 			return modelAndView;
 		}
 		if(user.getUserId() ==0) {
 			System.out.println("go to save");
-			userService.createUser(user , role);
+			userService.createUser(user , dbRole);
 		} else {
-			if(userService.updateUser(user, role)) {
+			if(userService.updateUser(user, dbRole)) {
 				redirect.addFlashAttribute("error", "Saved user " + user.getFullname() + " error!");
 			}
 		}
 		redirect.addFlashAttribute("success", "Saved user " + user.getFullname() + " successfully!");
 		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/deleteuser", method=RequestMethod.GET)
+	@ResponseBody
+	public String deleteVoteType(HttpServletRequest request) {
+		int userId = Integer.parseInt(request.getParameter("userid").toString());
+		if(userService.deleteUser(userId) ==1) {
+			return Constant.SUCCESS;
+		}
+		return Constant.ERROR;
 	}
 	
 }

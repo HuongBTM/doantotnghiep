@@ -43,7 +43,6 @@
                              <table width="100%" id="dataTables-user" class="table table-bordered table-striped table-hover">
 				                <thead>
 				                  <tr>
-				                  	 <th align="center">STT</th>
 				                    <th align="center">ID</th>
 				                    <th align="center">Tên hiển thị</th>
 				                    <th align="center">Email</th>
@@ -76,8 +75,8 @@
 				                      </td>
 				                      <td align="center">
 				                            <a href="/admin/user/edit/${user.userId}" id="editUser" data-id="${user.userId}" class="btn btn-info btn-xs eBtn"><i class="fa fa-pencil"></i> Edit </a>
-				                            <a href="#" class="btn btn-danger btn-xs delVoteTypeBtn" id="delete" data-id="${user.userId}"><i class="fa fa-trash-o"></i> Delete </a>
-				                          </td>
+				                            <a href="#" class="btn btn-danger btn-xs deleteUser" id="deleteUser" data-id="${user.userId}"><i class="fa fa-trash-o"></i> Delete </a>
+				                         </td>
 				                    </tr>
 				                  </c:forEach>
 				                </tbody>
@@ -97,6 +96,28 @@
     </div>
     <!-- /#wrapper -->
  
+ 	<!-- modal to delete -->
+	  	<div class="modal fade" id="delUserModal" role="dialog">
+	    <div class="modal-dialog">
+	    
+	      <!-- Modal content-->
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">Delete User</h4>
+	        </div>
+	        <div class="modal-body">
+	        	<input type="hidden" id="idHidden" name="idHidden" value="0">
+	          <p>Bạn chắc chắn xóa người dùng này?</p>
+	        </div>
+	        <div class="modal-footer">
+	        	<button type="button" class="btn btn-danger" id="delUserBtn"> Delete </button>
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        </div>
+	      </div>
+	      
+	    </div>
+	  </div>
     <!-- jQuery -->
     <script src="/resources/assets/bootstrap/js/jquery.min.js"></script>
 
@@ -117,7 +138,7 @@
     
     <!-- Custom Theme JavaScript -->
     <script src="/resources/assets/js/admin-sb.js"></script>
-
+	<script src="/resources/assets/js/admin-modal.js"></script>
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 
 </body>

@@ -17,10 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.edu.knowledge.entities.Sector;
 import com.edu.knowledge.services.SectorService;
+import com.edu.knowledge.utils.Constant;
 
 @Controller
 @RequestMapping(value = "/admin/sector")
-public class SectorController {
+public class AdminSectorController {
 
 	@Autowired
 	private SectorService sectorService;
@@ -68,10 +69,6 @@ public class SectorController {
 				model.addObject("sector", sector);
 				result.rejectValue("sectorName","sector.sectorName.errors", "Lĩnh vực đã tồn tại");
 			} else {
-				/*Sector temp = sectorService.getSectorById(idHidden);
-				temp.setSectorName(sector.getSectorName());
-				temp.setDescribeSector(sector.getDescribeSector());
-				sectorService.saveSector(temp);*/
 				sectorService.updateSector(sector);
 				System.out.println("sector=" +sector);
 				model = new ModelAndView("redirect:/admin/sector/allsector");
@@ -89,10 +86,10 @@ public class SectorController {
 	@RequestMapping(value = "/deletesector", method=RequestMethod.GET)
 	@ResponseBody
 	public String deleteSector(HttpServletRequest request) {
-		int sectorId = Integer.parseInt(request.getParameter("sectorId").toString());
+		int sectorId = Integer.parseInt(request.getParameter("sectorid").toString());
 		if(sectorService.deleteSector(sectorId) ==1) {
-			return "delete success";
+			return Constant.SUCCESS;
 		}
-		return "cannot delete";
+		return Constant.ERROR;
 	}
 }

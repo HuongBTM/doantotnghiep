@@ -25,7 +25,7 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                         <div style="padding-left: 20px;">
-                        	<a href="/admin/pendingTag/addpendingtag" id="btnAddpendingTag" class="btn btn-primary btn-xs addBtn" style="width: 100px; height: 30px; margin-bottom: 10px; padding-top: 5px;"><i class="fa fa-plus"></i> Add 
+                        	<a href="/admin/pendingTag/addpendingtag" id="btnAddpendingTag" class="btn btn-primary btn-xs btnAddpendingTag" style="width: 100px; height: 30px; margin-bottom: 10px; padding-top: 5px;"><i class="fa fa-plus"></i> Add 
                         	</a>
                         </div>
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-pendingTag">
@@ -46,9 +46,8 @@
                                         <td><c:out value="${pendingTag.pendingName}"></c:out></td>
                                         <td><c:out value="${pendingTag.pendingDescrib}"></c:out></td>
                                         <td align="center">
-				                            <%-- <a href="/admin/pendingTag/editpendingTag/${pendingTag.pendingTagId}" data-id="${pendingTag.pendingTagId}" class="btn btn-info btn-xs eBtn" data-target="#editpendingTag" data-toggle="modal"><i class="fa fa-pencil"></i> Edit </a> --%>
-				                            <a href="/admin/pendingTag/editpendingTag/${pendingTag.pendingId}" data-id="${pendingTag.pendingId}" class="btn btn-info btn-xs eBtn"><i class="fa fa-pencil"></i> Edit </a>
-				                            <a href="javascript:showConfirm(${pendingTag.pendingId})" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+				                            <a href="/admin/pendingtag/findone/${pendingTag.pendingId}" id="editPendingTag" data-id="${pendingTag.pendingId}" class="btn btn-info btn-xs editPendingTag"><i class="fa fa-pencil"></i> Edit </a>
+				                            <a href="#" class="btn btn-danger btn-xs delPendingTag" data-id="${pendingTag.pendingId}"><i class="fa fa-trash-o"></i> Delete </a>
 				                          </td>
                                     </tr>
                                     </c:forEach>
@@ -69,48 +68,71 @@
         <!-- /#page-wrapper -->
 
 	<!-- datamodal -->
-	<%-- 
-		<div class="modal fade" id="editpendingTag" role="dialog">
+		 <div class="modal fade" id="modalUpdatePending" role="dialog">
 		    <div class="modal-dialog">
 		      <!-- Modal content no 1-->
 		      <div class="modal-content">
 		        <div class="modal-header">
 		          <button type="button" class="close" data-dismiss="modal">&times;</button>
-		          <h4 class="modal-title">Thêm/ sửa lĩnh vực</h4>
+		          <h4 class="modal-title">Pending</h4>
 		        </div>
 		        <!-- ./modal-header -->
-		         <form:form id="updatependingTagForm" action="/admin/pendingTag/savependingTag" method="post" modelAttribute="pendingTag" class="form-horizontal">
 		        <div class="modal-body">
-			       
+		         <form:form id="updatePendingTagForm" action="/admin/pendingtag/savependingtag" method="post" modelAttribute="pendingTag" class="form-horizontal">
 			          <div class="login-box-body">
-					    <div class="form-group">
-					        <label for="pendingTagName" class="col-xs-3 control-label">Tên lĩnh vực</label>
-					        <div class="col-xs-9">
-					            <form:input type="text" class="form-control" placeholder="Tên lĩnh vực..." id="pendingTagName" name="pendingTagName" path="pendingTagName"/>
-					        </div>
-					    </div>
-					    <div class="form-group">
-					        <label for="describependingTag" class="col-xs-3 control-label">Mô tả</label>
-					        <div class="col-xs-9">
-					            <form:textarea type="text" class="form-control" rows="5" cols="30" placeholder="Mô tả lĩnh vực..." name="describependingTag" id="describependingTag" path="describependingTag"/>
-					        </div>
-					    </div>
-					    
-		            </div>
-		            
-		        </div>
-		        <!-- /.modal-body -->
-		        <div class="modal-footer">
-		 			<button type="submit" class="btn btn-success" id="btnSave">Save</button>
-		 			<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-		 		</div>
+					    <input type="hidden" id="idHidden" name="idHidden" value="${pendingTag.pendingId}">
+					    <div class="item form-group">
+                        <label class="control-label col-xs-3" for="pendingName">Tên trạng thái <span class="required">*</span>
+                        </label>
+                        <div class="col-xs-9">
+                        <!-- data-validate-length-range="6" data-validate-words="2" -->
+                          <form:input id="pendingName" class="form-control col-md-7 col-xs-12" name="pendingName" placeholder="Tên trạng thái..." required="required" type="text" path="pendingName"></form:input>
+                        	<div class="error" hidden="hidden"></div>
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="control-label col-xs-3" for="pendingDescrib">Mô tả trạng thái
+                        </label>
+                        <div class="col-xs-9">
+                          <form:textarea id="pendingDescrib" name="pendingDescrib" rows="5" cols="30" placeholder="Mô tả trạng thái..." class="form-control col-md-7 col-xs-12" path="pendingDescrib"></form:textarea>
+                        </div>
+                      </div>
+			        </div>
+			        <!-- /.modal-body -->
+			        <div class="modal-footer">
+			 			<button type="submit" class="btn btn-danger" id="btnSave">Save</button>
+			 			<button type="button" class="btn btn-basic" data-dismiss="modal">Cancel</button>
+			 		</div>
 		 		</form:form>
 		 		<!-- /.modal-footer -->
 		      </div>
 		      <!-- ./modal-content -->
 		      
 		    </div>
-	  	</div> --%>
+	  	</div>
+	  	</div>
+	  	<!-- modal to delete -->
+	  	<div class="modal fade" id="delPendingTagModal" role="dialog">
+	    <div class="modal-dialog">
+	    
+	      <!-- Modal content-->
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">Delete vote type</h4>
+	        </div>
+	        <div class="modal-body">
+	        	<input type="hidden" id="idHidden" name="idHidden" value="0">
+	          <p>Bạn chắc chắn xóa bản ghi này?</p>
+	        </div>
+	        <div class="modal-footer">
+	        	<button type="button" class="btn btn-danger" id="delPendingTagBtn"> Delete </button>
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        </div>
+	      </div>
+	      
+	    </div>
+	  </div>
 	
 
     <!-- /#wrapper -->
@@ -135,7 +157,7 @@
     
     <!-- Custom Theme JavaScript -->
     <script src="/resources/assets/js/admin-sb.js"></script>
-    <script src="/resources/assets/js/admin-add-edit.js"></script>
+    <script src="/resources/assets/js/admin-modal.js"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 

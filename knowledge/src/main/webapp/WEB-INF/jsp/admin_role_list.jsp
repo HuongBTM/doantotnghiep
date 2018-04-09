@@ -25,7 +25,7 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                         <div style="padding-left: 20px;">
-                        	<a href="/admin/role/addrole" id="btnAddRole" class="btn btn-primary btn-xs addBtn" style="width: 100px; height: 30px; margin-bottom: 10px; padding-top: 5px;"><i class="fa fa-plus"></i> Add 
+                        	<a href="/admin/role/addrole" id="btnAddRole" class="btn btn-primary btn-xs btnAddRole" style="width: 100px; height: 30px; margin-bottom: 10px; padding-top: 5px;"><i class="fa fa-plus"></i> Add 
                         	</a>
                         </div>
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-role">
@@ -46,16 +46,14 @@
                                         <td><c:out value="${role.roleName}"></c:out></td>
                                         <td><c:out value="${role.roleDescrib}"></c:out></td>
                                         <td align="center">
-				                            <%-- <a href="/admin/role/editrole/${role.roleId}" data-id="${role.roleId}" class="btn btn-info btn-xs eBtn" data-target="#editrole" data-toggle="modal"><i class="fa fa-pencil"></i> Edit </a> --%>
-				                            <a href="/admin/role/editrole/${role.roleId}" data-id="${role.roleId}" class="btn btn-info btn-xs eBtn"><i class="fa fa-pencil"></i> Edit </a>
-				                            <a href="javascript:showConfirm(${role.roleId})" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+				                            <a href="/admin/role/findone/${role.roleId}" data-id="${role.roleId}" class="btn btn-info btn-xs eRoleBtn"><i class="fa fa-pencil"></i> Edit </a>
+				                            <a href="#" data-id="${role.roleId}" id="deleteRoleBtn" class="btn btn-danger btn-xs deleteRoleBtn"><i class="fa fa-trash-o"></i> Delete </a>
 				                          </td>
                                     </tr>
                                     </c:forEach>
                                 </tbody>
                             </table>
                             <!-- /.table-responsive -->
-                            
                             
                         </div>
                         <!-- /.panel-body -->
@@ -70,50 +68,70 @@
         <!-- /#page-wrapper -->
 
 	<!-- datamodal -->
-	<%-- 
-		<div class="modal fade" id="editrole" role="dialog">
+		<div class="modal fade" id="modalUpdateRole" role="dialog">
 		    <div class="modal-dialog">
 		      <!-- Modal content no 1-->
 		      <div class="modal-content">
 		        <div class="modal-header">
 		          <button type="button" class="close" data-dismiss="modal">&times;</button>
-		          <h4 class="modal-title">Thêm/ sửa lĩnh vực</h4>
+		          <h4 class="modal-title">Vote type</h4>
 		        </div>
 		        <!-- ./modal-header -->
-		         <form:form id="updateroleForm" action="/admin/role/saverole" method="post" modelAttribute="role" class="form-horizontal">
 		        <div class="modal-body">
-			       
+		         <form:form id="updateRoleForm" action="/admin/role/saverole" method="post" modelAttribute="role" class="form-horizontal">
 			          <div class="login-box-body">
-					    <div class="form-group">
-					        <label for="roleName" class="col-xs-3 control-label">Tên lĩnh vực</label>
-					        <div class="col-xs-9">
-					            <form:input type="text" class="form-control" placeholder="Tên lĩnh vực..." id="roleName" name="roleName" path="roleName"/>
-					        </div>
-					    </div>
-					    <div class="form-group">
-					        <label for="describerole" class="col-xs-3 control-label">Mô tả</label>
-					        <div class="col-xs-9">
-					            <form:textarea type="text" class="form-control" rows="5" cols="30" placeholder="Mô tả lĩnh vực..." name="describerole" id="describerole" path="describerole"/>
-					        </div>
-					    </div>
-					    
-		            </div>
-		            
-		        </div>
-		        <!-- /.modal-body -->
-		        <div class="modal-footer">
-		 			<button type="submit" class="btn btn-success" id="btnSave">Save</button>
-		 			<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-		 		</div>
+					    <input type="hidden" id="idHidden" name="idHidden" value="${role.roleId}">
+					    <div class="item form-group">
+	                        <label class="control-label col-xs-3" for="roleName">Tên quyền<span class="required">*</span>
+	                        </label>
+	                        <div class="col-xs-9">
+	                          <form:input id="roleName" class="form-control col-md-7 col-xs-12" name="roleName" placeholder="Tên quyền..." required="required" type="text" path="roleName"></form:input>
+	                        	<div class="error" hidden="hidden"></div>
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="control-label col-xs-3" for="roleDescrib">Mô tả trạng thái
+                        </label>
+                        <div class="col-xs-9">
+                          <form:textarea id="roleDescrib" name="roleDescrib" rows="5" cols="30" placeholder="Mô tả quyền..." class="form-control col-md-7 col-xs-12" path="roleDescrib"></form:textarea>
+                        </div>
+                      </div>
+			        </div>
+			        <!-- /.modal-body -->
+			        <div class="modal-footer">
+			 			<button type="submit" class="btn btn-danger" id="btnSave">Save</button>
+			 			<button type="button" class="btn btn-basic" data-dismiss="modal">Cancel</button>
+			 		</div>
 		 		</form:form>
 		 		<!-- /.modal-footer -->
 		      </div>
 		      <!-- ./modal-content -->
 		      
 		    </div>
-	  	</div> --%>
-	
-
+	  	</div>
+	  	</div>
+		<!-- modal to delete -->
+	  	<div class="modal fade" id="delRoleModal" role="dialog">
+	    <div class="modal-dialog">
+	    
+	      <!-- Modal content-->
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">Delete role</h4>
+	        </div>
+	        <div class="modal-body">
+	        	<input type="hidden" id="idHidden" name="idHidden" value="0">
+	          <p>Bạn chắc chắn xóa quyền này?</p>
+	        </div>
+	        <div class="modal-footer">
+	        	<button type="button" class="btn btn-danger" id="delRoleBtn"> Delete </button>
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        </div>
+	      </div>
+	      
+	    </div>
+	  </div>
     <!-- /#wrapper -->
  
     <!-- jQuery -->
@@ -136,7 +154,7 @@
     
     <!-- Custom Theme JavaScript -->
     <script src="/resources/assets/js/admin-sb.js"></script>
-    <script src="/resources/assets/js/admin-add-edit.js"></script>
+    <script src="/resources/assets/js/admin-modal.js"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     

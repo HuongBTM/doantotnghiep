@@ -30,15 +30,14 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <form:form class="form-horizontal form-label-left" action="/admin/user/save" method="post" modelAttribute="user">
-							<input type="hidden" name="idHidden" value="${user.userId}">
+								<input type="hidden" name="idHidden" value="${user.userId}">
 		                      <div class="item form-group">
 		                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fullname">Tên hiển thị <span class="required">*</span>
 		                        </label>
 		                        <div class="col-md-6 col-sm-6 col-xs-12">
-		                        <!-- data-validate-length-range="6" data-validate-words="2" -->
 		                          <form:input id="sectorName" class="form-control col-md-7 col-xs-12" name="fullname" placeholder="Tên hiển thị..."
 		                          		 required="required" type="text" path="fullname" title="Hãy nhập 8-25 ký tự. e.g: Bùi Hương"></form:input>
-		                        	<form:errors path="fullname" cssClass="error"></form:errors>
+		                        	<form:errors path="fullname" cssClass="error" delimiter="<br><i class='fa fa-exclamation-circle'></i> "></form:errors>
 		                        </div>
 		                      </div>
 		                      <div class="item form-group">
@@ -47,7 +46,7 @@
 		                        <div class="col-md-6 col-sm-6 col-xs-12">
 		                          <form:input id="username" class="form-control col-md-7 col-xs-12" name="username" placeholder="Tên đăng nhập..." 
 		                          		required="required" type="text" path="username" title="Hãy nhập 8-25 ký tự. e.g: Bùi Hương"></form:input>
-		                        	<form:errors path="username" cssClass="error"></form:errors>
+		                        	<form:errors path="username" cssClass="error" delimiter="<br><i class='fa fa-exclamation-circle'></i> "></form:errors>
 		                        </div>
 		                      </div>
 		                      <div class="item form-group">
@@ -55,7 +54,7 @@
 		                        </label>
 		                        <div class="col-md-6 col-sm-6 col-xs-12">
 		                          <form:input id="email" class="form-control col-md-7 col-xs-12" name="email" placeholder="Email..." required="required" type="email" path="email"></form:input>
-		                        	<form:errors path="email" cssClass="error"></form:errors>
+		                        	<form:errors path="email" cssClass="error" delimiter="<br><i class='fa fa-exclamation-circle'></i> "></form:errors>
 		                        </div>
 		                      </div>
 		                      <div class="item form-group">
@@ -79,7 +78,7 @@
 		                          <form:input id="email" class="form-control col-md-7 col-xs-12" name="password" placeholder="Password..." 
 		                          		required="required" type="password" path="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"  
 												title="Mật khẩu phải chứa ký tự hoa, ký tự thường, chữ số và ít nhất 8 ký tự"></form:input>
-		                        	<form:errors path="password" cssClass="error"></form:errors>
+		                        	<form:errors path="password" cssClass="error" delimiter="<br><i class='fa fa-exclamation-circle'></i> "></form:errors>
 		                        </div>
 		                      </div>
 		                      <div class="item form-group">
@@ -87,7 +86,7 @@
 		                        </label>
 		                        <div class="col-md-6 col-sm-6 col-xs-12">
 		                          <form:input id="email" class="form-control col-md-7 col-xs-12" name="confirmpassword" placeholder="Confirm password..." required="required" type="password" path="confirmpassword"></form:input>
-		                        	<form:errors path="confirmpassword" cssClass="error"></form:errors>
+		                        	<form:errors path="confirmpassword" cssClass="error" delimiter="<br><i class='fa fa-exclamation-circle'></i> "></form:errors>
 		                        </div>
 		                      </div>
 		                      <div class="item form-group">
@@ -98,7 +97,7 @@
 		                        </div>
 		                      </div>
 		                      <div class="item form-group">
-					              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="role">Role</label>
+					              <label class="control-label col-md-3 col-sm-3 col-xs-12">Role</label>
 					              <div class="col-md-6 col-sm-6 col-xs-12">
 					              <select name="role" class="form-control">
 					                  <option value="admin" ${user.admin eq true ? 'selected' : ''}>Admin</option>
@@ -111,7 +110,7 @@
 		                        <div class="col-md-6 col-md-offset-3">
 		                          <button id="send" type="submit" class="btn btn-success">Submit</button>
 		                          <button type="reset" class="btn btn-primary">Reset</button>
-		                          <a href="/admin/user/alluser" class="btn btn-basic">Cancel</a>
+		                          <a href="/admin/user/alluser" class="btn btn-primary">Cancel</a>
 		                        </div>
 		                      </div>
 		                    </form:form>

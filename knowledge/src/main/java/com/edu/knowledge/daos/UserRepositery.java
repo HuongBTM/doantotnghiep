@@ -3,6 +3,7 @@ package com.edu.knowledge.daos;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -31,4 +32,8 @@ public interface UserRepositery extends JpaRepository<User, Integer>{
 	
 	@Query("UPDATE User u SET u.fullname=?1, u.username=?2, u.password =?3, u.phoneNum=?4, u.address=?5, u.abouts=?6 WHERE u.userId=?7")
 	int updateUser(String fullname, String username, String password, int phoneNum, String abouts, int userId);
+	
+	@Modifying
+	@Query("DELETE FROM User u WHERE u.userId=?1")
+	int deleteUser(int id);
 }

@@ -1,5 +1,6 @@
 package com.edu.knowledge.entities;
 
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -9,9 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -37,9 +36,8 @@ public class Topic {
 	@ManyToMany(mappedBy = "topics", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Question> questions;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id_user")
-	private User user;
+	@Column(name="ngay_tao")
+	private Date createDate;
 	
 	public Topic() {
 	}
@@ -75,13 +73,22 @@ public class Topic {
 	public void setQuestions(Set<Question> questions) {
 		this.questions = questions;
 	}
+	
 
-	public User getUser() {
-		return user;
+	public Set<Post> getPosts() {
+		return posts;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setPosts(Set<Post> posts) {
+		this.posts = posts;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 
 	public Topic(String topicName, String topicDescribe) {
@@ -90,6 +97,7 @@ public class Topic {
 		this.topicDescribe = topicDescribe;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "Topic [topicId=" + topicId + ", topicName=" + topicName + ", topicDescribe=" + topicDescribe + "]";

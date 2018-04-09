@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.edu.knowledge.entities.Role;
 import com.edu.knowledge.entities.User;
+import com.edu.knowledge.services.RoleService;
 import com.edu.knowledge.services.UserService;
 
 @Controller
@@ -19,6 +20,9 @@ public class LoginController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private RoleService roleService;
 	
 	@RequestMapping(value={"/","/login"}, method=RequestMethod.GET)
 	public ModelAndView hello(){
@@ -67,8 +71,10 @@ public class LoginController {
 		}
 		
 		if(errMessage.isEmpty()) {
+			user.setImage("avata.png");
 			user.setCreateDate(new Date());
-			userService.createUser(user, "member");
+			Role role = roleService.findRoleByName("member");
+			userService.createUser(user, role);
 			//System.out.println(Charset.defaultCharset());
 			model.setViewName("home");
 		} else {

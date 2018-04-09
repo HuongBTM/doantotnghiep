@@ -35,25 +35,14 @@ public class UserService {
 		return (userRepositery.getUserForLogin(email, password) != null) ? true : false;
 	}
 	
-	public User createUser(User user, String roleName) {
+	public User createUser(User user, Role role) {
 		// set password encode TODO
-		Role role = new Role();
-		if(roleName.equals("admin")) {
-			role = roleRepositery.findRoleByName("ROLE_ADMIN");
-		} else {
-			role = roleRepositery.findRoleByName("ROLE_MEMBER");
-		}
 		user.setRole(role);
+		user.setImage("avata.png");
 		return userRepositery.save(user);
 	}
 	
-	public boolean updateUser(User user, String roleName) {
-		Role role = new Role();
-		if(roleName.equals("admin")) {
-			role = roleRepositery.findRoleByName("ROLE_ADMIN");
-		} else {
-			role = roleRepositery.findRoleByName("ROLE_MEMBER");
-		}
+	public boolean updateUser(User user, Role role) {
 		user.setRole(role);
 		if(userRepositery.updateUser(user.getFullname(), user.getUsername(), user.getPassword(), user.getPhoneNum(), user.getAbouts(), user.getUserId()) ==0) {
 			return false;
@@ -71,5 +60,10 @@ public class UserService {
 	
 	public User getUserByEmail(String email) {
 		return userRepositery.findUserByEmail(email);
+	}
+	
+	@Transactional
+	public int deleteUser(int id) {
+		return userRepositery.deleteUser(id);
 	}
 }

@@ -44,8 +44,15 @@ public class RoleService {
 	public int deleteRole(int RoleId) {
 		return roleRepositery.deleteRole(RoleId);
 	}
-	public Role getRoleByName(String roleName) {
-		return roleRepositery.findRoleByName(roleName);
+	
+	public Role findRoleByName(String name) {
+		Role role = new Role();
+		if(name.equals("admin")) {
+			role = roleRepositery.findRoleByName("ROLE_ADMIN");
+		} else {
+			role = roleRepositery.findRoleByName("ROLE_MEMBER");
+		}
+		return role;
 	}
 	
 }

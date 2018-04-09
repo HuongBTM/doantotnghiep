@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.edu.knowledge.entities.PendingTag;
 import com.edu.knowledge.services.PendingTagService;
+import com.edu.knowledge.utils.Constant;
 
 @Controller
 @RequestMapping("/admin/pendingtag")
@@ -42,7 +43,7 @@ public class AdminPendingTagController {
 		return pendingTagService.getPendingTagById(id);
 	}
 	
-	@RequestMapping(value = "/addpendingtag", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/addpendingtag", method = RequestMethod.GET)
 	public ModelAndView addPendingTag() {
 		ModelAndView modelAndView = new ModelAndView("admin_pending_edit");
 		PendingTag pendingTag = new PendingTag();
@@ -56,7 +57,7 @@ public class AdminPendingTagController {
 		PendingTag pendingTag = pendingTagService.getPendingTagById(id);
 		modelAndView.addObject("pendingTag", pendingTag);
 		return modelAndView;
-	}
+	}*/
 	
 	@RequestMapping(value = "/savependingtag", method=RequestMethod.POST)
 	public ModelAndView savePending(@ModelAttribute("pendingTag") PendingTag pendingTag, BindingResult result, HttpServletRequest request) {
@@ -66,14 +67,14 @@ public class AdminPendingTagController {
 			pendingTag.setPendingId(idHidden);
 			if (pendingTagService.getOtherPendingTagNameToCurrent(idHidden, pendingTag.getPendingName())) {
 				model.addObject("pendingTag", pendingTag);
-				result.rejectValue("pendingTagName","pendingTag.pendingTagName.errors", "Lĩnh vực đã tồn tại");
+				result.rejectValue("pendingTagName","pendingTag.pendingName.errors", "Trạng thái đã tồn tại");
 			} else {
 				pendingTagService.updatePendingTag(pendingTag);
 				System.out.println("pendingTag=" +pendingTag);
 				model = new ModelAndView("redirect:/admin/pendingtag/allpendingtag");
 			}
 		} else if (pendingTagService.checkExistedPendingTagName(pendingTag.getPendingName())) {
-			result.rejectValue("pendingTagName", "pendingTag.pendingTagName.errors", "Lĩnh vực đã tồn tại");
+			result.rejectValue("pendingTagName", "pendingTag.pendingName.errors", "Trạng thái đã tồn tại");
 		} else {
 			pendingTagService.savePendingTag(pendingTag);
 			model = new ModelAndView("redirect:/admin/pendingtag/allpendingtag");
@@ -85,10 +86,10 @@ public class AdminPendingTagController {
 	@RequestMapping(value = "/deletependingtag", method=RequestMethod.GET)
 	@ResponseBody
 	public String deletePendingTag(HttpServletRequest request) {
-		int pendingTagId = Integer.parseInt(request.getParameter("pendingTagId").toString());
+		int pendingTagId = Integer.parseInt(request.getParameter("pendingtagid").toString());
 		if(pendingTagService.deletePendingTag(pendingTagId) ==1) {
-			return "delete success";
+			return Constant.SUCCESS;
 		}
-		return "cannot delete";
+		return Constant.ERROR;
 	}
 }

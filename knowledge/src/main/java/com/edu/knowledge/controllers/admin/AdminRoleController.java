@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.edu.knowledge.entities.Role;
 import com.edu.knowledge.services.RoleService;
+import com.edu.knowledge.utils.Constant;
 
 @Controller
 @RequestMapping("/admin/role")
@@ -42,7 +43,7 @@ public class AdminRoleController {
 		return roleService.getRoleById(id);
 	}
 	
-	@RequestMapping(value = "/addrole", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/addrole", method = RequestMethod.GET)
 	public ModelAndView addRole() {
 		ModelAndView modelAndView = new ModelAndView("admin_role_edit");
 		Role role = new Role();
@@ -56,7 +57,7 @@ public class AdminRoleController {
 		Role role = roleService.getRoleById(id);
 		modelAndView.addObject("role", role);
 		return modelAndView;
-	}
+	}*/
 	
 	@RequestMapping(value = "/saverole", method=RequestMethod.POST)
 	public ModelAndView savePending(@ModelAttribute("role") Role role, BindingResult result, HttpServletRequest request) {
@@ -66,14 +67,14 @@ public class AdminRoleController {
 			role.setRoleId(idHidden);
 			if (roleService.getOtherRoleNameToCurrent(idHidden, role.getRoleName())) {
 				model.addObject("role", role);
-				result.rejectValue("roleName","role.roleName.errors", "Lĩnh vực đã tồn tại");
+				result.rejectValue("roleName","role.roleName.errors", "Quyền đã tồn tại");
 			} else {
 				roleService.updateRole(role);
 				System.out.println("Role=" +role);
-				model = new ModelAndView("redirect:/admin/Role/allRole");
+				model = new ModelAndView("redirect:/admin/role/allrole");
 			}
 		} else if (roleService.checkExistedRoleName(role.getRoleName())) {
-			result.rejectValue("roleName", "role.RoleName.errors", "Lĩnh vực đã tồn tại");
+			result.rejectValue("roleName", "role.roleName.errors", "Quyền đã tồn tại");
 		} else {
 			roleService.saveRole(role);
 			model = new ModelAndView("redirect:/admin/role/allrole");
@@ -85,10 +86,10 @@ public class AdminRoleController {
 	@RequestMapping(value = "/deleterole", method=RequestMethod.GET)
 	@ResponseBody
 	public String deleteRole(HttpServletRequest request) {
-		int roleId = Integer.parseInt(request.getParameter("roleId").toString());
+		int roleId = Integer.parseInt(request.getParameter("roleid").toString());
 		if(roleService.deleteRole(roleId) ==1) {
-			return "delete success";
+			return Constant.SUCCESS;
 		}
-		return "cannot delete";
+		return Constant.ERROR;
 	}
 }

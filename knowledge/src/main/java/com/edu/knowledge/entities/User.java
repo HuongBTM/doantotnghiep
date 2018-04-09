@@ -19,10 +19,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
-import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.Transient;
 
 @Entity
@@ -106,10 +104,6 @@ public class User implements Serializable{
              joinColumns = { @JoinColumn(name = "id_thanh_vien") }, 
              inverseJoinColumns = { @JoinColumn(name = "id_vote_type") })
 	private Set<VoteType> voteTypes;
-	
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Set<Topic> topics;
-	
 	
 
 	public Integer getPhoneNum() {
@@ -280,13 +274,6 @@ public class User implements Serializable{
 		this.voteTypes = voteTypes;
 	}
 
-	public Set<Topic> getTopics() {
-		return topics;
-	}
-
-	public void setTopics(Set<Topic> topics) {
-		this.topics = topics;
-	}
 	public boolean isAdmin() {
 		if (role.getRoleName().equals("ROLE_ADMIN")) {
 			return true;
@@ -302,7 +289,7 @@ public class User implements Serializable{
 	public User(String username, String password, @NotEmpty String confirmpassword, String fullname, String email,
 			Date createDate, Date lastVisit, Integer phoneNum, String address, String abouts, String image, Role role,
 			Set<Sector> sectors, Set<Notification> notifications, Set<Bookmark> bookmarks, Set<Question> questions,
-			Set<Answer> answers, Set<Comment> comments, Set<Post> posts, Set<VoteType> voteTypes, Set<Topic> topics) {
+			Set<Answer> answers, Set<Comment> comments, Set<Post> posts, Set<VoteType> voteTypes) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -324,7 +311,6 @@ public class User implements Serializable{
 		this.comments = comments;
 		this.posts = posts;
 		this.voteTypes = voteTypes;
-		this.topics = topics;
 	}
 	
 }

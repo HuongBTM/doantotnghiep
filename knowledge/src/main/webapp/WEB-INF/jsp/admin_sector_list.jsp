@@ -47,7 +47,7 @@
                                         <td><c:out value="${sector.describeSector}"></c:out></td>
                                         <td align="center">
 				                            <a href="/admin/sector/editsector/${sector.sectorId}" data-id="${sector.sectorId}" class="btn btn-info btn-xs eBtn"><i class="fa fa-pencil"></i> Edit </a>
-				                            <a href="javascript:showConfirm(${sector.sectorId})" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+				                            <a href="#" class="btn btn-danger btn-xs btnDeleteSector" data-id="${sector.sectorId}"><i class="fa fa-trash-o"></i> Delete </a>
 				                          </td>
                                     </tr>
                                     </c:forEach>
@@ -69,49 +69,28 @@
         <!-- /#page-wrapper -->
 
 	<!-- datamodal -->
-	<%-- 
-		<div class="modal fade" id="editSector" role="dialog">
-		    <div class="modal-dialog">
-		      <!-- Modal content no 1-->
-		      <div class="modal-content">
-		        <div class="modal-header">
-		          <button type="button" class="close" data-dismiss="modal">&times;</button>
-		          <h4 class="modal-title">Thêm/ sửa lĩnh vực</h4>
-		        </div>
-		        <!-- ./modal-header -->
-		         <form:form id="updateSectorForm" action="/admin/sector/savesector" method="post" modelAttribute="sector" class="form-horizontal">
-		        <div class="modal-body">
-			       
-			          <div class="login-box-body">
-					    <div class="form-group">
-					        <label for="sectorName" class="col-xs-3 control-label">Tên lĩnh vực</label>
-					        <div class="col-xs-9">
-					            <form:input type="text" class="form-control" placeholder="Tên lĩnh vực..." id="sectorName" name="sectorName" path="sectorName"/>
-					        </div>
-					    </div>
-					    <div class="form-group">
-					        <label for="describeSector" class="col-xs-3 control-label">Mô tả</label>
-					        <div class="col-xs-9">
-					            <form:textarea type="text" class="form-control" rows="5" cols="30" placeholder="Mô tả lĩnh vực..." name="describeSector" id="describeSector" path="describeSector"/>
-					        </div>
-					    </div>
-					    
-		            </div>
-		            
-		        </div>
-		        <!-- /.modal-body -->
-		        <div class="modal-footer">
-		 			<button type="submit" class="btn btn-success" id="btnSave">Save</button>
-		 			<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-		 		</div>
-		 		</form:form>
-		 		<!-- /.modal-footer -->
-		      </div>
-		      <!-- ./modal-content -->
-		      
-		    </div>
-	  	</div> --%>
-	
+	<!-- modal to delete -->
+	  	<div class="modal fade" id="delSectorModal" role="dialog">
+	    <div class="modal-dialog">
+	    
+	      <!-- Modal content-->
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">Delete sector</h4>
+	        </div>
+	        <div class="modal-body">
+	        	<input type="hidden" id="idHidden" name="idHidden" value="0">
+	          <p>Bạn chắc chắn xóa lĩnh vực này?</p>
+	        </div>
+	        <div class="modal-footer">
+	        	<button type="button" class="btn btn-danger" id="delSectorBtn"> Delete </button>
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        </div>
+	      </div>
+	      
+	    </div>
+	  </div>
 
     <!-- /#wrapper -->
  
@@ -135,7 +114,7 @@
     
     <!-- Custom Theme JavaScript -->
     <script src="/resources/assets/js/admin-sb.js"></script>
-    <script src="/resources/assets/js/admin-add-edit.js"></script>
+    <script src="/resources/assets/js/admin-modal.js"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     
