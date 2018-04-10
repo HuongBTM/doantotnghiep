@@ -204,8 +204,8 @@
                                     <a href="/admin/user/alluser"><span>Quản lý thành viên</span></a>
                                 </li>
                                 <li>
-                                    <a href="#"><span>Quản lý câu hỏi </span><span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
+                                    <a href="/admin/question/allquestion"><span>Quản lý câu hỏi </span></span></a>
+                                    <!-- <ul class="nav nav-third-level">
                                         <li>
                                             <a href="#"><span>Danh mục câu hỏi</span></a>
                                         </li>
@@ -216,19 +216,11 @@
                                             <a href="#"><span>Comment</span></a>
                                         </li>
                                         
-                                    </ul>
+                                    </ul> -->
                                     <!-- /.nav-third-level -->
                                 </li>
                                 <li>
                                     <a href="#"><span>Quản lý bài viết </span><span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="#"><span>Danh mục bài viết</span></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><span>Danh mục câu hỏi</span></a>
-                                        </li>
-                                    </ul>
                                     <!-- /.nav-third-level -->
                                 </li>
                                 
@@ -236,7 +228,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bell fa-fw"></i> <span>Member notification</span><span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bell fa-fw"></i> <span>Member notification</span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="blank.html"><span>Bookmark</span></a>
@@ -261,3 +253,4 @@
         </nav>
     
     <!-- /#wrapper -->
+    <div id="page-wrapper" style="min-height: 386px; background-color: #ecf0f5">

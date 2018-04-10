@@ -82,7 +82,6 @@ public class AdminUserController {
 			return modelAndView;
 		}
 		if(user.getUserId() ==0) {
-			System.out.println("go to save");
 			user.setImage("avatar.png");
 			userService.createUser(user , dbRole);
 		} else {
@@ -97,7 +96,7 @@ public class AdminUserController {
 	
 	@RequestMapping(value = "/deleteuser", method=RequestMethod.GET)
 	@ResponseBody
-	public String deleteVoteType(HttpServletRequest request) {
+	public String deleteUser(HttpServletRequest request) {
 		int userId = Integer.parseInt(request.getParameter("userid").toString());
 		if(userService.deleteUser(userId) ==1) {
 			return Constant.SUCCESS;

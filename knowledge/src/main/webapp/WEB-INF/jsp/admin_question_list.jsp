@@ -3,6 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="tags" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 
 <jsp:include page="admin_layout.jsp"></jsp:include>
@@ -39,43 +40,36 @@
                         	<a href="/admin/user/adduser" id="btnAddUser" class="btn btn-primary btn-xs addBtn" style="width: 100px; height: 30px; margin-bottom: 10px; padding-top: 5px;"><i class="fa fa-plus"></i> Add 
                         	</a>
                         </div>
-                             <table width="100%" id="dataTables-user" class="table table-bordered table-striped table-hover">
+                             <table width="100%" id="dataTables-question" class="table table-bordered table-striped table-hover">
 				                <thead>
 				                  <tr>
-				                    <th align="center">ID</th>
-				                    <th align="center">Tên hiển thị</th>
-				                    <th align="center">Email</th>
-				                    <th align="center">Số điện thoại</th>
-				                    <th align="center">Ngày đăng ký</th>
-				                    <th align="center">Role</th>
-				                    <th></th>
+				                    <th>ID</th>
+				                    <th>Title</th>
+				                    <th>User</th>
+				                    <th>Views</th>
+				                    <th>Votes</th>
+				                    <th>Answers</th>
+				                    <th>Detail</th>
+				                    <th>Delete</th>
 				                  </tr>
 				                </thead>
 				                <tbody>
-				                  <c:forEach items="${users}" var="user" varStatus="userId">
+				                  <c:forEach items="${questions}" var="question" >
 				                    <tr>
-				                      <td align="right">${user.userId}</td>
-				                      <td>
-				                        <img src="<c:url value='/resources/assets/img/${user.image}' />" class="avatar-table" alt="User avatar">
-				                        <a href="<c:url value="/admin/user/${user.userId}" />">${user.fullname}</a>
-				                      </td>
-				                      <td>${user.email}</td>
-				                      <td align="right">${user.phoneNum}</td>
-				                      <td align="left">${user.createDate}</td>
+				                      <td align="center">${question.questionId}</td>
+				                      <td>${question.title}</td>
+				                      <td>${question.user.fullname}</td>
+				                      <td align="center">${question.views}</td>
+				                      <td align="center">${question.upvotes}</td>
+				                      <td align="center">${fn:length(question.answers)}</td>
 				                      <td align="center">
-				                        <c:choose>
-				                          <c:when test="${user.admin}">
-				                            <span class="label bg-red">Admin</span>
-				                          </c:when>
-				                          <c:otherwise>
-				                            <span class="label bg-green">Member</span>
-				                          </c:otherwise>
-				                        </c:choose>
+				                        <a href="<c:url value="/admin/question/detail/${question.questionId}" />" title="View question detail">
+				                          <i class="fa fa-search"></i></a>
 				                      </td>
 				                      <td align="center">
-				                            <a href="/admin/user/edit/${user.userId}" id="editUser" data-id="${user.userId}" class="btn btn-info btn-xs eBtn"><i class="fa fa-pencil"></i> Edit </a>
-				                            <a href="#" class="btn btn-danger btn-xs deleteUser" id="deleteUser" data-id="${user.userId}"><i class="fa fa-trash-o"></i> Delete </a>
-				                         </td>
+				                        <a href="#" class="btn btn-danger btn-xs deleteQuestion" id="deleteQuestion" data-id="${question.questionId}">
+				                          <i class="fa fa-trash"></i></a>
+				                      </td>
 				                    </tr>
 				                  </c:forEach>
 				                </tbody>
@@ -96,21 +90,21 @@
     <!-- /#wrapper -->
  
  	<!-- modal to delete -->
-	  	<div class="modal fade" id="delUserModal" role="dialog">
+	  	<div class="modal fade" id="delQuestionModal" role="dialog">
 	    <div class="modal-dialog">
 	    
 	      <!-- Modal content-->
 	      <div class="modal-content">
 	        <div class="modal-header">
 	          <button type="button" class="close" data-dismiss="modal">&times;</button>
-	          <h4 class="modal-title">Delete User</h4>
+	          <h4 class="modal-title">Delete question</h4>
 	        </div>
 	        <div class="modal-body">
 	        	<input type="hidden" id="idHidden" name="idHidden" value="0">
-	          <p>Bạn chắc chắn xóa người dùng này?</p>
+	          <p>Bạn chắc chắn xóa bản ghi này?</p>
 	        </div>
 	        <div class="modal-footer">
-	        	<button type="button" class="btn btn-danger" id="delUserBtn"> Delete </button>
+	        	<button type="button" class="btn btn-danger" id="delQuestionBtn"> Delete </button>
 	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	        </div>
 	      </div>

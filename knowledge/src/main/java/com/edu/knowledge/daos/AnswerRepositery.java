@@ -5,15 +5,12 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.edu.knowledge.entities.Question;
+import com.edu.knowledge.entities.Answer;
 
 @Repository
-public interface QuestionRepositery extends JpaRepository<Question, Integer>{
+public interface AnswerRepositery extends JpaRepository<Answer, Integer>{
 
-	@Query("SELECT count(*) FROM Question")
-	int countQuestion();
-	
 	@Modifying
-	@Query("DELETE FROM Question q WHERE q.questionId=?1")
-	int deleteQuestion(int id);
+	@Query("DELETE FROM Answer a WHERE a.answerId=?1")
+	int deleteAnswer(int id);
 }

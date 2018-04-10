@@ -317,4 +317,59 @@ $(document).ready(function() {
 			}
 	    });
 	});
+	
+	$('.deleteQuestion').on('click', function(event) {
+		var id= $(this).attr("data-id");
+		console.log(id);
+		$('#delQuestionModal').modal();
+		$('#delQuestionModal #idHidden').val(id);
+	});
+	$('#delQuestionBtn').on('click', function(event) {
+		var id= $('#delQuestionModal').find('#idHidden').attr('value');
+		console.log(id);
+		$.ajax({
+	        type: 'GET',
+	        url: "/admin/question/deletequestion?questionid=" + id,
+	        dataType: 'text',
+	        success: function (data) {
+	        	if(data == "SUCCESS") {
+	        		window.location.href = "allquestion";
+	            } else {
+	            	console.log('cannot delete');
+	            }
+	        },
+	        error: function() {
+				
+			}
+	    });
+	});
+	
+	$('.deleteAnswerBtn').on('click', function(event) {
+		var idQuestion = $(this).attr("id");
+		var id= $(this).attr("data-id");
+		console.log(id);
+		$('#delAnswerModal').modal();
+		$('#delAnswerModal #idHidden').val(id);
+		$('#delAnswerModal #idQuestionHidden').val(id);
+	});
+	$('#delAnswerBtn').on('click', function(event) {
+		var id= $('#delAnswerModal').find('#idHidden').attr('value');
+		var questionId = $('#delAnswerModal').find('#idQuestionHidden').attr('value');
+		console.log(id);
+		$.ajax({
+	        type: 'GET',
+	        url: "/admin/answer/deleteanswer?answerid=" + id,
+	        dataType: 'text',
+	        success: function (data) {
+	        	if(data == "SUCCESS") {
+	        		window.location.replace("http://localhost:8080/admin/question/detail/" + questionId);
+	            } else {
+	            	console.log('cannot delete');
+	            }
+	        },
+	        error: function() {
+				
+			}
+	    });
+	});
 });
