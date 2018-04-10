@@ -53,7 +53,7 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-	$('#dataTables-user').DataTable({
+	$('#dataTables-user, #dataTables-topic').DataTable({
 		responsive : true
 	});
 });

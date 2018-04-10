@@ -69,7 +69,7 @@ public class AdminUserController {
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public ModelAndView saveUserEdit(@ModelAttribute("user") User user, BindingResult result, 
-			@RequestParam("role") String roleName, RedirectAttributes redirect, HttpServletRequest request) {
+			@RequestParam("roleSelect") String roleName, RedirectAttributes redirect, HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView("admin_user_edit");
 		Role dbRole = roleService.findRoleByName(roleName);
 		user.setRole(dbRole);
@@ -83,6 +83,7 @@ public class AdminUserController {
 		}
 		if(user.getUserId() ==0) {
 			System.out.println("go to save");
+			user.setImage("avatar.png");
 			userService.createUser(user , dbRole);
 		} else {
 			if(userService.updateUser(user, dbRole)) {
@@ -90,6 +91,7 @@ public class AdminUserController {
 			}
 		}
 		redirect.addFlashAttribute("success", "Saved user " + user.getFullname() + " successfully!");
+		modelAndView.setViewName("redirect:/admin/user/alluser");
 		return modelAndView;
 	}
 	

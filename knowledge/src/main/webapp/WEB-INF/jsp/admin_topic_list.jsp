@@ -40,7 +40,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${lsttopic}" var="topic" varStatus="topicId">
+                                <c:forEach items="${topicLst}" var="topic" varStatus="topicId">
                                     <tr class="odd gradeX">
                                     	<td align="right"><c:out value="${topicId.index+1}"></c:out></td>
                                         <td align="right"><c:out value="${topic.topicId}"></c:out></td>

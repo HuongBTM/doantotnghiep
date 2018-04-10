@@ -38,13 +38,13 @@ public class UserService {
 	public User createUser(User user, Role role) {
 		// set password encode TODO
 		user.setRole(role);
-		user.setImage("avata.png");
+		user.setImage("avatar.png");
 		return userRepositery.save(user);
 	}
 	
 	public boolean updateUser(User user, Role role) {
 		user.setRole(role);
-		if(userRepositery.updateUser(user.getFullname(), user.getUsername(), user.getPassword(), user.getPhoneNum(), user.getAbouts(), user.getUserId()) ==0) {
+		if(userRepositery.updateUser(user.getFullname(), user.getUsername(), user.getPassword(), user.getEmail(), user.getPhoneNum(), user.getAddress(), user.getAbouts(), user.getUserId()) ==0) {
 			return false;
 		}
 		return true;

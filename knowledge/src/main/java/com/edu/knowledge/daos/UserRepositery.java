@@ -30,8 +30,9 @@ public interface UserRepositery extends JpaRepository<User, Integer>{
 	@Query("SELECT count(*) FROM User")
 	int countUser();
 	
-	@Query("UPDATE User u SET u.fullname=?1, u.username=?2, u.password =?3, u.phoneNum=?4, u.address=?5, u.abouts=?6 WHERE u.userId=?7")
-	int updateUser(String fullname, String username, String password, int phoneNum, String abouts, int userId);
+	@Modifying
+	@Query("UPDATE User u SET u.fullname=?1, u.username=?2, u.password =?3, u.email=?4, u.phoneNum=?5, u.address=?6, u.abouts=?7 WHERE u.userId=?8")
+	int updateUser(String fullname, String username, String password, String email, int phoneNum, String address, String abouts, int userId);
 	
 	@Modifying
 	@Query("DELETE FROM User u WHERE u.userId=?1")

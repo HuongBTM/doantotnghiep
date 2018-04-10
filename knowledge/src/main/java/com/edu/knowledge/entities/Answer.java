@@ -35,7 +35,7 @@ public class Answer implements Serializable{
 	@Column(name="id_cau_tra_loi")
 	private int answerId;
 	
-	@Column(name="noi_dung")
+	@Column(name="noi_dung_tra_loi")
 	private String answerContent;
 	
 	@Column(name="luot_view")

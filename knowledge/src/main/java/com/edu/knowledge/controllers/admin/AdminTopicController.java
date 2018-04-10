@@ -44,7 +44,7 @@ public class AdminTopicController {
 		return topicService.getTopicById(id);
 	}
 
-	@RequestMapping(value = "/saveTopic", method=RequestMethod.POST)
+	@RequestMapping(value = "/savetopic", method=RequestMethod.POST)
 	public ModelAndView savePending(@ModelAttribute("Topic") Topic topic, BindingResult result, HttpServletRequest request) {
 		ModelAndView model = new ModelAndView("admin_Topic_edit");
 		int idHidden = Integer.parseInt(request.getParameter("idHidden"));
@@ -64,13 +64,13 @@ public class AdminTopicController {
 		} else {
 			topic.setCreateDate(new Date());
 			topicService.saveTopic(topic);
-			model = new ModelAndView("redirect:/admin/Topic/allTopic");
+			model = new ModelAndView("redirect:/admin/topic/alltopic");
 		}
 		
 		return model;
 	}
 	
-	@RequestMapping(value = "/deleteTopic", method=RequestMethod.GET)
+	@RequestMapping(value = "/deletetopic", method=RequestMethod.GET)
 	@ResponseBody
 	public String deleteTopic(HttpServletRequest request) {
 		int topicId = Integer.parseInt(request.getParameter("topicid").toString());

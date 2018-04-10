@@ -292,22 +292,22 @@ $(document).ready(function() {
 			}
 	    });
 	});
-	$('.delVoteTypeBtn').on('click', function(event) {
+	$('.deletetopicBtn').on('click', function(event) {
 		var id= $(this).attr("data-id");
 		console.log(id);
-		$('#delVoteTypeModal').modal();
-		$('#delVoteTypeModal #idHidden').val(id);
+		$('#delTopicModal').modal();
+		$('#delTopicModal #idHidden').val(id);
 	});
-	$('#delVoteTypeBtn').on('click', function(event) {
-		var id= $('#delVoteTypeModal').find('#idHidden').attr('value');
+	$('#delTopicBtn').on('click', function(event) {
+		var id= $('#delTopicModal').find('#idHidden').attr('value');
 		console.log(id);
 		$.ajax({
 	        type: 'GET',
-	        url: "/admin/votetype/deletevotetype?votetypeid=" + id,
+	        url: "/admin/topic/deletetopic?topicid=" + id,
 	        dataType: 'text',
 	        success: function (data) {
 	        	if(data == "SUCCESS") {
-	        		window.location.href = "allvotetype";
+	        		window.location.href = "alltopic";
 	            } else {
 	            	console.log('cannot delete');
 	            }

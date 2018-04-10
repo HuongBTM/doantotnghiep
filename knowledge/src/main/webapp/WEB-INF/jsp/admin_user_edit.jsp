@@ -58,10 +58,10 @@
 		                        </div>
 		                      </div>
 		                      <div class="item form-group">
-		                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="phoneNum">Số điện thoại
+		                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="phoneNum">Số điện thoại <span class="required">*</span>
 		                        </label>
 		                        <div class="col-md-6 col-sm-6 col-xs-12">
-		                          <form:input id="email" class="form-control col-md-7 col-xs-12" name="phoneNum" placeholder="Số điện thoại..." type="text" path="phoneNum"></form:input>
+		                          <form:input id="email" class="form-control col-md-7 col-xs-12" name="phoneNum" placeholder="Số điện thoại..." required="required" type="text" path="phoneNum"></form:input>
 		                        </div>
 		                      </div>
 		                       <div class="item form-group">
@@ -97,9 +97,9 @@
 		                        </div>
 		                      </div>
 		                      <div class="item form-group">
-					              <label class="control-label col-md-3 col-sm-3 col-xs-12">Role</label>
+					              <label class="control-label col-md-3 col-sm-3 col-xs-12" for= "roleSelect">Role</label>
 					              <div class="col-md-6 col-sm-6 col-xs-12">
-					              <select name="role" class="form-control">
+					              <select name="roleSelect" class="form-control">
 					                  <option value="admin" ${user.admin eq true ? 'selected' : ''}>Admin</option>
 					                  <option value="member" ${user.admin eq false ? 'selected' : ''}>Member</option>
 					              </select>

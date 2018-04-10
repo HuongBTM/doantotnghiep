@@ -10,7 +10,6 @@ import com.edu.knowledge.daos.TopicRepositery;
 import com.edu.knowledge.entities.Topic;
 
 @Service("topicService")
-@Transactional
 public class TopicService {
 
 	@Autowired
