@@ -345,12 +345,13 @@ $(document).ready(function() {
 	});
 	
 	$('.deleteAnswerBtn').on('click', function(event) {
-		var idQuestion = $(this).attr("id");
+		var idQuestion = $('.table').find('#idQuestion').attr('value');
+		console.log(idQuestion);
 		var id= $(this).attr("data-id");
 		console.log(id);
 		$('#delAnswerModal').modal();
 		$('#delAnswerModal #idHidden').val(id);
-		$('#delAnswerModal #idQuestionHidden').val(id);
+		$('#delAnswerModal #idQuestionHidden').val(idQuestion);
 	});
 	$('#delAnswerBtn').on('click', function(event) {
 		var id= $('#delAnswerModal').find('#idHidden').attr('value');
@@ -363,6 +364,36 @@ $(document).ready(function() {
 	        success: function (data) {
 	        	if(data == "SUCCESS") {
 	        		window.location.replace("http://localhost:8080/admin/question/detail/" + questionId);
+	            } else {
+	            	console.log('cannot delete');
+	            }
+	        },
+	        error: function() {
+				
+			}
+	    });
+	});
+	
+	$('.deleteCommentBtn').on('click', function(event) {
+		var idAnswer = $('.table').find('#idAnswer').attr('value');
+		console.log(idAnswer);
+		var id= $(this).attr("data-id");
+		console.log(id);
+		$('#delCommentModal').modal();
+		$('#delCommentModal #idHidden').val(id);
+		$('#delCommentModal #idAnswerHidden').val(idAnswer);
+	});
+	$('#delCommentBtn').on('click', function(event) {
+		var id= $('#delCommentModal').find('#idHidden').attr('value');
+		var answerId = $('#delCommentModal').find('#idAnswerHidden').attr('value');
+		console.log(id);
+		$.ajax({
+	        type: 'GET',
+	        url: "/admin/comment/deletecomment?commentid=" + id,
+	        dataType: 'text',
+	        success: function (data) {
+	        	if(data == "SUCCESS") {
+	        		window.location.replace("http://localhost:8080/admin/answer/detail/" + answerId);
 	            } else {
 	            	console.log('cannot delete');
 	            }

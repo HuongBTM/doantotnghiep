@@ -49,7 +49,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"><span>LOGO</span></a>
+                <a class="navbar-brand" href=""><span>Knowledge</span></a>
             </div>
             <!-- /.navbar-header -->
 
@@ -220,7 +220,7 @@
                                     <!-- /.nav-third-level -->
                                 </li>
                                 <li>
-                                    <a href="#"><span>Quản lý bài viết </span><span class="fa arrow"></span></a>
+                                    <a href="#"><span>Quản lý bài viết </span></a>
                                     <!-- /.nav-third-level -->
                                 </li>
                                 

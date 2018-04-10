@@ -909,12 +909,6 @@ table span.label {
   font-weight: 400;
   font-size: 12px;
 }
-.user-block img {
-    width: 40px;
-    height: 40px;
-    float: left;
-}
-
 .img-circle {
     border-radius: 50%;
 }

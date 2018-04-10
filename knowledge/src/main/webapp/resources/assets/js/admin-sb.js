@@ -53,7 +53,7 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-	$('#dataTables-user, #dataTables-topic, #dataTables-question, #dataTables-answer').DataTable({
+	$('#dataTables-user, #dataTables-topic, #dataTables-question, #dataTables-answer, #dataTables-comment').DataTable({
 		responsive : true
 	});
 });

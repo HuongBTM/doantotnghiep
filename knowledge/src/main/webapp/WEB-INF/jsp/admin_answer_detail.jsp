@@ -35,23 +35,18 @@
 			      <div class="box box-widget">
 			        <div class="box-header with-border">
 			          <div class="user-block">
-			            <img class="img-circle" src="<c:url value="/resources/assets/img/${question.user.image}" />" alt="User Image">
+			            <img class="img-circle" src="<c:url value="/resources/assets/img/${answer.user.image}" />" alt="User Image">
 			            <span class="username">
-			              <a href="<c:url value="/admin/user/${question.user.userId}" />">${question.user.fullname}</a>
+			              <a href="<c:url value="/admin/user/${answer.user.userId}" />">${answer.user.fullname}</a>
 			            </span>
-			            <span class="description"><fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${question.creatAt}" /></span>
+			            <span class="description"><fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${answer.creatAt}" /></span>
 			          </div>
 			          <!-- /.user-block -->
 			        </div>
 			        <!-- /.box-header -->
 			        
 			        <div class="box-body">
-			          <p>${question.questionContent}</p>
-			          <c:forEach var="topic" items="${question.topics}">
-			            <button type="button" class="btn btn-default btn-xs" style="background-color: #ccc">
-			              <i class="fa fa-tag"></i> ${topic.topicName}
-			            </button>
-			          </c:forEach>
+			          <p>${answer.answerContent}</p>
 			        </div>
 			        <!-- /.box-body -->
 			      </div>
@@ -66,49 +61,39 @@
 			      <!-- Box Comment -->
 			      <div class="box box-widget">
 			        <div class="box-header with-border">
-			          <h3 class="box-title">Answers</h3>
+			          <h3 class="box-title">Comments</h3>
 			        </div>
 			        <!-- /.box-header -->
 			        
 			        <div class="box-body">
 			          <c:choose>
-			            <c:when test="${empty question.answers}">
-			              <p>No answers for this question.</p>
+			            <c:when test="${empty answer.comments}">
+			              <p>No comment for this answer.</p>
 			            </c:when>
 			            <c:otherwise>
-			              <table id="dataTables-answer" class="table table-bordered">
+			              <table id="dataTables-comment" class="table table-bordered">
 			                <thead>
 			                  <tr>
 			                    <th align="center">User</th>
 			                    <th align="center">Posted</th>
-			                    <th align="center">Answer content</th>
-			                    <th align="center">Votes</th>
-			                    <th align="center">Comments</th>
-			                    <th align="center">Detail</th>
+			                    <th align="center">Comment content</th>
 			                    <th align="center">Delete</th>
 			                  </tr>
 			                </thead>
 			                <tbody>
-			                  <c:forEach var="answer" items="${question.answers}">
-			                  	
+			                  <c:forEach var="comment" items="${answer.comments}">
 			                    <tr>
 			                      <td align="center">
-			                        <img class="img-circle img-sm" src="<c:url value="/resources/assets/img/${answer.user.image}" />"
-			                          alt="User Image" title="${answer.user.fullname}" />
+			                        <img class="img-circle img-sm" src="<c:url value="/resources/assets/img/${comment.user.image}" />"
+			                          alt="User Image" title="${comment.user.fullname}" />
 			                      </td>
 			                      <td align="left">
-			                        <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${answer.creatAt}" />
+			                        <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${comment.creatAt}" />
 			                      </td>
-			                      <td> ${answer.answerContent} </td>
-			                      <td align="right"> ${answer.upvotes}</td>
-			                      <td align="center">${fn:length(answer.comments)}</td>
+			                      <td> ${comment.cmtContent} </td>
 			                      <td align="center">
-				                        <a href="<c:url value="/admin/answer/detail/${answer.answerId}" />" title="View answer detail">
-				                          <i class="fa fa-search"></i></a>
-				                      </td>
-			                      <td align="center">
-			                      	<input type="hidden" id="idQuestion" name="idHidden" value="${question.questionId }">
-			                        <a href="#" title="Delete answer" class="deleteAnswerBtn" data-id="${answer.answerId}">
+			                      	<input type="hidden" id="idAnswer" name="idHidden" value="${answer.answerId }">
+			                        <a href="#" title="Delete comment" id="${comment.commentId }" class="deleteCommentBtn" data-id="${comment.commentId}">
 			                          <i class="fa fa-trash"></i>
 			                        </a>
 			                      </td>
@@ -131,22 +116,22 @@
     <!-- /#wrapper -->
  
  	<!-- modal to delete -->
-	  	<div class="modal fade" id="delAnswerModal" role="dialog">
+	  	<div class="modal fade" id="delCommentModal" role="dialog">
 	    <div class="modal-dialog">
 	    
 	      <!-- Modal content-->
 	      <div class="modal-content">
 	        <div class="modal-header">
 	          <button type="button" class="close" data-dismiss="modal">&times;</button>
-	          <h4 class="modal-title">Delete answer</h4>
+	          <h4 class="modal-title">Delete comment</h4>
 	        </div>
 	        <div class="modal-body">
 	        	<input type="hidden" id="idHidden" name="idHidden" value="0">
-	        	<input type="hidden" id="idQuestionHidden" name="idHidden" value="0">
+	        	<input type="hidden" id="idAnswerHidden" name="idHidden" value="0">
 	          <p>Bạn chắc chắn xóa bản ghi này?</p>
 	        </div>
 	        <div class="modal-footer">
-	        	<button type="button" class="btn btn-danger" id="delAnswerBtn"> Delete </button>
+	        	<button type="button" class="btn btn-danger" id="delCommentBtn"> Delete </button>
 	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	        </div>
 	      </div>
