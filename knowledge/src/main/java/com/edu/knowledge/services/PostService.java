@@ -43,4 +43,8 @@ public class PostService {
 		post.setUser(user);
 		postRepositery.save(post);
 	}
+	
+	public List<Post> findAllByUser(int userId) {
+		return postRepositery.findAllByUser(userId);
+	}
 }

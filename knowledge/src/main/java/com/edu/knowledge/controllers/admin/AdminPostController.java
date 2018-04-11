@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.edu.knowledge.entities.Post;
-import com.edu.knowledge.entities.Question;
 import com.edu.knowledge.entities.Topic;
 import com.edu.knowledge.services.PostService;
 import com.edu.knowledge.services.TopicService;

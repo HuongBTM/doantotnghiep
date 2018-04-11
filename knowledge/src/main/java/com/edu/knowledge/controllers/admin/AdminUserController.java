@@ -17,8 +17,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.edu.knowledge.entities.Answer;
+import com.edu.knowledge.entities.Post;
+import com.edu.knowledge.entities.Question;
 import com.edu.knowledge.entities.Role;
 import com.edu.knowledge.entities.User;
+import com.edu.knowledge.services.AnswerService;
+import com.edu.knowledge.services.PostService;
+import com.edu.knowledge.services.QuestionService;
 import com.edu.knowledge.services.RoleService;
 import com.edu.knowledge.services.UserService;
 import com.edu.knowledge.utils.Constant;
@@ -37,6 +43,15 @@ public class AdminUserController {
 	@Autowired
 	private UserValidator userValidator;
 	
+	@Autowired
+	private QuestionService questionService;
+	
+	@Autowired
+	private AnswerService answerService;
+	
+	@Autowired
+	private PostService postService;
+	
 	@RequestMapping(value ="/alluser", method=RequestMethod.GET)
 	public ModelAndView findAllUser() {
 		ModelAndView modelAndView = new ModelAndView("admin_user_list");
@@ -54,12 +69,19 @@ public class AdminUserController {
 		return modelAndView;
 	}
 	
-	/*@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ModelAndView userDetail(@PathVariable("id") int id) {
-		ModelAndView modelAndView = new ModelAndView("admin_user_detail");
-		
-		return modelAndView;
-	}*/
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public ModelAndView userDetail(@PathVariable("id") int userId) {
+		ModelAndView mav = new ModelAndView("admin_user_detail");
+		User user = userService.getOne(userId);
+		List<Question> questions = questionService.findAllByUser(userId);
+		List<Answer> answers = answerService.findAllByUser(userId);
+		List<Post> posts = postService.findAllByUser(userId);
+		mav.addObject("questions", questions);
+		mav.addObject("answers", answers);
+		mav.addObject("posts", posts);
+		mav.addObject("user",user);
+		return mav;
+	}
 	
 	@RequestMapping(value= "/edit/{id}", method=RequestMethod.GET)
 	public ModelAndView editUser(@PathVariable("id") int id) {

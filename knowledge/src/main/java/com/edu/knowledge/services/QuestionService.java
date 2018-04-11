@@ -49,4 +49,8 @@ public class QuestionService {
 		
 		questionRepositery.save(question);
 	}
+	
+	public List<Question> findAllByUser(int userId) {
+		return questionRepositery.findAllByUser(userId);
+	}
 }

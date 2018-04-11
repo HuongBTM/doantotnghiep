@@ -1,5 +1,7 @@
 package com.edu.knowledge.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,5 +22,9 @@ public class AnswerService {
 	@Transactional
 	public int deleteAnswer(int id) {
 		return answerRepositery.deleteAnswer(id);
+	}
+	
+	public List<Answer> findAllByUser(int userId) {
+		return answerRepositery.findAllByUser(userId);
 	}
 }
