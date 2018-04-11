@@ -11,8 +11,8 @@
 <!-- Content wrapper -->
 <div class="container">
 
-<div class="main-content page-content ask-question" style="margin-top: 90px;">
-    <div class="boxedtitle page-title"><h2>Đặt câu hỏi</h2></div>
+<div class="main-content page-content ask-question" style="margin-top: 90px; margin-left: 90px; width: 800px;">
+    <h2 class="page-header">Đặt câu hỏi</h2></div>
 
     <div class="form-style form-style-3" id="question-submit">
       <c:url var="action" value="/question/ask" />
@@ -23,7 +23,7 @@
             </label>
             <div class="col-md-10 col-sm-3 col-xs-12">
               <form:input id="title" class="form-control" name="title" placeholder="Title..."
-              		 required="required" type="text" path="title" title="Hãy nhập nội dung câu hỏi"></form:input>
+              		 required="required" type="text" path="title" title="Hãy nhập tiêu đề câu hỏi"></form:input>
             	<form:errors path="title" cssClass="error" delimiter="<br><i class='fa fa-exclamation-circle'></i> "></form:errors>
             </div>
           </div>
@@ -31,7 +31,7 @@
             <label class="required control-label col-md-2 col-sm-1 col-xs-12" for="topics" style="text-align: left">Topics <span class="required">*</span>
             </label>
             <div class="col-md-10 col-sm-3 col-xs-12">
-              	<form:select class="form-control" path="topics" multiple="true" items="${topics}" itemValue="topicId" itemLabel="topicName" />
+              	<form:select required="required" class="form-control" path="topics" multiple="true" items="${topics}" itemValue="topicId" itemLabel="topicName" />
             	<form:errors path="topics" cssClass="error" delimiter="<br><i class='fa fa-exclamation-circle'></i> "></form:errors>
             </div>
           </div>
@@ -65,7 +65,7 @@
         <div id="form-textarea" class="item form-group">
             <label class="required control-label col-md-2 col-sm-1 col-xs-12" style="text-align: left">Content <span>*</span></label>
             <div class="col-md-10 col-sm-3 col-xs-12">
-            <form:textarea class="form-control" path="questionContent" id="question-details" cols="58" rows="8" />
+            <form:textarea required="required" class="form-control" path="questionContent" id="question-details" cols="58" rows="8" />
 	            <script src="<c:url value="/resources/ckeditor/ckeditor.js" />"></script>
 	            <script>
 	              CKEDITOR.replace('question-details');
@@ -79,9 +79,13 @@
 	            </c:if>
 	          </div>
         </div>
-        <p class="form-submit">
-          <input type="submit" id="publish-question" value="Post" class="button color small submit">
-        </p>
+        <div class="form-group">
+             <div class="col-md-6 col-md-offset-4">
+               <button id="send" type="submit" class="btn btn-success">Post</button>
+               <button type="reset" class="btn btn-primary">Reset</button>
+               <a href="/home" class="btn btn-primary">Cancel</a>
+             </div>
+           </div>
       </form:form>
     </div>
   </div>

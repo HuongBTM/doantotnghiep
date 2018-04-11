@@ -63,7 +63,7 @@
 	        </ul>
 	      </li>
 	      <!-- <li><a href="#" data-target="#login" data-toggle="modal">Sign in</a></li> -->
-          <li class="btn-ask"><a href="#footer">Đặt câu hỏi</a></li>
+          <li class="btn-ask"><a href="/question/ask">Đặt câu hỏi</a></li>
         </ul>
       </div>
     </div>

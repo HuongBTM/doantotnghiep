@@ -1,10 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <jsp:include page="header.jsp"></jsp:include>
 
 <!-- Content wrapper -->
 <div class="container">
+	<c:if test="${not empty success}">
+	    <div class="alert alert-success alert-dismissible">
+	      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	      <i class="icon fa fa-check"></i> ${success}
+	    </div>
+	  </c:if>
 	<div class="FeedMain HomeMain">
 		<div class="grid_page">
 			<div class="layout_3col_left" id="home_feed_left_col">

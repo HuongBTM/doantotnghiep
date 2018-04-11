@@ -10,21 +10,16 @@
 
            <div class="row">
                 <div class="col-lg-12">
-                <h5 class="page-header"></h5>
+                <h2 class="page-header"></h2>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-			<div class="row">
-                <div class="col-lg-12">
-                    <h3 class="page-header">Post Manager</h3>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
+			
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Posts
+                            Posts: Bài viết
                         </div>
                         <c:if test="${not empty success}">
 						    <div class="alert alert-success alert-dismissible">
@@ -80,7 +75,7 @@
 				                          <i class="fa fa-search"></i></a>
 				                      </td>
 				                      <td align="center">
-				                      	<a href="/admin/post/edit/${user.userId}" id="editPost" data-id="${post.postId}" class="btn btn-info btn-xs ePostBtn"><i class="fa fa-pencil"></i> Edit </a>
+				                      	<a href="/admin/post/edit/${user.userId}" id="editPost" data-id="${post.postId}" class="btn btn-info btn-xs ePostBtn"><i class="fa fa-pencil"></i> </a>
 				                        <a href="#" class="btn btn-danger btn-xs deletePost" id="deletePost" data-id="${topic.topicId}">
 				                          <i class="fa fa-trash"></i></a>
 				                      </td>

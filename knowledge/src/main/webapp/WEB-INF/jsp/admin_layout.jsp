@@ -248,4 +248,4 @@
         </nav>
     
     <!-- /#wrapper -->
-    <div id="page-wrapper" style="min-height: 386px; background-color: #ecf0f5">
+    <div id="page-wrapper" style="min-height: 386px; background-color: rgb(247, 247, 247)">

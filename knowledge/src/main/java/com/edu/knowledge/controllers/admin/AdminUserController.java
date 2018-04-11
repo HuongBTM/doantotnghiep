@@ -54,6 +54,13 @@ public class AdminUserController {
 		return modelAndView;
 	}
 	
+	/*@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public ModelAndView userDetail(@PathVariable("id") int id) {
+		ModelAndView modelAndView = new ModelAndView("admin_user_detail");
+		
+		return modelAndView;
+	}*/
+	
 	@RequestMapping(value= "/edit/{id}", method=RequestMethod.GET)
 	public ModelAndView editUser(@PathVariable("id") int id) {
 		ModelAndView modelAndView = new ModelAndView();
