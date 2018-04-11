@@ -36,6 +36,10 @@ public class TopicService {
 	public boolean checkExistedTopicName(String name) {
 		return (topicRepositery.getExistTopicName(name) !=null) ? true : false;
 	}
+	
+	public Topic getOne(int id) {
+		return topicRepositery.getOne(id);
+	}
 
 	@Transactional
 	public boolean updateTopic(Topic topic) {

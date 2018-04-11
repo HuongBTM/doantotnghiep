@@ -46,6 +46,7 @@
 			        <!-- /.box-header -->
 			        
 			        <div class="box-body">
+			        	<p><span>${question.title}</span></p>
 			          <p>${question.questionContent}</p>
 			          <c:forEach var="topic" items="${question.topics}">
 			            <button type="button" class="btn btn-default btn-xs" style="background-color: #ccc">
@@ -101,7 +102,7 @@
 			                      </td>
 			                      <td> ${answer.answerContent} </td>
 			                      <td align="right"> ${answer.upvotes}</td>
-			                      <td align="center">${fn:length(answer.comments)}</td>
+			                      <td align="right">${fn:length(answer.comments)}</td>
 			                      <td align="center">
 				                        <a href="<c:url value="/admin/answer/detail/${answer.answerId}" />" title="View answer detail">
 				                          <i class="fa fa-search"></i></a>

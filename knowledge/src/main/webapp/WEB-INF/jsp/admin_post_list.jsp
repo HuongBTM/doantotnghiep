@@ -8,18 +8,23 @@
 
 <jsp:include page="admin_layout.jsp"></jsp:include>
 
-            <div class="row">
+           <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"></h1>
+                <h5 class="page-header"></h5>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
+			<div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header">Post Manager</h3>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            User Manager
+                            Posts
                         </div>
                         <c:if test="${not empty success}">
 						    <div class="alert alert-success alert-dismissible">
@@ -37,37 +42,46 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                          <div style="padding-left: 20px;">
-                        	<a href="/admin/question/addquestion" id="btnAddUser" class="btn btn-primary btn-xs addBtn" style="width: 100px; height: 30px; margin-bottom: 10px; padding-top: 5px;"><i class="fa fa-plus"></i> Add 
+                        	<a href="/admin/post/addpost" id="btnAddPost" class="btn btn-primary btn-xs addBtn" style="width: 100px; height: 30px; margin-bottom: 10px; padding-top: 5px;"><i class="fa fa-plus"></i> Add post 
                         	</a>
                         </div>
-                             <table width="100%" id="dataTables-question" class="table table-bordered table-striped table-hover">
+                        <c:choose>
+				            <c:when test="${empty posts}">
+				              <p>No post.</p>
+				            </c:when>
+				            <c:otherwise>
+                             <table width="100%" id="dataTables-topic-post" class="table table-bordered table-striped table-hover">
 				                <thead>
 				                  <tr>
-				                    <th align="center">ID</th>
-				                    <th align="center">Title</th>
-				                    <th align="center">User</th>
-				                    <th align="center">Views</th>
-				                    <th align="center">Votes</th>
-				                    <th align="center">Answers</th>
-				                    <th align="center">Detail</th>
-				                    <th align="center">Delete</th>
+				                    <th>ID</th>
+				                    <th>Title</th>
+				                    <th>User</th>
+				                    <th>Views</th>
+				                    <th>Votes</th>
+				                    <th>Questions</th>
+				                    <th>Detail</th>
+				                    <th></th>
 				                  </tr>
 				                </thead>
 				                <tbody>
-				                  <c:forEach items="${questions}" var="question" >
+				                  <c:forEach items="${posts}" var="post" >
 				                    <tr>
-				                      <td align="right">${question.questionId}</td>
-				                      <td>${question.title}</td>
-				                      <td>${question.user.fullname}</td>
-				                      <td align="right">${question.views}</td>
-				                      <td align="right">${question.upvotes}</td>
-				                      <td align="right">${fn:length(question.answers)}</td>
+				                      <td align="right">${post.postId}</td>
+				                      <td>${post.postTitle}</td>
 				                      <td align="center">
-				                        <a href="<c:url value="/admin/question/detail/${question.questionId}" />" title="View question detail">
+				                        <img class="img-circle img-sm" src="<c:url value="/resources/assets/img/${post.user.image}" />"
+				                          alt="User Image" title="${post.user.fullname}" />
+				                      </td>
+				                      <td align="right">${post.views}</td>
+				                      <td align="right">${post.upvotes}</td>
+				                      <td align="right">${fn:length(post.questions)}</td>
+				                      <td align="center">
+				                        <a href="<c:url value="/admin/post/detail/${post.postId}" />" title="View post detail">
 				                          <i class="fa fa-search"></i></a>
 				                      </td>
 				                      <td align="center">
-				                        <a href="#" class="btn btn-danger btn-xs deleteQuestion" id="deleteQuestion" data-id="${question.questionId}">
+				                      	<a href="/admin/post/edit/${user.userId}" id="editPost" data-id="${post.postId}" class="btn btn-info btn-xs ePostBtn"><i class="fa fa-pencil"></i> Edit </a>
+				                        <a href="#" class="btn btn-danger btn-xs deletePost" id="deletePost" data-id="${topic.topicId}">
 				                          <i class="fa fa-trash"></i></a>
 				                      </td>
 				                    </tr>
@@ -75,7 +89,8 @@
 				                </tbody>
 				              </table>
                             <!-- /.table-responsive -->
-                            
+                            </c:otherwise>
+			          		</c:choose>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -84,13 +99,11 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-        <!-- /#page-wrapper -->
-
-    </div>
+			
     <!-- /#wrapper -->
  
- 	<!-- modal to delete -->
-	  	<div class="modal fade" id="delQuestionModal" role="dialog">
+ 	<!-- modal to delete post -->
+	  	<div class="modal fade" id="delPostTopicModal" role="dialog">
 	    <div class="modal-dialog">
 	    
 	      <!-- Modal content-->
@@ -104,13 +117,14 @@
 	          <p>Bạn chắc chắn xóa bản ghi này?</p>
 	        </div>
 	        <div class="modal-footer">
-	        	<button type="button" class="btn btn-danger" id="delQuestionBtn"> Delete </button>
+	        	<button type="button" class="btn btn-danger" id="delPostTopicBtn"> Delete </button>
 	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	        </div>
 	      </div>
 	      
 	    </div>
 	  </div>
+ 	
     <!-- jQuery -->
     <script src="/resources/assets/bootstrap/js/jquery.min.js"></script>
 

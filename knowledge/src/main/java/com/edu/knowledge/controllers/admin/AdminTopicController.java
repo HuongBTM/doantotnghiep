@@ -79,4 +79,12 @@ public class AdminTopicController {
 		}
 		return Constant.ERROR;
 	}
+	
+	@RequestMapping(value="/detail/{id}", method=RequestMethod.GET)
+	public ModelAndView getTopicDetail(@PathVariable("id") int id) {
+		ModelAndView mav = new ModelAndView("admin_topic_detail");
+		Topic topic = topicService.getOne(id);
+		mav.addObject("topic", topic);
+		return mav;
+	}
 }

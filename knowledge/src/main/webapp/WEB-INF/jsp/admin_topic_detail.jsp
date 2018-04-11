@@ -8,18 +8,23 @@
 
 <jsp:include page="admin_layout.jsp"></jsp:include>
 
-            <div class="row">
+           <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"></h1>
+                <h5 class="page-header"></h5>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
+			<div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header">Topic detail</h3>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            User Manager
+                            Posts
                         </div>
                         <c:if test="${not empty success}">
 						    <div class="alert alert-success alert-dismissible">
@@ -36,11 +41,73 @@
 						  </c:if>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                         <div style="padding-left: 20px;">
-                        	<a href="/admin/question/addquestion" id="btnAddUser" class="btn btn-primary btn-xs addBtn" style="width: 100px; height: 30px; margin-bottom: 10px; padding-top: 5px;"><i class="fa fa-plus"></i> Add 
-                        	</a>
+                         
+                        <c:choose>
+				            <c:when test="${empty topic.posts}">
+				              <p>No post for this topic.</p>
+				            </c:when>
+				            <c:otherwise>
+                             <table width="100%" id="dataTables-topic-post" class="table table-bordered table-striped table-hover">
+				                <thead>
+				                  <tr>
+				                    <th>ID</th>
+				                    <th>Title</th>
+				                    <th>User</th>
+				                    <th>Views</th>
+				                    <th>Votes</th>
+				                    <th>Questions</th>
+				                    <th>Detail</th>
+				                    <th>Delete</th>
+				                  </tr>
+				                </thead>
+				                <tbody>
+				                  <c:forEach items="${topic.posts}" var="post" >
+				                    <tr>
+				                      <td align="right">${post.postId}</td>
+				                      <td>${post.postTitle}</td>
+				                      <td align="center">
+				                        <img class="img-circle img-sm" src="<c:url value="/resources/assets/img/${post.user.image}" />"
+				                          alt="User Image" title="${post.user.fullname}" />
+				                      </td>
+				                      <td align="right">${post.views}</td>
+				                      <td align="right">${post.upvotes}</td>
+				                      <td align="right">${fn:length(post.questions)}</td>
+				                      <td align="center">
+				                        <a href="<c:url value="/admin/post/detail/${post.postId}" />" title="View post detail">
+				                          <i class="fa fa-search"></i></a>
+				                      </td>
+				                      <td align="center">
+				                        <a href="#" class="btn btn-danger btn-xs deletePost" id="deletePost" data-id="${topic.topicId}">
+				                          <i class="fa fa-trash"></i></a>
+				                      </td>
+				                    </tr>
+				                  </c:forEach>
+				                </tbody>
+				              </table>
+                            <!-- /.table-responsive -->
+                            </c:otherwise>
+			          		</c:choose>
                         </div>
-                             <table width="100%" id="dataTables-question" class="table table-bordered table-striped table-hover">
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+			<div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Question
+                        </div>
+                        <div class="panel-body">
+                        <c:choose>
+				            <c:when test="${empty topic.questions}">
+				              <p>No questions for this topic.</p>
+				            </c:when>
+				            <c:otherwise>
+                             <table width="100%" id="dataTables-topic-question" class="table table-bordered table-striped table-hover">
 				                <thead>
 				                  <tr>
 				                    <th align="center">ID</th>
@@ -54,7 +121,7 @@
 				                  </tr>
 				                </thead>
 				                <tbody>
-				                  <c:forEach items="${questions}" var="question" >
+				                  <c:forEach items="${topic.questions}" var="question" >
 				                    <tr>
 				                      <td align="right">${question.questionId}</td>
 				                      <td>${question.title}</td>
@@ -67,7 +134,7 @@
 				                          <i class="fa fa-search"></i></a>
 				                      </td>
 				                      <td align="center">
-				                        <a href="#" class="btn btn-danger btn-xs deleteQuestion" id="deleteQuestion" data-id="${question.questionId}">
+				                        <a href="#" class="btn btn-danger btn-xs deleteQuestionTopic" id="deleteQuestionTopic" data-id="${question.questionId}">
 				                          <i class="fa fa-trash"></i></a>
 				                      </td>
 				                    </tr>
@@ -75,7 +142,8 @@
 				                </tbody>
 				              </table>
                             <!-- /.table-responsive -->
-                            
+                            </c:otherwise>
+                            </c:choose>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -84,13 +152,11 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-        <!-- /#page-wrapper -->
-
-    </div>
+	</div>
     <!-- /#wrapper -->
  
- 	<!-- modal to delete -->
-	  	<div class="modal fade" id="delQuestionModal" role="dialog">
+ 	<!-- modal to delete post -->
+	  	<div class="modal fade" id="delPostTopicModal" role="dialog">
 	    <div class="modal-dialog">
 	    
 	      <!-- Modal content-->
@@ -104,7 +170,29 @@
 	          <p>Bạn chắc chắn xóa bản ghi này?</p>
 	        </div>
 	        <div class="modal-footer">
-	        	<button type="button" class="btn btn-danger" id="delQuestionBtn"> Delete </button>
+	        	<button type="button" class="btn btn-danger" id="delPostTopicBtn"> Delete </button>
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        </div>
+	      </div>
+	      
+	    </div>
+	  </div>
+ 	<!-- modal to delete question -->
+	  	<div class="modal fade" id="delQuestionTopicModal" role="dialog">
+	    <div class="modal-dialog">
+	    
+	      <!-- Modal content-->
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">Delete question</h4>
+	        </div>
+	        <div class="modal-body">
+	        	<input type="hidden" id="idHidden" name="idHidden" value="0">
+	          <p>Bạn chắc chắn xóa bản ghi này?</p>
+	        </div>
+	        <div class="modal-footer">
+	        	<button type="button" class="btn btn-danger" id="delQuestionTopicBtn"> Delete </button>
 	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	        </div>
 	      </div>

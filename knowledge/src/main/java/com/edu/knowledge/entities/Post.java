@@ -42,6 +42,9 @@ public class Post implements Serializable{
 	@Column(name="id_bai_viet")
 	private int postId;
 	
+	@Column(name="title")
+	private String postTitle;
+	
 	@Column(name="noi_dung_bai_viet")
 	private String postContent;
 	
@@ -73,7 +76,7 @@ public class Post implements Serializable{
 	
 	@NotEmpty
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "tbl_chi_tiet_chu_de", 
+    @JoinTable(name = "tbl_ct_chu_de_bai_viet", 
              joinColumns = { @JoinColumn(name = "id_bai_viet") }, 
              inverseJoinColumns = { @JoinColumn(name = "id_chu_de") })
 	private Set<Topic> topics;
@@ -87,6 +90,15 @@ public class Post implements Serializable{
 	
 	public Post() {
 	}
+
+	public String getPostTitle() {
+		return postTitle;
+	}
+
+	public void setPostTitle(String postTitle) {
+		this.postTitle = postTitle;
+	}
+
 
 	public String getPostContent() {
 		return postContent;

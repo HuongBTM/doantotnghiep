@@ -58,12 +58,8 @@ $(document).ready(function() {
 	});
 });
 
-function showConfirm(id) {
-	var cf = confirm("Bạn muốn xóa lĩnh vực này?");
-	if(cf == true){
-		window.location = "/admin/votetype/delete/"+id;
-		consol.log("deleteuser");
-	} else {
-		
-	}
-}
+$(document).ready(function() {
+	$('#dataTables-topic-post, #dataTables-topic-question').DataTable({
+		responsive : true
+	});
+});

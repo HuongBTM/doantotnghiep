@@ -49,7 +49,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href=""><span>Knowledge</span></a>
+                <a class="navbar-brand" href="/home"><span>Knowledge</span></a>
             </div>
             <!-- /.navbar-header -->
 
@@ -189,9 +189,7 @@
                                 <li>
                                     <a href="/admin/pendingtag/allpendingtag"><span>Trạng thái câu hỏi</span></a>
                                 </li>
-                                <li>
-                                    <a href="/admin/topic/alltopic"><span>Quản lý chủ đề</span></a>
-                                </li>
+                                
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
@@ -204,23 +202,20 @@
                                     <a href="/admin/user/alluser"><span>Quản lý thành viên</span></a>
                                 </li>
                                 <li>
-                                    <a href="/admin/question/allquestion"><span>Quản lý câu hỏi </span></span></a>
-                                    <!-- <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="#"><span>Danh mục câu hỏi</span></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><span>Danh mục câu trả lời</span></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><span>Comment</span></a>
-                                        </li>
-                                        
-                                    </ul> -->
+                                    <a href="/admin/question/allquestion"><span>Quản lý câu hỏi </span></a>
+                                    
                                     <!-- /.nav-third-level -->
                                 </li>
                                 <li>
-                                    <a href="#"><span>Quản lý bài viết </span></a>
+                                    <a href="#"><span>Quản lý bài viết </span><span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                    		<a href="/admin/topic/alltopic"><span>Quản lý chủ đề</span></a>
+                                		</li>
+                                        <li>
+                                            <a href="/admin/post/allpost"><span>Quản lý bài viết</span></a>
+                                        </li>
+                                    </ul>
                                     <!-- /.nav-third-level -->
                                 </li>
                                 

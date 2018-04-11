@@ -74,7 +74,7 @@ public class Question implements Serializable {
 	
 	@NotEmpty
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "tbl_chi_tiet_chu_de", 
+    @JoinTable(name = "tbl_ct_chu_de_cau_hoi", 
              joinColumns = { @JoinColumn(name = "id_cau_hoi") }, 
              inverseJoinColumns = { @JoinColumn(name = "id_chu_de") })
 	private Set<Topic> topics;

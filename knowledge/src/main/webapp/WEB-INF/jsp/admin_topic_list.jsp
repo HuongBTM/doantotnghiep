@@ -3,6 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="tags" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 
 <jsp:include page="admin_layout.jsp"></jsp:include>
@@ -35,6 +36,8 @@
                                         <th align="center">Tên chủ đề</th>
                                         <th align="center">Mô tả chủ đề</th>
                                         <th align="center">Ngày tạo</th>
+                                        <th align="center">Posts</th>
+                                        <th align="center">Questions</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -43,9 +46,11 @@
                                     <tr class="odd gradeX">
                                     	<td align="right"><c:out value="${topicId.index+1}"></c:out></td>
                                         <td align="right"><c:out value="${topic.topicId}"></c:out></td>
-                                        <td><c:out value="${topic.topicName}"></c:out></td>
+                                        <td><a href="/admin/topic/detail/${topic.topicId}"><c:out value="${topic.topicName}"></c:out></a></td>
                                         <td><c:out value="${topic.topicDescribe}"></c:out></td>
                                         <td><c:out value="${topic.createDate}"></c:out></td>
+                                        <td align="right">${fn:length(topic.posts)}</td>
+                                        <td align="right">${fn:length(topic.questions)}</td>
                                         <td align="center">
 				                            <a href="/admin/topic/findone/${topic.topicId}" data-id="${topic.topicId}" class="btn btn-info btn-xs etopicBtn"><i class="fa fa-pencil"></i> Edit </a>
 				                            <a href="#" data-id="${topic.topicId}" id="deletetopicBtn" class="btn btn-danger btn-xs deletetopicBtn"><i class="fa fa-trash-o"></i> Delete </a>
