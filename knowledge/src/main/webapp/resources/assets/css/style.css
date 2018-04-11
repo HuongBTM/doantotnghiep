@@ -375,3 +375,94 @@ div {
 .search-input {
 	border-radius: 4px 0px 0px 4px;
 }
+/* page-content */
+.container.main-content {
+  position: relative;
+  z-index: 991;
+  min-height: 400px;
+}
+.page-content,.about-author,.user-question,#related-posts {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 20px;
+  border: 1px solid #dedede;
+  background: #FFF;
+  -moz-box-shadow: 0 0 5px #dedede;
+  -webkit-box-shadow: 0 0 5px #dedede;
+  box-shadow: 0 0 5px #dedede;
+}
+.page-content .widget,.widget .related-posts {
+  padding: 0 !important;
+  border: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.page-content .boxedtitle,.main-content .boxedtitle {
+  margin-bottom: 20px;
+  padding-left: 20px;
+  border-bottom: 0;
+}
+.page-content p {
+  font-size: 13px;
+  font-weight: normal;
+}
+.main-content .boxedtitle {
+  margin-left: 0;
+  margin-right: 0;
+}
+.main-content .page-content .boxedtitle.page-title,.post-box .boxedtitle {
+  margin: -20px -20px 20px;
+}
+.main-content .page-content .boxedtitle.page-title {
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background: transparent;
+  position: relative;
+  margin-bottom: 10px !important;
+}
+.main-content .page-content .boxedtitle.page-title h2 {
+  padding: 20px 0 10px;
+  margin: 0 20px 20px 0;
+  border-bottom: 2px solid #dedede;
+  font-size: 20px;
+  font-weight: bold;
+}
+.boxedtitle.page-title h2 {
+  font-size: 16px;
+  font-weight: bold;
+}
+.main-content .boxedtitle h1,.main-content .boxedtitle h2,.main-content .boxedtitle h3,.main-content .boxedtitle h4,.main-content .boxedtitle h5,.main-content .boxedtitle h6 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.single-post .post-inner {
+  padding: 0 20px 20px;
+  position: relative;
+}
+.about-author,.user-question {
+  background: #FFF;
+}
+.page-content {
+  overflow: hidden;
+  height: 100%;
+}
+.comment-respond {
+  background: #FFF;
+}
+.form-description {
+  margin-left: 18%;
+  font-size: 13px !important;
+  color: #ff7361 !important;
+}
+.ask-question .form-description {
+  width: 80%;
+  display: inline-block;
+}
+
+.form-style label.required span {
+    margin-left: 3px;
+    color: #F00;
+}

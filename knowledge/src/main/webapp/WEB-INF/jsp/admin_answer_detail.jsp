@@ -46,6 +46,7 @@
 			        <!-- /.box-header -->
 			        
 			        <div class="box-body">
+			        	<p><h3><b>${answer.question.title}</b></h3></p>
 			          <p>${answer.answerContent}</p>
 			        </div>
 			        <!-- /.box-body -->

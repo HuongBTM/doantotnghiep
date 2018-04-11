@@ -46,8 +46,8 @@
 			        <!-- /.box-header -->
 			        
 			        <div class="box-body">
-			        	<p><span>${question.title}</span></p>
-			          <p>${question.questionContent}</p>
+			        	<p><h3><b>${question.title}</b></h3></p>
+			          	<p>${question.questionContent}</p>
 			          <c:forEach var="topic" items="${question.topics}">
 			            <button type="button" class="btn btn-default btn-xs" style="background-color: #ccc">
 			              <i class="fa fa-tag"></i> ${topic.topicName}

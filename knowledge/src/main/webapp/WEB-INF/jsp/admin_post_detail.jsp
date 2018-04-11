@@ -46,7 +46,7 @@
 			        <!-- /.box-header -->
 			        
 			        <div class="box-body">
-			        	<p><span>${post.postTitle}</span></p>
+			        	<p><h3><b>${post.postTitle}</b></h3></p>
 			          <p>${post.postContent}</p>
 			          <c:forEach var="topic" items="${post.topics}">
 			            <button type="button" class="btn btn-default btn-xs" style="background-color: #ccc">
