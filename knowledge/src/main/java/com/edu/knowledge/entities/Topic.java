@@ -1,5 +1,6 @@
 package com.edu.knowledge.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -14,9 +15,16 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tbl_chu_de")
-public class Topic {
+public class Topic implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,9 +38,11 @@ public class Topic {
 	@Column(name="mo_ta_chu_de")
 	private String topicDescribe;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "topics", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Post> posts;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "topics", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Question> questions;
 	

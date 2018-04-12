@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tbl_role")
 public class Role implements Serializable{
@@ -32,6 +34,7 @@ public class Role implements Serializable{
 	@Column(name="mo_ta_quyen")
 	private String roleDescrib;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "role", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<User> users;
 	

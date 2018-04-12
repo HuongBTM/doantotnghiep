@@ -21,4 +21,7 @@ public interface QuestionRepositery extends JpaRepository<Question, Integer>{
 	
 	@Query("SELECT q FROM Question q WHERE q.user.userId=?1")
 	List<Question> findAllByUser(int userId);
+	
+	@Query("SELECT q FROM Question q ORDER BY q.questionId DESC")
+	List<Question> findLast(int limit);
 }

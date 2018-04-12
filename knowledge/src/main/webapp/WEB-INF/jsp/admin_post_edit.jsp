@@ -62,7 +62,7 @@
 				             <div class="col-md-6 col-md-offset-4">
 				               <button id="send" type="submit" class="btn btn-success">Public</button>
 				               <button type="reset" class="btn btn-primary">Reset</button>
-				               <a href="/home" class="btn btn-primary">Cancel</a>
+				               <a href="/admin/post/allpost" class="btn btn-primary">Cancel</a>
 				             </div>
 				           </div>
 				      </form:form>

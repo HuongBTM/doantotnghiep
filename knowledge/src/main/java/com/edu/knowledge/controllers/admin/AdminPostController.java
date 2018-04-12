@@ -62,7 +62,7 @@ public class AdminPostController {
 			postService.createPost(post);
 			model.setViewName("redirect:/admin/post/allpost");
 		}
-		redirect.addFlashAttribute("success", "Your question has been posted successfully!");
+		redirect.addFlashAttribute("success", "Your Post has been posted successfully!");
 		return model;
 	}
 }

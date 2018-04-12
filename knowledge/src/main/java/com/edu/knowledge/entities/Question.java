@@ -1,6 +1,7 @@
 package com.edu.knowledge.entities;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.Set;
 
@@ -20,6 +21,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
+
+import com.edu.knowledge.utils.TimeUtil;
 
 @Entity
 @Table(name="tbl_cau_hoi")
@@ -181,6 +184,10 @@ public class Question implements Serializable {
 		this.creatAt = creatAt;
 	}
 
+	public String getAgo() throws ParseException {
+        return TimeUtil.ago(creatAt);
+    }
+	
 	public Date getLastEditAt() {
 		return lastEditAt;
 	}

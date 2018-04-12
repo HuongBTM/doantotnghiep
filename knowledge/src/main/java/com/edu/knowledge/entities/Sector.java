@@ -14,6 +14,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tbl_linh_vuc")
 public class Sector implements Serializable{
@@ -35,6 +37,7 @@ public class Sector implements Serializable{
 	@Column(name="mo_ta_linh_vuc")
 	private String describeSector;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "sectors", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<User> users;
 	

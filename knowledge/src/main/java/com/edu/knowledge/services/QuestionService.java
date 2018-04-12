@@ -53,4 +53,8 @@ public class QuestionService {
 	public List<Question> findAllByUser(int userId) {
 		return questionRepositery.findAllByUser(userId);
 	}
+	
+	public List<Question> findLast(int limit) {
+		return questionRepositery.findLast(limit);
+	}
 }

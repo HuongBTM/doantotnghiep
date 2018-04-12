@@ -14,6 +14,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="tbl_vote_type")
 public class VoteType implements Serializable{
@@ -32,15 +34,19 @@ public class VoteType implements Serializable{
 	@NotNull
 	private String voteTypeName;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "voteTypes", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Post> posts;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "voteTypes", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Question> questions;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "voteTypes", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Answer> answers;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "voteTypes", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<User> users;
 	
