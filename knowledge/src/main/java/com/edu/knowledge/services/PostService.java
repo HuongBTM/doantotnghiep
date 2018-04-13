@@ -47,4 +47,14 @@ public class PostService {
 	public List<Post> findAllByUser(int userId) {
 		return postRepositery.findAllByUser(userId);
 	}
+	
+	public Post updatePost(Post post) {
+		post.setLastEditAt(new Date());
+		return postRepositery.save(post);
+	}
+	
+	@Transactional
+	public int deletePost(int id) {
+		return postRepositery.deletePost(id);
+	}
 }

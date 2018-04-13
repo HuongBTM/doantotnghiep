@@ -2,6 +2,8 @@ package com.edu.knowledge.controllers.admin;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -53,16 +55,37 @@ public class AdminPostController {
 		return model;
 	}
 	
-	@RequestMapping(value="/addpost", method= RequestMethod.POST)
-	public ModelAndView publicPost(@ModelAttribute("post") Post post, BindingResult result, RedirectAttributes redirect) {
-		ModelAndView model = new ModelAndView();
+	@RequestMapping(value="/savepost", method= RequestMethod.POST)
+	public ModelAndView publicPost(@ModelAttribute("post") Post post, BindingResult result, 
+			RedirectAttributes redirect, HttpServletRequest request) {
+		ModelAndView model = new ModelAndView("admin_post_edit");
+		int idHidden= Integer.parseInt(request.getParameter("postId").toString());
 		if(result.hasErrors()) {
-			model.setViewName("admin_post_add");
-		} else {
-			postService.createPost(post);
-			model.setViewName("redirect:/admin/post/allpost");
+			return model;
 		}
+		if(idHidden==0) {
+			postService.createPost(post);
+		} else {
+			Post postUpdate = postService.getOne(idHidden);
+			postUpdate.setPostTitle(post.getPostTitle());
+			postUpdate.setTopics(post.getTopics());
+			postUpdate.setPostContent(post.getPostContent());
+			postService.updatePost(postUpdate);
+		}
+		model.setViewName("redirect:/admin/post/allpost");
 		redirect.addFlashAttribute("success", "Your Post has been posted successfully!");
 		return model;
 	}
+	
+	@RequestMapping(value="/edit/{id}", method=RequestMethod.GET)
+	public ModelAndView editPost(@PathVariable("id") int id) {
+		ModelAndView mav = new ModelAndView("admin_post_edit");
+		Post post = postService.getOne(id);
+		List<Topic> topics = topicService.findAll();
+		mav.addObject("topics", topics);
+		mav.addObject("post", post);
+		return mav;
+	}
+	
+	
 }

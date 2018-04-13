@@ -35,7 +35,7 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-left">
-          <li><a href="/home"><i class="fa fa-home"></i> Home</a><div></div></li>
+          <li><a href="/app/home"><i class="fa fa-home"></i> Home</a><div></div></li>
           <li><a href="/question"><i class="fa fa-question-circle"></i> Câu hỏi</a><div></div></li>
           <li><a href="/post"><i class= "fa fa-file-text-o"></i> Bài viết</a></li>
           <li><a href="/notification"><i class="fa fa-bell"></i> Thông báo</a></li>

@@ -218,5 +218,13 @@ public class Post implements Serializable{
 		this.questions = questions;
 		this.topics = topics;
 	}
+
+	@Override
+	public String toString() {
+		return "Post [postId=" + postId + ", postTitle=" + postTitle + ", postContent=" + postContent + ", postImg="
+				+ postImg + ", postFile=" + postFile + ", upvotes=" + upvotes + ", downvotes=" + downvotes + ", views="
+				+ views + ", creatAt=" + creatAt + ", lastEditAt=" + lastEditAt + ", topics=" + topics + "]";
+	}
+
 	
 }

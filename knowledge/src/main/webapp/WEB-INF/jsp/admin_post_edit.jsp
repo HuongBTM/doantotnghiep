@@ -20,9 +20,9 @@
                 <div class="col-lg-12" style="background-color: #f9f9f9; border: 1px solid #dedede; color: #555;">
                 	<div class="form-style form-style-3" id="question-submit">
                 		<h2 class="page-header">Thêm/ Sửa bài viết</h2>
-				      <c:url var="action" value="/admin/post/addpost" />
+				      <c:url var="action" value="/admin/post/savepost" />
 				      <form:form action="${action}" method="POST" modelAttribute="post" class="form-horizontal form-label-left">
-				        <form:hidden path="postId" />
+				        <input type="hidden" name="postId" value="${post.postId }"/>
 				        <!-- TODO -->
 				        <div class="item form-group">
 				            <label class="required control-label col-md-2 col-sm-1 col-xs-12" for="title" style="text-align: left">Title <span class="required">*</span>

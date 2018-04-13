@@ -45,9 +45,9 @@ public class UserService {
 	public boolean updateUser(User user, Role role) {
 		user.setRole(role);
 		if(userRepositery.updateUser(user.getFullname(), user.getUsername(), user.getPassword(), user.getEmail(), user.getPhoneNum(), user.getAddress(), user.getAbouts(), user.getUserId()) ==0) {
-			return false;
+			return true;
 		}
-		return true;
+		return false;
 	}
 	
 	public User getOne(int userId) {

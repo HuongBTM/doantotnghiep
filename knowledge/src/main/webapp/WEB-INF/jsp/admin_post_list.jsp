@@ -75,7 +75,7 @@
 				                          <i class="fa fa-search"></i></a>
 				                      </td>
 				                      <td align="center">
-				                      	<a href="/admin/post/edit/${user.userId}" id="editPost" data-id="${post.postId}" class="btn btn-info btn-xs ePostBtn"><i class="fa fa-pencil"></i> </a>
+				                      	<a href="/admin/post/edit/${post.postId}" id="editPost" data-id="${post.postId}" class="btn btn-info btn-xs ePostBtn"><i class="fa fa-pencil"></i> </a>
 				                        <a href="#" class="btn btn-danger btn-xs deletePost" id="deletePost" data-id="${topic.topicId}">
 				                          <i class="fa fa-trash"></i></a>
 				                      </td>

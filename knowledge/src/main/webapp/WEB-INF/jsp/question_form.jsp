@@ -12,12 +12,12 @@
 <div class="container">
 
 <div class="main-content page-content ask-question" style="margin-top: 90px; margin-left: 90px; width: 800px;">
-    <h2 class="page-header">Đặt câu hỏi</h2></div>
+    <h2 class="page-header">Đặt câu hỏi</h2>
 
     <div class="form-style form-style-3" id="question-submit">
       <c:url var="action" value="/question/ask" />
       <form:form action="${action}" method="POST" modelAttribute="question" class="form-horizontal form-label-left">
-        <form:hidden path="questionId" />
+        <form:hidden id="idHidden" path="questionId" value="${question.questionId}"/>
         <div class="item form-group">
             <label class="required control-label col-md-2 col-sm-1 col-xs-12" for="title" style="text-align: left">Title <span class="required">*</span>
             </label>
@@ -83,7 +83,7 @@
              <div class="col-md-6 col-md-offset-4">
                <button id="send" type="submit" class="btn btn-success">Post</button>
                <button type="reset" class="btn btn-primary">Reset</button>
-               <a href="/home" class="btn btn-primary">Cancel</a>
+               <a href="/app/home" class="btn btn-primary">Cancel</a>
              </div>
            </div>
       </form:form>

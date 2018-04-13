@@ -114,7 +114,7 @@ public class AdminUserController {
 			user.setImage("avatar.png");
 			userService.createUser(user , dbRole);
 		} else {
-			if(userService.updateUser(user, dbRole)) {
+			if(!userService.updateUser(user, dbRole)) {
 				redirect.addFlashAttribute("error", "Saved user " + user.getFullname() + " error!");
 			}
 		}
