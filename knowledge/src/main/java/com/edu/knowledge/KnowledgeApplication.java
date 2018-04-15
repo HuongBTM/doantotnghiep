@@ -12,12 +12,12 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
         DataSourceTransactionManagerAutoConfiguration.class,
         ErrorMvcAutoConfiguration.class })*/
 
-@SpringBootApplication
+@SpringBootApplication/*(exclude = { SecurityAutoConfiguration.class })*/
 @ComponentScan(basePackages={"com.edu.knowledge.controllers", 
 		"com.edu.knowledge.services", "com.edu.knowledge.daos", "com.edu.knowledge.validator"})
 @EntityScan("com.edu.knowledge.entities")
 @EnableJpaRepositories(basePackages= {"com.edu.knowledge.daos"})
-public class KnowledgeApplication {
+public class KnowledgeApplication{
 
 	public static void main(String[] args) {
 		SpringApplication.run(KnowledgeApplication.class, args);

@@ -35,10 +35,24 @@
                         		<div class="form-top-left">
                         			<h3>Login to our site</h3>              
                         		</div>
-                        		<!-- <div class="form-top-right">
-                        			<i class="fa fa-key"></i>
-                        		</div> -->
                             </div>
+                            <c:if test="${param.error != null}">
+						        <div class="alert alert-danger">
+						          <p>Invalid email or password</p>
+						        </div>
+						      </c:if>
+						
+						      <c:if test="${param.logout != null}">
+						        <div class="alert alert-success">
+						          <p>Logout successfully</p>
+						        </div>
+						      </c:if>
+						      
+						      <c:if test="${not empty success}">
+						        <div class="alert alert-success">
+						          <p>${success}</p>
+						        </div>
+						      </c:if>
                             <div class="form-bottom">
 								<form:form action="/login" method="post" class="login-form" modelAttribute="user">
 									<form:errors path="email" cssStyle="color:red;display:block"></form:errors>
@@ -59,7 +73,7 @@
 									<c:if test="${not empty emailmessage}">
 										<label class="validation-message"><c:out value="${emailmessage}"></c:out></label>
 									</c:if> 
-									
+									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 									<button type="submit" class="btn">Sign in!</button>
 							</form:form>
 						</div>

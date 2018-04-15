@@ -24,13 +24,24 @@ public class LoginController {
 	@Autowired
 	private RoleService roleService;
 	
-	@RequestMapping(value={"/","/login"}, method=RequestMethod.GET)
+	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public ModelAndView hello(){
 		User user = new User();
 		ModelAndView model = new ModelAndView("login");
 		model.addObject("user", user);
 		return model;
 	}
+	
+	/*@RequestMapping(value="/login", method=RequestMethod.GET)
+	public String login(Model model, String error, String logout) {
+		if(error != null) {
+			model.addAttribute("emailmessage", "In valid");
+		}
+		if(logout != null) {
+			model.addAttribute("emailmessage", "Have been logged out");
+		}
+		return "login";
+	}*/
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public ModelAndView login(@ModelAttribute("user") User user, ModelMap map){
@@ -39,7 +50,7 @@ public class LoginController {
 		String password = user.getPassword();
 		boolean checkLogin = userService.checkLogin(email, password);
 		if(checkLogin) {
-			model.setViewName("home");
+			model.setViewName("redirect:/app/home");
 		} else {
 			model.addObject(new User());
 			map.addAttribute("emailmessage","Email hoặc password không đúng. Hãy nhập lại!");
@@ -76,7 +87,7 @@ public class LoginController {
 			Role role = roleService.findRoleByName("member");
 			userService.createUser(user, role);
 			//System.out.println(Charset.defaultCharset());
-			model.setViewName("home");
+			model.setViewName("redirect:/app/home");
 		} else {
 			user.setPassword(null);
 			user.setConfirmpassword(null);

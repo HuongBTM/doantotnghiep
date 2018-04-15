@@ -10,7 +10,7 @@ import com.edu.knowledge.entities.Role;
 @Repository
 public interface RoleRepositery extends JpaRepository<Role, Integer>{
 
-	@Query("SELECT p FROM Role p WHERE p.roleId=?1")
+	@Query("SELECT p FROM Role p LEFT JOIN FETCH p.users WHERE p.roleId=?1")
 	Role findRoleById(int roleId);
 	
 	@Query("SELECT p FROM Role p WHERE p.roleName=?1")

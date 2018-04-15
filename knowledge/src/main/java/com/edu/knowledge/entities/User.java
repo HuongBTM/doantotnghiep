@@ -23,8 +23,6 @@ import javax.validation.constraints.NotEmpty;
 
 import org.springframework.data.annotation.Transient;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 /*@EntityListeners(AuditingEntityListener.class)*/
 @Table(name = "tbl_thanh_vien")
@@ -73,7 +71,6 @@ public class User implements Serializable{
 	@Column(name = "image")
 	private String image;
 	
-	@JsonIgnore
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_role")
 	private Role role;
