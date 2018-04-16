@@ -12,7 +12,7 @@
           <div class="">
            <div class="row">
                 <div class="col-lg-12">
-                <h5 class="page-header"></h5>
+                <h5 class="page-header">Chi tiết chủ đề</h5>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -46,20 +46,21 @@
                          
                         <c:choose>
 				            <c:when test="${empty topic.posts}">
-				              <p>No post for this topic.</p>
+				              <p>Không có bài viết thuộc chủ đề này.</p>
 				            </c:when>
 				            <c:otherwise>
                              <table width="100%" id="dataTables-topic-post" class="table table-bordered table-striped table-hover">
 				                <thead>
 				                  <tr>
-				                    <th>ID</th>
-				                    <th>Title</th>
-				                    <th>User</th>
-				                    <th>Views</th>
-				                    <th>Votes</th>
-				                    <th>Questions</th>
-				                    <th>Detail</th>
-				                    <th>Delete</th>
+				                    <th align="center">ID</th>
+				                    <th align="center">Title</th>
+				                    <th align="center">Người đăng</th>
+				                    <th align="center">Ngày đăng</th>
+				                    <th align="center">Lượt xem</th>
+				                    <th align="center">Bình chọn</th>
+				                    <th align="center">Số câu hỏi</th>
+				                    <th align="center">Chi tiết</th>
+				                    <th align="center">Xóa</th>
 				                  </tr>
 				                </thead>
 				                <tbody>
@@ -71,6 +72,7 @@
 				                        <img class="img-circle img-sm" src="<c:url value="/resources/assets/img/${post.user.image}" />"
 				                          alt="User Image" title="${post.user.fullname}" />
 				                      </td>
+				                      <td align="left">${post.creatAt}</td>
 				                      <td align="right">${post.views}</td>
 				                      <td align="right">${post.upvotes}</td>
 				                      <td align="right">${fn:length(post.questions)}</td>
@@ -101,12 +103,12 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Question
+                            Câu hỏi
                         </div>
                         <div class="panel-body">
                         <c:choose>
 				            <c:when test="${empty topic.questions}">
-				              <p>No questions for this topic.</p>
+				              <p>Không có câu hỏi thuộc chủ đề này.</p>
 				            </c:when>
 				            <c:otherwise>
                              <table width="100%" id="dataTables-topic-question" class="table table-bordered table-striped table-hover">
@@ -114,12 +116,13 @@
 				                  <tr>
 				                    <th align="center">ID</th>
 				                    <th align="center">Title</th>
-				                    <th align="center">User</th>
-				                    <th align="center">Views</th>
-				                    <th align="center">Votes</th>
-				                    <th align="center">Answers</th>
-				                    <th align="center">Detail</th>
-				                    <th align="center">Delete</th>
+				                    <th align="center">Người đăng</th>
+				                    <th align="center">Ngày đăng</th>
+				                    <th align="center">Lượt xem</th>
+				                    <th align="center">Bình chọn</th>
+				                    <th align="center">Số câu trả lời</th>
+				                    <th align="center">Chi tiết</th>
+				                    <th align="center">Xóa</th>
 				                  </tr>
 				                </thead>
 				                <tbody>
@@ -128,6 +131,7 @@
 				                      <td align="right">${question.questionId}</td>
 				                      <td>${question.title}</td>
 				                      <td>${question.user.fullname}</td>
+				                      <td align="left">${question.creatAt}</td>
 				                      <td align="right">${question.views}</td>
 				                      <td align="right">${question.upvotes}</td>
 				                      <td align="right">${fn:length(question.answers)}</td>
@@ -166,15 +170,15 @@
 	      <div class="modal-content">
 	        <div class="modal-header">
 	          <button type="button" class="close" data-dismiss="modal">&times;</button>
-	          <h4 class="modal-title">Delete question</h4>
+	          <h4 class="modal-title">Xóa bài viết</h4>
 	        </div>
 	        <div class="modal-body">
 	        	<input type="hidden" id="idHidden" name="idHidden" value="0">
 	          <p>Bạn chắc chắn xóa bản ghi này?</p>
 	        </div>
 	        <div class="modal-footer">
-	        	<button type="button" class="btn btn-danger" id="delPostTopicBtn"> Delete </button>
-	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        	<button type="button" class="btn btn-danger" id="delPostTopicBtn"> Xóa </button>
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
 	        </div>
 	      </div>
 	      
@@ -188,15 +192,15 @@
 	      <div class="modal-content">
 	        <div class="modal-header">
 	          <button type="button" class="close" data-dismiss="modal">&times;</button>
-	          <h4 class="modal-title">Delete question</h4>
+	          <h4 class="modal-title">Xóa câu hỏi</h4>
 	        </div>
 	        <div class="modal-body">
 	        	<input type="hidden" id="idHidden" name="idHidden" value="0">
 	          <p>Bạn chắc chắn xóa bản ghi này?</p>
 	        </div>
 	        <div class="modal-footer">
-	        	<button type="button" class="btn btn-danger" id="delQuestionTopicBtn"> Delete </button>
-	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        	<button type="button" class="btn btn-danger" id="delQuestionTopicBtn"> Xóa </button>
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
 	        </div>
 	      </div>
 	      

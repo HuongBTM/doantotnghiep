@@ -13,7 +13,7 @@
          <div class="">
 		<div class="row">
 		       <div class="col-lg-12">
-		           <h2 class="page-header"></h2>
+		           <h2 class="page-header">Chi tiết thành viên</h2>
 		       </div>
 		       <!-- /.col-lg-12 -->
 		   </div>
@@ -52,9 +52,9 @@
     <div class="col-md-9">
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#questions" data-toggle="tab">Questions</a></li>
-          <li><a href="#answers" data-toggle="tab">Answers</a></li>
-          <li><a href="#posts" data-toggle="tab">Posts</a></li>
+          <li class="active"><a href="#questions" data-toggle="tab">Câu hỏi</a></li>
+          <li><a href="#answers" data-toggle="tab">Câu trả lời</a></li>
+          <li><a href="#posts" data-toggle="tab">Bài viết</a></li>
         </ul>
         <div class="tab-content">
           <div class="active tab-pane" id="questions">
@@ -77,7 +77,7 @@
                 <ul class="list-inline">
                   <li>
                     <a href="<c:url value="/admin/question/detail/${question.questionId}" />" class="link-black text-sm">
-                      <i class="fa fa-share margin-r-5"></i> View more
+                      <i class="fa fa-share margin-r-5"></i> Xem chi tiết
                     </a>
                   </li>
                 </ul>
@@ -106,7 +106,7 @@
                 <ul class="list-inline">
                   <li>
                     <a href="<c:url value="/admin/question/detail/${answer.question.questionId}" />" class="link-black text-sm">
-                      <i class="fa fa-share margin-r-5"></i> View more
+                      <i class="fa fa-share margin-r-5"></i> Xem chi tiết
                     </a>
                   </li>
                 </ul>
@@ -136,7 +136,7 @@
                 <ul class="list-inline">
                   <li>
                     <a href="<c:url value="/admin/post/detail/${post.postId}" />" class="link-black text-sm">
-                      <i class="fa fa-share margin-r-5"></i> View more
+                      <i class="fa fa-share margin-r-5"></i> Xem chi tiết
                     </a>
                   </li>
                 </ul>

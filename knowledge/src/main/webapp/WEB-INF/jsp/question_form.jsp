@@ -28,42 +28,16 @@
             </div>
           </div>
           <div class="item form-group">
-            <label class="required control-label col-md-2 col-sm-1 col-xs-12" for="topics" style="text-align: left">Topics <span class="required">*</span>
+            <label class="required control-label col-md-2 col-sm-1 col-xs-12" for="topics" style="text-align: left">Chủ đề <span class="required">*</span>
             </label>
             <div class="col-md-10 col-sm-3 col-xs-12">
               	<form:select required="required" class="form-control" path="topics" multiple="true" items="${topics}" itemValue="topicId" itemLabel="topicName" />
             	<form:errors path="topics" cssClass="error" delimiter="<br><i class='fa fa-exclamation-circle'></i> "></form:errors>
             </div>
           </div>
-        <%-- <div class="form-inputs clearfix">
-          <p>
-            <label class="required">Title<span>*</span></label>
-            <form:input path="title" id="question-title" />
-            <c:set var="titleError"><form:errors path="title"/></c:set>
-            <c:if test="${not empty titleError}">
-              <span class="form-description">
-                <i class="icon-exclamation-sign"></i> 
-                <form:errors path="title" cssClass="field-error" />
-              </span>
-            </c:if>
-          </p>
-          <p>
-            <label class="required">Topic<span>*</span></label>
-            <span class="styled-select">
-              <form:select path="topics" multiple="true" items="${topics}" itemValue="topicId" itemLabel="topicName" />
-            </span>
-            <c:set var="topicsError"><form:errors path="topics"/></c:set>
-            <c:if test="${not empty topicsError}">
-              <span class="form-description">
-                <i class="icon-exclamation-sign"></i> 
-                <form:errors path="topics" cssClass="field-error" />
-              </span>
-            </c:if>
-          </p>
-        </div> --%>
-
+        
         <div id="form-textarea" class="item form-group">
-            <label class="required control-label col-md-2 col-sm-1 col-xs-12" style="text-align: left">Content <span>*</span></label>
+            <label class="required control-label col-md-2 col-sm-1 col-xs-12" style="text-align: left">Nội dung <span>*</span></label>
             <div class="col-md-10 col-sm-3 col-xs-12">
             <form:textarea required="required" class="form-control" path="questionContent" id="question-details" cols="58" rows="8" />
 	            <script src="<c:url value="/resources/ckeditor/ckeditor.js" />"></script>

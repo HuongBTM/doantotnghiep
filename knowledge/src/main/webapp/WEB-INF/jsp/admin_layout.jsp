@@ -43,7 +43,7 @@
                 <img src="/resources/assets/img/9.png" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
-                <span>Welcome,</span>
+                <span>Xin chào,</span>
                 <h2>John Doe</h2>
               </div>
             </div>
@@ -92,7 +92,6 @@
 				  <li><a><i class="fa fa-comments"></i> Quản lý câu trả lời <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="/admin/answer/allanswer">Danh sách câu trả lời</a></li>
-                      <li><a href="/admin/answer/addanswer">Thêm câu trả lời mới</a></li>
                       <li><a href="/admin/answer/print">In danh sách câu trả lời</a></li>
                     </ul>
                   </li>
@@ -108,7 +107,7 @@
                   <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
                     </li>
                              
-                  <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li>
+                  <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Thống kê <span class="label label-success pull-right">Coming Soon</span></a></li>
                 </ul>
               </div>
 
@@ -145,7 +144,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="">John Doe
+                    <img src="/resources/assets/img/9.png" alt="">John Doe
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">

@@ -10,7 +10,7 @@
           <div class="">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"></h1>
+                    <h1 class="page-header">Cập nhật thông tin thành viên</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -21,10 +21,10 @@
                         <div class="panel-heading">
                             <c:choose>
 						        <c:when test="${user.userId == 0}">
-						          Add new user
+						          Thêm thành viên mới
 						        </c:when>
 						        <c:otherwise>
-						          Edit user
+						          Chỉnh sửa thông tin
 						        </c:otherwise>
 						      </c:choose>
                         </div>
@@ -98,7 +98,7 @@
 		                        </div>
 		                      </div>
 		                      <div class="item form-group">
-					              <label class="control-label col-md-3 col-sm-3 col-xs-12" for= "roleSelect">Role</label>
+					              <label class="control-label col-md-3 col-sm-3 col-xs-12" for= "roleSelect">Quyền</label>
 					              <div class="col-md-6 col-sm-6 col-xs-12">
 					              <select name="roleSelect" class="form-control">
 					                  <option value="admin" ${user.admin eq true ? 'selected' : ''}>Admin</option>
@@ -109,9 +109,9 @@
 		                      <div class="ln_solid"></div>
 		                      <div class="form-group">
 		                        <div class="col-md-6 col-md-offset-3">
-		                          <button id="send" type="submit" class="btn btn-success">Submit</button>
+		                          <button id="send" type="submit" class="btn btn-success">Lưu</button>
 		                          <button type="reset" class="btn btn-primary">Reset</button>
-		                          <a href="/admin/user/alluser" class="btn btn-primary">Cancel</a>
+		                          <a href="/admin/user/alluser" class="btn btn-primary">Hủy</a>
 		                        </div>
 		                      </div>
 		                    </form:form>

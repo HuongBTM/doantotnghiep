@@ -12,7 +12,7 @@
          <div class="">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"></h1>
+                    <h1 class="page-header">Danh sách chủ đề</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -21,13 +21,13 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Topic: chủ đề
+                            Bảng chủ đề
                         </div>
                         
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                        <div style="padding-left: 20px;">
-                        	<a href="/admin/topic/addtopic" id="btnAddtopic" class="btn btn-primary btn-xs btnAddTopic" style="width: 100px; height: 30px; margin-bottom: 10px; padding-top: 5px;"><i class="fa fa-plus"></i> Add 
+                        <div>
+                        	<a href="/admin/topic/addtopic" id="btnAddtopic" class="btn btn-primary btn-xs btnAddTopic" style="width: 100px; height: 30px; margin-bottom: 10px; padding-top: 5px;"><i class="fa fa-plus"></i> Thêm mới 
                         	</a>
                         </div>
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-topic">
@@ -38,8 +38,8 @@
                                         <th align="center">Tên chủ đề</th>
                                         <th align="center">Mô tả chủ đề</th>
                                         <th align="center">Ngày tạo</th>
-                                        <th align="center">Posts</th>
-                                        <th align="center">Questions</th>
+                                        <th align="center">Bài viết</th>
+                                        <th align="center">Câu hỏi</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -54,8 +54,8 @@
                                         <td align="right">${fn:length(topic.posts)}</td>
                                         <td align="right">${fn:length(topic.questions)}</td>
                                         <td align="center">
-				                            <a href="/admin/topic/findone/${topic.topicId}" data-id="${topic.topicId}" class="btn btn-info btn-xs etopicBtn"><i class="fa fa-pencil"></i> Edit </a>
-				                            <a href="#" data-id="${topic.topicId}" id="deletetopicBtn" class="btn btn-danger btn-xs deletetopicBtn"><i class="fa fa-trash-o"></i> Delete </a>
+				                            <a href="/admin/topic/findone/${topic.topicId}" data-id="${topic.topicId}" class="btn btn-info btn-xs etopicBtn"><i class="fa fa-pencil"></i> Sửa </a>
+				                            <a href="#" data-id="${topic.topicId}" id="deletetopicBtn" class="btn btn-danger btn-xs deletetopicBtn"><i class="fa fa-trash-o"></i> Xóa </a>
 				                          </td>
                                     </tr>
                                     </c:forEach>
@@ -83,7 +83,7 @@
 		      <div class="modal-content">
 		        <div class="modal-header">
 		          <button type="button" class="close" data-dismiss="modal">&times;</button>
-		          <h4 class="modal-title">Vote type</h4>
+		          <h4 class="modal-title">Chủ đề</h4>
 		        </div>
 		        <!-- ./modal-header -->
 		        <div class="modal-body">
@@ -108,8 +108,8 @@
 			        </div>
 			        <!-- /.modal-body -->
 			        <div class="modal-footer">
-			 			<button type="submit" class="btn btn-danger" id="btnSave">Save</button>
-			 			<button type="button" class="btn btn-basic" data-dismiss="modal">Cancel</button>
+			 			<button type="submit" class="btn btn-danger" id="btnSave">Lưu</button>
+			 			<button type="button" class="btn btn-basic" data-dismiss="modal">Hủy</button>
 			 		</div>
 		 		</form:form>
 		 		<!-- /.modal-footer -->
@@ -127,15 +127,15 @@
 	      <div class="modal-content">
 	        <div class="modal-header">
 	          <button type="button" class="close" data-dismiss="modal">&times;</button>
-	          <h4 class="modal-title">Delete topic</h4>
+	          <h4 class="modal-title">Xóa chủ đề</h4>
 	        </div>
 	        <div class="modal-body">
 	        	<input type="hidden" id="idHidden" name="idHidden" value="0">
 	          <p>Bạn chắc chắn xóa chủ đề này?</p>
 	        </div>
 	        <div class="modal-footer">
-	        	<button type="button" class="btn btn-danger" id="delTopicBtn"> Delete </button>
-	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        	<button type="button" class="btn btn-danger" id="delTopicBtn"> Xóa </button>
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
 	        </div>
 	      </div>
 	      

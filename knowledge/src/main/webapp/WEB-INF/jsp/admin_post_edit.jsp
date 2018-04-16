@@ -12,7 +12,7 @@
           <div class="">
            <div class="row">
                 <div class="col-lg-12">
-                <h2 class="page-header"></h2>
+                <h2 class="page-header">Chỉnh sửa bài viết</h2>
                 
                 </div>
                 <!-- /.col-lg-12 -->
@@ -21,13 +21,12 @@
             <div class="row">
                 <div class="col-lg-12" style="background-color: #f9f9f9; border: 1px solid #dedede; color: #555;">
                 	<div class="form-style form-style-3" id="question-submit">
-                		<h2 class="page-header">Thêm/ Sửa bài viết</h2>
 				      <c:url var="action" value="/admin/post/savepost" />
 				      <form:form action="${action}" method="POST" modelAttribute="post" class="form-horizontal form-label-left">
 				        <input type="hidden" name="postId" value="${post.postId }"/>
 				        <!-- TODO -->
 				        <div class="item form-group">
-				            <label class="required control-label col-md-2 col-sm-1 col-xs-12" for="title" style="text-align: left">Title <span class="required">*</span>
+				            <label class="required control-label col-md-2 col-sm-1 col-xs-12" for="title" style="text-align: left">Tiêu đề <span class="required">*</span>
 				            </label>
 				            <div class="col-md-10 col-sm-3 col-xs-12">
 				              <form:input id="title" class="form-control" name="postTitle" placeholder="Title..."
@@ -36,7 +35,7 @@
 				            </div>
 				          </div>
 				          <div class="item form-group">
-				            <label class="required control-label col-md-2 col-sm-1 col-xs-12" for="topics" style="text-align: left">Topics <span class="required">*</span>
+				            <label class="required control-label col-md-2 col-sm-1 col-xs-12" for="topics" style="text-align: left">Chủ đề <span class="required">*</span>
 				            </label>
 				            <div class="col-md-10 col-sm-3 col-xs-12">
 				              	<form:select required="required" class="form-control" path="topics" multiple="true" items="${topics}" itemValue="topicId" itemLabel="topicName" />
@@ -44,7 +43,7 @@
 				            </div>
 				          </div>
 				        <div id="form-textarea" class="item form-group">
-				            <label class="required control-label col-md-2 col-sm-1 col-xs-12" style="text-align: left">Content <span>*</span></label>
+				            <label class="required control-label col-md-2 col-sm-1 col-xs-12" style="text-align: left">Nội dung <span>*</span></label>
 				            <div class="col-md-10 col-sm-3 col-xs-12">
 				            <form:textarea required="required" class="form-control" path="postContent" id="post-details" cols="58" rows="8" />
 					            <script src="<c:url value="/resources/ckeditor/ckeditor.js" />"></script>
@@ -62,9 +61,9 @@
 				        </div>
 				        <div class="form-group">
 				             <div class="col-md-6 col-md-offset-4">
-				               <button id="send" type="submit" class="btn btn-success">Public</button>
+				               <button id="send" type="submit" class="btn btn-success">Lưu</button>
 				               <button type="reset" class="btn btn-primary">Reset</button>
-				               <a href="/admin/post/allpost" class="btn btn-primary">Cancel</a>
+				               <a href="/admin/post/allpost" class="btn btn-primary">Hủy</a>
 				             </div>
 				           </div>
 				      </form:form>

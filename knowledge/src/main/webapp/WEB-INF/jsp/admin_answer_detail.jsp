@@ -14,7 +14,7 @@
           <div class="">
         	<div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"></h1>
+                    <h1 class="page-header">Chi tiết câu trả lời</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -72,16 +72,16 @@
 			        <div class="box-body">
 			          <c:choose>
 			            <c:when test="${empty answer.comments}">
-			              <p>No comment for this answer.</p>
+			              <p>Không có comment cho câu trả lời này.</p>
 			            </c:when>
 			            <c:otherwise>
 			              <table id="dataTables-comment" class="table table-bordered">
 			                <thead>
 			                  <tr>
-			                    <th align="center">User</th>
-			                    <th align="center">Posted</th>
-			                    <th align="center">Comment content</th>
-			                    <th align="center">Delete</th>
+			                    <th align="center">Người đăng</th>
+			                    <th align="center">Ngày đăng</th>
+			                    <th align="center">Nội dung comment</th>
+			                    <th align="center"></th>
 			                  </tr>
 			                </thead>
 			                <tbody>
@@ -127,7 +127,7 @@
 	      <div class="modal-content">
 	        <div class="modal-header">
 	          <button type="button" class="close" data-dismiss="modal">&times;</button>
-	          <h4 class="modal-title">Delete comment</h4>
+	          <h4 class="modal-title">Xóa comment</h4>
 	        </div>
 	        <div class="modal-body">
 	        	<input type="hidden" id="idHidden" name="idHidden" value="0">
@@ -135,8 +135,8 @@
 	          <p>Bạn chắc chắn xóa bản ghi này?</p>
 	        </div>
 	        <div class="modal-footer">
-	        	<button type="button" class="btn btn-danger" id="delCommentBtn"> Delete </button>
-	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        	<button type="button" class="btn btn-danger" id="delCommentBtn"> Xóa </button>
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
 	        </div>
 	      </div>
 	      

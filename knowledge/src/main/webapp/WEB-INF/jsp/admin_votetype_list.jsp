@@ -11,7 +11,7 @@
           <div class="">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"></h1>
+                    <h1 class="page-header">Danh sách loại vote</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -20,13 +20,13 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Vote type
+                            Bảng loại vote
                         </div>
                         
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                        <div style="padding-left: 20px;">
-                        	<a href="/admin/votetype/addvotetype" id="btnAddVoteType" class="btn btn-primary btn-xs addBtnVoteType" style="width: 100px; height: 30px; margin-bottom: 10px; padding-top: 5px;"><i class="fa fa-plus"></i> Add 
+                        <div>
+                        	<a href="/admin/votetype/addvotetype" id="btnAddVoteType" class="btn btn-primary btn-xs addBtnVoteType" style="width: 100px; height: 30px; margin-bottom: 10px; padding-top: 5px;"><i class="fa fa-plus"></i> Thêm mới 
                         	</a>
                         </div>
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-votetype">
@@ -45,8 +45,8 @@
                                         <td align="center"><c:out value="${voteType.voteTypeId}"></c:out></td>
                                         <td><c:out value="${voteType.voteTypeName}"></c:out></td>
                                         <td align="center">
-				                            <a href="/admin/votetype/findone/${voteType.voteTypeId}" id="editVoteType" data-id="${voteType.voteTypeId}" class="btn btn-info btn-xs eVoteBtn"><i class="fa fa-pencil"></i> Edit </a>
-				                            <a href="#" class="btn btn-danger btn-xs delVoteTypeBtn" id="delete" data-id="${voteType.voteTypeId}"><i class="fa fa-trash-o"></i> Delete </a>
+				                            <a href="/admin/votetype/findone/${voteType.voteTypeId}" id="editVoteType" data-id="${voteType.voteTypeId}" class="btn btn-info btn-xs eVoteBtn"><i class="fa fa-pencil"></i> Sửa </a>
+				                            <a href="#" class="btn btn-danger btn-xs delVoteTypeBtn" id="delete" data-id="${voteType.voteTypeId}"><i class="fa fa-trash-o"></i> Xóa </a>
 				                          </td>
                                     </tr>
                                     </c:forEach>
@@ -91,8 +91,8 @@
 			        </div>
 			        <!-- /.modal-body -->
 			        <div class="modal-footer">
-			 			<button type="submit" class="btn btn-danger" id="btnSave">Save</button>
-			 			<button type="button" class="btn btn-basic" data-dismiss="modal">Cancel</button>
+			 			<button type="submit" class="btn btn-danger" id="btnSave">Lưu</button>
+			 			<button type="button" class="btn btn-basic" data-dismiss="modal">Hủy</button>
 			 		</div>
 		 		</form:form>
 		 		<!-- /.modal-footer -->
@@ -110,15 +110,15 @@
 	      <div class="modal-content">
 	        <div class="modal-header">
 	          <button type="button" class="close" data-dismiss="modal">&times;</button>
-	          <h4 class="modal-title">Delete vote type</h4>
+	          <h4 class="modal-title">Xóa loại vote</h4>
 	        </div>
 	        <div class="modal-body">
 	        	<input type="hidden" id="idHidden" name="idHidden" value="0">
 	          <p>Bạn chắc chắn xóa lĩnh vực này?</p>
 	        </div>
 	        <div class="modal-footer">
-	        	<button type="button" class="btn btn-danger" id="delVoteTypeBtn"> Delete </button>
-	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        	<button type="button" class="btn btn-danger" id="delVoteTypeBtn"> Xóa </button>
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
 	        </div>
 	      </div>
 	      

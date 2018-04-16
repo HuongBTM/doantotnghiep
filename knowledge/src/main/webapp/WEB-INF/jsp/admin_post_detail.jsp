@@ -7,12 +7,13 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 
+<jsp:include page="admin_layout.jsp"></jsp:include>
 <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
         	<div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"></h1>
+                    <h1 class="page-header">Chi tiết bài viết</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -67,25 +68,26 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Question
+                            Câu hỏi liên quan
                         </div>
                         <div class="panel-body">
                         <c:choose>
 				            <c:when test="${empty post.questions}">
-				              <p>No questions for this post.</p>
+				              <p>Không có câu hỏi nào cho bài viết này</p>
 				            </c:when>
 				            <c:otherwise>
                              <table width="100%" id="dataTables-topic-question" class="table table-bordered table-striped table-hover">
 				                <thead>
 				                  <tr>
 				                    <th align="center">ID</th>
-				                    <th align="center">Title</th>
-				                    <th align="center">User</th>
-				                    <th align="center">Views</th>
-				                    <th align="center">Votes</th>
-				                    <th align="center">Answers</th>
-				                    <th align="center">Detail</th>
-				                    <th align="center">Delete</th>
+				                    <th align="center">Tiêu đề</th>
+				                    <th align="center">Người đăng</th>
+				                    <th align="center">Ngày đăng</th>
+				                    <th align="center">Lượt xem</th>
+				                    <th align="center">Bình chọn</th>
+				                    <th align="center">Số câu trả lời</th>
+				                    <th align="center">Chi tiết</th>
+				                    <th align="center">Xóa</th>
 				                  </tr>
 				                </thead>
 				                <tbody>
@@ -93,6 +95,7 @@
 				                    <tr>
 				                      <td align="right">${question.questionId}</td>
 				                      <td>${question.title}</td>
+				                      <td align="left">${question.creatAt}</td>
 				                      <td>${question.user.fullname}</td>
 				                      <td align="right">${question.views}</td>
 				                      <td align="right">${question.upvotes}</td>
@@ -133,7 +136,7 @@
 	      <div class="modal-content">
 	        <div class="modal-header">
 	          <button type="button" class="close" data-dismiss="modal">&times;</button>
-	          <h4 class="modal-title">Delete answer</h4>
+	          <h4 class="modal-title">Xóa câu hỏi</h4>
 	        </div>
 	        <div class="modal-body">
 	        	<input type="hidden" id="idHidden" name="idHidden" value="0">
@@ -141,8 +144,8 @@
 	          <p>Bạn chắc chắn xóa bản ghi này?</p>
 	        </div>
 	        <div class="modal-footer">
-	        	<button type="button" class="btn btn-danger" id="delAnswerBtn"> Delete </button>
-	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        	<button type="button" class="btn btn-danger" id="delAnswerBtn"> Xóa </button>
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
 	        </div>
 	      </div>
 	      

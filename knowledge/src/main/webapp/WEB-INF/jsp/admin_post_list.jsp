@@ -9,10 +9,10 @@
 <jsp:include page="admin_layout.jsp"></jsp:include>
 <!-- page content -->
         <div class="right_col" role="main">
-          <div class="">">
+          <div class="">
            <div class="row">
                 <div class="col-lg-12">
-                <h2 class="page-header"></h2>
+                <h2 class="page-header">Danh sách bài viết</h2>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -21,7 +21,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Posts: Bài viết
+                            Bảng bài viết
                         </div>
                         <c:if test="${not empty success}">
 						    <div class="alert alert-success alert-dismissible">
@@ -38,25 +38,26 @@
 						  </c:if>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                         <div style="padding-left: 20px;">
-                        	<a href="/admin/post/addpost" id="btnAddPost" class="btn btn-primary btn-xs addBtn" style="width: 100px; height: 30px; margin-bottom: 10px; padding-top: 5px;"><i class="fa fa-plus"></i> Add post 
+                         <div>
+                        	<a href="/admin/post/addpost" id="btnAddPost" class="btn btn-primary btn-xs addBtn" style="width: 100px; height: 30px; margin-bottom: 10px; padding-top: 5px;"><i class="fa fa-plus"></i> Thêm mới 
                         	</a>
                         </div>
                         <c:choose>
 				            <c:when test="${empty posts}">
-				              <p>No post.</p>
+				              <p>Không có bài viết nào.</p>
 				            </c:when>
 				            <c:otherwise>
                              <table width="100%" id="dataTables-topic-post" class="table table-bordered table-striped table-hover">
 				                <thead>
 				                  <tr>
-				                    <th>ID</th>
-				                    <th>Title</th>
-				                    <th>User</th>
-				                    <th>Views</th>
-				                    <th>Votes</th>
-				                    <th>Questions</th>
-				                    <th>Detail</th>
+				                    <th align="center">ID</th>
+				                    <th align="center">Tiêu đề</th>
+				                    <th align="center">Người đăng</th>
+				                    <th align="center">Ngày đăng</th>
+				                    <th align="center">Lượt xem</th>
+				                    <th align="center">Bình chọn</th>
+				                    <th align="center">Sô câu hỏi</th>
+				                    <th align="center">Chi tiết</th>
 				                    <th></th>
 				                  </tr>
 				                </thead>
@@ -65,6 +66,7 @@
 				                    <tr>
 				                      <td align="right">${post.postId}</td>
 				                      <td>${post.postTitle}</td>
+				                      <td align="left">${post.creatAt}</td>
 				                      <td align="center">
 				                        <img class="img-circle img-sm" src="<c:url value="/resources/assets/img/${post.user.image}" />"
 				                          alt="User Image" title="${post.user.fullname}" />
@@ -108,7 +110,7 @@
 	      <div class="modal-content">
 	        <div class="modal-header">
 	          <button type="button" class="close" data-dismiss="modal">&times;</button>
-	          <h4 class="modal-title">Delete question</h4>
+	          <h4 class="modal-title">Xóa bài viết</h4>
 	        </div>
 	        <div class="modal-body">
 	        	<input type="hidden" id="idHidden" name="idHidden" value="0">

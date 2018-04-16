@@ -10,7 +10,7 @@
           <div class="">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"></h1>
+                    <h1 class="page-header">Danh sách trạng thái cho bài viết/ câu hỏi</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -19,13 +19,13 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            PendingTag: Trạng thái cho câu hỏi/ topic
+                            Bảng trạng thái
                         </div>
                         
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                        <div style="padding-left: 20px;">
-                        	<a href="/admin/pendingTag/addpendingtag" id="btnAddpendingTag" class="btn btn-primary btn-xs btnAddpendingTag" style="width: 100px; height: 30px; margin-bottom: 10px; padding-top: 5px;"><i class="fa fa-plus"></i> Add 
+                        <div>
+                        	<a href="/admin/pendingTag/addpendingtag" id="btnAddpendingTag" class="btn btn-primary btn-xs btnAddpendingTag" style="width: 100px; height: 30px; margin-bottom: 10px; padding-top: 5px;"><i class="fa fa-plus"></i> Thêm mới 
                         	</a>
                         </div>
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-pendingTag">
@@ -46,8 +46,8 @@
                                         <td><c:out value="${pendingTag.pendingName}"></c:out></td>
                                         <td><c:out value="${pendingTag.pendingDescrib}"></c:out></td>
                                         <td align="center">
-				                            <a href="/admin/pendingtag/findone/${pendingTag.pendingId}" id="editPendingTag" data-id="${pendingTag.pendingId}" class="btn btn-info btn-xs editPendingTag"><i class="fa fa-pencil"></i> Edit </a>
-				                            <a href="#" class="btn btn-danger btn-xs delPendingTag" data-id="${pendingTag.pendingId}"><i class="fa fa-trash-o"></i> Delete </a>
+				                            <a href="/admin/pendingtag/findone/${pendingTag.pendingId}" id="editPendingTag" data-id="${pendingTag.pendingId}" class="btn btn-info btn-xs editPendingTag"><i class="fa fa-pencil"></i> Sửa </a>
+				                            <a href="#" class="btn btn-danger btn-xs delPendingTag" data-id="${pendingTag.pendingId}"><i class="fa fa-trash-o"></i> Xóa </a>
 				                          </td>
                                     </tr>
                                     </c:forEach>
@@ -100,8 +100,8 @@
 			        </div>
 			        <!-- /.modal-body -->
 			        <div class="modal-footer">
-			 			<button type="submit" class="btn btn-danger" id="btnSave">Save</button>
-			 			<button type="button" class="btn btn-basic" data-dismiss="modal">Cancel</button>
+			 			<button type="submit" class="btn btn-danger" id="btnSave">Lưu</button>
+			 			<button type="button" class="btn btn-basic" data-dismiss="modal">Hủy</button>
 			 		</div>
 		 		</form:form>
 		 		<!-- /.modal-footer -->
@@ -119,15 +119,15 @@
 	      <div class="modal-content">
 	        <div class="modal-header">
 	          <button type="button" class="close" data-dismiss="modal">&times;</button>
-	          <h4 class="modal-title">Delete vote type</h4>
+	          <h4 class="modal-title">Xóa bản ghi</h4>
 	        </div>
 	        <div class="modal-body">
 	        	<input type="hidden" id="idHidden" name="idHidden" value="0">
 	          <p>Bạn chắc chắn xóa bản ghi này?</p>
 	        </div>
 	        <div class="modal-footer">
-	        	<button type="button" class="btn btn-danger" id="delPendingTagBtn"> Delete </button>
-	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        	<button type="button" class="btn btn-danger" id="delPendingTagBtn"> Xóa </button>
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
 	        </div>
 	      </div>
 	      

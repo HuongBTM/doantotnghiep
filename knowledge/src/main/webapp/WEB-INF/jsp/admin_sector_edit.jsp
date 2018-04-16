@@ -10,7 +10,7 @@
           <div class="">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"></h1>
+                    <h1 class="page-header">Chỉnh sửa lĩnh vực chuyên gia</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -19,7 +19,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Sector: Lĩnh vực
+                            Lĩnh vực
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -45,9 +45,9 @@
 		                      <div class="ln_solid"></div>
 		                      <div class="form-group">
 		                        <div class="col-md-6 col-md-offset-3">
-		                          <button id="send" type="submit" class="btn btn-success">Submit</button>
+		                          <button id="send" type="submit" class="btn btn-success">Lưu</button>
 		                          <button type="reset" class="btn btn-primary">Reset</button>
-		                          <a href="/admin/sector/allsector" class="btn btn-primary">Cancel</a>
+		                          <a href="/admin/sector/allsector" class="btn btn-primary">Hủy</a>
 		                        </div>
 		                      </div>
 		                    </form:form>

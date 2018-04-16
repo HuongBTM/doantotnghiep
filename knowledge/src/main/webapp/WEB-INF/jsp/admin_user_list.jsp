@@ -11,7 +11,7 @@
           <div class="">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"></h1>
+                    <h1 class="page-header">Danh sách thành viên</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -20,7 +20,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            User Manager
+                            Bảng thành viên
                         </div>
                         <c:if test="${not empty success}">
 						    <div class="alert alert-success alert-dismissible">
@@ -37,8 +37,8 @@
 						  </c:if>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                         <div style="padding-left: 20px;">
-                        	<a href="/admin/user/adduser" id="btnAddUser" class="btn btn-primary btn-xs addBtn" style="width: 100px; height: 30px; margin-bottom: 10px; padding-top: 5px;"><i class="fa fa-plus"></i> Add 
+                         <div>
+                        	<a href="/admin/user/adduser" id="btnAddUser" class="btn btn-primary btn-xs addBtn" style="width: 100px; height: 30px; margin-bottom: 10px; padding-top: 5px;"><i class="fa fa-plus"></i> Thêm mới 
                         	</a>
                         </div>
                              <table width="100%" id="dataTables-user" class="table table-bordered table-striped table-hover">
@@ -49,7 +49,7 @@
 				                    <th align="center">Email</th>
 				                    <th align="center">Số điện thoại</th>
 				                    <th align="center">Ngày đăng ký</th>
-				                    <th align="center">Role</th>
+				                    <th align="center">Quyền</th>
 				                    <th></th>
 				                  </tr>
 				                </thead>
@@ -75,8 +75,8 @@
 				                        </c:choose>
 				                      </td>
 				                      <td align="center">
-				                            <a href="/admin/user/edit/${user.userId}" id="editUser" data-id="${user.userId}" class="btn btn-info btn-xs eBtn"><i class="fa fa-pencil"></i> Edit </a>
-				                            <a href="#" class="btn btn-danger btn-xs deleteUser" id="deleteUser" data-id="${user.userId}"><i class="fa fa-trash-o"></i> Delete </a>
+				                            <a href="/admin/user/edit/${user.userId}" id="editUser" data-id="${user.userId}" class="btn btn-info btn-xs eBtn"><i class="fa fa-pencil"></i> Sửa </a>
+				                            <a href="#" class="btn btn-danger btn-xs deleteUser" id="deleteUser" data-id="${user.userId}"><i class="fa fa-trash-o"></i> Xóa </a>
 				                         </td>
 				                    </tr>
 				                  </c:forEach>
@@ -106,15 +106,15 @@
 	      <div class="modal-content">
 	        <div class="modal-header">
 	          <button type="button" class="close" data-dismiss="modal">&times;</button>
-	          <h4 class="modal-title">Delete User</h4>
+	          <h4 class="modal-title">Xóa thành viên</h4>
 	        </div>
 	        <div class="modal-body">
 	        	<input type="hidden" id="idHidden" name="idHidden" value="0">
 	          <p>Bạn chắc chắn xóa người dùng này?</p>
 	        </div>
 	        <div class="modal-footer">
-	        	<button type="button" class="btn btn-danger" id="delUserBtn"> Delete </button>
-	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        	<button type="button" class="btn btn-danger" id="delUserBtn"> Xóa </button>
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
 	        </div>
 	      </div>
 	      

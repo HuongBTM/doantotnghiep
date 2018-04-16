@@ -27,12 +27,12 @@ $(document).ready(function() {
 				$('#idHidden').val(voteType.voteTypeId);
 			});
 			$('#modalUpdateVoteType').modal();
-			$('#modalUpdateVoteType').find('.modal-title').text('Edit vote type');
+			$('#modalUpdateVoteType').find('.modal-title').text('Chỉnh sửa loại vote');
 		} else {
 			$('#voteTypeName').val('');
 			$('#idHidden').val('0');
 			$('#modalUpdateVoteType').modal();
-			$('#modalUpdateVoteType').find('.modal-title').text('Add new vote type');
+			$('#modalUpdateVoteType').find('.modal-title').text('Thêm mới loại vote');
 		}
 		
 	});
@@ -153,13 +153,13 @@ $(document).ready(function() {
 				$('#idHidden').val(pendingTag.pendingId);
 			});
 			$('#modalUpdatePending').modal();
-			$('#modalUpdatePending').find('.modal-title').text('Edit pending tag');
+			$('#modalUpdatePending').find('.modal-title').text('Chỉnh sửa trạng thái');
 		} else {
 			$('#pendingName').val('');
 			$('#pendingDescrib').val('');
 			$('#idHidden').val('0');
 			$('#modalUpdatePending').modal();
-			$('#modalUpdatePending').find('.modal-title').text('Add new pending tag');
+			$('#modalUpdatePending').find('.modal-title').text('Thêm trạng thái mới');
 		}
 		
 	});
@@ -243,13 +243,13 @@ $(document).ready(function() {
 				$('#idHidden').val(role.roleId);
 			});
 			$('#modalUpdateRole').modal();
-			$('#modalUpdateRole').find('.modal-title').text('Edit Role');
+			$('#modalUpdateRole').find('.modal-title').text('Chỉnh sửa quyền');
 		} else {
 			$('#roleName').val('');
 			$('#roleDescrib').val('');
 			$('#idHidden').val('0');
 			$('#modalUpdateRole').modal();
-			$('#modalUpdateRole').find('.modal-title').text('Add new role');
+			$('#modalUpdateRole').find('.modal-title').text('Thêm quyền mới');
 		}
 		
 	});
@@ -283,13 +283,13 @@ $(document).ready(function() {
 				$('#idHidden').val(topic.topicId);
 			});
 			$('#modalUpdateTopic').modal();
-			$('#modalUpdateTopic').find('.modal-title').text('Edit topic');
+			$('#modalUpdateTopic').find('.modal-title').text('Chỉnh sửa chủ đề');
 		} else {
 			$('#topicName').val('');
 			$('#topicDescribe').val('');
 			$('#idHidden').val('0');
 			$('#modalUpdateTopic').modal();
-			$('#modalUpdateTopic').find('.modal-title').text('Add new topic');
+			$('#modalUpdateTopic').find('.modal-title').text('Thêm chủ đề mới');
 		}
 		
 	});
