@@ -16,8 +16,15 @@
     <script src="/resources/assets/bootstrap/js/dataTables.bootstrap.min.js"></script> 
 
     <!-- Custom Theme Scripts -->
-    <script src="/resources/assets/js/admin.custom.min.js"></script>
+    <script src="/resources/assets/js/ad.custom.min.js"></script>
     <script src="/resources/assets/js/admin-modal.js"></script>
+    
+    <!-- Bootstrap datatable buttons -->
+    <script src="/resources/assets/bootstrap/js/dataTables.buttons.min.js"></script>
+    <script src="/resources/assets/bootstrap/js/buttons.bootstrap.min.js"></script>
+    <script src="/resources/assets/bootstrap/js/buttons.flash.min.js"></script>
+    <script src="/resources/assets/bootstrap/js/buttons.html5.min.js"></script>
+    <script src="/resources/assets/bootstrap/js/buttons.print.min.js"></script>
 
 </body>
 

@@ -4,6 +4,7 @@
 <%@ taglib prefix="tags" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 
 <jsp:include page="admin_layout.jsp"></jsp:include>
@@ -12,7 +13,7 @@
           <div class="">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Danh sách câu hỏi</h1>
+                    <h1 class="page-header">Danh sách câu trả lời</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -36,41 +37,43 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                          <div>
-                        	<a href="/admin/question/addquestion" id="btnAddUser" class="btn btn-primary btn-xs addBtn" style="width: 100px; height: 30px; margin-bottom: 10px; padding-top: 5px;"><i class="fa fa-plus"></i> Thêm mới 
-                        	</a>
                         </div>
                              <table width="100%" id="dataTables-question" class="table table-bordered table-striped table-hover">
 				                <thead>
 				                  <tr>
-				                    <th align="center">ID</th>
-				                    <th align="center">Tiêu đề</th>
+				                  	<th align="center">ID</th>
+				                  	<th align="center">Nội dung</th>
 				                    <th align="center">Người đăng</th>
 				                    <th align="center">Ngày đăng</th>
-				                    <th align="center">Lượt xem</th>
 				                    <th align="center">Bình chọn</th>
-				                    <th align="center">Số câu trả lời</th>
+				                    <th align="center">Số comment</th>
 				                    <th align="center">Chi tiết</th>
-				                    <th align="center"></th>
+				                    <th align="center">Xóa</th>
 				                  </tr>
 				                </thead>
 				                <tbody>
-				                  <c:forEach items="${questions}" var="question" >
+				                  <c:forEach var="answer" items="${answers}">
+				                  	
 				                    <tr>
-				                      <td align="right">${question.questionId}</td>
-				                      <td>${question.title}</td>
-				                      <td>${question.user.fullname}</td>
-				                      <td>${question.creatAt}</td>
-				                      <td align="right">${question.views}</td>
-				                      <td align="right">${question.upvotes}</td>
-				                      <td align="right">${fn:length(question.answers)}</td>
+				                    	<td align="right">${answer.answerId}</td>
+				                    	<td> ${answer.answerContent} </td>
 				                      <td align="center">
-				                        <a href="<c:url value="/admin/question/detail/${question.questionId}" />" title="View question detail">
-				                          <i class="fa fa-search"></i></a>
+				                        <img class="img-circle img-sm" src="<c:url value="/resources/assets/img/${answer.user.image}" />"
+				                          alt="User Image" title="${answer.user.fullname}" />
 				                      </td>
+				                      <td align="left">
+				                        <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${answer.creatAt}" />
+				                      </td>
+				                      <td align="right"> ${answer.upvotes}</td>
+				                      <td align="right">${fn:length(answer.comments)}</td>
 				                      <td align="center">
-				                      	<a href="/admin/question/edit/${question.questionId}" id="editPost" data-id="${post.postId}" class="btn btn-info btn-xs ePostBtn" title="Sửa"><i class="fa fa-pencil"></i> </a>
-				                        <a href="#" class="btn btn-danger btn-xs deleteQuestion" id="deleteQuestion" data-id="${question.questionId}" title="Xóa">
-				                          <i class="fa fa-trash"></i></a>
+					                        <a href="<c:url value="/admin/answer/detail/${answer.answerId}" />" title="View answer detail">
+					                          <i class="fa fa-search"></i></a>
+					                      </td>
+				                      <td align="center">
+				                        <a href="#" title="Delete answer" class="deleteAnswerBtn" data-id="${answer.answerId}">
+				                          <i class="fa fa-trash"></i>
+				                        </a>
 				                      </td>
 				                    </tr>
 				                  </c:forEach>
@@ -93,21 +96,21 @@
     <!-- /#wrapper -->
  
  	<!-- modal to delete -->
-	  	<div class="modal fade" id="delQuestionModal" role="dialog">
+	  	<div class="modal fade" id="delAnswerModal" role="dialog">
 	    <div class="modal-dialog">
 	    
 	      <!-- Modal content-->
 	      <div class="modal-content">
 	        <div class="modal-header">
 	          <button type="button" class="close" data-dismiss="modal">&times;</button>
-	          <h4 class="modal-title">Xóa câu hỏi</h4>
+	          <h4 class="modal-title">Xóa câu trả lời</h4>
 	        </div>
 	        <div class="modal-body">
 	        	<input type="hidden" id="idHidden" name="idHidden" value="0">
 	          <p>Bạn chắc chắn xóa bản ghi này?</p>
 	        </div>
 	        <div class="modal-footer">
-	        	<button type="button" class="btn btn-danger" id="delQuestionBtn"> Xóa </button>
+	        	<button type="button" class="btn btn-danger" id="delAnswerListBtn"> Xóa </button>
 	          <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
 	        </div>
 	      </div>

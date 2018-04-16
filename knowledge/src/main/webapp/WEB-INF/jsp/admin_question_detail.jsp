@@ -82,11 +82,11 @@
 			                <thead>
 			                  <tr>
 			                  	<th align="center">ID</th>
+			                  	<th align="center">Nội dung</th>
 			                    <th align="center">Người đăng</th>
 			                    <th align="center">Ngày đăng</th>
-			                    <th align="center">Nội dung</th>
 			                    <th align="center">Bình chọn</th>
-			                    <th align="center">Comments</th>
+			                    <th align="center">Số comment</th>
 			                    <th align="center">Chi tiết</th>
 			                    <th align="center">Xóa</th>
 			                  </tr>
@@ -96,6 +96,7 @@
 			                  	
 			                    <tr>
 			                    	<td align="right">${answer.answerId}</td>
+			                    	<td> ${answer.answerContent} </td>
 			                      <td align="center">
 			                        <img class="img-circle img-sm" src="<c:url value="/resources/assets/img/${answer.user.image}" />"
 			                          alt="User Image" title="${answer.user.fullname}" />
@@ -103,7 +104,6 @@
 			                      <td align="left">
 			                        <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${answer.creatAt}" />
 			                      </td>
-			                      <td> ${answer.answerContent} </td>
 			                      <td align="right"> ${answer.upvotes}</td>
 			                      <td align="right">${fn:length(answer.comments)}</td>
 			                      <td align="center">

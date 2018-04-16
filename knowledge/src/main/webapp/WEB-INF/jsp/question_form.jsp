@@ -19,10 +19,10 @@
       <form:form action="${action}" method="POST" modelAttribute="question" class="form-horizontal form-label-left">
         <form:hidden id="idHidden" path="questionId" value="${question.questionId}"/>
         <div class="item form-group">
-            <label class="required control-label col-md-2 col-sm-1 col-xs-12" for="title" style="text-align: left">Title <span class="required">*</span>
+            <label class="required control-label col-md-2 col-sm-1 col-xs-12" for="title" style="text-align: left">Tiêu đề <span class="required">*</span>
             </label>
             <div class="col-md-10 col-sm-3 col-xs-12">
-              <form:input id="title" class="form-control" name="title" placeholder="Title..."
+              <form:input id="title" class="form-control" name="title" placeholder="Tiêu đề..."
               		 required="required" type="text" path="title" title="Hãy nhập tiêu đề câu hỏi"></form:input>
             	<form:errors path="title" cssClass="error" delimiter="<br><i class='fa fa-exclamation-circle'></i> "></form:errors>
             </div>

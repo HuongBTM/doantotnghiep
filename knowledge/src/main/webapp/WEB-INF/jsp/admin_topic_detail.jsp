@@ -10,15 +10,10 @@
 <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
-           <div class="row">
-                <div class="col-lg-12">
-                <h5 class="page-header">Chi tiết chủ đề</h5>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
+           
 			<div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header">Topic ${topic.topicName}</h3>
+                    <h3 class="page-header">Chủ đề ${topic.topicName}</h3>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

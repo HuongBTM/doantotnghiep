@@ -27,4 +27,8 @@ public class AnswerService {
 	public List<Answer> findAllByUser(int userId) {
 		return answerRepositery.findAllByUser(userId);
 	}
+	
+	public List<Answer> getAll() {
+		return answerRepositery.findAll();
+	}
 }

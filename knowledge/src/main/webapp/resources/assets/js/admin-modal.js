@@ -421,4 +421,24 @@ $(document).ready(function() {
 			}
 	    });
 	});
+	
+	$('#delAnswerListBtn').on('click', function(event) {
+		var id= $('#delAnswerModal').find('#idHidden').attr('value');
+		console.log(id);
+		$.ajax({
+	        type: 'GET',
+	        url: "/admin/answer/deleteanswer?answerid=" + id,
+	        dataType: 'text',
+	        success: function (data) {
+	        	if(data == "SUCCESS") {
+	        		window.location.href = "allanswer";
+	            } else {
+	            	console.log('cannot delete');
+	            }
+	        },
+	        error: function() {
+				
+			}
+	    });
+	});
 });

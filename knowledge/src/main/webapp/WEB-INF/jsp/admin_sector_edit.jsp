@@ -10,7 +10,14 @@
           <div class="">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Chỉnh sửa lĩnh vực chuyên gia</h1>
+                    <c:choose>
+				        <c:when test="${sector.sectorId == 0}">
+				          Thêm lĩnh vực mới
+				        </c:when>
+				        <c:otherwise>
+				          Chỉnh sửa thông tin lĩnh vực
+				        </c:otherwise>
+				      </c:choose>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

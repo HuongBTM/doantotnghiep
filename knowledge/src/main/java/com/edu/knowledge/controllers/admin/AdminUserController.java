@@ -133,4 +133,12 @@ public class AdminUserController {
 		return Constant.ERROR;
 	}
 	
+	@RequestMapping(value="/print", method=RequestMethod.GET)
+	public ModelAndView print() {
+		ModelAndView modelAndView = new ModelAndView("admin_user_print");
+		List<User> users = new ArrayList<>();
+		users = userService.findAllUser();
+		modelAndView.addObject("users", users);
+		return modelAndView;
+	}
 }

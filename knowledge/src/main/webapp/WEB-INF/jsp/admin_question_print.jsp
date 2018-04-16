@@ -35,22 +35,17 @@
 						  </c:if>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                         <div>
-                        	<a href="/admin/question/addquestion" id="btnAddUser" class="btn btn-primary btn-xs addBtn" style="width: 100px; height: 30px; margin-bottom: 10px; padding-top: 5px;"><i class="fa fa-plus"></i> Thêm mới 
-                        	</a>
-                        </div>
-                             <table width="100%" id="dataTables-question" class="table table-bordered table-striped table-hover">
+                             <table width="100%" id="datatable-buttons" class="table table-bordered table-striped table-hover">
 				                <thead>
 				                  <tr>
 				                    <th align="center">ID</th>
 				                    <th align="center">Tiêu đề</th>
+				                    <th align="center">Nội dung</th>
 				                    <th align="center">Người đăng</th>
 				                    <th align="center">Ngày đăng</th>
 				                    <th align="center">Lượt xem</th>
 				                    <th align="center">Bình chọn</th>
 				                    <th align="center">Số câu trả lời</th>
-				                    <th align="center">Chi tiết</th>
-				                    <th align="center"></th>
 				                  </tr>
 				                </thead>
 				                <tbody>
@@ -58,20 +53,12 @@
 				                    <tr>
 				                      <td align="right">${question.questionId}</td>
 				                      <td>${question.title}</td>
+				                      <td>${question.questionContent}</td>
 				                      <td>${question.user.fullname}</td>
 				                      <td>${question.creatAt}</td>
 				                      <td align="right">${question.views}</td>
 				                      <td align="right">${question.upvotes}</td>
 				                      <td align="right">${fn:length(question.answers)}</td>
-				                      <td align="center">
-				                        <a href="<c:url value="/admin/question/detail/${question.questionId}" />" title="View question detail">
-				                          <i class="fa fa-search"></i></a>
-				                      </td>
-				                      <td align="center">
-				                      	<a href="/admin/question/edit/${question.questionId}" id="editPost" data-id="${post.postId}" class="btn btn-info btn-xs ePostBtn" title="Sửa"><i class="fa fa-pencil"></i> </a>
-				                        <a href="#" class="btn btn-danger btn-xs deleteQuestion" id="deleteQuestion" data-id="${question.questionId}" title="Xóa">
-				                          <i class="fa fa-trash"></i></a>
-				                      </td>
 				                    </tr>
 				                  </c:forEach>
 				                </tbody>
@@ -91,28 +78,4 @@
     </div>
     </div>
     <!-- /#wrapper -->
- 
- 	<!-- modal to delete -->
-	  	<div class="modal fade" id="delQuestionModal" role="dialog">
-	    <div class="modal-dialog">
-	    
-	      <!-- Modal content-->
-	      <div class="modal-content">
-	        <div class="modal-header">
-	          <button type="button" class="close" data-dismiss="modal">&times;</button>
-	          <h4 class="modal-title">Xóa câu hỏi</h4>
-	        </div>
-	        <div class="modal-body">
-	        	<input type="hidden" id="idHidden" name="idHidden" value="0">
-	          <p>Bạn chắc chắn xóa bản ghi này?</p>
-	        </div>
-	        <div class="modal-footer">
-	        	<button type="button" class="btn btn-danger" id="delQuestionBtn"> Xóa </button>
-	          <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
-	        </div>
-	      </div>
-	      
-	    </div>
-	  </div>
-    <!-- jQuery -->
 <jsp:include page="admin_footer.jsp"></jsp:include>

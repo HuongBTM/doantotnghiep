@@ -50,6 +50,11 @@ public class QuestionService {
 		questionRepositery.save(question);
 	}
 	
+	public Question updateQuestion(Question question) {
+		question.setLastEditAt(new Date());
+		return questionRepositery.save(question);
+	}
+	
 	public List<Question> findAllByUser(int userId) {
 		return questionRepositery.findAllByUser(userId);
 	}

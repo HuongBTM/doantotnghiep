@@ -87,5 +87,11 @@ public class AdminPostController {
 		return mav;
 	}
 	
-	
+	@RequestMapping(value ="/print", method=RequestMethod.GET)
+	public ModelAndView print() {
+		ModelAndView mav = new ModelAndView("admin_post_print");
+		List<Post> posts = postService.findAll();
+		mav.addObject("posts", posts);
+		return mav;
+	}
 }
