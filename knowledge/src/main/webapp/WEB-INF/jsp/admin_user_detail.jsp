@@ -8,15 +8,17 @@
 <!DOCTYPE html>
 
 <jsp:include page="admin_layout.jsp"></jsp:include>
-
-<div class="row">
-       <div class="col-lg-12">
-           <h2 class="page-header"></h2>
-       </div>
-       <!-- /.col-lg-12 -->
-   </div>
-<div class="row">
-<div class="col-md-3">
+<!-- page content -->
+       <div class="right_col" role="main">
+         <div class="">
+		<div class="row">
+		       <div class="col-lg-12">
+		           <h2 class="page-header"></h2>
+		       </div>
+		       <!-- /.col-lg-12 -->
+		   </div>
+		<div class="row">
+		<div class="col-md-3">
 
       <!-- Profile Image -->
       <div class="box box-primary">
@@ -153,30 +155,7 @@
   <!-- /.row -->
   
 </div>
-<!-- /#wrapper -->
+	</div>
+	<!-- /#wrapper -->
     <!-- jQuery -->
-    <script src="/resources/assets/bootstrap/js/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="/resources/assets/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="/resources/assets/metisMenu/metisMenu.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="/resources/assets/metisMenu/raphael.min.js"></script>
-    <script src="/resources/assets/metisMenu/morris.min.js"></script>
-    <script src="/resources/assets/metisMenu/morris-data.js"></script>
-
-   <!--  DataTables JavaScript -->
-    <script src="/resources/assets/bootstrap/js/jquery.dataTables.min.js"></script>
-    <script src="/resources/assets/bootstrap/js/dataTables.bootstrap.min.js"></script> 
-    
-    <!-- Custom Theme JavaScript -->
-    <script src="/resources/assets/js/admin-sb.js"></script>
-	<script src="/resources/assets/js/admin-modal.js"></script>
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-
-</body>
-
-</html>
+<jsp:include page="admin_footer.jsp"></jsp:include>

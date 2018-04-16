@@ -1,251 +1,183 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="tags" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <title>Knowledge - Admin</title>
+    <title>Knowledge | Admin</title>
 
-    <!-- Bootstrap Core CSS -->
+    <!-- Bootstrap -->
     <link href="/resources/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="/resources/assets/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="/resources/assets/css/admin-sb.css" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="/resources/assets/metisMenu/morris.css" rel="stylesheet">
-
-	<!-- DataTables CSS -->
+    <!-- Font Awesome -->
+    <link href="/resources/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- DataTables CSS -->
     <link href="/resources/assets/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
     
-    <!-- Custom Fonts -->
-    <link href="/resources/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- jQuery custom content scroller -->
+    <link href="/resources/assets/css/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
 
-</head>
+    <!-- Custom Theme Style -->
+    <link href="/resources/assets/css/admin.custom.min.css" rel="stylesheet">
+    <link href="/resources/assets/css/admin-sb.css" rel="stylesheet">
+  </head>
 
-<body>
-
-    <div id="wrapper" style="background-color: #222d32">
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0; background-color: #36444a">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/home"><span>Knowledge</span></a>
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col menu_fixed">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Knowledge Base!</span></a>
             </div>
-            <!-- /.navbar-header -->
 
-            <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-messages">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-						</ul>
-                    <!-- /.dropdown-messages -->
-                </li>
-                <!-- /.dropdown -->
-                
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-alerts">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small">12 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>See All Alerts</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-alerts -->
-                </li>
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-            </ul>
-            <!-- /.navbar-top-links -->
+            <div class="clearfix"></div>
 
-            <div class="navbar-default sidebar" role="navigation"  style="background-color: #222d32">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        
-                        <li>
-                            <a href="/admin/dashboard"><i class="fa fa-dashboard fa-fw"></i> <span>Dashboard</span></a>
-                        </li>
-                       
-                        <li>
-                        	<a href="#"><i class="fa fa-check-square-o fa-fw"></i> <span>Phê duyệt</span><span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="/admin/"><span>Câu hỏi mới</span></a>
-                                </li>
-                                <li>
-                                    <a href="/admin/"><span>Bài viết mới</span></a>
-                                </li>
-                            </ul>
-                        </li>
-                       
-                        <li>
-                            <a href="#"><i class="fa fa-table fa-fw"></i> <span>Static Tables</span><span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="/admin/votetype/allvotetype"><span>Quản lý vote</span></a>
-                                </li>
-                                <li>
-                                    <a href="/admin/role/allrole"><span>Quản lý quyền</span></a>
-                                </li>
-                                <li>
-                                    <a href="/admin/sector/allsector"><span>Lĩnh vực - sector</span></a>
-                                </li>
-                                <li>
-                                    <a href="/admin/pendingtag/allpendingtag"><span>Trạng thái câu hỏi</span></a>
-                                </li>
-                                
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        
-                        <li>
-                            <a href="#"><i class="fa fa-table fa-fw"></i> <span>Dynamic Tables</span><span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                
-                                <li>
-                                    <a href="/admin/user/alluser"><span>Quản lý thành viên</span></a>
-                                </li>
-                                <li>
-                                    <a href="/admin/question/allquestion"><span>Quản lý câu hỏi </span></a>
-                                    
-                                    <!-- /.nav-third-level -->
-                                </li>
-                                <li>
-                                    <a href="#"><span>Quản lý bài viết </span><span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                    		<a href="/admin/topic/alltopic"><span>Quản lý chủ đề</span></a>
-                                		</li>
-                                        <li>
-                                            <a href="/admin/post/allpost"><span>Quản lý bài viết</span></a>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-third-level -->
-                                </li>
-                                
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-bell fa-fw"></i> <span>Member notification</span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="blank.html"><span>Bookmark</span></a>
-                                </li>
-                               	
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> <span>Thống kê</span></a>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="/home"><i class="fa fa-globe fa-fw"></i> <span>Go to website</span></a>
-                            <!-- /.nav-second-level -->
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
+            <!-- menu profile quick info -->
+            <div class="profile clearfix">
+              <div class="profile_pic">
+                <img src="/resources/assets/img/9.png" alt="..." class="img-circle profile_img">
+              </div>
+              <div class="profile_info">
+                <span>Welcome,</span>
+                <h2>John Doe</h2>
+              </div>
             </div>
-            <!-- /.navbar-static-side -->
-        </nav>
-    
-    <!-- /#wrapper -->
-    <div id="page-wrapper" style="min-height: 386px; background-color: rgb(247, 247, 247)">
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <h3>General</h3>
+                <ul class="nav side-menu">
+                  <li><a href="/admin/dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    
+                    </li>
+                  <li><a><i class="fa fa-check-square-o fa-fw"></i> Phê duyệt <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+					  <li><a href="/admin/pendingtag/allpendingtag">Danh mục trạng thái</a></li>
+                      <li><a href="/admin/post/new">Bài viết mới</a></li>
+                      <li><a href="/admin/question/new">Câu hỏi mới</a></li>
+                     </ul>
+                  </li>
+                  <li><a><i class="fa fa-group"></i> Quản lý thành viên <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="/admin/role/allrole">Danh mục quyền người dùng</a></li>
+                      <li><a href="/admin/user/alluser">Danh sách thành viên</a></li>
+                      <li><a href="/admin/user/adduser">Thêm thành viên mới</a></li>
+                      <li><a href="/admin/user/print">In danh sách thành viên</a></li>
+                      </ul>
+                  </li>
+                  <li><a><i class="fa fa-file-text-o"></i> Quản lý bài viết <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="/admin/topic/alltopic">Danh mục chủ đề</a></li>
+                      <li><a href="/admin/post/allpost">Danh sách bài viết</a></li>
+                      <li><a href="/admin/post/addpost">Thêm bài viết mới</a></li>
+                      <li><a href="/admin/post/print">In danh sách bài viết</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-question-circle"></i> Quản lý câu hỏi <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="/admin/question/allquestion">Danh sách câu hỏi</a></li>
+                      <li><a href="/admin/question/addquestion">Thêm câu hỏi mới</a></li>
+                      <li><a href="/admin/question/print">In danh sách câu hỏi</a></li>
+                    </ul>
+                  </li>
+				  <li><a><i class="fa fa-comments"></i> Quản lý câu trả lời <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="/admin/answer/allanswer">Danh sách câu trả lời</a></li>
+                      <li><a href="/admin/answer/addanswer">Thêm câu trả lời mới</a></li>
+                      <li><a href="/admin/answer/print">In danh sách câu trả lời</a></li>
+                    </ul>
+                  </li>
+				  <li><a href="/admin/sector/allsector"><i class="fa fa-reorder"></i> Quản lý lĩnh vực </a>
+                   </li>
+				   <li><a href="/admin/votetype/allvotetype"><i class="fa fa-cogs"></i> Quản lý vote </a>
+                   </li>
+                </ul>
+              </div>
+              <div class="menu_section">
+                <h3>Cài đặt</h3>
+                <ul class="nav side-menu">
+                  <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
+                    </li>
+                             
+                  <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li>
+                </ul>
+              </div>
+
+            </div>
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
+              <a data-toggle="tooltip" data-placement="top" title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Lock">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="/login">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+            <nav>
+              <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>
+
+              <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <img src="images/img.jpg" alt="">John Doe
+                    <span class=" fa fa-angle-down"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-usermenu pull-right">
+                    <li><a href="javascript:;"> Profile</a></li>
+                    <li><a href="javascript:;">Help</a></li>
+                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                  </ul>
+                </li>
+
+                <li role="presentation" class="dropdown">
+                  <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-envelope-o"></i>
+                    <span class="badge bg-green">2</span>
+                  </a>
+                  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                    <li>
+                      <a>
+                        <span class="image"><img src="/resources/assets/img/9.png" alt="Profile Image" /></span>
+                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+                      </a>
+                    </li>
+                   </ul>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <!-- /top navigation -->
+		

@@ -1,4 +1,22 @@
 $(document).ready(function() {
+	$('#dataTables-sector, #dataTables-votetype, #dataTables-pendingTag, #dataTables-role').DataTable({
+		responsive : true
+	});
+});
+
+$(document).ready(function() {
+	$('#dataTables-user, #dataTables-topic, #dataTables-question, #dataTables-answer, #dataTables-comment').DataTable({
+		responsive : true
+	});
+});
+
+$(document).ready(function() {
+	$('#dataTables-topic-post, #dataTables-topic-question').DataTable({
+		responsive : true
+	});
+});
+
+$(document).ready(function() {
 	$('.addBtnVoteType, .table .eVoteBtn').on('click', function(event) {
 		event.preventDefault();
 		var href = $(this).attr('href');
