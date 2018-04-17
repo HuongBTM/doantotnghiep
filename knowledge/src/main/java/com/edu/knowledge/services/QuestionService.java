@@ -62,4 +62,5 @@ public class QuestionService {
 	public List<Question> findLast(int limit) {
 		return questionRepositery.findLast(limit);
 	}
+	
 }

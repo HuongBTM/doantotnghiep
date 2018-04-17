@@ -23,7 +23,19 @@
                         <div class="panel-heading">
                             Bảng chủ đề
                         </div>
-                        
+                        <c:if test="${not empty success}">
+						    <div class="alert alert-success alert-dismissible">
+						      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+						      <i class="icon fa fa-check"></i> ${success}
+						    </div>
+						  </c:if>
+						
+						  <c:if test="${not empty error}">
+						    <div class="alert alert-danger alert-dismissible">
+						      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+						      <i class="icon fa fa-exclamation-triangle"></i> ${error}
+						    </div>
+						  </c:if>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                         <div>

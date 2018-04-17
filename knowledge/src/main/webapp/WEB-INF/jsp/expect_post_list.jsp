@@ -6,7 +6,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 
-<jsp:include page="admin_layout.jsp"></jsp:include>
+<jsp:include page="expect_layout.jsp"></jsp:include>
 <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
@@ -39,7 +39,7 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                          <div>
-                        	<a href="/admin/post/addpost" id="btnAddPost" class="btn btn-primary btn-xs addBtn" style="width: 100px; height: 30px; margin-bottom: 10px; padding-top: 5px;"><i class="fa fa-plus"></i> Thêm mới 
+                        	<a href="/expect/post/add" id="btnAddPost" class="btn btn-primary btn-xs addBtn" style="width: 100px; height: 30px; margin-bottom: 10px; padding-top: 5px;"><i class="fa fa-plus"></i> Thêm mới 
                         	</a>
                         </div>
                         <c:choose>
@@ -75,12 +75,12 @@
 				                      <td align="right">${post.upvotes}</td>
 				                      <td align="right">${fn:length(post.questions)}</td>
 				                      <td align="center">
-				                        <a href="<c:url value="/admin/post/detail/${post.postId}" />" title="View post detail">
+				                        <a href="<c:url value="/expect/post/detail/${post.postId}" />" title="View post detail">
 				                          <i class="fa fa-search"></i></a>
 				                      </td>
 				                      <td align="center">
-				                      	<a href="/admin/post/edit/${post.postId}" id="editPost" data-id="${post.postId}" class="btn btn-info btn-xs ePostBtn" title="Sửa"><i class="fa fa-pencil"></i> </a>
-				                        <a href="#" class="btn btn-danger btn-xs deletePost" id="deletePost" data-id="${post.postId}" title= "Xóa">
+				                      	<a href="/expect/post/edit/${post.postId}" id="editPost" data-id="${post.postId}" class="btn btn-info btn-xs ePostBtn" title="Sửa"><i class="fa fa-pencil"></i> </a>
+				                        <a href="#" class="btn btn-danger btn-xs deletePostEx" id="deletePostEx" data-id="${post.postId}" title= "Xóa">
 				                          <i class="fa fa-trash"></i></a>
 				                      </td>
 				                    </tr>
@@ -103,7 +103,7 @@
     <!-- /#wrapper -->
  
  	<!-- modal to delete post -->
-	  	<div class="modal fade" id="delPostModal" role="dialog">
+	  	<div class="modal fade" id="delPostExModal" role="dialog">
 	    <div class="modal-dialog">
 	    
 	      <!-- Modal content-->
@@ -117,7 +117,7 @@
 	          <p>Bạn chắc chắn xóa bản ghi này?</p>
 	        </div>
 	        <div class="modal-footer">
-	        	<button type="button" class="btn btn-danger" id="delPostBtn"> Delete </button>
+	        	<button type="button" class="btn btn-danger" id="delPostExBtn"> Delete </button>
 	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	        </div>
 	      </div>

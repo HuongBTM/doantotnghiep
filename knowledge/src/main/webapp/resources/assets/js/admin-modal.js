@@ -362,6 +362,90 @@ $(document).ready(function() {
 	    });
 	});
 	
+	$('.deleteQuestionTopic').on('click', function(event) {
+		var idTopic = $('.table').find('#idTopic').attr('value');
+		var id= $(this).attr("data-id");
+		console.log(id);
+		$('#delQuestionTopicModal').modal();
+		$('#delQuestionTopicModal #idHidden').val(id);
+		$('#delQuestionTopicModal #idTopicHidden').val(idTopic);
+	});
+	$('#delQuestionTopicBtn').on('click', function(event) {
+		var idTopic= $('#delQuestionTopicModal').find('#idTopicHidden').attr('value');
+		var id= $('#delQuestionTopicModal').find('#idHidden').attr('value');
+		console.log(id);
+		$.ajax({
+	        type: 'GET',
+	        url: "/admin/question/deletequestion?questionid=" + id,
+	        dataType: 'text',
+	        success: function (data) {
+	        	if(data == "SUCCESS") {
+	        		window.location.replace("http://localhost:8080/admin/topic/detail/" + idTopic);
+	            } else {
+	            	console.log('cannot delete');
+	            }
+	        },
+	        error: function() {
+				
+			}
+	    });
+	});
+	
+	$('.deletePost').on('click', function(event) {
+		var id= $(this).attr("data-id");
+		console.log(id);
+		$('#delPostModal').modal();
+		$('#delPostModal #idHidden').val(id);
+	});
+	$('#delPostBtn').on('click', function(event) {
+		var id= $('#delPostModal').find('#idHidden').attr('value');
+		console.log(id);
+		$.ajax({
+	        type: 'GET',
+	        url: "/admin/post/deletepost?postid=" + id,
+	        dataType: 'text',
+	        success: function (data) {
+	        	if(data == "SUCCESS") {
+	        		window.location.href = "allpost";
+	            } else {
+	            	console.log('cannot delete');
+	            }
+	        },
+	        error: function() {
+				
+			}
+	    });
+	});
+	
+	$('.deleteTopicPost').on('click', function(event) {
+		var idTopic = $('.table').find('#idTopic').attr('value');
+		var id= $(this).attr("data-id");
+		console.log(id);
+		$('#delPostTopicModal').modal();
+		$('#delPostTopicModal #idHidden').val(id);
+		$('#delPostTopicModal #idTopicHidden').val(idTopic);
+	});
+	$('#delPostTopicBtn').on('click', function(event) {
+		var idTopic= $('#delPostTopicModal').find('#idTopicHidden').attr('value');
+		var id= $('#delPostTopicModal').find('#idHidden').attr('value');
+		console.log(id);
+		$.ajax({
+	        type: 'GET',
+	        url: "/admin/post/deletepost?postid=" + id,
+	        dataType: 'text',
+	        success: function (data) {
+	        	if(data == "SUCCESS") {
+	        		window.location.replace("http://localhost:8080/admin/topic/detail/" + idTopic);
+	            } else {
+	            	console.log('cannot delete');
+	            }
+	        },
+	        error: function() {
+				
+			}
+	    });
+	});
+	
 	$('.deleteAnswerBtn').on('click', function(event) {
 		var idQuestion = $('.table').find('#idQuestion').attr('value');
 		console.log(idQuestion);
@@ -438,6 +522,56 @@ $(document).ready(function() {
 	        },
 	        error: function() {
 				
+			}
+	    });
+	});
+	
+	$('.deletePostEx').on('click', function(event) {
+		var id= $(this).attr("data-id");
+		console.log(id);
+		$('#delPostExModal').modal();
+		$('#delPostExModal #idHidden').val(id);
+	});
+	$('#delPostExBtn').on('click', function(event) {
+		var id= $('#delPostExModal').find('#idHidden').attr('value');
+		console.log(id);
+		$.ajax({
+	        type: 'GET',
+	        url: "/expect/post/delete?postid=" + id,
+	        dataType: 'text',
+	        success: function (data) {
+	        	if(data == "SUCCESS") {
+	        		window.location.href = "all";
+	            } else {
+	            	console.log('cannot delete');
+	            }
+	        },
+	        error: function() {
+				
+			}
+	    });
+	});
+	
+	$('#btnAddtopicEx').on('click', function(event) {
+		event.preventDefault();
+		$('#topicName').val('');
+		$('#topicDescribe').val('');
+		$('#idHidden').val('0');
+		$('#modalUpdateTopicEx').modal();
+	});
+	$('#updateTopicExForm').submit(function(e) {
+		e.preventDefault();
+		$.ajax({
+	        type: $(this).attr('method'),
+	        url: $(this).attr("action"),
+	        data: $(this).serialize(),
+	        dataType: 'text',
+	        success: function (data) {
+	        	window.location.href="add";
+	        },
+	        error: function() {
+				$('div.error').text('Tên chủ đề đã tồn tại!');
+            	$('div.error').show();
 			}
 	    });
 	});

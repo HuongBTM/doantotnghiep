@@ -76,4 +76,12 @@ public class AdminRoleController {
 		}
 		return Constant.ERROR;
 	}
+	
+	@RequestMapping(value = "/editrole/{id}", method = RequestMethod.GET)
+	public ModelAndView editSector(@PathVariable("id") int id) {
+		ModelAndView modelAndView = new ModelAndView("admin_role_edit");
+		Role role = roleService.getRoleById(id);
+		modelAndView.addObject("role", role);
+		return modelAndView;
+	}
 }

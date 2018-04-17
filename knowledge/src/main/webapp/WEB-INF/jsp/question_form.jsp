@@ -31,7 +31,7 @@
             <label class="required control-label col-md-2 col-sm-1 col-xs-12" for="topics" style="text-align: left">Chủ đề <span class="required">*</span>
             </label>
             <div class="col-md-10 col-sm-3 col-xs-12">
-              	<form:select required="required" class="form-control" path="topics" multiple="true" items="${topics}" itemValue="topicId" itemLabel="topicName" />
+              	<form:select required="required" class="form-control" path="topics" multiple="true" items="${topics}" itemValue="topicId" itemLabel="topicName" style="height:150px;"/>
             	<form:errors path="topics" cssClass="error" delimiter="<br><i class='fa fa-exclamation-circle'></i> "></form:errors>
             </div>
           </div>

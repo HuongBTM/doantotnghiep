@@ -70,7 +70,9 @@
                         <div class="panel-heading">
                             Câu hỏi liên quan
                         </div>
+                        
                         <div class="panel-body">
+						
                         <c:choose>
 				            <c:when test="${empty post.questions}">
 				              <p>Không có câu hỏi nào cho bài viết này</p>

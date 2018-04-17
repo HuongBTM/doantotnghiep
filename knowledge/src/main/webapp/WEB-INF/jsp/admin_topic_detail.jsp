@@ -76,7 +76,7 @@
 				                          <i class="fa fa-search"></i></a>
 				                      </td>
 				                      <td align="center">
-				                        <a href="#" class="btn btn-danger btn-xs deletePost" id="deletePost" data-id="${topic.topicId}">
+				                        <a href="#" class="btn btn-danger btn-xs deleteTopicPost" id="deleteTopicPost" data-id="${post.postId}">
 				                          <i class="fa fa-trash"></i></a>
 				                      </td>
 				                    </tr>
@@ -135,6 +135,7 @@
 				                          <i class="fa fa-search"></i></a>
 				                      </td>
 				                      <td align="center">
+				                      	<input type="hidden" id="idTopic" name="idTopic" value="${topic.topicId }">
 				                        <a href="#" class="btn btn-danger btn-xs deleteQuestionTopic" id="deleteQuestionTopic" data-id="${question.questionId}">
 				                          <i class="fa fa-trash"></i></a>
 				                      </td>
@@ -169,6 +170,7 @@
 	        </div>
 	        <div class="modal-body">
 	        	<input type="hidden" id="idHidden" name="idHidden" value="0">
+	        	<input type="hidden" id="idTopicHidden" name="idTopicHidden" value="0">
 	          <p>Bạn chắc chắn xóa bản ghi này?</p>
 	        </div>
 	        <div class="modal-footer">
@@ -191,6 +193,7 @@
 	        </div>
 	        <div class="modal-body">
 	        	<input type="hidden" id="idHidden" name="idHidden" value="0">
+	        	<input type="hidden" id="idTopicHidden" name="idTopicHidden" value="0">
 	          <p>Bạn chắc chắn xóa bản ghi này?</p>
 	        </div>
 	        <div class="modal-footer">

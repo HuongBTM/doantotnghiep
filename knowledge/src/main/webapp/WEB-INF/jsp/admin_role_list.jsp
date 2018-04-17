@@ -47,7 +47,8 @@
                                         <td><c:out value="${role.roleName}"></c:out></td>
                                         <td><c:out value="${role.roleDescrib}"></c:out></td>
                                         <td align="center">
-				                            <a href="/admin/role/findone/${role.roleId}" data-id="${role.roleId}" class="btn btn-info btn-xs eRoleBtn"><i class="fa fa-pencil"></i> Sửa </a>
+				                            <%-- <a href="/admin/role/findone/${role.roleId}" data-id="${role.roleId}" class="btn btn-info btn-xs eRoleBtn"><i class="fa fa-pencil"></i> Sửa </a> --%>
+				                            <a href="/admin/role/editrole/${role.roleId}" data-id="${role.roleId}" class="btn btn-info btn-xs editRoleBtn"><i class="fa fa-pencil"></i> Sửa </a>
 				                            <a href="#" data-id="${role.roleId}" id="deleteRoleBtn" class="btn btn-danger btn-xs deleteRoleBtn"><i class="fa fa-trash-o"></i> Xóa </a>
 				                          </td>
                                     </tr>
