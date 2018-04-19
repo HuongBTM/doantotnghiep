@@ -12,8 +12,8 @@
 }
 #content {
     box-sizing: content-box;
-    margin: 85px 165px 0px 160px;
-    width: 1025px;
+    margin: 85px 150px 0px 150px;
+    width: 1020px;
     height: 500px;
 }
 .container #content {
@@ -21,7 +21,7 @@
 }
 #mainbar, .mainbar {
     float: left;
-    width: 728px;
+    width: 700px;
     margin: 0;
     padding: 0;
 }
@@ -52,7 +52,7 @@
 }
 .tags {
 	line-height: 18px;
-	float: left
+	/* float: left */
 }
 .tags a:hover {
 	text-decoration: none
@@ -124,7 +124,6 @@
 #questions, #answers {
 	background-color: #ffffff;
     clear: both;
-    width: 728px;
 }
 .tagged-interesting {
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.25);
@@ -160,14 +159,13 @@
     overflow: hidden;
     padding: 15px 0;
     float: left;
-    width: 728px;
+    width: 700px;
     border-bottom: 1px solid #eff0f1;
 }
 .statscontainer {
-    width: 78px;
+    width: 55px;
     float: left;
-    margin-right: 8px;
-    margin-left: 8px;
+    margin-right: 15px;
 }
 .statsarrow {
     float: right;
@@ -257,7 +255,7 @@
     display: inline-block;
     padding: .4em .5em;
     margin: 2px 2px 2px 0;
-    font-size: 11px;
+    font-size: 13px;
     line-height: 1;
     white-space: nowrap;
     text-decoration: none;
@@ -428,4 +426,21 @@
 }
 #interesting-tags h4+a {
     margin-left: 5px;
+}
+.question-desc {
+  margin-bottom: 8px;
+  padding-bottom: 0px;
+  line-height: 22px;
+  font-size: 13px;
+  border-bottom: 1px solid #dedede;
+  color: #848991;
+}
+.question-reply, .question-date, .question-view, .question-comment, .question-category, .question-tags, .post-tags, .question-favorite, .question-answered {
+    margin: 0 20px 0 0;
+    float: left;
+    display: block;
+}
+.question-date, .question-view, .question-favorite, .question-reply, .question-category a, .question-comment a {
+    font-size: 13px;
+    color: #2f3239;
 }

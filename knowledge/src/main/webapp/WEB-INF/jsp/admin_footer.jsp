@@ -3,6 +3,20 @@
 
 </div>
 </div>
+	<div class="go-up"><i class="fa fa-chevron-up" style="margin-top: 10px;"></i></div>
+	<!-- jQuery -->
+	<script>
+		jQuery(window).scroll(function () {
+			if(jQuery(this).scrollTop() > 100 ) {
+				jQuery(".go-up").css("right","40px");
+			}else {
+				jQuery(".go-up").css("right","-60px");
+			}
+		});
+		jQuery(".go-up").click(function(){
+			jQuery("html,body").animate({scrollTop:0},500);
+			return false;
+		});</script>
     <!-- jQuery -->
     <script src="/resources/assets/bootstrap/js/jquery.min.js"></script>
 

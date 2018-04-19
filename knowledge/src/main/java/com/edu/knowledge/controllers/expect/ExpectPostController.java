@@ -1,6 +1,5 @@
 package com.edu.knowledge.controllers.expect;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,10 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.edu.knowledge.entities.Post;
-import com.edu.knowledge.entities.Question;
 import com.edu.knowledge.entities.Topic;
 import com.edu.knowledge.services.PostService;
-import com.edu.knowledge.services.QuestionService;
 import com.edu.knowledge.services.TopicService;
 import com.edu.knowledge.utils.Constant;
 
@@ -30,10 +27,7 @@ public class ExpectPostController {
 
 	@Autowired
 	private PostService postService;
-	
-	@Autowired
-	private QuestionService questionService;
-	
+
 	@Autowired
 	private TopicService topicService;
 	

@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,6 +22,7 @@ import com.edu.knowledge.services.QuestionService;
 import com.edu.knowledge.services.TopicService;
 
 @Controller
+@RequestMapping("/app/question")
 public class QuestionController {
 
 	@Autowired
@@ -29,13 +31,13 @@ public class QuestionController {
 	@Autowired
 	private QuestionService questionService;
 	
-	@RequestMapping(value="/question", method=RequestMethod.GET)
+	@RequestMapping(value="/all", method=RequestMethod.GET)
 	public ModelAndView hello(){
 		ModelAndView model = new ModelAndView("question");
 		return model;
 	}
 	
-	@RequestMapping(value="/question/ask", method=RequestMethod.GET)
+	@RequestMapping(value="/ask", method=RequestMethod.GET)
 	public ModelAndView askQuestion(){
 		ModelAndView model = new ModelAndView("question_form");
 		Question question = new Question();
@@ -56,7 +58,7 @@ public class QuestionController {
         });
     }
 	
-	@RequestMapping(value="/question/ask", method= RequestMethod.POST)
+	@RequestMapping(value="/ask", method= RequestMethod.POST)
 	public ModelAndView postQuestion(@ModelAttribute("question") Question question, BindingResult result, RedirectAttributes redirect) {
 		ModelAndView model = new ModelAndView();
 		if(result.hasErrors()) {
@@ -66,6 +68,12 @@ public class QuestionController {
 			model.setViewName("redirect:/home");
 		}
 		redirect.addFlashAttribute("success", "Your question has been posted successfully!");
+		return model;
+	}
+	
+	@RequestMapping(value="/detail/{id}", method=RequestMethod.GET)
+	public ModelAndView questionDetail(@PathVariable("id") int id) {
+		ModelAndView model = new ModelAndView("question_detail");
 		return model;
 	}
 }

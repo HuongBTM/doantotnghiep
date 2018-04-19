@@ -27,4 +27,5 @@
       }, 1500, 'easeInOutExpo');
     }
   });
+  
 })(jQuery);

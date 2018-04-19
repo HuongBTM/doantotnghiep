@@ -208,6 +208,6 @@
 			<a href="/questions/tagged/performance" class="post-tag user-tag" title="show questions tagged &#39;performance&#39;" rel="tag">performance</a> 
 		</div>
         </div>
-
-</body>
-</html>
+	</div>
+	</div>
+<jsp:include page="footer.jsp"></jsp:include>

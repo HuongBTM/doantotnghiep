@@ -176,6 +176,7 @@
         
         </div>
         </div>
+        </div>
     <!-- /#wrapper -->
  
 <jsp:include page="admin_footer.jsp"></jsp:include>

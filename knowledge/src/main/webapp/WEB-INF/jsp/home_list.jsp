@@ -38,27 +38,27 @@
 			            </div>
 			            <div class="question-inner">
 			              <div class="clearfix"></div>
-			              <p class="question-desc">${question.questionContent}</p>
-			              <%-- <div class="question-details">
-			                <c:if test="${question.solved eq true}">
-			                  <span class="question-answered question-answered-done"><i class="icon-ok"></i>solved</span>
-			                </c:if>
-			              </div> --%>
-			              <span class="question-category">
-			              	<c:forEach var="topic" items="${question.topics}">
-					            <button type="button" class="btn btn-default btn-xs" style="background-color: #ccc">
-					              <i class="fa fa-tag"></i> ${topic.topicName}
-					            </button>
-					          </c:forEach>
-			              </span>
-			              <span class="question-date"><i class="icon-time"></i>${question.ago}</span>
-			              <span class="question-comment">
-			                <a href="<c:url value="/question/detail/${question.questionId}" />">
-			                  <i class="icon-comment"></i>${fn:length(question.answers)} answers
-			                </a>
-			              </span>
-			              <span class="question-view"><i class="icon-user"></i>${question.views} views</span>
-			              <div class="clearfix"></div>
+			              <div class="question-desc">${question.questionContent}
+			              </div>
+			              <div id="tag-lst" style="width: 400px; float: left">
+				              <span class="question-category">
+				              	<c:forEach var="topic" items="${question.topics}">
+						            <button type="button" class="btn btn-default btn-xs" style="background-color: #ccc">
+						              <i class="fa fa-tag"></i> ${topic.topicName}
+						            </button>
+						          </c:forEach>
+				              </span>
+			              </div>
+			              <div id="noti" style="clear: both; padding-top: 10px;">
+				              <span class="question-date"><i class="fa fa-clock-o"></i> ${question.ago}</span>
+				              <span class="question-comment">
+				                <a href="<c:url value="/question/detail/${question.questionId}" />">
+				                  <i class="fa fa-comment"></i> ${fn:length(question.answers)} answers
+				                </a>
+				              </span>
+				              <span class="question-view"><i class="fa fa-eye"></i> ${question.views} views</span>
+				              <div class="clearfix"></div>
+			              </div>
 			            </div>
 			          </article>
 			        </c:forEach>
@@ -71,6 +71,4 @@
 		</div>
 	</div>
 </div>
-
-</body>
-</html>
+<jsp:include page="footer.jsp"></jsp:include>

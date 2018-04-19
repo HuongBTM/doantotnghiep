@@ -17,7 +17,7 @@
   <link rel="stylesheet" type="text/css" href="/resources/assets/css/question.css">
   <script language="javascript" type="text/javascript" src="/resources/assets/bootstrap/js/bootstrap.min.js"></script>
   <script language="javascript" type="text/javascript" src="/resources/assets/bootstrap/js/jquery.min.js"></script>
-  <script language="javascript" type="text/javascript" src="/resources/assets/bootstrap/js/custom.js"></script>
+  <script language="javascript" type="text/javascript" src="/resources/assets/js/custom.js"></script>
  
 </head>
 
@@ -36,8 +36,8 @@
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-left">
           <li><a href="/app/home"><i class="fa fa-home"></i> Home</a><div></div></li>
-          <li><a href="/question"><i class="fa fa-question-circle"></i> Câu hỏi</a><div></div></li>
-          <li><a href="/post"><i class= "fa fa-file-text-o"></i> Bài viết</a></li>
+          <li><a href="/app/question/all"><i class="fa fa-question-circle"></i> Câu hỏi</a><div></div></li>
+          <li><a href="/app/post/all"><i class= "fa fa-file-text-o"></i> Bài viết</a></li>
           <li><a href="/notification"><i class="fa fa-bell"></i> Thông báo</a></li>
           </ul>
        	 
@@ -59,7 +59,7 @@
 		          <li><a href="#">Page 1-2</a></li>
 		          <li><a href="#">Page 1-3</a></li>
 		          <li role="separator" class="divider"></li>
-                 <li><a href="#">Logout &nbsp;<i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+                 <li><a href="/login">Logout &nbsp;<i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
 	        </ul>
 	      </li>
 	      <!-- <li><a href="#" data-target="#login" data-toggle="modal">Sign in</a></li> -->
@@ -67,7 +67,4 @@
         </ul>
       </div>
     </div>
-    <script language="javascript" type="text/javascript" src="/resources/assets/bootstrap/js/bootstrap.min.js"></script>
-  	<script language="javascript" type="text/javascript" src="/resources/assets/bootstrap/js/jquery.min.js"></script>
-  	<script language="javascript" type="text/javascript" src="/resources/assets/bootstrap/js/custom.js"></script>
   </nav>
