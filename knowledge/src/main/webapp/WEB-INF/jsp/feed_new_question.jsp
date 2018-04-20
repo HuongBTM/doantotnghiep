@@ -17,7 +17,7 @@
 		<div class="grid_page">
 			<div class="layout_3col_left" id="home_feed_left_col">
 				<div class="row section" style='position: fixed'>
-					<div class="EditableList HomeNavList NavList" id="feed_edit" style="background-color: #fff">
+					<div class="EditableList HomeNavList NavList" id="feed_edit">
 						<a href="#" class="nav-tabs-dropdown btn btn-block btn-default">Feed</a>
 						<a href="#" class="nav-tabs-dropdown btn btn-block btn-success">Câu hỏi mới</a>
 						<a href="#" class="nav-tabs-dropdown btn btn-block btn-default">Bài viết mới</a>

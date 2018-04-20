@@ -38,7 +38,35 @@
           <li><a href="/app/home"><i class="fa fa-home"></i> Home</a><div></div></li>
           <li><a href="/app/question/all"><i class="fa fa-question-circle"></i> Câu hỏi</a><div></div></li>
           <li><a href="/app/post/all"><i class= "fa fa-file-text-o"></i> Bài viết</a></li>
-          <li><a href="/notification"><i class="fa fa-bell"></i> Thông báo</a></li>
+          <!-- <li><a href="/notification"><i class="fa fa-bell"></i> Thông báo</a></li> -->
+          <li role="presentation" class="navbar-nav dropdown">
+              <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-bell"></i> Thông báo
+                <span class="badge bg-green">2</span>
+              </a>
+              <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                <li>
+                  <a>
+                    <span class="image"><img src="/resources/assets/img/9.png" alt="Profile Image" /></span>
+                    <span>
+                      <span>John Smith</span>
+                      <span class="time">3 mins ago</span>
+                    </span>
+                    <span class="message">
+                      Film festivals used to be do-or-die moments for movie makers. They were where...
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <div class="text-center" style="margin-left: 80px">
+                    <a href="/app/user/1/notify">
+                      <strong>Xem tất cả</strong>
+                      <i class="fa fa-angle-right"></i>
+                    </a>
+                  </div>
+                </li>
+               </ul>
+            </li>
           </ul>
        	 
        	 <ul class="nav navbar-nav navbar-right">
@@ -47,7 +75,7 @@
             <div class="input-group">
                 <input type="text" class="form-control search-input" placeholder="Search" name="q">
                 <div class="input-group-btn">
-                    <button class="btn btn-default" type="submit" style='border-radius: 0px; padding: 9px'><i class="fa fa-search"></i></button>
+                    <button class="btn btn-default" type="submit" style='border-radius: 0px; padding: 9px; width: 34px; height: 34px;'><i class="fa fa-search"></i></button>
                 </div>
             </div>
             </form>    
