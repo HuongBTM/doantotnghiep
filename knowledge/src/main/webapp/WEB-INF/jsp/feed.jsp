@@ -6,7 +6,7 @@
 <jsp:include page="header.jsp"></jsp:include>
 
 <!-- Content wrapper -->
-<div class="container">
+<div class="container" style="width: 1175px;">
 	<c:if test="${not empty success}">
 	    <div class="alert alert-success alert-dismissible">
 	      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -17,15 +17,16 @@
 		<div class="grid_page">
 			<div class="layout_3col_left" id="home_feed_left_col">
 				<div class="row section" style='position: fixed'>
-					<div class="EditableList HomeNavList NavList" id="feed_edit">
-						<p><a href="#">Link</a></p>
-					      <p><a href="#">Link</a></p>
-					      <p><a href="#">Link</a></p>
+					<div class="EditableList HomeNavList NavList" id="feed_edit" style="background-color: #fff">
+						<a href="#" class="nav-tabs-dropdown btn btn-block btn-success">Feed</a>
+						<a href="#" class="nav-tabs-dropdown btn btn-block btn-default">Câu hỏi mới</a>
+						<a href="#" class="nav-tabs-dropdown btn btn-block btn-default">Bài viết mới</a>
 					</div>
 				</div>
 			</div>
 			<div class="layout_3col_center" id="home_feed_center_col">
-				  <div id="new-questions">
+			<div class="question-desc">Post</div>
+				<div id="new-questions">
 			        <c:forEach var="question" items="${questions}">
 			          <article class="question question-type-normal">
 			            <h2>
@@ -50,6 +51,8 @@
 				              </span>
 			              </div>
 			              <div id="noti" style="clear: both; padding-top: 10px;">
+			              	 <span class="question-upvote"><i class="glyphicon glyphicon-arrow-up"></i> 3 upvote</span>
+			              	 <span class="question-downvote"><i class="glyphicon glyphicon-arrow-down"></i> 3 downvote</span>
 				              <span class="question-date"><i class="fa fa-clock-o"></i> ${question.ago}</span>
 				              <span class="question-comment">
 				                <a href="<c:url value="/question/detail/${question.questionId}" />">
@@ -63,12 +66,45 @@
 			          </article>
 			        </c:forEach>
 			      </div>
-				  
-			</div>
-			<div class="layout_3col_right home_feed_right_col" id="home_feed_right_col">
-			      <p>ADS</p>
-			</div>
+					<div class="question-desc">Question</div>
+					<div class="question-desc">Answer</div>
+					</div>
+					<div id="sidebar" class="show-votes" role="complementary" aria-label="sidebar">  
+		       		<div class="module community-bulletin" data-tracker="cb=1">
+					<div class="widget widget_tag_cloud">
+					  <h3 class="widget_title">Chủ đề</h3>
+					  <%-- <c:forEach var="tag" items=""> --%>
+					    <a href="<c:url value="/tag/" />">Tên chủ đề</a>
+					    <a href="<c:url value="/tag/" />">Java</a>
+					    <a href="<c:url value="/tag/" />">Question</a>
+					    <a href="<c:url value="/tag/" />">Test</a>
+					    <a href="<c:url value="/tag/" />">Cuộc đua số</a>
+					  <%-- </c:forEach> --%>
+					</div>
+		         	</div>                        
+					<div class="module community-bulletin" data-tracker="cb=1">
+					<div class="widget widget_highest_points">
+						<div class="sidebar-related">
+		                    <h3 class="widget_title">Top Point</h3>
+							  <ul>
+							    <%-- <c:forEach var="topUser" items=""> --%>
+							    <li>
+							      <div class="author-img">
+							        <a href="<c:url value="/user/" />">
+							          <%-- <img width="60" height="60" src="<c:url value="/upload/" />" alt=""> --%>
+							        </a>
+							      </div> 
+							      <h6><a href="<c:url value="/user/" />">User name</a></h6>
+							      <span class="comment"> point</span>
+							    </li>
+							    <%-- </c:forEach> --%>
+							  </ul>
+						</div>
+					</div>
+		         </div>
+		         
+		    </div>
 		</div>
 	</div>
 </div>
-<jsp:include page="footer.jsp"></jsp:include>
+<jsp:include page="header.jsp"></jsp:include>

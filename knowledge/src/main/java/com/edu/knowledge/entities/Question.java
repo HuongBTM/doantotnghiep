@@ -22,6 +22,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 
+import com.edu.knowledge.utils.Constant;
 import com.edu.knowledge.utils.TimeUtil;
 
 @Entity
@@ -187,6 +188,13 @@ public class Question implements Serializable {
 	public String getAgo() throws ParseException {
         return TimeUtil.ago(creatAt);
     }
+	public String getSummary() {
+		if (questionContent.length() >= 200) {
+			return questionContent.substring(0, Constant.SUMMARY);
+		} else {
+			return questionContent;
+		}
+	}
 	
 	public Date getLastEditAt() {
 		return lastEditAt;

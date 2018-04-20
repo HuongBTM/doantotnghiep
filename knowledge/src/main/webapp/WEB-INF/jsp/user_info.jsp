@@ -7,24 +7,19 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 
-<jsp:include page="admin_layout.jsp"></jsp:include>
+<jsp:include page="header.jsp"></jsp:include>
 <!-- page content -->
-<div class="right_col" role="main">
+<div class="container">
+<div class="right_col" role="main" style="margin-top: 90px;">
 <div class="">
-	<div class="row">
-       <div class="col-lg-12">
-           <h2 class="page-header">Chi tiết thành viên</h2>
-       </div>
-       <!-- /.col-lg-12 -->
-   </div>
-	<div class="row">
+<div class="row">
 	<div class="col-md-3">
 
       <!-- Profile Image -->
       <div class="box box-primary">
         <div class="box-body box-profile">
           <img class="profile-user-img img-responsive img-circle" 
-               src="<c:url value="/resources/assets/img/${user.image}" />" alt="User profile picture">
+               src="<c:url value="/resources/assets/img/1.png" />" alt="avata">
 
           <h3 class="profile-username text-center">${user.fullname}</h3>
 
@@ -152,10 +147,8 @@
     </div>
     <!-- /.col -->
   </div>
-  <!-- /.row -->
   
+  </div>
+  </div>
 </div>
-	</div>
-	<!-- /#wrapper -->
-    <!-- jQuery -->
-<jsp:include page="admin_footer.jsp"></jsp:include>
+<jsp:include page="footer.jsp"></jsp:include>

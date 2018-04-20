@@ -198,11 +198,11 @@
 			<div class="widget widget_tag_cloud">
 			  <h3 class="widget_title">Chủ đề</h3>
 			  <%-- <c:forEach var="tag" items=""> --%>
-			    <a href="<c:url value="/tag/" />">Tên chủ đề</a>
-			    <a href="<c:url value="/tag/" />">Java</a>
-			    <a href="<c:url value="/tag/" />">Question</a>
-			    <a href="<c:url value="/tag/" />">Test</a>
-			    <a href="<c:url value="/tag/" />">Cuộc đua số</a>
+			    <a href="">Tên chủ đề</a>
+			    <a href="">Java</a>
+			    <a href="">Question</a>
+			    <a href="">Test</a>
+			    <a href="">Cuộc đua số</a>
 			  <%-- </c:forEach> --%>
 			</div>
          	</div>                        
@@ -218,7 +218,7 @@
 					          <%-- <img width="60" height="60" src="<c:url value="/upload/" />" alt=""> --%>
 					        </a>
 					      </div> 
-					      <h6><a href="<c:url value="/user/" />">User name</a></h6>
+					      <h6><a href="">User name</a></h6>
 					      <span class="comment"> point</span>
 					    </li>
 					    <%-- </c:forEach> --%>

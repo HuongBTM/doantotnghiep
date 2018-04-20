@@ -17,28 +17,17 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value="/alluser", method=RequestMethod.GET)
-	public ModelAndView getAllUser() {
-		ModelAndView mav = new ModelAndView("");
-		/*mav.addObject(attributeValue)
-		return userService.findAllUser();*/
+	@RequestMapping(value="/user/{id}/changeprofile", method=RequestMethod.GET)
+	public ModelAndView updateProfile(@PathVariable("id") int id) {
+		ModelAndView mav = new ModelAndView("change_profile");
+		User user = new User();
+		mav.addObject("user", user);
 		return mav;
 	}
 	
-	@RequestMapping(value="/home", method=RequestMethod.GET)
-	public ModelAndView home() {
-		return new ModelAndView("home");
-	}
-	
-	@RequestMapping(value="/getone/{id}", method=RequestMethod.GET)
-	@ResponseBody
-	public User getUserById(@PathVariable(value="id") int userId) {
-		return userService.getOne(userId);
-	}
-	
-	@RequestMapping(value="/changeprofile", method=RequestMethod.GET)
-	public ModelAndView updateProfile() {
-		ModelAndView mav = new ModelAndView("change_profile");
+	@RequestMapping(value="/user/{id}/info", method=RequestMethod.GET)
+	public ModelAndView userInfo(@PathVariable("id") int id) {
+		ModelAndView mav = new ModelAndView("user_info");
 		User user = new User();
 		mav.addObject("user", user);
 		return mav;

@@ -24,8 +24,18 @@ public class HomeController {
 	private TopicService topicService;
 	
 	@RequestMapping(value="/home")
-	public ModelAndView getQuestion() {
-		ModelAndView mav = new ModelAndView("home_list");
+	public ModelAndView getNewQuestion() {
+		ModelAndView mav = new ModelAndView("feed_new_question");
+		List<Question> questions = questionService.findLast(Constant.QUESTION_LIMIT);
+		List<Topic> topics = topicService.findAll();
+		mav.addObject("questions", questions);
+		mav.addObject("topics", topics);
+		return mav;
+	}
+	
+	@RequestMapping(value="/homefeed")
+	public ModelAndView getFeed() {
+		ModelAndView mav = new ModelAndView("feed");
 		List<Question> questions = questionService.findLast(Constant.QUESTION_LIMIT);
 		List<Topic> topics = topicService.findAll();
 		mav.addObject("questions", questions);

@@ -247,7 +247,7 @@
 }
 .post-tag, .geo-tag, .container .chosen-choices .search-choice, .container .chosen-container-multi .chosen-choices li.search-choice {
     color: #39739d;
-    background-color: #E1ECF4;
+    background-color: #b4d3ea;
     border-color: transparent;
 }
 .post-tag, .moderator-tag, .required-tag, .disliked-tag, .favorite-tag, .company-tag, .geo-tag, .geo-tag, .container .chosen-choices .search-choice, .container .chosen-container-multi .chosen-choices li.search-choice {
@@ -431,16 +431,16 @@
   margin-bottom: 8px;
   padding-bottom: 0px;
   line-height: 22px;
-  font-size: 13px;
+  font-size: 14px;
   border-bottom: 1px solid #dedede;
-  color: #848991;
+  color: #484848;
 }
-.question-reply, .question-date, .question-view, .question-comment, .question-category, .question-tags, .post-tags, .question-favorite, .question-answered {
+.question-upvote, .question-downvote, .question-reply, .question-date, .question-view, .question-comment, .question-category, .question-tags, .post-tags, .question-favorite, .question-answered {
     margin: 0 20px 0 0;
     float: left;
     display: block;
 }
-.question-date, .question-view, .question-favorite, .question-reply, .question-category a, .question-comment a {
+.question-upvote, .question-downvote, .question-date, .question-view, .question-favorite, .question-reply, .question-category a, .question-comment a{
     font-size: 13px;
     color: #2f3239;
 }

@@ -1,6 +1,7 @@
 package com.edu.knowledge.entities;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.Set;
 
@@ -20,6 +21,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
+
+import com.edu.knowledge.utils.Constant;
+import com.edu.knowledge.utils.TimeUtil;
 
 /**
  * 
@@ -201,6 +205,18 @@ public class Post implements Serializable{
 
 	public void setVoteTypes(Set<VoteType> voteTypes) {
 		this.voteTypes = voteTypes;
+	}
+	
+	public String getAgo() throws ParseException {
+        return TimeUtil.ago(creatAt);
+    }
+	
+	public String getSummary() {
+		if (postContent.length() >= 200) {
+			return postContent.substring(0, Constant.SUMMARY);
+		} else {
+			return postContent;
+		}
 	}
 
 	public Post(String postContent, String postImg, String postFile, int upvotes, int downvotes, int views,
