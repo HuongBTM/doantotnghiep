@@ -33,7 +33,7 @@ public class QuestionController {
 	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	public ModelAndView hello(){
-		ModelAndView model = new ModelAndView("question");
+		ModelAndView model = new ModelAndView("question_list");
 		return model;
 	}
 	

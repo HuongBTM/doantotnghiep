@@ -15,11 +15,7 @@
 
     <div class="inner-content clearfix">
         <div id="question-header">
-           <h1 itemprop="name">
-           	<a href="#" class="question-hyperlink">How to use spring boot security for custom login page without configuration?</a></h1>
-            <div class="pl8 aside-cta" role="navigation" aria-label="ask new question">
-        		<a href="/questions/ask" class="ws-nowrap btn">Ask Question</a>
-			</div>
+           <h1 itemprop="name">How to use spring boot security for custom login page without configuration?</h1>
 		</div>
         <div id="mainbar" role="main" aria-label="question and answers">
             <div class="question-detail" data-questionid="43651814" id="question">

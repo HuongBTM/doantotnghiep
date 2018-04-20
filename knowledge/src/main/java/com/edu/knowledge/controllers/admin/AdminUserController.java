@@ -141,4 +141,12 @@ public class AdminUserController {
 		modelAndView.addObject("users", users);
 		return modelAndView;
 	}
+	
+	@RequestMapping(value="/changeprofile", method=RequestMethod.GET)
+	public ModelAndView updateProfile() {
+		ModelAndView mav = new ModelAndView("admin_change_profile");
+		User user = new User();
+		mav.addObject("user", user);
+		return mav;
+	}
 }

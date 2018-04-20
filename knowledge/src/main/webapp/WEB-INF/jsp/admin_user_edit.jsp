@@ -10,7 +10,7 @@
           <div class="">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="page-header">Cập nhật thông tin thành viên</h2>
+                    <h3 class="page-header">Cập nhật thông tin thành viên</h3>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

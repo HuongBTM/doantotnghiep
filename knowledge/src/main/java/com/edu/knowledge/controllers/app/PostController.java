@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class PostController {
 
 	@RequestMapping(value="/detail/{id}", method=RequestMethod.GET)
-	public ModelAndView questionDetail(@PathVariable("id") int id) {
+	public ModelAndView postDetail(@PathVariable("id") int id) {
 		ModelAndView model = new ModelAndView("post_detail");
 		return model;
 	}

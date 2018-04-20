@@ -15,11 +15,7 @@
 
     <div class="inner-content clearfix">
         <div id="question-header">
-           <h1 itemprop="name">
-           	<a href="#" class="question-hyperlink">How to use spring boot security for custom login page without configuration?</a></h1>
-            <div class="pl8 aside-cta" role="navigation" aria-label="ask new question">
-        		<a href="/questions/ask" class="ws-nowrap btn">Ask Question</a>
-			</div>
+           <h1 itemprop="name">How to use spring boot security for custom login page without configuration?</h1>
 		</div>
         <div id="mainbar" role="main" aria-label="question and answers">
             <div class="question-detail" data-questionid="43651814" id="question">
@@ -101,27 +97,8 @@
 					<div id="comments-link-43651814" data-rep="50" data-reg="true"></div>         
     			</div>        
     		</div>
-		</div>
+			</div>
         	<div id="answers">
-				<a name="tab-top"></a>
-	             <div id="answers-header">
-	                 <div class="subheader answers-subheader">
-	                     <h2 data-answercount="3" style="line-height: 20px;">
-	                        3 Answers
-	                        <span style="display:none;" itemprop="answerCount">3</span>
-	                     </h2>
-	                     <div>
-	                         <div id="tabs">
-	     						<a href="/oldest" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest" data-shortcut="O">
-				            oldest</a>
-				        <a class="youarehere" href="/tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes" data-shortcut="V">
-				            votes</a>
-				    </div>
-	                     </div>
-	                 </div>
-	             </div>
-	             
-						
 
 				<a name="new-answer"></a>
 				<h3 class="space">Đặt câu hỏi về bài viết này?</h3>

@@ -36,4 +36,11 @@ public class UserController {
 		return userService.getOne(userId);
 	}
 	
+	@RequestMapping(value="/changeprofile", method=RequestMethod.GET)
+	public ModelAndView updateProfile() {
+		ModelAndView mav = new ModelAndView("change_profile");
+		User user = new User();
+		mav.addObject("user", user);
+		return mav;
+	}
 }

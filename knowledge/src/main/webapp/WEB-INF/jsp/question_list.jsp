@@ -3,29 +3,23 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <jsp:include page="header.jsp"></jsp:include>
 
-<div class="container-question">
-	<div id="content" class="snippet-hidden">
+<div class="question-container _full ">
+<div id="question-content" class="snippet-hidden">
+
+    <div class="inner-content clearfix">
+    	<div id="question-header">
+           <h1 itemprop="name">Câu hỏi</h1>
+		</div>
 		<div id="mainbar" role="main" aria-labelledby="h-all-questions">
-			<div class="subheader">
-				<h1 id="h-all-questions">Câu hỏi</h1>
-				<div id="tabs">
-					<a href="/questions?sort=newest" data-nav-xhref="" title="The most recently asked questions" data-value="newest" 
-					data-shortcut="N">Mới nhất</a> 
-					<!-- <a href="/questions?sort=featured" data-nav-xhref="" 
-						title="Questions with open bounties" data-value="featured" data-shortcut="E"> 
-						<span class="bounty-indicator-tab"></span>Hay nhất</a>  -->
-					<a class="youarehere " href="/questions?sort=frequent" data-nav-xhref="" 
-						title="Questions with the most links" 
-						data-value="frequent" data-shortcut="F"> Hot nhất</a> 
-					<a href="/questions?sort=votes" data-nav-xhref="" title="Questions with the most votes"
-						data-value="votes" data-shortcut="V"> Nhiều vote</a> 
-					<!-- <a href="/questions?sort=active" data-nav-xhref="" title="Questions that have recent activity"
-						data-value="active" data-shortcut="A"> active</a> --> 
-					<a id="tab-switch" href="/question/unanswered" data-nav-xhref="" 
-						title="Switch to unanswered tabs" data-value="" data-shortcut=""> unanswered</a>
-				</div>
-			</div>
-			<div id="questions">
+		<div class="nav-tabs-custom">
+	        <ul class="nav nav-tabs">
+	          <li><a href="#newquestions" data-toggle="tab">Mới nhất</a></li>
+	          <li class="active"><a href="#hotquestion" data-toggle="tab">Nổi bật</a></li>
+	          <li><a href="#votesquestions" data-toggle="tab">Nhiều vote</a></li>
+	          <li><a href="#noanswer" data-toggle="tab">Chưa trả lời</a></li>
+	        </ul>
+			<div class="tab-content">
+		        <div class="active tab-pane" id="hotquestions">
 				<div class="question-summary tagged-interesting"
 					id="question-summary-218384">
 					<div class="statscontainer">
@@ -194,20 +188,47 @@
 
 				</div>
 			</div>
+			</div>
 		</div>
-		<div class="module" id="interesting-tags">
-        <h4 id="h-interesting-tags">Chủ đề nổi bật</h4>
-        <div id="interestingTags"><a href="https://stackoverflow.com/questions/tagged/java" class="post-tag user-tag" title="show questions tagged &#39;java&#39;" rel="tag">java</a> 
-			<a href="/questions/tagged/javascript" class="post-tag user-tag" title="show questions tagged &#39;javascript&#39;" rel="tag">javascript</a>
-			<a href="/questions/tagged/json" class="post-tag user-tag" title="show questions tagged &#39;json&#39;" rel="tag">json</a>
-			<a href="/questions/tagged/angularjs" class="post-tag user-tag" title="show questions tagged &#39;angularjs&#39;" rel="tag">angularjs</a> 
-			<a href="/questions/tagged/database" class="post-tag user-tag" title="show questions tagged &#39;database&#39;" rel="tag">database</a>
-		</div><div id="interestingTags">
-			<a href="/questions/tagged/google-app-engine" class="post-tag user-tag" title="show questions tagged &#39;google-app-engine&#39;" rel="tag"><!--<img src="./Frequent Questions - Stack Overflow_files/vobok.png" height="16" width="18" alt="" class="sponsor-tag-img">-->google-app-engine</a>
-			<a href="/questions/tagged/jquery" class="post-tag user-tag" title="show questions tagged &#39;jquery&#39;" rel="tag">jquery</a> 
-			<a href="/questions/tagged/performance" class="post-tag user-tag" title="show questions tagged &#39;performance&#39;" rel="tag">performance</a> 
 		</div>
-        </div>
+		
+		<!-- right content -->
+       	<div id="sidebar" class="show-votes" role="complementary" aria-label="sidebar">  
+       		<div class="module community-bulletin" data-tracker="cb=1">
+			<div class="widget widget_tag_cloud">
+			  <h3 class="widget_title">Chủ đề</h3>
+			  <%-- <c:forEach var="tag" items=""> --%>
+			    <a href="<c:url value="/tag/" />">Tên chủ đề</a>
+			    <a href="<c:url value="/tag/" />">Java</a>
+			    <a href="<c:url value="/tag/" />">Question</a>
+			    <a href="<c:url value="/tag/" />">Test</a>
+			    <a href="<c:url value="/tag/" />">Cuộc đua số</a>
+			  <%-- </c:forEach> --%>
+			</div>
+         	</div>                        
+			<div class="module community-bulletin" data-tracker="cb=1">
+			<div class="widget widget_highest_points">
+				<div class="sidebar-related">
+                    <h3 class="widget_title">Top Point</h3>
+					  <ul>
+					    <%-- <c:forEach var="topUser" items=""> --%>
+					    <li>
+					      <div class="author-img">
+					        <a href="<c:url value="/user/" />">
+					          <%-- <img width="60" height="60" src="<c:url value="/upload/" />" alt=""> --%>
+					        </a>
+					      </div> 
+					      <h6><a href="<c:url value="/user/" />">User name</a></h6>
+					      <span class="comment"> point</span>
+					    </li>
+					    <%-- </c:forEach> --%>
+					  </ul>
+				</div>
+			</div>
+         </div>
+         
+    </div>
+	</div>
 	</div>
 	</div>
 <jsp:include page="footer.jsp"></jsp:include>
