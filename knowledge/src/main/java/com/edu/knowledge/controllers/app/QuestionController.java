@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.edu.knowledge.entities.Answer;
+import com.edu.knowledge.entities.Comment;
 import com.edu.knowledge.entities.Question;
 import com.edu.knowledge.entities.Topic;
 import com.edu.knowledge.services.QuestionService;
@@ -71,9 +73,15 @@ public class QuestionController {
 		return model;
 	}
 	
-	@RequestMapping(value="/detail/{id}", method=RequestMethod.GET)
+	@RequestMapping(value="/{id}/detail", method=RequestMethod.GET)
 	public ModelAndView questionDetail(@PathVariable("id") int id) {
 		ModelAndView model = new ModelAndView("question_detail");
+		Question question = questionService.getOne(id);
+		Answer answer = new Answer();
+		Comment comment = new Comment();
+		model.addObject("question", question);
+		model.addObject("answer", answer);
+		model.addObject("comment",comment);
 		return model;
 	}
 }

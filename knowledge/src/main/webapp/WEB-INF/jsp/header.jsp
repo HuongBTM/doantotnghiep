@@ -38,7 +38,6 @@
           <li><a href="/app/home"><i class="fa fa-home"></i> Home</a><div></div></li>
           <li><a href="/app/question/all"><i class="fa fa-question-circle"></i> Câu hỏi</a><div></div></li>
           <li><a href="/app/post/all"><i class= "fa fa-file-text-o"></i> Bài viết</a></li>
-          <!-- <li><a href="/notification"><i class="fa fa-bell"></i> Thông báo</a></li> -->
           <li role="presentation" class="navbar-nav dropdown">
               <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                 <i class="fa fa-bell"></i> Thông báo
@@ -91,7 +90,7 @@
 	        </ul>
 	      </li>
 	      <!-- <li><a href="#" data-target="#login" data-toggle="modal">Sign in</a></li> -->
-          <li class="btn-ask"><a href="/question/ask">Đặt câu hỏi</a></li>
+          <li class="btn-ask"><a href="/app/question/ask">Đặt câu hỏi</a></li>
         </ul>
       </div>
     </div>

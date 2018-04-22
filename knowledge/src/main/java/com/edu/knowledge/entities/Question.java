@@ -54,9 +54,6 @@ public class Question implements Serializable {
 	@Column(name="downvotes")
 	private Integer downvotes;
 	
-	@Column(name="link")
-	private String linkPost;
-	
 	@Column(name="ngay_dang")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date creatAt;
@@ -169,14 +166,6 @@ public class Question implements Serializable {
 		this.downvotes = downvotes;
 	}
 
-	public String getLinkPost() {
-		return linkPost;
-	}
-
-	public void setLinkPost(String linkPost) {
-		this.linkPost = linkPost;
-	}
-
 	public Date getCreatAt() {
 		return creatAt;
 	}
@@ -216,21 +205,20 @@ public class Question implements Serializable {
 	}
 
 	public Question(String title, String questionContent, Integer views, Integer upvotes, Integer downvotes,
-			String linkPost, Date creatAt, Date lastEditAt, User user) {
+			Date creatAt, Date lastEditAt, User user) {
 		super();
 		this.title = title;
 		this.questionContent = questionContent;
 		this.views = views;
 		this.upvotes = upvotes;
 		this.downvotes = downvotes;
-		this.linkPost = linkPost;
 		this.creatAt = creatAt;
 		this.lastEditAt = lastEditAt;
 		this.user = user;
 	}
 
 	public Question(String title, String questionContent, Integer views, Integer upvotes, Integer downvotes,
-			String linkPost, Date creatAt, Date lastEditAt, User user, Post post, Set<Answer> answers,
+			Date creatAt, Date lastEditAt, User user, Post post, Set<Answer> answers,
 			@NotEmpty Set<Topic> topics) {
 		super();
 		this.title = title;
@@ -238,7 +226,6 @@ public class Question implements Serializable {
 		this.views = views;
 		this.upvotes = upvotes;
 		this.downvotes = downvotes;
-		this.linkPost = linkPost;
 		this.creatAt = creatAt;
 		this.lastEditAt = lastEditAt;
 		this.user = user;

@@ -1,5 +1,6 @@
 package com.edu.knowledge.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,10 @@ public class AnswerService {
 	
 	public List<Answer> getAll() {
 		return answerRepositery.findAll();
+	}
+	
+	public Answer createAnswer(Answer answer) {
+		answer.setCreatAt(new Date());
+		return answerRepositery.save(answer);
 	}
 }

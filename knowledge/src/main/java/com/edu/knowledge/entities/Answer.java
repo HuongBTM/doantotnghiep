@@ -20,7 +20,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotEmpty;
 
 import com.edu.knowledge.utils.TimeUtil;
 
@@ -42,16 +41,13 @@ public class Answer implements Serializable{
 	private String answerContent;
 	
 	@Column(name="luot_view")
-	private Integer views;
+	private Integer views=1;
 	
 	@Column(name="upvotes")
-	private Integer upvotes;
+	private Integer upvotes = 0;
 	
 	@Column(name="downvotes")
-	private Integer downvotes;
-	
-	@Column(name="link")
-	private String linkPost;
+	private Integer downvotes = 0;
 	
 	@Column(name="ngay_dang")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -72,7 +68,6 @@ public class Answer implements Serializable{
 	@OneToMany(mappedBy = "answer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Comment> comments;
 	
-	@NotEmpty
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "tbl_chi_tiet_vote", 
              joinColumns = { @JoinColumn(name = "id_cau_tra_loi") }, 
@@ -82,14 +77,13 @@ public class Answer implements Serializable{
 	public Answer() {
 	}
 
-	public Answer(String answerContent, Integer views, Integer upvotes, Integer downvotes, String linkPost,
+	public Answer(String answerContent, Integer views, Integer upvotes, Integer downvotes,
 			Date creatAt, Date lastEditAt, User user, Question question, Set<Comment> comments) {
 		super();
 		this.answerContent = answerContent;
 		this.views = views;
 		this.upvotes = upvotes;
 		this.downvotes = downvotes;
-		this.linkPost = linkPost;
 		this.creatAt = creatAt;
 		this.lastEditAt = lastEditAt;
 		this.user = user;
@@ -135,14 +129,6 @@ public class Answer implements Serializable{
 
 	public void setDownvotes(Integer downvotes) {
 		this.downvotes = downvotes;
-	}
-
-	public String getLinkPost() {
-		return linkPost;
-	}
-
-	public void setLinkPost(String linkPost) {
-		this.linkPost = linkPost;
 	}
 
 	public Date getCreatAt() {
