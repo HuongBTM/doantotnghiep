@@ -11,7 +11,7 @@
 
     <div class="inner-content clearfix">
         <div id="question-header">
-           <h1 itemprop="name">${post.postTitle}</h1>
+           <h1 itemprop="name"><b>${post.postTitle}</b></h1>
 		</div>
         <div id="mainbar" role="main" aria-label="question and answers">
             <div class="question-detail" data-questionid="43651814" id="question">
@@ -20,12 +20,16 @@
     					<div class="post-text" itemprop="text">
 							<p>${post.postContent }</p>
     					</div>
-    					<div class="post-taglist">
-        				<c:forEach items="${post.topics}" var="topic">
-        					<a href="/app/topic/detail/{topic.topicId}" class="post-tag js-gps-track" title="${topic.topicDescribe }" rel="tag">${topic.topicName }</a> 
-        				</c:forEach>
-    					</div>
-    					<div class="grid mb0 fw-wrap ai-start jc-end gs8 gsy">
+    					<div id="tag-lst" style="width: 400px; float: left">
+				              <span class="question-category">
+				              	<c:forEach var="topic" items="${post.topics}">
+						            <button type="button" class="btn btn-default btn-xs" style="background-color: #b4d3ea; border-color: #b4d3ea;">
+						              <a href="/app/topic/${topic.topicId }/detail"><i class="fa fa-tag"></i> ${topic.topicName}</a>
+						            </button>
+						          </c:forEach>
+				              </span>
+			              </div>
+    					<div class="grid mb0 fw-wrap ai-start jc-end gs8 gsy" style="clear: both">
     						<div class="grid--cell mr16" style="flex: 1 1 100px;">
 								<div class="post-menu">
 									<a href="/posts/43651814/edit" class="suggest-edit-post" title="revise and improve this post">Chỉnh sửa</a>
@@ -40,7 +44,7 @@
 								        <a href=""><div class="gravatar-wrapper-32"><img src="/resources/assets/img/1.png" alt="" width="32" height="32"></div></a>
 								    </div>
 								    <div class="user-details">
-								        <a href="/user/${post.user.userId }/detail">${post.user.fullname }</a>
+								        <a href="/app/user/${post.user.userId }/info">${post.user.fullname }</a>
 								        <div class="-flair">
 								            <span class="reputation-score" title="reputation score " dir="ltr">68</span>
 								            <!-- <span title="3 silver badges">
@@ -75,9 +79,7 @@
 							</span>
 							<span class="question-date"><i class="fa fa-clock-o"></i> ${post.ago}</span>
 				              <span class="question-comment">
-				                <a href="<c:url value="/question/detail/" />">
-				                  <i class="fa fa-comment"></i> ${fn:length(question.answers)} câu trả lời
-				                </a>
+				                  <i class="fa fa-comment"></i> ${fn:length(post.questions)} câu hỏi
 				              </span>
 				              <span class="question-view"><i class="fa fa-eye"></i> ${post.views } lượt xem</span>
 				              <div class="clearfix"></div>

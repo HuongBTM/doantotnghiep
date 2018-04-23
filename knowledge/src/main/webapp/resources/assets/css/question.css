@@ -440,7 +440,7 @@
     float: left;
     display: block;
 }
-.question-upvote, .question-downvote, .question-date, .question-view, .question-favorite, .question-reply, .question-category a, .question-comment a{
+.question-upvote, .question-downvote, .question-date, .question-view, .question-favorite, .question-reply, .question-category a, .question-comment {
     font-size: 13px;
     color: #2f3239;
 }

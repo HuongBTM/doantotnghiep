@@ -70,4 +70,8 @@ public class PostService {
 	public List<Post> search(String q) {
 		return postRepositery.search(q);
 	}
+	
+	public List<Post> findLast(int limit) {
+		return postRepositery.findLast(limit);
+	}
 }

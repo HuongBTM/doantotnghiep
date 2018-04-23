@@ -102,11 +102,10 @@
                 </ul>
               </div>
               <div class="menu_section">
-                <h3>Cài đặt</h3>
+                <h3>Giao diện</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
-                    </li>
-                             
+                  <li><a><i class="fa fa-bug"></i> Giao diện ứng dụng </a></li>
+                  <li><a><i class="fa fa-bug"></i> Giao diện chuyên gia </a></li>
                   <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Thống kê <span class="label label-success pull-right">Coming Soon</span></a></li>
                 </ul>
               </div>
@@ -148,9 +147,9 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Profile</a></li>
+                    <li><a href="javascript:;">Profile</a></li>
                     <li><a href="javascript:;">Help</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i>Log Out</a></li>
                   </ul>
                 </li>
 

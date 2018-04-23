@@ -1,5 +1,7 @@
 package com.edu.knowledge.controllers.app;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,5 +30,13 @@ public class PostController {
 		model.addObject("post", post);
 		model.addObject("question", question);
 		return model;
+	}
+	
+	@RequestMapping(value="/all", method=RequestMethod.GET)
+	public ModelAndView allPost() {
+		ModelAndView mav = new ModelAndView("post_list");
+		List<Post> newPosts = postService.findAll();
+		mav.addObject("newPosts", newPosts);
+		return mav;
 	}
 }

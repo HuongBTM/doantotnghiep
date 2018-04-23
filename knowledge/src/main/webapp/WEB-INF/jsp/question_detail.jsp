@@ -12,7 +12,7 @@
 
     <div class="inner-content clearfix">
         <div id="question-header">
-           <h1 itemprop="name">${question.title}</h1>
+           <h1 itemprop="name"><b>${question.title}</b></h1>
 		</div>
         <div id="mainbar" role="main" aria-label="question and answers">
             <div class="question-detail" data-questionid="43651814" id="question">
@@ -26,13 +26,16 @@
 								<em>Linh bài viết:<a href="/app/post/${question.post.postId }/detail"> ${question.post.postTitle}</a></em>
 	    					</div>
     					</c:if>
-    					<div class="post-taglist">
-    					<c:forEach items="${question.topics}" var="topic">
-        					<a href="/app/topic/detail/{topic.topicId}" class="post-tag js-gps-track" title="${topic.topicDescribe }" rel="tag">${topic.topicName }</a> 
-        				</c:forEach>
-        				
-    					</div>
-    					<div class="grid mb0 fw-wrap ai-start jc-end gs8 gsy">
+    					<div id="tag-lst" style="width: 400px; float: left">
+				              <span class="question-category">
+				              	<c:forEach var="topic" items="${question.topics}">
+						            <button type="button" class="btn btn-default btn-xs" style="background-color: #b4d3ea; border-color: #b4d3ea;">
+						              <a href="/app/topic/${topic.topicId }/detail"><i class="fa fa-tag"></i> ${topic.topicName}</a>
+						            </button>
+						          </c:forEach>
+				              </span>
+			              </div>
+    					<div class="grid mb0 fw-wrap ai-start jc-end gs8 gsy" style="clear: both">
     						<div class="grid--cell mr16" style="flex: 1 1 100px;">
 								<div class="post-menu">
 									<a href="/app/question/${question.questionId}/edit" class="suggest-edit-post" title="revise and improve this post">Chỉnh sửa</a>
@@ -44,10 +47,10 @@
 	        							Ngày đăng <span title="2017-04-27 07:54:43Z" class="relativetime">${question.creatAt}</span>
 	    							</div>
 	    							<div class="user-gravatar32">
-								        <a href=""><div class="gravatar-wrapper-32"><img src="/resources/assets/img/1.png" alt="" width="32" height="32"></div></a>
+								        <a href=""><div class="gravatar-wrapper-32"><img src="/resources/assets/img/${question.user.image}" alt="" width="32" height="32"></div></a>
 								    </div>
 								    <div class="user-details">
-								        <a href="/user/${question.user.userId }/detail">${question.user.fullname}</a>
+								        <a href="/app/user/${question.user.userId }/info">${question.user.fullname}</a>
 								        <div class="-flair">
 								            <span class="reputation-score" title="reputation score " dir="ltr">68</span>
 								            
@@ -113,9 +116,12 @@
 	        				<div class="votecell post-layout--left">
 	            				<div class="vote">
 							        <input type="hidden" name="_id_" value="43652564">
-									<span><i class="fa fa-chevron-circle-up"></i>Upvote</span>
-							        <span itemprop="upvoteCount" class="vote-count-post ">1</span>
-									<span><i class="fa fa-chevron-circle-up"></i>Downvote</span>									
+									<div><button class="btn btn-default" style="width: 45px; height: 45px; padding: 0px;"><div>
+										<i class="glyphicon glyphicon-triangle-top" style="font-size: 25px; color: #7b7676"></i></div>
+										<span><strong> ${question.upvotes }</strong></span></button></div>
+									<div style="clear: both; padding-top: 10px"><button class="btn btn-default" style="width: 45px; height: 45px; padding: 0px;">
+										<span><strong> ${question.downvotes }</strong></span>
+										<i class="glyphicon glyphicon-triangle-bottom" style="font-size: 25px; color: #7b7676"></i></button></div>								
 								</div>
 							</div>
 							<div class="answercell post-layout--right">
@@ -134,10 +140,10 @@
 										        Ngày đăng <span title="2017-04-27 08:29:54Z" class="relativetime">${answer.creatAt }</span>
 											 </div>
 										    <div class="user-gravatar32">
-										        <a href=""><div class="gravatar-wrapper-32"><img src="/resources/assets/img/1.png" alt="" width="32" height="32"></div></a>
+										        <a href=""><div class="gravatar-wrapper-32"><img src="/resources/assets/img/${answer.user.image }" alt="" width="32" height="32"></div></a>
 										    </div>
 										    <div class="user-details">
-										        <a href="/app/user/${answer.user.userId }/detail">${answer.user.fullname }</a>
+										        <a href="/app/user/${answer.user.userId }/info">${answer.user.fullname }</a>
 										        <div class="-flair">
 										            <span class="reputation-score" title="reputation score " dir="ltr">847</span>
 										        </div>
@@ -159,7 +165,7 @@
 									        <div class="comment-text js-comment-text-and-form">
 									            <div style="display: block;" class="comment-body">
 									                <span class="comment-copy">${comment.cmtContent }</span>
-									                    –&nbsp;<a href="/app/user/${comment.user.userId }" title="68 reputation" class="comment-user owner">${comment.user.fullname }</a>
+									                    –&nbsp;<a href="/app/user/${comment.user.userId }/info" title="68 reputation" class="comment-user owner">${comment.user.fullname }</a>
 									                <span class="comment-date" dir="ltr">
 										                <a class="comment-link" href="/74352620_43652564">
 										                	<span title="2017-04-27 08:33:38Z" class="relativetime-clean">${comment.creatAt }</span>

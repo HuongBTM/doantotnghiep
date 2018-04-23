@@ -73,7 +73,7 @@
                   </span>
                 </div>
                 <!-- /.user-block -->
-                <p>${question.questionContent}</p>
+                <p>${question.summary}</p>
                 <ul class="list-inline">
                   <li>
                     <a href="<c:url value="/admin/question/detail/${question.questionId}" />" class="link-black text-sm">
@@ -132,7 +132,7 @@
                   </span>
                 </div>
                 <!-- /.user-block -->
-                <p>${post.postContent}</p>
+                <p>${post.summary}</p>
                 <ul class="list-inline">
                   <li>
                     <a href="<c:url value="/admin/post/detail/${post.postId}" />" class="link-black text-sm">
@@ -155,7 +155,7 @@
   <!-- /.row -->
   
 </div>
-	</div>
-	<!-- /#wrapper -->
-    <!-- jQuery -->
+</div>
+<!-- /#wrapper -->
+<!-- jQuery -->
 <jsp:include page="admin_footer.jsp"></jsp:include>

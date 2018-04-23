@@ -32,4 +32,7 @@ public interface PostRepositery extends JpaRepository<Post, Integer>{
 	
 	@Query("SELECT p FROM Post p WHERE p.postTitle LIKE CONCAT('%',:q,'%') OR p.postContent LIKE CONCAT('%',:q,'%')")
 	List<Post> search(@Param("q") String q);
+	
+	@Query("SELECT p FROM Post p ORDER BY p.postId DESC")
+	List<Post> findLast(int limit);
 }

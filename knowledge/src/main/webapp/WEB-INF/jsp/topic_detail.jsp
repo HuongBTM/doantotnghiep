@@ -14,7 +14,7 @@
     <div class="inner-content clearfix">
         <div id="question-header" style="display: flow-root;">
            <div class="topic-header">
-           		<h1 itemprop="name">${topic.topicName }</h1>
+           		<h1 itemprop="name"><b>${topic.topicName }</b></h1>
            	</div>
            <div class="topic-describe" style="font-size: 16px">
            		<p>${topic.topicDescribe}</p>
@@ -36,7 +36,7 @@
 		                  <img class="img-circle img-bordered-sm" 
 		                       src="<c:url value="/resources/assets/img/${question.user.image}" />" alt="user image">
 		                  <span class="username">
-		                    <a href="<c:url value="/admin/user/${question.user.userId}" />">${question.user.fullname}</a>
+		                    <a href="<c:url value="/app/user/${question.user.userId}/info" />">${question.user.fullname}</a>
 		                    <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
 		                  </span>
 		                  <span class="description">
@@ -53,6 +53,15 @@
 		                    </a>
 		                  </li>
 		                </ul>
+		                <div id="tag-lst" style="width: 400px; float: left">
+				              <span class="question-category">
+				              	<c:forEach var="topic" items="${question.topics}">
+						            <button type="button" class="btn btn-default btn-xs" style="background-color: #ccc">
+						              <a href="/app/topic/${topic.topicId }/detail"><i class="fa fa-tag"></i> ${topic.topicName}</a>
+						            </button>
+						          </c:forEach>
+				              </span>
+			              </div>
 		                <div id="noti" style="clear: both; padding-top: 10px;">
 			              	 <span class="question-upvote"><i class="glyphicon glyphicon-arrow-up"></i> ${question.upvotes } upvote</span>
 			              	 <span class="question-downvote"><i class="glyphicon glyphicon-arrow-down"></i> ${question.downvotes } downvote</span>
@@ -76,7 +85,7 @@
 		                  <img class="img-circle img-bordered-sm" 
 		                       src="<c:url value="/resources/assets/img/${post.user.image}" />" alt="user image">
 		                  <span class="username">
-		                    <a href="#">${post.user.fullname}</a>
+		                    <a href="/app/user/${post.user.userId }/info">${post.user.fullname}</a>
 		                    <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
 		                  </span>
 		                  <span class="description">
@@ -88,11 +97,21 @@
 		                <p>${post.summary}</p>
 		                <ul class="list-inline">
 		                  <li>
-		                    <a href="<c:url value="/app/post/${post.postId}/detail" />" class="link-black text-sm">
+		                    <a href="/app/post/${post.postId}/detail" class="link-black text-sm">
 		                      <i class="fa fa-share margin-r-5"></i> Xem chi tiết
 		                    </a>
 		                  </li>
 		                </ul>
+		                <div id="tag-lst" style="width: 400px; float: left">
+				              <span class="question-category">
+				              	<c:forEach var="topic" items="${post.topics}">
+						            <button type="button" class="btn btn-default btn-xs" style="background-color: #b4d3ea; border-color: #b4d3ea;">
+						              <a href="/app/topic/${topic.topicId }/detail"><i class="fa fa-tag"></i> ${topic.topicName}</a>
+						            </button>
+						          </c:forEach>
+				              </span>
+			              </div>
+		                
 		                <div id="noti" style="clear: both; padding-top: 10px;">
 			              	 <span class="question-upvote"><i class="glyphicon glyphicon-arrow-up"></i> ${post.upvotes } upvote</span>
 			              	 <span class="question-downvote"><i class="glyphicon glyphicon-arrow-down"></i> ${post.downvotes } downvote</span>
@@ -100,7 +119,7 @@
 				              <span class="question-comment">
 				                  <i class="fa fa-comment"></i> ${fn:length(post.questions)} câu hỏi
 				              </span>
-				              <span class="question-view"><i class="fa fa-eye"></i> ${question.views} lượt xem</span>
+				              <span class="question-view"><i class="fa fa-eye"></i> ${post.views} lượt xem</span>
 				              <div class="clearfix" style="background-color: #dedcdc;"></div>
 			              </div>
 		              </div>

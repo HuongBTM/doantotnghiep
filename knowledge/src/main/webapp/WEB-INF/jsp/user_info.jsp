@@ -53,65 +53,94 @@
         </ul>
         <div class="tab-content">
           <div class="active tab-pane" id="questions">
+          <c:choose>
+          <c:when test="${empty questions }">
+          	<c:out value="Không có câu hỏi nào."></c:out>
+          </c:when>
+          <c:otherwise>
             <c:forEach var="question" items="${questions}">
               <!-- Post -->
-              <div class="post">
-                <div class="user-block">
-                  <img class="img-circle img-bordered-sm" 
-                       src="<c:url value="/resources/assets/img/${user.image}" />" alt="user image">
-                  <span class="username">
-                    <a href="<c:url value="/admin/user/${user.userId}" />">${user.fullname}</a>
-                    <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                  </span>
-                  <span class="description">
-                    <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${question.creatAt}" />
-                  </span>
-                </div>
-                <!-- /.user-block -->
+              <div class="post" style="margin-bottom: 0px; margin-left: 10px; margin-right: 10px;">
+                <h4><b>${question.title }</b></h4>
                 <p>${question.questionContent}</p>
+                
                 <ul class="list-inline">
                   <li>
-                    <a href="<c:url value="/admin/question/detail/${question.questionId}" />" class="link-black text-sm">
+                    <a href="<c:url value="/app/question/${question.questionId}/detail" />" class="link-black text-sm">
                       <i class="fa fa-share margin-r-5"></i> Xem chi tiết
                     </a>
                   </li>
                 </ul>
+                <div id="tag-lst" style="width: 400px; float: left">
+		              <span class="question-category">
+		              	<c:forEach var="topic" items="${question.topics}">
+				            <button type="button" class="btn btn-default btn-xs" style="background-color: #b4d3ea; border-color: #b4d3ea;">
+				              <a href="/app/topic/${topic.topicId }/detail"><i class="fa fa-tag"></i> ${topic.topicName}</a>
+				            </button>
+				          </c:forEach>
+		              </span>
+	              </div>
+                <div id="noti" style="clear: both; padding-top: 10px;">
+	              	 <span class="question-upvote"><i class="glyphicon glyphicon-arrow-up"></i> ${question.upvotes } upvote</span>
+	              	 <span class="question-downvote"><i class="glyphicon glyphicon-arrow-down"></i> ${question.downvotes } downvote</span>
+		              <span class="question-date"><i class="fa fa-clock-o"></i> ${question.ago}</span>
+		              <span class="question-comment">
+		                  <i class="fa fa-comment"></i> ${fn:length(question.answers)} câu trả lời
+		              </span>
+		              <span class="question-view"><i class="fa fa-eye"></i> ${question.views} lượt xem</span>
+		              <span class="question-view" style="float: right"><a href="/app/user/${question.user.userId }/delete/question/${question.questionId}"><i class="fa fa-trash-o"></i></a></span>
+		              <span class="question-view" style="float: right"><a href="/app/user/${question.user.userId }/edit/question/${question.questionId}"><i class="fa fa-pencil"></i></a></span>
+		              <div class="clearfix" style="background-color: #dedcdc;"></div>
+	              </div>
               </div>
               <!-- /.post -->
             </c:forEach>
+            </c:otherwise>
+            </c:choose>
           </div>
           <!-- /.tab-pane -->
           <div class="tab-pane" id="answers">
+          <c:choose>
+          <c:when test="${empty answers }">
+          	<c:out value="Không có câu trả lời nào."></c:out>
+          </c:when>
+          <c:otherwise>
             <c:forEach var="answer" items="${answers}">
               <!-- Post -->
-              <div class="post">
-                <div class="user-block">
-                  <img class="img-circle img-bordered-sm" 
-                       src="<c:url value="/resources/assets/img/${answer.user.image}" />" alt="user image">
-                  <span class="username">
-                    <a href="<c:url value="/admin/user/${answer.user.userId}" />">${answer.user.fullname}</a>
-                    <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                  </span>
-                  <span class="description">
-                    <fmt:formatDate pattern="dd-MM-yyyy HH:mm:ss" value="${answer.creatAt}" />
-                  </span>
-                </div>
-                <!-- /.user-block -->
+              <div class="post" style="margin-bottom: 0px; margin-left: 10px; margin-right: 10px;">
                 <p>${answer.answerContent}</p>
                 <ul class="list-inline">
                   <li>
-                    <a href="<c:url value="/admin/question/detail/${answer.question.questionId}" />" class="link-black text-sm">
+                    <a href="<c:url value="/app/question/${answer.question.questionId}/detail" />" class="link-black text-sm">
                       <i class="fa fa-share margin-r-5"></i> Xem chi tiết
                     </a>
                   </li>
                 </ul>
-              </div>
+                <div id="noti" style="clear: both; padding-top: 10px;">
+	              	 <span class="question-upvote"><i class="glyphicon glyphicon-arrow-up"></i> ${answer.upvotes } upvote</span>
+	              	 <span class="question-downvote"><i class="glyphicon glyphicon-arrow-down"></i> ${answer.downvotes } downvote</span>
+		              <span class="question-date"><i class="fa fa-clock-o"></i> ${answer.ago}</span>
+		              <span class="question-comment">
+		                  <i class="fa fa-comment"></i> ${fn:length(answer.comments)} comment
+		              </span>
+		              <span class="question-view" style="float: right"><a href="/app/user/${answer.user.userId }/delete/answer/${answer.answerId}"><i class="fa fa-trash-o"></i></a></span>
+		              <span class="question-view" style="float: right"><a href="/app/user/${answer.user.userId }/edit/answer/${answer.answerId}"><i class="fa fa-pencil"></i></a></span>
+		              <div class="clearfix" style="background-color: #dedcdc;"></div>
+	              </div>
+	            </div>
               <!-- /.post -->
             </c:forEach>
+            </c:otherwise>
+            </c:choose>
           </div>
           <!-- /.tab-pane -->
 
           <div class="tab-pane" id="posts">
+          <c:choose>
+          <c:when test="${empty posts }">
+          	<c:out value="Không có bài viết nào."></c:out>
+          </c:when>
+          <c:otherwise>
             <c:forEach var="post" items="${posts}">
               <!-- Post -->
               <div class="post">
@@ -138,6 +167,8 @@
               </div>
               <!-- /.post -->
             </c:forEach>
+            </c:otherwise>
+            </c:choose>
           </div>
           <!-- /.tab-pane -->
         </div>

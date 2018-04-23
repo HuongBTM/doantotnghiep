@@ -18,9 +18,9 @@
 			<div class="layout_3col_left" id="home_feed_left_col">
 				<div class="row section" style='position: fixed'>
 					<div class="EditableList HomeNavList NavList" id="feed_edit">
-						<a href="#" class="nav-tabs-dropdown btn btn-block btn-success">Feed</a>
-						<a href="#" class="nav-tabs-dropdown btn btn-block btn-default">Câu hỏi mới</a>
-						<a href="#" class="nav-tabs-dropdown btn btn-block btn-default">Bài viết mới</a>
+						<a href="/app/home/feed" class="nav-tabs-dropdown btn btn-block btn-success">Feed</a>
+						<a href="/app/home/question" class="nav-tabs-dropdown btn btn-block btn-default">Câu hỏi mới</a>
+						<a href="/app/home/post" class="nav-tabs-dropdown btn btn-block btn-default">Bài viết mới</a>
 					</div>
 				</div>
 			</div>
@@ -30,10 +30,10 @@
 			        <c:forEach var="question" items="${questions}">
 			          <article class="question question-type-normal">
 			            <h2>
-			              <a href="<c:url value="/question/detail/${question.questionId}" />">${question.title}</a>
+			              <a href="<c:url value="/app/question/${question.questionId}/detail" />">${question.title}</a>
 			            </h2>
 			            <div class="question-author">
-			              <a href="<c:url value="/user/${question.user.userId}" />" title="${question.user.fullname}" class="question-author-img tooltip-n">
+			              <a href="<c:url value="/app/user/${question.user.userId}/info" />" title="${question.user.fullname}" class="question-author-img tooltip-n">
 			                <span></span><img alt="" src="<c:url value="/resources/assets/img/${question.user.image}" />">
 			              </a>
 			            </div>
@@ -45,7 +45,7 @@
 				              <span class="question-category">
 				              	<c:forEach var="topic" items="${question.topics}">
 						            <button type="button" class="btn btn-default btn-xs" style="background-color: #ccc">
-						              <i class="fa fa-tag"></i> ${topic.topicName}
+						              <a href="/app/topic/${topic.topicId }/detail"><i class="fa fa-tag"></i> ${topic.topicName}</a>
 						            </button>
 						          </c:forEach>
 				              </span>
@@ -55,9 +55,7 @@
 			              	 <span class="question-downvote"><i class="glyphicon glyphicon-arrow-down"></i> ${question.downvotes } downvote</span>
 				              <span class="question-date"><i class="fa fa-clock-o"></i> ${question.ago}</span>
 				              <span class="question-comment">
-				                <a href="<c:url value="/question/detail/${question.questionId}" />">
 				                  <i class="fa fa-comment"></i> ${fn:length(question.answers)} câu trả lời
-				                </a>
 				              </span>
 				              <span class="question-view"><i class="fa fa-eye"></i> ${question.views} lượt xem</span>
 				              <div class="clearfix"></div>
@@ -69,12 +67,13 @@
 					<div class="question-desc">Câu hỏi</div>
 					<div class="question-desc">Câu trả lời</div>
 					</div>
+					<!-- right column -->
 					<div id="sidebar" class="show-votes" role="complementary" aria-label="sidebar">  
 		       		<div class="module community-bulletin" data-tracker="cb=1">
 					<div class="widget widget_tag_cloud">
 					  <h3 class="widget_title">Chủ đề</h3>
 					  <%-- <c:forEach var="tag" items=""> --%>
-					    <a href="<c:url value="/tag/" />">Tên chủ đề</a>
+					    <a href="<c:url value="/tag/" />">Trí tuệ nhân tạo</a>
 					    <a href="<c:url value="/tag/" />">Java</a>
 					    <a href="<c:url value="/tag/" />">Question</a>
 					    <a href="<c:url value="/tag/" />">Test</a>
@@ -85,7 +84,7 @@
 					<div class="module community-bulletin" data-tracker="cb=1">
 					<div class="widget widget_highest_points">
 						<div class="sidebar-related">
-		                    <h3 class="widget_title">Top Point</h3>
+		                    <h3 class="widget_title">Chuyên gia hàng đầu</h3>
 							  <ul>
 							    <%-- <c:forEach var="topUser" items=""> --%>
 							    <li>

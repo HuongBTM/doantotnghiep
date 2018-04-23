@@ -36,7 +36,7 @@
 		                  <img class="img-circle img-bordered-sm" 
 		                       src="<c:url value="/resources/assets/img/${question.user.image}" />" alt="user image">
 		                  <span class="username">
-		                    <a href="<c:url value="/admin/user/${question.user.userId}" />">${question.user.fullname}</a>
+		                    <a href="<c:url value="/app/user/${question.user.userId}/info" />">${question.user.fullname}</a>
 		                    <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
 		                  </span>
 		                  <span class="description">
@@ -53,6 +53,12 @@
 		                    </a>
 		                  </li>
 		                </ul>
+		                <div class="tags t-java t-nullpointerexception">
+							<c:forEach items="${question.topics}" var="topic">
+							<a href="/app/topic/${topic.topicId }/detail"
+								class="post-tag" title="" rel="tag"><i class="fa fa-tag"></i>${topic.topicName }</a> 
+							</c:forEach>
+						</div>
 		                <div id="noti" style="clear: both; padding-top: 10px;">
 			              	 <span class="question-upvote"><i class="glyphicon glyphicon-arrow-up"></i> ${question.upvotes } upvote</span>
 			              	 <span class="question-downvote"><i class="glyphicon glyphicon-arrow-down"></i> ${question.downvotes } downvote</span>
@@ -84,7 +90,7 @@
 		                  <img class="img-circle img-bordered-sm" 
 		                       src="<c:url value="/resources/assets/img/${post.user.image}" />" alt="user image">
 		                  <span class="username">
-		                    <a href="#">${post.user.fullname}</a>
+		                    <a href="/app/user/${post.user.userId }/info">${post.user.fullname}</a>
 		                    <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
 		                  </span>
 		                  <span class="description">
@@ -101,6 +107,12 @@
 		                    </a>
 		                  </li>
 		                </ul>
+		                <div class="tags t-java t-nullpointerexception">
+							<c:forEach items="${post.topics}" var="topic">
+							<a href="/app/topic/${topic.topicId }/detail"
+								class="post-tag" title="" rel="tag"><i class="fa fa-tag"></i>${topic.topicName }</a> 
+							</c:forEach>
+						</div>
 		                <div id="noti" style="clear: both; padding-top: 10px;">
 			              	 <span class="question-upvote"><i class="glyphicon glyphicon-arrow-up"></i> ${post.upvotes } upvote</span>
 			              	 <span class="question-downvote"><i class="glyphicon glyphicon-arrow-down"></i> ${post.downvotes } downvote</span>

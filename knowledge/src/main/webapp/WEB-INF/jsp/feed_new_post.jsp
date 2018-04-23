@@ -19,51 +19,50 @@
 				<div class="row section" style='position: fixed'>
 					<div class="EditableList HomeNavList NavList" id="feed_edit">
 						<a href="/app/home/feed" class="nav-tabs-dropdown btn btn-block btn-default">Feed</a>
-						<a href="/app/home/question" class="nav-tabs-dropdown btn btn-block btn-success">Câu hỏi mới</a>
-						<a href="/app/home/post" class="nav-tabs-dropdown btn btn-block btn-default">Bài viết mới</a>
+						<a href="/app/home/question" class="nav-tabs-dropdown btn btn-block btn-default">Câu hỏi mới</a>
+						<a href="/app/home/post" class="nav-tabs-dropdown btn btn-block btn-success">Bài viết mới</a>
 					</div>
 				</div>
 			</div>
 			<div class="layout_3col_center" id="home_feed_center_col">
-			<!-- <div class="question-desc">Post</div> -->
-				  <div id="new-questions">
-			        <c:forEach var="question" items="${questions}">
-			          <article class="question question-type-normal">
-			            <h2>
-			              <a href="<c:url value="/app/question/${question.questionId}/detail" />">${question.title}</a>
-			            </h2>
-			            <div class="question-author">
-			              <a href="<c:url value="/app/user/${question.user.userId}/info" />" title="${question.user.fullname}" class="question-author-img tooltip-n">
-			                <span></span><img alt="" src="<c:url value="/resources/assets/img/${question.user.image}" />">
-			              </a>
-			            </div>
-			            <div class="question-inner">
+			  <div id="new-questions">
+		        <c:forEach var="post" items="${posts}">
+		          <article class="question question-type-normal">
+		            <h2>
+		              <a href="<c:url value="/app/post/${post.postId}/detail" />">${post.postTitle}</a>
+		            </h2>
+		            <div class="question-author">
+		              <a href="<c:url value="/app/user/${post.user.userId}/info" />" title="${post.user.fullname}" class="question-author-img tooltip-n">
+		                <span></span><img alt="" src="<c:url value="/resources/assets/img/${post.user.image}" />">
+		              </a>
+		            </div>
+		            <div class="question-inner">
+		              <div class="clearfix"></div>
+		              <div class="question-desc">${post.summary}
+		              </div>
+		              <div id="tag-lst" style="width: 400px; float: left">
+			              <span class="question-category">
+			              	<c:forEach var="topic" items="${post.topics}">
+					            <button type="button" class="btn btn-default btn-xs" style="background-color: #ccc">
+					              <a href="/app/topic/${topic.topicId }/detail"><i class="fa fa-tag"></i> ${topic.topicName}</a>
+					            </button>
+					          </c:forEach>
+			              </span>
+		              </div>
+		              <div id="noti" style="clear: both; padding-top: 10px;">
+		              	 <span class="question-upvote"><i class="glyphicon glyphicon-arrow-up"></i> ${post.upvotes } upvote</span>
+		              	 <span class="question-downvote"><i class="glyphicon glyphicon-arrow-down"></i> ${post.downvotes } downvote</span>
+			              <span class="question-date"><i class="fa fa-clock-o"></i> ${post.ago}</span>
+			              <span class="question-comment">
+			                  <i class="fa fa-comment"></i> ${fn:length(post.questions)} câu hỏi
+			              </span>
+			              <span class="question-view"><i class="fa fa-eye"></i> ${post.views} lượt xem</span>
 			              <div class="clearfix"></div>
-			              <div class="question-desc">${question.summary}
-			              </div>
-			              <div id="tag-lst" style="width: 400px; float: left">
-				              <span class="question-category">
-				              	<c:forEach var="topic" items="${question.topics}">
-						            <button type="button" class="btn btn-default btn-xs" style="background-color: #ccc">
-						              <a href="/app/topic/${topic.topicId }/detail"><i class="fa fa-tag"></i> ${topic.topicName}</a>
-						            </button>
-						          </c:forEach>
-				              </span>
-			              </div>
-			              <div id="noti" style="clear: both; padding-top: 10px;">
-			              	 <span class="question-upvote"><i class="glyphicon glyphicon-arrow-up"></i> ${question.upvotes } upvote</span>
-			              	 <span class="question-downvote"><i class="glyphicon glyphicon-arrow-down"></i> ${question.downvotes } downvote</span>
-				              <span class="question-date"><i class="fa fa-clock-o"></i> ${question.ago}</span>
-				              <span class="question-comment">
-				                  <i class="fa fa-comment"></i> ${fn:length(question.answers)} câu trả lời
-				              </span>
-				              <span class="question-view"><i class="fa fa-eye"></i> ${question.views} lượt xem</span>
-				              <div class="clearfix"></div>
-			              </div>
-			            </div>
-			          </article>
-			        </c:forEach>
-			      </div>
+		              </div>
+		            </div>
+		          </article>
+		        </c:forEach>
+		      </div>
 				  
 			</div>
 			<!-- right column -->
@@ -72,7 +71,7 @@
 			<div class="widget widget_tag_cloud">
 			  <h3 class="widget_title">Chủ đề</h3>
 			  <%-- <c:forEach var="tag" items=""> --%>
-			    <a href="<c:url value="/tag/" />">Trí tuệ nhân tạo</a>
+			    <a href="<c:url value="/app/topic/1/detail" />">Trí tuệ nhân tạo</a>
 			    <a href="<c:url value="/tag/" />">Java</a>
 			    <a href="<c:url value="/tag/" />">Question</a>
 			    <a href="<c:url value="/tag/" />">Test</a>
@@ -88,7 +87,7 @@
 					    <%-- <c:forEach var="topUser" items=""> --%>
 					    <li>
 					      <div class="author-img">
-					        <a href="<c:url value="/user/" />">
+					        <a href="<c:url value="/app/user/id/info" />">
 					          <%-- <img width="60" height="60" src="<c:url value="/upload/" />" alt=""> --%>
 					        </a>
 					      </div> 

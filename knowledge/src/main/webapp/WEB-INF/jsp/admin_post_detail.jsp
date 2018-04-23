@@ -50,11 +50,15 @@
 			        <div class="box-body">
 			        	<p><h3><b>${post.postTitle}</b></h3></p>
 			          <p>${post.postContent}</p>
-			          <c:forEach var="topic" items="${post.topics}">
-			            <button type="button" class="btn btn-default btn-xs" style="background-color: #ccc">
-			              <i class="fa fa-tag"></i> ${topic.topicName}
-			            </button>
-			          </c:forEach>
+			          <div id="tag-lst" style="width: 400px; float: left">
+				           <span class="question-category">
+			          		<c:forEach var="topic" items="${post.topics}">
+					            <button type="button" class="btn btn-default btn-xs" style="background-color: #ccc">
+					              <i class="fa fa-tag"></i> ${topic.topicName}
+					            </button>
+			          		</c:forEach>
+			          	</span>
+			          	</div>
 			        </div>
 			        <!-- /.box-body -->
 			      </div>

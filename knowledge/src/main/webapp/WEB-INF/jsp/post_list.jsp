@@ -11,19 +11,18 @@
 
     <div class="inner-content clearfix">
     	<div id="question-header">
-           <h1 itemprop="name">Câu hỏi</h1>
+           <h1 itemprop="name">Bài viết</h1>
 		</div>
 		<div id="mainbar" role="main" aria-labelledby="h-all-questions">
 		<div class="nav-tabs-custom">
 	        <ul class="nav nav-tabs">
-	          <li><a href="#allquestions" data-toggle="tab">Tất cả</a></li>
-	          <li class="active"><a href="#newquestions" data-toggle="tab">Mới nhất</a></li>
-	          <li><a href="#hotquestions" data-toggle="tab">Nổi bật</a></li>
-	          <li><a href="#noanswer" data-toggle="tab">Chưa trả lời</a></li>
+	          <li><a href="#allposts" data-toggle="tab">Tất cả</a></li>
+	          <li class="active"><a href="#newposts" data-toggle="tab">Mới nhất</a></li>
+	          <li><a href="#hotposts" data-toggle="tab">Nổi bật</a></li>
 	        </ul>
 			<div class="tab-content">
-		        <div class="active tab-pane" id="newquestions">
-				<c:forEach items="${newQuestions}" var="question">
+		        <div class="active tab-pane" id="newposts">
+				<c:forEach items="${newPosts}" var="post">
 				<div class="question-summary tagged-interesting"
 					id="question-summary-218384">
 					<div class="statscontainer">
@@ -31,26 +30,26 @@
 						<div class="stats">
 							<div class="vote">
 								<div class="votes">
-									<span class="vote-count-post "><strong>${question.upvotes}</strong></span>
+									<span class="vote-count-post "><strong>${post.upvotes}</strong></span>
 									<div class="viewcount">Upvote</div>
 								</div>
 							</div>
 							<div class="status answered-accepted">
-								<strong>${fn:length(question.answers)}</strong>Trả lời
+								<strong>${fn:length(post.questions)}</strong> câu hỏi
 							</div>
 						</div>
-						<div class="views supernova" title="7 views">${question.views }
+						<div class="views supernova" title="7 views">${post.views }
 							view</div>
 					</div>
 					<div class="summary">
 						<h3>
-							<a href="/app/question/${question.questionId }/detail"
-								class="question-hyperlink"><b>${question.title }</b></a>
+							<a href="/app/post/${post.postId }/detail"
+								class="question-hyperlink"><b>${post.postTitle }</b></a>
 						</h3>
-						<div class="excerpt">${question.summary }</div>
+						<div class="excerpt">${post.summary }</div>
 						<div id="tag-lst" style="width: 400px; float: left">
 				              <span class="question-category">
-				              	<c:forEach var="topic" items="${question.topics}">
+				              	<c:forEach var="topic" items="${post.topics}">
 						            <button type="button" class="btn btn-default btn-xs" style="background-color: #b4d3ea; border-color: #b4d3ea;">
 						              <a href="/app/topic/${topic.topicId }/detail"><i class="fa fa-tag"></i> ${topic.topicName}</a>
 						            </button>
@@ -60,17 +59,17 @@
 						<div class="started fr">
 							<div class="user-info user-hover">
 								<div class="user-action-time">
-									Ngày đăng <span title="2013-01-08 17:06:14Z" class="relativetime">${question.creatAt }</span>
+									Ngày đăng <span title="2013-01-08 17:06:14Z" class="relativetime">${post.creatAt }</span>
 								</div>
 								<div class="user-gravatar32">
-									<a href="/app/user/${question.user.userId }/info">
+									<a href="/app/user/${post.user.userId }/info">
 									<div class="gravatar-wrapper-32">
-											<img src="/resources/assets/img/${question.user.image }"
+											<img src="/resources/assets/img/${post.user.image }"
 												alt="" width="32" height="32">
 										</div></a>
 								</div>
 								<div class="user-details">
-									<a href="/app/user/${question.user.userId }/info">${question.user.fullname }</a>
+									<a href="/app/user/${post.user.userId }/info">${post.user.fullname }</a>
 									<div class="-flair">
 										<span class="reputation-score"
 											title="reputation score 493,596" dir="ltr">494</span><!-- <span
@@ -86,7 +85,7 @@
 					</div>
 				</div>
 				</c:forEach>
-
+				
 				<br class="cbt">
 				<div class="page-sizer fr">
 					<a

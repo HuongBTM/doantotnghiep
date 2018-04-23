@@ -31,11 +31,11 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/home">K<span>nowledge</span></a>
+        <a class="navbar-brand" href="/app/home/feed">K<span>nowledge</span></a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-left">
-          <li><a href="/app/home"><i class="fa fa-home"></i> Home</a><div></div></li>
+          <li><a href="/app/home/feed"><i class="fa fa-home"></i> Home</a><div></div></li>
           <li><a href="/app/question/all"><i class="fa fa-question-circle"></i> Câu hỏi</a><div></div></li>
           <li><a href="/app/post/all"><i class= "fa fa-file-text-o"></i> Bài viết</a></li>
           <li role="presentation" class="navbar-nav dropdown">
@@ -82,8 +82,9 @@
 			<li class="dropdown">
 		      <a class="dropdown-toggle btn-ask" data-toggle="dropdown" href="#"><i class= "fa fa-user"></i> UserName <span class="caret"></span></a>
 		        <ul class="dropdown-menu">
-		          <li><a href="#">Profile</a></li>
-		          <li><a href="#">Cập nhật thông tin</a></li>
+		          <li><a href="/app/user/1/info">Profile</a></li>
+		          <li><a href="/app/user/id/changeprofile">Cập nhật thông tin</a></li>
+		          <li><a href="/app/user/id/bookmark">Đánh dấu</a></li>
 		          <li role="separator" class="divider"></li>
                  <li><a href="/login">Đăng xuất &nbsp;<i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
 	        </ul>
