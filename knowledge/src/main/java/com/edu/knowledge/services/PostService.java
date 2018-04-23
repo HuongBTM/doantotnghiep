@@ -57,4 +57,17 @@ public class PostService {
 	public int deletePost(int id) {
 		return postRepositery.deletePost(id);
 	}
+	
+	@Transactional
+	public int updateView(int views, int postId) {
+		return postRepositery.updateView(views, postId);
+	}
+	
+	public List<Post> finsAllByTopic(int topicId) {
+		return postRepositery.findAllByTopic(topicId);
+	}
+	
+	public List<Post> search(String q) {
+		return postRepositery.search(q);
+	}
 }

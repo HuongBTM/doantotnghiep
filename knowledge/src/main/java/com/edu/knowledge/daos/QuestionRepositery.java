@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.edu.knowledge.entities.Question;
@@ -22,10 +23,20 @@ public interface QuestionRepositery extends JpaRepository<Question, Integer>{
 	@Query("SELECT q FROM Question q WHERE q.user.userId=?1")
 	List<Question> findAllByUser(int userId);
 	
-	//TODO
+	//TODO using limit
 	@Query("SELECT q FROM Question q ORDER BY q.questionId DESC")
 	List<Question> findLast(int limit);
 	
 	/*@Query("SELECT q FROM Question q LEFT JOIN fetch Answer a LEFT JOIN fetch a.user u WHERE u.userId=?1")
 	List<Question> getQuestionHaveUserAnswer(int userId);*/
+	
+	@Modifying
+	@Query("UPDATE Question q SET q.views=?1 WHERE q.questionId=?2")
+	int updateView(int views, int questionId);
+	
+	@Query("SELECT q FROM Question q LEFT JOIN fetch q.topics t WHERE t.topicId=?1")
+	List<Question> findAllByTopic(int topicId);
+	
+	@Query("SELECT q FROM Question q WHERE q.title LIKE CONCAT('%',:q,'%') OR q.questionContent LIKE CONCAT('%',:q,'%')")
+	List<Question> search(@Param("q") String q);
 }

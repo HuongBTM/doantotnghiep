@@ -51,23 +51,23 @@
 				              </span>
 			              </div>
 			              <div id="noti" style="clear: both; padding-top: 10px;">
-			              	 <span class="question-upvote"><i class="glyphicon glyphicon-arrow-up"></i> 3 upvote</span>
-			              	 <span class="question-downvote"><i class="glyphicon glyphicon-arrow-down"></i> 3 downvote</span>
+			              	 <span class="question-upvote"><i class="glyphicon glyphicon-arrow-up"></i> ${question.upvotes } upvote</span>
+			              	 <span class="question-downvote"><i class="glyphicon glyphicon-arrow-down"></i> ${question.downvotes } downvote</span>
 				              <span class="question-date"><i class="fa fa-clock-o"></i> ${question.ago}</span>
 				              <span class="question-comment">
 				                <a href="<c:url value="/question/detail/${question.questionId}" />">
-				                  <i class="fa fa-comment"></i> ${fn:length(question.answers)} answers
+				                  <i class="fa fa-comment"></i> ${fn:length(question.answers)} câu trả lời
 				                </a>
 				              </span>
-				              <span class="question-view"><i class="fa fa-eye"></i> ${question.views} views</span>
+				              <span class="question-view"><i class="fa fa-eye"></i> ${question.views} lượt xem</span>
 				              <div class="clearfix"></div>
 			              </div>
 			            </div>
 			          </article>
 			        </c:forEach>
 			      </div>
-					<div class="question-desc">Question</div>
-					<div class="question-desc">Answer</div>
+					<div class="question-desc">Câu hỏi</div>
+					<div class="question-desc">Câu trả lời</div>
 					</div>
 					<div id="sidebar" class="show-votes" role="complementary" aria-label="sidebar">  
 		       		<div class="module community-bulletin" data-tracker="cb=1">

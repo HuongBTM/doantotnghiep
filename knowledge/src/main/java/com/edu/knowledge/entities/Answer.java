@@ -40,9 +40,6 @@ public class Answer implements Serializable{
 	@Column(name="noi_dung_tra_loi")
 	private String answerContent;
 	
-	@Column(name="luot_view")
-	private Integer views=1;
-	
 	@Column(name="upvotes")
 	private Integer upvotes = 0;
 	
@@ -77,11 +74,10 @@ public class Answer implements Serializable{
 	public Answer() {
 	}
 
-	public Answer(String answerContent, Integer views, Integer upvotes, Integer downvotes,
+	public Answer(String answerContent, Integer upvotes, Integer downvotes,
 			Date creatAt, Date lastEditAt, User user, Question question, Set<Comment> comments) {
 		super();
 		this.answerContent = answerContent;
-		this.views = views;
 		this.upvotes = upvotes;
 		this.downvotes = downvotes;
 		this.creatAt = creatAt;
@@ -105,14 +101,6 @@ public class Answer implements Serializable{
 
 	public void setAnswerContent(String answerContent) {
 		this.answerContent = answerContent;
-	}
-
-	public Integer getViews() {
-		return views;
-	}
-
-	public void setViews(Integer views) {
-		this.views = views;
 	}
 
 	public Integer getUpvotes() {

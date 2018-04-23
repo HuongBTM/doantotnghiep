@@ -43,7 +43,7 @@ public class QuestionService {
 		question.setCreatAt(new Date());
 		question.setLastEditAt(new Date());
 		
-		//TODO get by current login
+		//TODO get by current login, set in controller
 		User user = userRepositery.getOne(1);
 		question.setUser(user);
 		
@@ -59,8 +59,21 @@ public class QuestionService {
 		return questionRepositery.findAllByUser(userId);
 	}
 	
+	//TODO
 	public List<Question> findLast(int limit) {
 		return questionRepositery.findLast(limit);
 	}
 	
+	@Transactional
+	public int updateViews(int views, int questionId) {
+		return questionRepositery.updateView(views, questionId);
+	}
+	
+	public List<Question> findAllByTopic(int topicId) {
+		return questionRepositery.findAllByTopic(topicId);
+	}
+	
+	public List<Question> search(String q) {
+		return questionRepositery.search(q);
+	}
 }

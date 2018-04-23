@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.edu.knowledge.entities.Post;
@@ -21,4 +22,14 @@ public interface PostRepositery extends JpaRepository<Post, Integer>{
 	@Modifying
 	@Query("DELETE FROM Post p WHERE p.postId=?1")
 	int deletePost(int id);
+	
+	@Modifying
+	@Query("UPDATE Post p SET p.views=?1 WHERE p.postId=?2")
+	int updateView(int views, int postId);
+	
+	@Query("SELECT p FROM Post p LEFT JOIN FETCH  p.topics t WHERE t.topicId=?1")
+	List<Post> findAllByTopic(int topicId);
+	
+	@Query("SELECT p FROM Post p WHERE p.postTitle LIKE CONCAT('%',:q,'%') OR p.postContent LIKE CONCAT('%',:q,'%')")
+	List<Post> search(@Param("q") String q);
 }

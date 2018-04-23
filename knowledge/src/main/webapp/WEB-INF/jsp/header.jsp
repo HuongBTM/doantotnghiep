@@ -70,23 +70,22 @@
        	 
        	 <ul class="nav navbar-nav navbar-right">
        	 <li>
-            <form class="navbar-form" role="search">
+            <form:form class="navbar-form" role="search" action="/app/search" method="Get">
             <div class="input-group">
-                <input type="text" class="form-control search-input" placeholder="Search" name="q">
+                <input type="text" class="form-control search-input" placeholder="Tìm kiếm..." name="q">
                 <div class="input-group-btn">
                     <button class="btn btn-default" type="submit" style='border-radius: 0px; padding: 9px; width: 34px; height: 34px;'><i class="fa fa-search"></i></button>
                 </div>
             </div>
-            </form>    
+            </form:form>    
        	 </li>
 			<li class="dropdown">
 		      <a class="dropdown-toggle btn-ask" data-toggle="dropdown" href="#"><i class= "fa fa-user"></i> UserName <span class="caret"></span></a>
 		        <ul class="dropdown-menu">
 		          <li><a href="#">Profile</a></li>
-		          <li><a href="#">Page 1-2</a></li>
-		          <li><a href="#">Page 1-3</a></li>
+		          <li><a href="#">Cập nhật thông tin</a></li>
 		          <li role="separator" class="divider"></li>
-                 <li><a href="/login">Logout &nbsp;<i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+                 <li><a href="/login">Đăng xuất &nbsp;<i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
 	        </ul>
 	      </li>
 	      <!-- <li><a href="#" data-target="#login" data-toggle="modal">Sign in</a></li> -->

@@ -179,7 +179,7 @@ public class Question implements Serializable {
     }
 	public String getSummary() {
 		if (questionContent.length() >= 200) {
-			return questionContent.substring(0, Constant.SUMMARY);
+			return questionContent.substring(0, Constant.SUMMARY) + "...";
 		} else {
 			return questionContent;
 		}

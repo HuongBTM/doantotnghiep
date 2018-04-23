@@ -14,7 +14,7 @@ public class TimeUtil {
         // Calculate
         long x = TimeUnit.MILLISECONDS.toSeconds(now.getTime() - past.getTime());
         long[] num = {31536000, 2592000, 604800, 86400, 3600, 60, 1};
-        String[] text = {"năm", "tháng", "tuần", "ngày", "giờ", "phútt", "giây"};
+        String[] text = {"năm", "tháng", "tuần", "ngày", "giờ", "phút", "giây"};
         String str = "";
 
         for (int i = 0; i < num.length; i++) {

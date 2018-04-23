@@ -21,10 +21,16 @@
     					<div class="post-text" itemprop="text">
 							<p>${question.questionContent}</p>
     					</div>
+    					<c:if test="${not empty question.post}">
+	        				<div class="post-text">
+								<em>Linh bài viết:<a href="/app/post/${question.post.postId }/detail"> ${question.post.postTitle}</a></em>
+	    					</div>
+    					</c:if>
     					<div class="post-taglist">
     					<c:forEach items="${question.topics}" var="topic">
         					<a href="/app/topic/detail/{topic.topicId}" class="post-tag js-gps-track" title="${topic.topicDescribe }" rel="tag">${topic.topicName }</a> 
         				</c:forEach>
+        				
     					</div>
     					<div class="grid mb0 fw-wrap ai-start jc-end gs8 gsy">
     						<div class="grid--cell mr16" style="flex: 1 1 100px;">
@@ -44,14 +50,7 @@
 								        <a href="/user/${question.user.userId }/detail">${question.user.fullname}</a>
 								        <div class="-flair">
 								            <span class="reputation-score" title="reputation score " dir="ltr">68</span>
-								            <!-- <span title="3 silver badges">
-									            <span class="badge2"></span>
-									            <span class="badgecount">3</span>
-								            </span>
-								            <span title="9 bronze badges">
-								            	<span class="badge3"></span>
-								            	<span class="badgecount">9</span>
-								            </span> -->
+								            
 								        </div>
 								    </div>
 								</div>
@@ -78,7 +77,7 @@
 				              <span class="question-comment">
 				                  <i class="fa fa-comment"></i> ${fn:length(question.answers)} câu trả lời
 				              </span>
-				              <span class="question-view"><i class="fa fa-eye"></i> ${question.views } views</span>
+				              <span class="question-view"><i class="fa fa-eye"></i> ${question.views } lượt xem</span>
 				              <div class="clearfix"></div>
 						</div>
 					</div>
@@ -197,9 +196,6 @@
 				<h3 class="space">Câu trả lời của bạn</h3>
 	            <form:form id="post-form" action="/app/question/${question.questionId }/answer/1/add" method="post" modelAttribute="answer">
 	            <form:textarea required="required" class="form-control" id="comment-contents" path="answerContent" cols="50" rows="8"></form:textarea>
-	                 <input type="hidden" id="post-id" value="43651814">
-	                 <input type="hidden" id="qualityBanWarningShown" name="qualityBanWarningShown" value="false">
-	                 <input type="hidden" name="referrer" value="https://www.google.com.vn/">
 	                 
 	                 <div style="position: relative;">
                  	<div class="col-md-10 col-sm-3 col-xs-12">

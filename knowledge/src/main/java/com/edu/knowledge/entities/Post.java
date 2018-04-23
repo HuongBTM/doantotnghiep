@@ -212,8 +212,8 @@ public class Post implements Serializable{
     }
 	
 	public String getSummary() {
-		if (postContent.length() >= 200) {
-			return postContent.substring(0, Constant.SUMMARY);
+		if (postContent.length() >= 400) {
+			return postContent.substring(0, Constant.SUMMARY) + ".....";
 		} else {
 			return postContent;
 		}
