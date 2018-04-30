@@ -212,7 +212,7 @@ public class Post implements Serializable{
     }
 	
 	public String getSummary() {
-		if (postContent.length() >= 400) {
+		if (postContent.length() >= 300) {
 			return postContent.substring(0, Constant.SUMMARY) + ".....";
 		} else {
 			return postContent;

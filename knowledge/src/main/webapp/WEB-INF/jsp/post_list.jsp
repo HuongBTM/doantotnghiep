@@ -42,7 +42,7 @@
 							view</div>
 					</div>
 					<div class="summary">
-						<h3>
+						<h3 style="margin-top: 0px">
 							<a href="/app/post/${post.postId }/detail"
 								class="question-hyperlink"><b>${post.postTitle }</b></a>
 						</h3>

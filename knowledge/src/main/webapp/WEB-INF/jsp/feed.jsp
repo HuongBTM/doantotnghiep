@@ -39,7 +39,7 @@
 			            </div>
 			            <div class="question-inner">
 			              <div class="clearfix"></div>
-			              <div class="question-desc">${question.questionContent}
+			              <div class="question-desc">${question.summary}
 			              </div>
 			              <div id="tag-lst" style="width: 400px; float: left">
 				              <span class="question-category">

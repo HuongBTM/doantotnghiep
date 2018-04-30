@@ -51,7 +51,7 @@
 			          	<p>${question.questionContent}</p>
 			          <c:forEach var="topic" items="${question.topics}">
 			            <button type="button" class="btn btn-default btn-xs" style="background-color: #ccc">
-			              <i class="fa fa-tag"></i> ${topic.topicName}
+			              <a href="/admin/topic/detail/${topic.topicId }"><i class="fa fa-tag"></i> ${topic.topicName}</a>
 			            </button>
 			          </c:forEach>
 			        </div>

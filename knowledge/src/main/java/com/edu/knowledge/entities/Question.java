@@ -178,7 +178,7 @@ public class Question implements Serializable {
         return TimeUtil.ago(creatAt);
     }
 	public String getSummary() {
-		if (questionContent.length() >= 200) {
+		if (questionContent.length() >= 300) {
 			return questionContent.substring(0, Constant.SUMMARY) + "...";
 		} else {
 			return questionContent;

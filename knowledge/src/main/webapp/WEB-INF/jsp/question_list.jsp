@@ -43,7 +43,7 @@
 							view</div>
 					</div>
 					<div class="summary">
-						<h3>
+						<h3 style="margin-top: 0px">
 							<a href="/app/question/${question.questionId }/detail"
 								class="question-hyperlink"><b>${question.title }</b></a>
 						</h3>
