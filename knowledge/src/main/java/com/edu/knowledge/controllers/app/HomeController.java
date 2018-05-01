@@ -40,7 +40,7 @@ public class HomeController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/home/feed")
+	@RequestMapping(value={"/home/feed", "/"})
 	public ModelAndView getFeed() {
 		ModelAndView mav = new ModelAndView("feed");
 		List<Question> questions = questionService.findLast(Constant.QUESTION_LIMIT);

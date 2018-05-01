@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -105,9 +106,7 @@ public class AdminUserController {
 		int idHidden= Integer.parseInt(request.getParameter("idHidden").toString());
 		user.setUserId(idHidden);
 		userValidator.validate(user, result);
-		
 		if(result.hasErrors()) {
-			System.out.println(result);
 			return modelAndView;
 		}
 		if(user.getUserId() ==0) {
@@ -116,6 +115,7 @@ public class AdminUserController {
 		} else {
 			if(!userService.updateUser(user, dbRole)) {
 				redirect.addFlashAttribute("error", "Saved user " + user.getFullname() + " error!");
+				return modelAndView;
 			}
 		}
 		redirect.addFlashAttribute("success", "Saved user " + user.getFullname() + " successfully!");
@@ -142,10 +142,10 @@ public class AdminUserController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value="/changeprofile", method=RequestMethod.GET)
-	public ModelAndView updateProfile() {
+	@RequestMapping(value="/{userId}/changeprofile", method=RequestMethod.GET)
+	public ModelAndView updateProfile(@PathVariable("userId") int userId, HttpSession session) {
 		ModelAndView mav = new ModelAndView("admin_change_profile");
-		User user = new User();
+		User user = (User) session.getAttribute(Constant.CURRENT_USER);
 		mav.addObject("user", user);
 		return mav;
 	}

@@ -3,6 +3,7 @@ package com.edu.knowledge.controllers.admin;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.edu.knowledge.entities.Post;
 import com.edu.knowledge.entities.Topic;
+import com.edu.knowledge.entities.User;
 import com.edu.knowledge.services.PostService;
 import com.edu.knowledge.services.TopicService;
 import com.edu.knowledge.utils.Constant;
@@ -59,13 +61,15 @@ public class AdminPostController {
 	
 	@RequestMapping(value="/savepost", method= RequestMethod.POST)
 	public ModelAndView publicPost(@ModelAttribute("post") Post post, BindingResult result, 
-			RedirectAttributes redirect, HttpServletRequest request) {
+			RedirectAttributes redirect, HttpServletRequest request, HttpSession session) {
 		ModelAndView model = new ModelAndView("admin_post_edit");
 		int idHidden= Integer.parseInt(request.getParameter("postId").toString());
 		if(result.hasErrors()) {
 			return model;
 		}
 		if(idHidden==0) {
+			User user = (User) session.getAttribute(Constant.CURRENT_USER);
+			post.setUser(user);
 			postService.createPost(post);
 		} else {
 			Post postUpdate = postService.getOne(idHidden);

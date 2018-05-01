@@ -58,7 +58,7 @@
                 </li>
                 <li>
                   <div class="text-center" style="margin-left: 80px">
-                    <a href="/app/user/1/notify">
+                    <a href="/app/user/${CURRENT_USER.userId }/notify">
                       <strong>Xem tất cả</strong>
                       <i class="fa fa-angle-right"></i>
                     </a>
@@ -79,17 +79,19 @@
             </div>
             </form:form>    
        	 </li>
+       	 <c:if test="${not empty CURRENT_USER }">
 			<li class="dropdown">
-		      <a class="dropdown-toggle btn-ask" data-toggle="dropdown" href="#"><i class= "fa fa-user"></i> UserName <span class="caret"></span></a>
+		      <a class="dropdown-toggle btn-ask" data-toggle="dropdown" href="#"><i class= "fa fa-user"></i> ${CURRENT_USER.username} <span class="caret"></span></a>
 		        <ul class="dropdown-menu">
-		          <li><a href="/app/user/1/info">Profile</a></li>
-		          <li><a href="/app/user/id/changeprofile">Cập nhật thông tin</a></li>
-		          <li><a href="/app/user/id/bookmark">Đánh dấu</a></li>
+		          <li><a href="/app/user/${CURRENT_USER.userId }/info">Profile</a></li>
+		          <li><a href="/app/user/${CURRENT_USER.userId }/changeprofile">Cập nhật thông tin</a></li>
+		          <li><a href="/app/user/${CURRENT_USER.userId }/bookmark">Đánh dấu</a></li>
 		          <li role="separator" class="divider"></li>
                  <li><a href="/login">Đăng xuất &nbsp;<i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
 	        </ul>
 	      </li>
-	      <!-- <li><a href="#" data-target="#login" data-toggle="modal">Sign in</a></li> -->
+	      </c:if>
+	      <c:if test="${empty CURRENT_USER }"><li><a href="/login">Đăng nhập</a></li></c:if>
           <li class="btn-ask"><a href="/app/question/ask">Đặt câu hỏi</a></li>
         </ul>
       </div>

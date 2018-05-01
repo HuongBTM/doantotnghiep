@@ -6,4 +6,5 @@ public class Constant {
 	public static final String ERROR = "ERROR";
 	public static final int QUESTION_LIMIT = 10;
 	public static final int SUMMARY = 300;
+	public static final String CURRENT_USER = "CURRENT_USER";
 }

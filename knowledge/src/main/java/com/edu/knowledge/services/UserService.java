@@ -10,6 +10,7 @@ import com.edu.knowledge.daos.RoleRepositery;
 import com.edu.knowledge.daos.UserRepositery;
 import com.edu.knowledge.entities.Role;
 import com.edu.knowledge.entities.User;
+import com.edu.knowledge.utils.Common;
 
 @Service("userService")
 @Transactional
@@ -32,19 +33,19 @@ public class UserService {
 	}
 	
 	public boolean checkLogin(String email, String password) {
-		return (userRepositery.getUserForLogin(email, password) != null) ? true : false;
+		return (userRepositery.getUserForLogin(email, Common.encryptMD5(password)) != null) ? true : false;
 	}
 	
 	public User createUser(User user, Role role) {
-		// set password encode TODO
 		user.setRole(role);
 		user.setImage("avatar.png");
+		user.setPassword(Common.encryptMD5(user.getPassword()));
 		return userRepositery.save(user);
 	}
 	
 	public boolean updateUser(User user, Role role) {
 		user.setRole(role);
-		if(userRepositery.updateUser(user.getFullname(), user.getUsername(), user.getPassword(), user.getEmail(), user.getPhoneNum(), user.getAddress(), user.getAbouts(), user.getUserId()) ==0) {
+		if(userRepositery.updateUser(user.getFullname(), user.getUsername(), Common.encryptMD5(user.getPassword()), user.getEmail(), user.getPhoneNum(), user.getAddress(), user.getAbouts(), role, user.getUserId()) != 0) {
 			return true;
 		}
 		return false;

@@ -15,7 +15,7 @@
     <h2 class="page-header">Đặt câu hỏi</h2>
 
     <div class="form-style form-style-3" id="question-submit">
-      <c:url var="action" value="/question/ask" />
+      <c:url var="action" value="/app/question/${CURRENT_USER.userId}/ask" />
       <form:form action="${action}" method="POST" modelAttribute="question" class="form-horizontal form-label-left">
         <form:hidden id="idHidden" path="questionId" value="${question.questionId}"/>
         <div class="item form-group">
@@ -57,7 +57,7 @@
              <div class="col-md-6 col-md-offset-4">
                <button id="send" type="submit" class="btn btn-success">Post</button>
                <button type="reset" class="btn btn-primary">Reset</button>
-               <a href="/app/home" class="btn btn-primary">Cancel</a>
+               <a href="/app/home/feed" class="btn btn-primary">Cancel</a>
              </div>
            </div>
       </form:form>

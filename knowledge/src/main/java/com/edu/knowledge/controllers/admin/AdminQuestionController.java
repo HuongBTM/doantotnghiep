@@ -3,6 +3,7 @@ package com.edu.knowledge.controllers.admin;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.edu.knowledge.entities.Question;
 import com.edu.knowledge.entities.Topic;
+import com.edu.knowledge.entities.User;
 import com.edu.knowledge.services.QuestionService;
 import com.edu.knowledge.services.TopicService;
 import com.edu.knowledge.utils.Constant;
@@ -79,13 +81,15 @@ public class AdminQuestionController {
 	
 	@RequestMapping(value="/savequestion", method= RequestMethod.POST)
 	public ModelAndView postQuestion(@ModelAttribute("question") Question question, BindingResult result, 
-			RedirectAttributes redirect, HttpServletRequest request) {
+			RedirectAttributes redirect, HttpServletRequest request, HttpSession session) {
 		ModelAndView model = new ModelAndView("admin_question_edit");
 		int idHidden= Integer.parseInt(request.getParameter("questionId").toString());
 		if(result.hasErrors()) {
 			return model;
 		} 
 		if(idHidden==0) {
+			User user = (User) session.getAttribute(Constant.CURRENT_USER);
+			question.setUser(user);
 			questionService.createQuestion(question);
 		} else {
 			Question questionUpdate= questionService.getOne(idHidden);

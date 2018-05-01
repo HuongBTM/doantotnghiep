@@ -2,6 +2,8 @@ package com.edu.knowledge.controllers.app;
 
 import java.util.Date;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -44,13 +46,21 @@ public class LoginController {
 	}*/
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public ModelAndView login(@ModelAttribute("user") User user, ModelMap map){
+	public ModelAndView login(@ModelAttribute("user") User user, ModelMap map, HttpSession session){
 		ModelAndView model = new ModelAndView();
 		String email = user.getEmail();
 		String password = user.getPassword();
 		boolean checkLogin = userService.checkLogin(email, password);
 		if(checkLogin) {
-			model.setViewName("redirect:/app/home");
+			User currentUser = userService.getUserByEmail(email);
+			session.setAttribute("CURRENT_USER", currentUser);
+			if(currentUser.isAdmin()) {
+				model.setViewName("redirect:/admin/dashboard");
+			} else if (currentUser.isExpect()) {
+				model.setViewName("redirect:/expect/post/all");
+			} else {
+				model.setViewName("redirect:/app/home/feed");
+			}
 		} else {
 			model.addObject(new User());
 			map.addAttribute("emailmessage","Email hoặc password không đúng. Hãy nhập lại!");
@@ -87,7 +97,7 @@ public class LoginController {
 			Role role = roleService.findRoleByName("member");
 			userService.createUser(user, role);
 			//System.out.println(Charset.defaultCharset());
-			model.setViewName("redirect:/app/home");
+			model.setViewName("redirect:/app/home/feed");
 		} else {
 			user.setPassword(null);
 			user.setConfirmpassword(null);

@@ -49,6 +49,8 @@ public class RoleService {
 		Role role = new Role();
 		if(name.equals("admin")) {
 			role = roleRepositery.findRoleByName("ROLE_ADMIN");
+		} else if(name.equals("expect")) {
+			role = roleRepositery.findRoleByName("ROLE_EXPECT");
 		} else {
 			role = roleRepositery.findRoleByName("ROLE_MEMBER");
 		}

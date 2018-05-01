@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -40,11 +41,11 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="/resources/assets/img/9.png" alt="..." class="img-circle profile_img">
+                <img src="/resources/assets/img/${CURRENT_USER.image}" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Xin chào,</span>
-                <h2>John Doe</h2>
+                <h2>${CURRENT_USER.username}</h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -104,8 +105,8 @@
               <div class="menu_section">
                 <h3>Giao diện</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-bug"></i> Giao diện ứng dụng </a></li>
-                  <li><a><i class="fa fa-bug"></i> Giao diện chuyên gia </a></li>
+                  <li><a href="/app/home/feed"><i class="fa fa-bug"></i> Giao diện ứng dụng </a></li>
+                  <li><a href="#"><i class="fa fa-bug"></i> Giao diện chuyên gia </a></li>
                   <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Thống kê <span class="label label-success pull-right">Coming Soon</span></a></li>
                 </ul>
               </div>
@@ -143,13 +144,14 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="/resources/assets/img/9.png" alt="">John Doe
+                    <img src="/resources/assets/img/${CURRENT_USER.image}" alt=""> ${CURRENT_USER.username}
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;">Profile</a></li>
-                    <li><a href="javascript:;">Help</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i>Log Out</a></li>
+                    <li><a href="/admin/user/${CURRENT_USER.userId}/profile">Profile</a></li>
+                    <li><a href="/admin/user/${CURRENT_USER.userId}/changeprofile">Cài đặt</a></li>
+                    <li><a href="javascript:;">Trợ giúp</a></li>
+                    <li><a href="/login"><i class="fa fa-sign-out pull-right"></i>Đăng xuất</a></li>
                   </ul>
                 </li>
 

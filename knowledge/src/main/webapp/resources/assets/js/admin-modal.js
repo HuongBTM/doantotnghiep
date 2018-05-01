@@ -254,7 +254,7 @@ $(document).ready(function() {
 		
 	});
 
-	$('#updateRoleForm').submit(function(e) {
+	/*$('#updateRoleForm').submit(function(e) {
 		e.preventDefault();
 		var title = $('#modalUpdateRole').find('.modal-title').text();
 		$.ajax({
@@ -270,7 +270,7 @@ $(document).ready(function() {
             	$('div.error').show();
 			}
 	    });
-	});
+	});*/
 	//topic
 	$('.btnAddTopic, .table .etopicBtn').on('click', function(event) {
 		event.preventDefault();

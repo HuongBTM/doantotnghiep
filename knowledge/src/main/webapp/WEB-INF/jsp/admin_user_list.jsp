@@ -69,6 +69,9 @@
 				                          <c:when test="${user.admin}">
 				                            <span class="label bg-red">Admin</span>
 				                          </c:when>
+				                          <c:when test="${user.expect}">
+				                            <span class="label bg-yellow">Expect</span>
+				                          </c:when>
 				                          <c:otherwise>
 				                            <span class="label bg-green">Member</span>
 				                          </c:otherwise>

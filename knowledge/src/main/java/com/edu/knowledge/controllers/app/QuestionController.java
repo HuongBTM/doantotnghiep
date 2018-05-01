@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomCollectionEditor;
 import org.springframework.stereotype.Controller;
@@ -22,9 +24,12 @@ import com.edu.knowledge.entities.Comment;
 import com.edu.knowledge.entities.Post;
 import com.edu.knowledge.entities.Question;
 import com.edu.knowledge.entities.Topic;
+import com.edu.knowledge.entities.User;
 import com.edu.knowledge.services.PostService;
 import com.edu.knowledge.services.QuestionService;
 import com.edu.knowledge.services.TopicService;
+import com.edu.knowledge.services.UserService;
+import com.edu.knowledge.utils.Constant;
 
 @Controller
 @RequestMapping("/app/question")
@@ -39,6 +44,9 @@ public class QuestionController {
 	@Autowired
 	private PostService postService;
 	
+	@Autowired
+	private UserService userService;
+	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	public ModelAndView allQuestion(){
 		ModelAndView model = new ModelAndView("question_list");
@@ -48,8 +56,13 @@ public class QuestionController {
 	}
 	
 	@RequestMapping(value="/ask", method=RequestMethod.GET)
-	public ModelAndView askQuestion(){
+	public ModelAndView askQuestion(HttpSession session){
 		ModelAndView model = new ModelAndView("question_form");
+		if(session.getAttribute(Constant.CURRENT_USER) == null) {
+			model.setViewName("redirect:/login");
+			return model;
+		}
+		
 		Question question = new Question();
 		List<Topic> topics = topicService.findAll();
 		model.addObject("topics", topics);
@@ -68,14 +81,17 @@ public class QuestionController {
         });
     }
 	
-	@RequestMapping(value="/ask", method= RequestMethod.POST)
-	public ModelAndView postQuestion(@ModelAttribute("question") Question question, BindingResult result, RedirectAttributes redirect) {
+	@RequestMapping(value="/{userId}/ask", method= RequestMethod.POST)
+	public ModelAndView postQuestion(@PathVariable("userId") int userId, @ModelAttribute("question") Question question, BindingResult result, RedirectAttributes redirect) {
 		ModelAndView model = new ModelAndView();
 		if(result.hasErrors()) {
 			model.setViewName("question_form");
 		} else {
+			User user = userService.getOne(userId);
+			question.setUser(user);
 			questionService.createQuestion(question);
-			model.setViewName("redirect:/home");
+			// TODO redirect to request chuyên gia
+			model.setViewName("redirect:/app/question/"+question.getQuestionId()+"/detail");
 		}
 		redirect.addFlashAttribute("success", "Your question has been posted successfully!");
 		return model;
@@ -95,8 +111,8 @@ public class QuestionController {
 		return model;
 	}
 	
-	@RequestMapping(value="/post/{id}/ask", method= RequestMethod.POST)
-	public ModelAndView addOnPost(@PathVariable("id") int id, @ModelAttribute("question") Question question) {
+	@RequestMapping(value="/post/{id}/ask/{userId}", method= RequestMethod.POST)
+	public ModelAndView addOnPost(@PathVariable("id") int id, @PathVariable("userId") int userId, @ModelAttribute("question") Question question) {
 		ModelAndView model = new ModelAndView("question_detail");
 		Post post = postService.getOne(id);
 		question.setPost(post);
@@ -106,7 +122,10 @@ public class QuestionController {
 			questionTopics.add(topic);
 		}
 		question.setTopics(questionTopics);
+		User user = userService.getOne(userId);
+		question.setUser(user);
 		questionService.createQuestion(question);
+		// TODO redirect sang yêu cầu chuyên gia
 		model.setViewName("redirect:/app/question/"+question.getQuestionId()+"/detail");
 		return model;
 	}

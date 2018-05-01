@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import com.edu.knowledge.entities.Role;
 import com.edu.knowledge.entities.User;
 
 @Repository
@@ -31,8 +32,8 @@ public interface UserRepositery extends JpaRepository<User, Integer>{
 	int countUser();
 	
 	@Modifying
-	@Query("UPDATE User u SET u.fullname=?1, u.username=?2, u.password =?3, u.email=?4, u.phoneNum=?5, u.address=?6, u.abouts=?7 WHERE u.userId=?8")
-	int updateUser(String fullname, String username, String password, String email, int phoneNum, String address, String abouts, int userId);
+	@Query("UPDATE User u SET u.fullname=?1, u.username=?2, u.password =?3, u.email=?4, u.phoneNum=?5, u.address=?6, u.abouts=?7, u.role=?8 WHERE u.userId=?9")
+	int updateUser(String fullname, String username, String password, String email, int phoneNum, String address, String abouts, Role role, int userId);
 	
 	@Modifying
 	@Query("DELETE FROM User u WHERE u.userId=?1")

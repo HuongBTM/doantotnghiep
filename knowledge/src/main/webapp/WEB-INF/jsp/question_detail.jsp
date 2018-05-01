@@ -179,7 +179,7 @@
 				 				</div>
 				
 			 					<div id="comments-link-43652564" data-rep="50" data-reg="true" style="padding-left: 25px;">
-			 						<form:form id="comment-form" action="/app/question/${question.questionId}/answer/${answer.answerId}/comment/1/add" method="POST" modelAttribute="comment">
+			 						<form:form id="comment-form" action="/app/question/${question.questionId}/answer/${answer.answerId}/comment/${CURRENT_USER.userId }/add" method="POST" modelAttribute="comment">
 			 						<button id="send" type="submit" class="btn btn-success">Comment</button>
 						        	<div class="col-md-10 col-sm-3 col-xs-12">
 						              <form:input id="title" class="form-control" name="comment" path="cmtContent" placeholder="Comment..."
@@ -200,7 +200,7 @@
 				</div> -->
 				<a name="new-answer"></a>
 				<h3 class="space">Câu trả lời của bạn</h3>
-	            <form:form id="post-form" action="/app/question/${question.questionId }/answer/1/add" method="post" modelAttribute="answer">
+	            <form:form id="post-form" action="/app/question/${question.questionId }/answer/${CURRENT_USER.userId }/add" method="post" modelAttribute="answer">
 	            <form:textarea required="required" class="form-control" id="comment-contents" path="answerContent" cols="50" rows="8"></form:textarea>
 	                 
 	                 <div style="position: relative;">
@@ -220,7 +220,7 @@
 				          
 	                 </div>
 	                 <div class="form-submit cbt">
-	                      <input id="submit-button" class="btn btn-primary" type="submit" value="Post Your Answer" tabindex="110">
+	                      <input id="submit-button" class="btn btn-primary" type="submit" value="Đăng câu trả lời" tabindex="110">
 	                  </div>
 	             </form:form>
 	     	</div>

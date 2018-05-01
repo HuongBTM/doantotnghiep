@@ -30,7 +30,7 @@ public class UserController {
 	
 	@RequestMapping(value="/app/user/{id}/changeprofile", method=RequestMethod.GET)
 	public ModelAndView updateProfile(@PathVariable("id") int id) {
-		ModelAndView mav = new ModelAndView("change_profile");
+		ModelAndView mav = new ModelAndView("user_change_profile");
 		User user = new User();
 		mav.addObject("user", user);
 		return mav;

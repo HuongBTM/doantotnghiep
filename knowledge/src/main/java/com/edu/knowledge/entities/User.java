@@ -281,6 +281,12 @@ public class User implements Serializable{
 		return false;
 	}
 
+	public boolean isExpect() {
+		if (role.getRoleName().equals("ROLE_EXPECT")) {
+			return true;
+		}
+		return false;
+	}
 	public User() {
 		role = new Role("ROLE_MEMBER");
 		createDate = new Date();

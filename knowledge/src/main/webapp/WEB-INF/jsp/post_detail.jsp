@@ -41,7 +41,7 @@
 	        							Ngày đăng <span title="2017-04-27 07:54:43Z" class="relativetime">${post.creatAt }</span>
 	    							</div>
 	    							<div class="user-gravatar32">
-								        <a href=""><div class="gravatar-wrapper-32"><img src="/resources/assets/img/1.png" alt="" width="32" height="32"></div></a>
+								        <a href=""><div class="gravatar-wrapper-32"><img src="/resources/assets/img/${post.user.image }" alt="" width="32" height="32"></div></a>
 								    </div>
 								    <div class="user-details">
 								        <a href="/app/user/${post.user.userId }/info">${post.user.fullname }</a>
@@ -95,7 +95,7 @@
 
 				<a name="new-answer"></a>
 				<h3 class="space">Đặt câu hỏi về bài viết này?</h3>
-	            <form:form id="post-form" action="/app/question/post/${post.postId }/ask" method="post" modelAttribute="question">
+	            <form:form id="post-form" action="/app/question/post/${post.postId }/ask/${CURRENT_USER.userId}" method="post" modelAttribute="question">
 	            <div class="item form-group">
 		            <label class="required control-label col-md-2 col-sm-1 col-xs-12" for="title" style="text-align: left">Tiêu đề <span class="required">*</span>
 		            </label>

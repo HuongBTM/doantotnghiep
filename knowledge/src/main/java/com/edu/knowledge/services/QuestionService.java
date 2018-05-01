@@ -8,9 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.edu.knowledge.daos.QuestionRepositery;
-import com.edu.knowledge.daos.UserRepositery;
 import com.edu.knowledge.entities.Question;
-import com.edu.knowledge.entities.User;
 
 @Service("questionService")
 @Transactional
@@ -18,9 +16,6 @@ public class QuestionService {
 
 	@Autowired
 	private QuestionRepositery questionRepositery;
-	
-	@Autowired
-	private UserRepositery userRepositery;
 	
 	public int count() {
 		return questionRepositery.countQuestion();
@@ -42,11 +37,9 @@ public class QuestionService {
 	public void createQuestion(Question question) {
 		question.setCreatAt(new Date());
 		question.setLastEditAt(new Date());
-		
-		//TODO get by current login, set in controller
-		User user = userRepositery.getOne(1);
-		question.setUser(user);
-		
+		question.setViews(0);
+		question.setUpvotes(0);
+		question.setDownvotes(0);
 		questionRepositery.save(question);
 	}
 	
