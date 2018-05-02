@@ -8,7 +8,7 @@
 	<script>
 		jQuery(window).scroll(function () {
 			if(jQuery(this).scrollTop() > 100 ) {
-				jQuery(".go-up").css("right","40px");
+				jQuery(".go-up").css("right","10px");
 			}else {
 				jQuery(".go-up").css("right","-60px");
 			}

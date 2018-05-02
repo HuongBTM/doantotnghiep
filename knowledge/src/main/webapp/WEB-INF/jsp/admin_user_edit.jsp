@@ -62,21 +62,21 @@
 		                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="phoneNum">Số điện thoại <span class="required">*</span>
 		                        </label>
 		                        <div class="col-md-6 col-sm-6 col-xs-12">
-		                          <form:input id="email" class="form-control col-md-7 col-xs-12" name="phoneNum" placeholder="Số điện thoại..." required="required" type="text" path="phoneNum"></form:input>
+		                          <form:input id="phoneNum" class="form-control col-md-7 col-xs-12" name="phoneNum" placeholder="Số điện thoại..." required="required" type="text" path="phoneNum"></form:input>
 		                        </div>
 		                      </div>
 		                       <div class="item form-group">
 		                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="address">Địa chỉ
 		                        </label>
 		                        <div class="col-md-6 col-sm-6 col-xs-12">
-		                          <form:input id="email" class="form-control col-md-7 col-xs-12" name="address" placeholder="Địa chỉ..." type="text" path="address"></form:input>
+		                          <form:input id="address" class="form-control col-md-7 col-xs-12" name="address" placeholder="Địa chỉ..." type="text" path="address"></form:input>
 		                        </div>
 		                      </div>
 		                      <div class="item form-group">
 		                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Mật khẩu <span class="required">*</span>
 		                        </label>
 		                        <div class="col-md-6 col-sm-6 col-xs-12">
-		                          <form:input id="email" class="form-control col-md-7 col-xs-12" name="password" placeholder="Mật khẩu..." 
+		                          <form:input id="password" class="form-control col-md-7 col-xs-12" name="password" placeholder="Mật khẩu..." 
 		                          		required="required" type="password" path="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"  
 												title="Mật khẩu phải chứa ký tự hoa, ký tự thường, chữ số và ít nhất 8 ký tự"></form:input>
 		                        	<form:errors path="password" cssClass="error" delimiter="<br><i class='fa fa-exclamation-circle'></i> "></form:errors>
@@ -86,7 +86,7 @@
 		                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="confirmpassword">Nhập lại mật khẩu <span class="required">*</span>
 		                        </label>
 		                        <div class="col-md-6 col-sm-6 col-xs-12">
-		                          <form:input id="email" class="form-control col-md-7 col-xs-12" name="confirmpassword" placeholder="Nhập lại mật khẩu..." required="required" type="password" path="confirmpassword"></form:input>
+		                          <form:input id="confirmPassword" class="form-control col-md-7 col-xs-12" name="confirmpassword" placeholder="Nhập lại mật khẩu..." required="required" type="password" path="confirmpassword"></form:input>
 		                        	<form:errors path="confirmpassword" cssClass="error" delimiter="<br><i class='fa fa-exclamation-circle'></i> "></form:errors>
 		                        </div>
 		                      </div>
@@ -112,7 +112,7 @@
 						            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sectors">Lĩnh vực chuyên sâu <span class="required">*</span>
 						            </label>
 						            <div class="col-md-6 col-sm-6 col-xs-12">
-						              	<form:select required="required" class="form-control" path="sectors" multiple="true" items="${sectors}" itemValue="sectorId" itemLabel="sectorName" style="height:150px;"/>
+						              	<form:select id="selectSector" class="form-control" path="sectors" multiple="true" items="${sectors}" itemValue="sectorId" itemLabel="sectorName" style="height:150px;"/>
 						            	<form:errors path="sectors" cssClass="error" delimiter="<br><i class='fa fa-exclamation-circle'></i> "></form:errors>
 						            </div>
 						          </div>

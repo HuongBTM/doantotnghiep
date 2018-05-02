@@ -46,6 +46,7 @@ public class UserService {
 	}
 	
 	public boolean updateUser(User user, Role role) {
+		System.out.println("update user");
 		user.setRole(role);
 		if(userRepositery.updateUser(user.getFullname(), user.getUsername(), Common.encryptMD5(user.getPassword()), user.getEmail(), user.getPhoneNum(), user.getAddress(), user.getAbouts(), role, user.getUserId()) != 0) {
 			return true;

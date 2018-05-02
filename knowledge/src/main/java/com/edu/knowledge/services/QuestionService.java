@@ -77,4 +77,8 @@ public class QuestionService {
 	public int updateCheck(int check, int questionId) {
 		return questionRepositery.updateCheck(check, questionId);
 	}
+	
+	public List<Question> findAllChecked() {
+		return questionRepositery.findAllChecked();
+	}
 }

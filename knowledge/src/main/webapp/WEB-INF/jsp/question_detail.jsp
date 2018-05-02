@@ -15,6 +15,7 @@
            <h1 itemprop="name"><b>${question.title}</b></h1>
            <c:if test="${question.check==0 }"><button class="btn btn-default" style="height: 35px">Câu hỏi chờ phê duyệt</button></c:if>
            <c:if test="${question.check==2 }"><button class="btn btn-danger" style="height: 35px">Câu hỏi bị xóa vì vi phạm chính sách hệ thống</button></c:if>
+           <c:if test="${question.check==2 }"><button class="btn btn-success" style="height: 35px">Đang thảo luận</button></c:if>
 		</div>
         <div id="mainbar" role="main" aria-label="question and answers">
             <div class="question-detail" data-questionid="43651814" id="question">

@@ -36,7 +36,7 @@ public class AdminQuestionController {
 	@RequestMapping(value="/allquestion", method=RequestMethod.GET)
 	public ModelAndView getAllQuestion() {
 		ModelAndView mav = new ModelAndView("admin_question_list");
-		List<Question> questions = questionService.findAll();
+		List<Question> questions = questionService.findAllChecked();
 		mav.addObject("questions",questions);
 		return mav;
 	}
