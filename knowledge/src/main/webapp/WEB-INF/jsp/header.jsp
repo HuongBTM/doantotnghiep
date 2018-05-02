@@ -18,7 +18,7 @@
   <script language="javascript" type="text/javascript" src="/resources/assets/bootstrap/js/bootstrap.min.js"></script>
   <script language="javascript" type="text/javascript" src="/resources/assets/bootstrap/js/jquery.min.js"></script>
   <script language="javascript" type="text/javascript" src="/resources/assets/js/custom.js"></script>
- 
+ <script language="javascript" type="text/javascript" src="/resources/assets/js/scripts.js"></script>
 </head>
 
 <body class="body_feed_card_on">

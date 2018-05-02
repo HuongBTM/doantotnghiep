@@ -36,7 +36,7 @@ public class PendingTagService {
 
 	@Transactional
 	public boolean updatePendingTag(PendingTag pendingTag) {
-		int rowUpdate = pendingTagRepositery.updatePendingTag(pendingTag.getPendingName(), pendingTag.getPendingDescrib(), pendingTag.getPendingId());
+		int rowUpdate = pendingTagRepositery.updatePendingTag(pendingTag.getPendingName(), pendingTag.getPendingDescrib(), pendingTag.getPendingContent(),  pendingTag.getPendingId());
 		return (rowUpdate==0) ? false :true;
 	}
 	

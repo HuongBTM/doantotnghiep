@@ -76,7 +76,7 @@
 		                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Mật khẩu <span class="required">*</span>
 		                        </label>
 		                        <div class="col-md-6 col-sm-6 col-xs-12">
-		                          <form:input id="email" class="form-control col-md-7 col-xs-12" name="password" placeholder="Password..." 
+		                          <form:input id="email" class="form-control col-md-7 col-xs-12" name="password" placeholder="Mật khẩu..." 
 		                          		required="required" type="password" path="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"  
 												title="Mật khẩu phải chứa ký tự hoa, ký tự thường, chữ số và ít nhất 8 ký tự"></form:input>
 		                        	<form:errors path="password" cssClass="error" delimiter="<br><i class='fa fa-exclamation-circle'></i> "></form:errors>
@@ -86,7 +86,7 @@
 		                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="confirmpassword">Nhập lại mật khẩu <span class="required">*</span>
 		                        </label>
 		                        <div class="col-md-6 col-sm-6 col-xs-12">
-		                          <form:input id="email" class="form-control col-md-7 col-xs-12" name="confirmpassword" placeholder="Confirm password..." required="required" type="password" path="confirmpassword"></form:input>
+		                          <form:input id="email" class="form-control col-md-7 col-xs-12" name="confirmpassword" placeholder="Nhập lại mật khẩu..." required="required" type="password" path="confirmpassword"></form:input>
 		                        	<form:errors path="confirmpassword" cssClass="error" delimiter="<br><i class='fa fa-exclamation-circle'></i> "></form:errors>
 		                        </div>
 		                      </div>
@@ -94,19 +94,28 @@
 		                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="abouts">Abouts
 		                        </label>
 		                        <div class="col-md-6 col-sm-6 col-xs-12">
-		                          <form:textarea id="abouts" name="abouts" rows="5" cols="30" placeholder="Something about you..." class="form-control col-md-7 col-xs-12" path="abouts"></form:textarea>
+		                          <form:textarea id="abouts" name="abouts" rows="5" cols="30" placeholder="Đôi điều về bạn..." class="form-control col-md-7 col-xs-12" path="abouts"></form:textarea>
 		                        </div>
 		                      </div>
 		                      <div class="item form-group">
 					              <label class="control-label col-md-3 col-sm-3 col-xs-12" for= "roleSelect">Quyền</label>
 					              <div class="col-md-6 col-sm-6 col-xs-12">
-					              <select name="roleSelect" class="form-control">
+					              <select id="roleSelect" name="roleSelect" class="form-control" onchange="showSector(value)">
 					                  <option value="admin" ${user.admin eq true ? 'selected' : ''}>Admin</option>
 					                  <option value="expect" ${user.expect eq true ? 'selected' : ''}>Expect</option>
 					                  <option value="member" ${user.admin eq false and user.expect eq false ? 'selected' : ''}>Member</option>
 					              </select>
 					              </div>
 					            </div>
+					            
+					            <div id="sector" class="item form-group">
+						            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sectors">Lĩnh vực chuyên sâu <span class="required">*</span>
+						            </label>
+						            <div class="col-md-6 col-sm-6 col-xs-12">
+						              	<form:select required="required" class="form-control" path="sectors" multiple="true" items="${sectors}" itemValue="sectorId" itemLabel="sectorName" style="height:150px;"/>
+						            	<form:errors path="sectors" cssClass="error" delimiter="<br><i class='fa fa-exclamation-circle'></i> "></form:errors>
+						            </div>
+						          </div>
 		                      <div class="ln_solid"></div>
 		                      <div class="form-group">
 		                        <div class="col-md-6 col-md-offset-3">
@@ -129,5 +138,19 @@
         </div>
         </div>
         <!-- /#page-wrapper -->
-
+	<script type="text/javascript">
+		function showSector(roleSelect) {
+			var x = document.getElementById("sector");
+			if(roleSelect=='expect') {
+			     x.style.display = "block";
+			} else {
+				x.style.display = "none";
+			}
+		}
+		window.addEventListener("load",function(){
+			var roleSelect = $("#roleSelect").val();
+			showSector(roleSelect);
+        },false);
+		
+	</script>
 	<jsp:include page="admin_footer.jsp"></jsp:include>

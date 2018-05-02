@@ -2,13 +2,17 @@ package com.edu.knowledge.controllers.admin;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomCollectionEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,11 +26,13 @@ import com.edu.knowledge.entities.Answer;
 import com.edu.knowledge.entities.Post;
 import com.edu.knowledge.entities.Question;
 import com.edu.knowledge.entities.Role;
+import com.edu.knowledge.entities.Sector;
 import com.edu.knowledge.entities.User;
 import com.edu.knowledge.services.AnswerService;
 import com.edu.knowledge.services.PostService;
 import com.edu.knowledge.services.QuestionService;
 import com.edu.knowledge.services.RoleService;
+import com.edu.knowledge.services.SectorService;
 import com.edu.knowledge.services.UserService;
 import com.edu.knowledge.utils.Constant;
 import com.edu.knowledge.validator.UserValidator;
@@ -40,6 +46,9 @@ public class AdminUserController {
 	
 	@Autowired
 	private RoleService roleService;
+	
+	@Autowired
+	private SectorService sectorService;
 	
 	@Autowired
 	private UserValidator userValidator;
@@ -62,11 +71,24 @@ public class AdminUserController {
 		return modelAndView;
 	}
 	
+	@InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(Set.class, "sectors", new CustomCollectionEditor(Set.class) {
+            @Override
+            protected Object convertElement(Object element) {
+                Integer id = Integer.parseInt((String) element);
+                return sectorService.getOne(id);
+            }
+        });
+    }
+	
 	@RequestMapping(value="/adduser", method=RequestMethod.GET)
 	public ModelAndView addUser() {
 		ModelAndView modelAndView = new ModelAndView("admin_user_edit");
 		User user = new User();
+		List<Sector> sectors = sectorService.findAll();
 		modelAndView.addObject("user", user);
+		modelAndView.addObject("sectors", sectors);
 		return modelAndView;
 	}
 	
@@ -91,6 +113,8 @@ public class AdminUserController {
 		if(user == null) {
 			modelAndView.setViewName("404");
 		} else {
+			List<Sector> sectors = sectorService.findAll();
+			modelAndView.addObject("sectors", sectors);
 			modelAndView.addObject("user", user);
 			modelAndView.setViewName("admin_user_edit");
 		}
@@ -105,17 +129,25 @@ public class AdminUserController {
 		user.setRole(dbRole);
 		int idHidden= Integer.parseInt(request.getParameter("idHidden").toString());
 		user.setUserId(idHidden);
+		
 		userValidator.validate(user, result);
 		if(result.hasErrors()) {
+			List<Sector> sectors = sectorService.findAll();
+			modelAndView.addObject("sectors", sectors);
 			return modelAndView;
 		}
 		if(user.getUserId() ==0) {
 			user.setImage("avatar.png");
 			userService.createUser(user , dbRole);
 		} else {
+			User userdb = userService.getOne(user.getUserId());
+			user.setImage(userdb.getImage());
 			if(!userService.updateUser(user, dbRole)) {
 				redirect.addFlashAttribute("error", "Saved user " + user.getFullname() + " error!");
 				return modelAndView;
+			}
+			if(user.isExpect()) {
+				userService.updateSector(user.getSectors(), user);
 			}
 		}
 		redirect.addFlashAttribute("success", "Saved user " + user.getFullname() + " successfully!");

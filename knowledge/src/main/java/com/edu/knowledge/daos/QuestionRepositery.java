@@ -39,4 +39,11 @@ public interface QuestionRepositery extends JpaRepository<Question, Integer>{
 	
 	@Query("SELECT q FROM Question q WHERE q.title LIKE CONCAT('%',:q,'%') OR q.questionContent LIKE CONCAT('%',:q,'%')")
 	List<Question> search(@Param("q") String q);
+	
+	@Query("SELECT q FROM Question q WHERE q.check=?1")
+	List<Question> getQuestionByCheck(int check);
+	
+	@Modifying
+	@Query("UPDATE Question q SET q.check=?1 WHERE q.questionId=?2")
+	int updateCheck(int check, int questionId);
 }

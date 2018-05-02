@@ -150,6 +150,7 @@ $(document).ready(function() {
 			$.get(href, function(pendingTag, status) {
 				$('#pendingName').val(pendingTag.pendingName);
 				$('#pendingDescrib').val(pendingTag.pendingDescrib);
+				$('#pendingContent').val(pendingTag.pendingContent);
 				$('#idHidden').val(pendingTag.pendingId);
 			});
 			$('#modalUpdatePending').modal();
@@ -157,6 +158,7 @@ $(document).ready(function() {
 		} else {
 			$('#pendingName').val('');
 			$('#pendingDescrib').val('');
+			$('#pendingContent').val('');
 			$('#idHidden').val('0');
 			$('#modalUpdatePending').modal();
 			$('#modalUpdatePending').find('.modal-title').text('Thêm trạng thái mới');

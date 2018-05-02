@@ -22,6 +22,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 
 import org.springframework.data.annotation.Transient;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 /*@EntityListeners(AuditingEntityListener.class)*/
@@ -68,8 +69,14 @@ public class User implements Serializable{
 	@Column(name = "abouts")
 	private String abouts;
 	
+	@Column(name="points")
+	private int points = 0;
+	
 	@Column(name = "image")
 	private String image;
+	
+	/*@Transient
+	private MultipartFile avata_file;*/
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_role")
@@ -105,6 +112,22 @@ public class User implements Serializable{
              inverseJoinColumns = { @JoinColumn(name = "id_vote_type") })
 	private Set<VoteType> voteTypes;
 	
+    /*@Transient
+	public MultipartFile getAvata_file() {
+		return avata_file;
+	}
+
+	public void setAvata_file(MultipartFile avata_file) {
+		this.avata_file = avata_file;
+	}*/
+
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
+	}
 
 	public Integer getPhoneNum() {
 		return phoneNum;

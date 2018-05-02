@@ -63,7 +63,7 @@
                   <li><a><i class="fa fa-check-square-o fa-fw"></i> Phê duyệt <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
 					  <li><a href="/admin/pendingtag/allpendingtag">Danh mục trạng thái</a></li>
-                      <li><a href="/admin/post/new">Bài viết mới</a></li>
+                     <!--  <li><a href="/admin/post/new">Bài viết mới</a></li> -->
                       <li><a href="/admin/question/new">Câu hỏi mới</a></li>
                      </ul>
                   </li>

@@ -1,6 +1,7 @@
 package com.edu.knowledge.services;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.edu.knowledge.daos.RoleRepositery;
 import com.edu.knowledge.daos.UserRepositery;
 import com.edu.knowledge.entities.Role;
+import com.edu.knowledge.entities.Sector;
 import com.edu.knowledge.entities.User;
 import com.edu.knowledge.utils.Common;
 
@@ -49,6 +51,11 @@ public class UserService {
 			return true;
 		}
 		return false;
+	}
+	
+	public void updateSector(Set<Sector> sectors, User user) {
+		user.setSectors(sectors);
+		userRepositery.save(user);
 	}
 	
 	public User getOne(int userId) {

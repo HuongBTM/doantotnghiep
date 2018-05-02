@@ -89,6 +89,7 @@ public class QuestionController {
 		} else {
 			User user = userService.getOne(userId);
 			question.setUser(user);
+			question.setCheck(0);
 			questionService.createQuestion(question);
 			// TODO redirect to request chuyên gia
 			model.setViewName("redirect:/app/question/"+question.getQuestionId()+"/detail");
@@ -124,6 +125,7 @@ public class QuestionController {
 		question.setTopics(questionTopics);
 		User user = userService.getOne(userId);
 		question.setUser(user);
+		question.setCheck(0);
 		questionService.createQuestion(question);
 		// TODO redirect sang yêu cầu chuyên gia
 		model.setViewName("redirect:/app/question/"+question.getQuestionId()+"/detail");

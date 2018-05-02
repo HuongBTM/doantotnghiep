@@ -46,13 +46,16 @@ public class Question implements Serializable {
 	private String questionContent;
 	
 	@Column(name="luot_view")
-	private Integer views;
+	private Integer views=0;
 	
 	@Column(name="upvotes")
-	private Integer upvotes;
+	private Integer upvotes=0;
 	
 	@Column(name="downvotes")
-	private Integer downvotes;
+	private Integer downvotes=0;
+	
+	@Column(name="phe_duyet")
+	private int check=0;
 	
 	@Column(name="ngay_dang")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -86,6 +89,14 @@ public class Question implements Serializable {
              inverseJoinColumns = { @JoinColumn(name = "id_vote_type") })
 	private Set<VoteType> voteTypes;
 	
+	public int getCheck() {
+		return check;
+	}
+
+	public void setCheck(int check) {
+		this.check = check;
+	}
+
 	public int getQuestionId() {
 		return questionId;
 	}

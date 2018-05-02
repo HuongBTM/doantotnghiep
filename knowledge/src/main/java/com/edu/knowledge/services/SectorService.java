@@ -20,6 +20,9 @@ public class SectorService {
 		return sectorRepositery.findAll();
 	}
 	
+	public Sector getOne(int id) {
+		return sectorRepositery.getOne(id);
+	}
 	public Sector getSectorById(int sectorId) {
 		return sectorRepositery.findSectorById(sectorId);
 	}

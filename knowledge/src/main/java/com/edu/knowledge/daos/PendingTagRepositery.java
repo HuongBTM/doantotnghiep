@@ -20,8 +20,8 @@ public interface PendingTagRepositery extends JpaRepository<PendingTag, Integer>
 	String getOtherPendingTagNameToCurrent(int pendingId, String pendingName);
 
 	@Modifying
-	@Query("UPDATE PendingTag p SET p.pendingName=?1, p.pendingDescrib=?2 WHERE p.pendingId=?3")
-	int updatePendingTag(String pendingName, String pendingDescrib, int pendingId);
+	@Query("UPDATE PendingTag p SET p.pendingName=?1, p.pendingDescrib=?2, p.pendingContent=?3 WHERE p.pendingId=?4")
+	int updatePendingTag(String pendingName, String pendingDescrib, String pendingContent, int pendingId);
 	
 	@Modifying
 	@Query("DELETE FROM PendingTag p WHERE p.pendingId=?1")

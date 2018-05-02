@@ -1638,3 +1638,26 @@ ul.msg_list li a .message {
   border: 2px solid #d2d6de;
   padding: 2px;
 }
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+.user-profile-img {
+  width: 85px;
+  float: left;
+  margin-right: 15px;
+  padding: 2px;
+  border: 1px solid #e0e0e0;
+  background-color: #FFF;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+.user-profile-img img {
+  width: 100%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}

@@ -35,6 +35,7 @@
                                         <th align="center">ID</th>
                                         <th align="center">Tên trạng thái</th>
                                         <th align="center">Mô tả trạng thái</th>
+                                        <th align="center">Nội dung phê duyệt</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -45,6 +46,7 @@
                                         <td align="right"><c:out value="${pendingTag.pendingId}"></c:out></td>
                                         <td><c:out value="${pendingTag.pendingName}"></c:out></td>
                                         <td><c:out value="${pendingTag.pendingDescrib}"></c:out></td>
+                                        <td><c:out value="${pendingTag.pendingContent}"></c:out></td>
                                         <td align="center">
 				                            <a href="/admin/pendingtag/findone/${pendingTag.pendingId}" id="editPendingTag" data-id="${pendingTag.pendingId}" class="btn btn-info btn-xs editPendingTag"><i class="fa fa-pencil"></i> Sửa </a>
 				                            <a href="#" class="btn btn-danger btn-xs delPendingTag" data-id="${pendingTag.pendingId}"><i class="fa fa-trash-o"></i> Xóa </a>
@@ -87,6 +89,14 @@
                         <div class="col-xs-9">
                         <!-- data-validate-length-range="6" data-validate-words="2" -->
                           <form:input id="pendingName" class="form-control col-md-7 col-xs-12" name="pendingName" placeholder="Tên trạng thái..." required="required" type="text" path="pendingName"></form:input>
+                        	<div class="error" hidden="hidden"></div>
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="control-label col-xs-3" for="pendingContent">Nội dung thông báo <span class="required">*</span>
+                        </label>
+                        <div class="col-xs-9">
+                          <form:input id="pendingContent" class="form-control col-md-7 col-xs-12" name="pendingName" placeholder="Tên trạng thái..." required="required" type="text" path="pendingContent"></form:input>
                         	<div class="error" hidden="hidden"></div>
                         </div>
                       </div>

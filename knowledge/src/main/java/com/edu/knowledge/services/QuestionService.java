@@ -69,4 +69,12 @@ public class QuestionService {
 	public List<Question> search(String q) {
 		return questionRepositery.search(q);
 	}
+	
+	public List<Question> getQuestionByCheck(int check) {
+		return questionRepositery.getQuestionByCheck(check);
+	}
+	
+	public int updateCheck(int check, int questionId) {
+		return questionRepositery.updateCheck(check, questionId);
+	}
 }

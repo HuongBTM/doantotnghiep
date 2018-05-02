@@ -90,12 +90,14 @@ public class AdminQuestionController {
 		if(idHidden==0) {
 			User user = (User) session.getAttribute(Constant.CURRENT_USER);
 			question.setUser(user);
+			question.setCheck(1);
 			questionService.createQuestion(question);
 		} else {
 			Question questionUpdate= questionService.getOne(idHidden);
 			questionUpdate.setTitle(question.getTitle());
 			questionUpdate.setQuestionContent(question.getQuestionContent());
 			questionUpdate.setTopics(question.getTopics());
+			questionUpdate.setCheck(1);
 			questionService.updateQuestion(questionUpdate);
 		}
 		model.setViewName("redirect:/admin/question/allquestion");
@@ -108,6 +110,38 @@ public class AdminQuestionController {
 		ModelAndView mav = new ModelAndView("admin_question_print");
 		List<Question> questions = questionService.findAll();
 		mav.addObject("questions",questions);
+		return mav;
+	}
+	
+	@RequestMapping(value="/new")
+	public ModelAndView checkNew() {
+		ModelAndView mav = new ModelAndView("admin_question_new");
+		List<Question> questions = questionService.getQuestionByCheck(0);
+		mav.addObject("questions", questions);
+		return mav;
+	}
+	
+	@RequestMapping(value="/public/{id}")
+	public ModelAndView checkPublic(@PathVariable("id") int id, RedirectAttributes redirect) {
+		ModelAndView mav = new ModelAndView("admin_question_new");
+		mav.setViewName("redirect:/admin/question/new");
+		if(questionService.updateCheck(1, id) == 1) {
+			redirect.addFlashAttribute("success", "Phê duyệt thành công!");
+		} else {
+			redirect.addFlashAttribute("error", "Phê duyệt không thành công!");
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value="/trash/{id}")
+	public ModelAndView checkTrash(@PathVariable("id") int id, RedirectAttributes redirect) {
+		ModelAndView mav = new ModelAndView("admin_question_new");
+		mav.setViewName("redirect:/admin/question/new");
+		if(questionService.updateCheck(2, id) == 1) {
+			redirect.addFlashAttribute("success", "Phê duyệt thành công, câu hỏi sẽ không hiển thị trên trang chủ!");
+		} else {
+			redirect.addFlashAttribute("error", "Phê duyệt không thành công!");
+		}
 		return mav;
 	}
 }
