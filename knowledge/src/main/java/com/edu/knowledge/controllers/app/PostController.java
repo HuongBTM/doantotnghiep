@@ -11,7 +11,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.edu.knowledge.entities.Post;
 import com.edu.knowledge.entities.Question;
+import com.edu.knowledge.entities.Topic;
 import com.edu.knowledge.services.PostService;
+import com.edu.knowledge.services.TopicService;
 
 @Controller
 @RequestMapping("/app/post")
@@ -19,6 +21,9 @@ public class PostController {
 
 	@Autowired
 	private PostService postService;
+	
+	@Autowired
+	private TopicService topicService;
 
 	@RequestMapping(value = "/{id}/detail", method = RequestMethod.GET)
 	public ModelAndView postDetail(@PathVariable("id") int id) {
@@ -27,8 +32,10 @@ public class PostController {
 		postService.updateView(post.getViews() + 1, id);
 		post.setViews(post.getViews() + 1);
 		Question question = new Question();
+		List<Topic> topics = topicService.findTopTen();
 		model.addObject("post", post);
 		model.addObject("question", question);
+		model.addObject("topics", topics);
 		return model;
 	}
 	

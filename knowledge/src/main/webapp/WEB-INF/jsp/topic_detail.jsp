@@ -140,17 +140,17 @@
 				<div class="sidebar-related">
                     <h3 class="widget_title">Top Point</h3>
 					  <ul>
-					    <%-- <c:forEach var="topUser" items=""> --%>
-					    <li>
-					      <div class="author-img">
-					        <a href="<c:url value="/user/" />">
-					          <%-- <img width="60" height="60" src="<c:url value="/upload/" />" alt=""> --%>
-					        </a>
-					      </div> 
-					      <h6><a href="<c:url value="/user/" />">User name</a></h6>
-					      <span class="comment"> point</span>
-					    </li>
-					    <%-- </c:forEach> --%>
+					    <c:forEach var="user" items="${users }">
+						    <li>
+						      <div class="author-img">
+						        <a href="<c:url value="/app/user/${user.userId}/info" />">
+						          <img width="60" height="60" src="<c:url value="/resources/assets/img/${user.image }" />" alt="">
+						        </a>
+						      </div> 
+						      <h6><a href="<c:url value="/app/user/${user.userId}/info" />">${user.username }</a></h6>
+						      <span class="comment"> point</span>
+						    </li>
+						 </c:forEach>
 					  </ul>
 				</div>
 			</div>

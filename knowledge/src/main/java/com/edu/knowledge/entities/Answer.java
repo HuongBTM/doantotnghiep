@@ -17,6 +17,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -63,6 +64,7 @@ public class Answer implements Serializable{
 	private Question question;
 	
 	@OneToMany(mappedBy = "answer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OrderBy("creatAt ASC")
 	private Set<Comment> comments;
 	
     @ManyToMany(fetch = FetchType.LAZY)

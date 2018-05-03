@@ -13,9 +13,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.edu.knowledge.entities.Post;
 import com.edu.knowledge.entities.Question;
 import com.edu.knowledge.entities.Topic;
+import com.edu.knowledge.entities.User;
 import com.edu.knowledge.services.PostService;
 import com.edu.knowledge.services.QuestionService;
 import com.edu.knowledge.services.TopicService;
+import com.edu.knowledge.services.UserService;
 
 @Controller
 @RequestMapping("/app")
@@ -29,6 +31,9 @@ public class TopicController {
 	
 	@Autowired
 	private TopicService topicService;
+	
+	@Autowired
+	private UserService userService;
 
 	@RequestMapping(value = "/topic/{id}/detail", method = RequestMethod.GET)
 	public ModelAndView topicDetail(@PathVariable("id") int id) {
@@ -36,21 +41,26 @@ public class TopicController {
 		Topic topic = topicService.getOne(id);
 		List<Question> questions = questionService.findAllByTopic(id);
 		List<Post> posts = postService.finsAllByTopic(id);
+		List<User> users = userService.findTopFiveExpect();
 		model.addObject("topic", topic);
 		model.addObject("questions", questions);
 		model.addObject("posts", posts);
+		model.addObject("users", users);
 		return model;
 	}
 	
-	// change method to Post
 	@RequestMapping(value="/search", method=RequestMethod.GET)
 	public ModelAndView searchResult(@RequestParam(value = "q", required = true) String q) {
 		ModelAndView model = new ModelAndView("search_result");
 		List<Question> questions = questionService.search(q);
 		List<Post> posts = postService.search(q);
+		List<User> users = userService.findTopFiveExpect();
+		List<Topic> topics = topicService.findTopTen();
 		model.addObject("questions", questions);
 		model.addObject("posts", posts);
-		model.addObject("q",q);
+		model.addObject("users", users);
+		model.addObject("topics", topics);
+		model.addObject("q", q);
 		return model;
 	}
 }

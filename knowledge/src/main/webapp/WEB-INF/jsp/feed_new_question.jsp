@@ -71,13 +71,9 @@
        		<div class="module community-bulletin" data-tracker="cb=1">
 			<div class="widget widget_tag_cloud">
 			  <h3 class="widget_title">Chủ đề</h3>
-			  <%-- <c:forEach var="tag" items=""> --%>
-			    <a href="<c:url value="/tag/" />">Trí tuệ nhân tạo</a>
-			    <a href="<c:url value="/tag/" />">Java</a>
-			    <a href="<c:url value="/tag/" />">Question</a>
-			    <a href="<c:url value="/tag/" />">Test</a>
-			    <a href="<c:url value="/tag/" />">Cuộc đua số</a>
-			  <%-- </c:forEach> --%>
+			   <c:forEach var="topic" items="${topics}">
+			    <a href="<c:url value="/app/topic/${topic.topicId }/detail" />">${topic.topicName }</a>
+			  </c:forEach>
 			</div>
          	</div>                        
 			<div class="module community-bulletin" data-tracker="cb=1">
@@ -85,17 +81,17 @@
 				<div class="sidebar-related">
                     <h3 class="widget_title">Chuyên gia hàng đầu</h3>
 					  <ul>
-					    <%-- <c:forEach var="topUser" items=""> --%>
+					    <c:forEach var="user" items="${users }">
 					    <li>
 					      <div class="author-img">
-					        <a href="<c:url value="/user/" />">
-					          <%-- <img width="60" height="60" src="<c:url value="/upload/" />" alt=""> --%>
+					        <a href="<c:url value="/app/user/${user.userId}/info" />">
+					          <img width="60" height="60" src="<c:url value="/resources/assets/img/${user.image }" />" alt="">
 					        </a>
 					      </div> 
-					      <h6><a href="<c:url value="/user/" />">User name</a></h6>
+					      <h6><a href="<c:url value="/app/user/${user.userId}/info" />">${user.username }</a></h6>
 					      <span class="comment"> point</span>
 					    </li>
-					    <%-- </c:forEach> --%>
+					    </c:forEach>
 					  </ul>
 				</div>
 			</div>

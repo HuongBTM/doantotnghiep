@@ -32,7 +32,7 @@
     					<div class="grid mb0 fw-wrap ai-start jc-end gs8 gsy" style="clear: both">
     						<div class="grid--cell mr16" style="flex: 1 1 100px;">
 								<div class="post-menu">
-									<a href="/posts/43651814/edit" class="suggest-edit-post" title="revise and improve this post">Chỉnh sửa</a>
+									<c:if test="${CURRENT_USER.userId eq post.user.userId }"><a href="/app/post/${post.postId }/edit" class="suggest-edit-post" title="revise and improve this post">Chỉnh sửa</a></c:if>
 								</div>        
     						</div>
 							<div class="post-signature owner grid--cell fl0">
@@ -155,12 +155,14 @@
 	                </c:when>
 	                <c:otherwise>
 		                <c:forEach items="${post.questions}" var="question">
+		                <c:if test="${question.check==1 }">
 			            <li>
 			                <div class="favicon favicon-writing" title="Writing Stack Exchange" style="display: inline-block;"></div>
 			                <a href="/app/question/${question.questionId }/detail" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:166 }); posts_hot_network.click({ item_type:2, location:11 })">
 			                    ${question.title }
 			                </a>
 			            </li>
+			            </c:if>
 		            	</c:forEach>
 		            </c:otherwise>
 	            </c:choose>
@@ -169,13 +171,9 @@
          <div class="module community-bulletin" data-tracker="cb=1">
 			<div class="widget widget_tag_cloud">
 			  <h3 class="widget_title">Tags</h3>
-			  <%-- <c:forEach var="tag" items=""> --%>
-			    <a href="<c:url value="/tag/" />">Tên chủ đề</a>
-			    <a href="<c:url value="/tag/" />">Java</a>
-			    <a href="<c:url value="/tag/" />">Question</a>
-			    <a href="<c:url value="/tag/" />">Test</a>
-			    <a href="<c:url value="/tag/" />">Cuộc đua số</a>
-			  <%-- </c:forEach> --%>
+			  <c:forEach var="topic" items="${topics}">
+			    <a href="<c:url value="/app/topic/${topic.topicId }/detail" />">${topic.topicName }</a>
+			  </c:forEach>
 			</div>
          </div>
     </div>

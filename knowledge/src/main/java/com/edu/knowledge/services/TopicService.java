@@ -3,11 +3,13 @@ package com.edu.knowledge.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.edu.knowledge.daos.TopicRepositery;
 import com.edu.knowledge.entities.Topic;
+import com.edu.knowledge.utils.Constant;
 
 @Service("topicService")
 public class TopicService {
@@ -50,5 +52,10 @@ public class TopicService {
 	@Transactional
 	public int deleteTopic(int topicId) {
 		return topicRepositery.deleteTopic(topicId);
+	}
+	
+	@SuppressWarnings("deprecation")
+	public List<Topic> findTopTen() {
+		return topicRepositery.findTopTen(new PageRequest(0, Constant.FEED_TOP_LIMIT));
 	}
 }

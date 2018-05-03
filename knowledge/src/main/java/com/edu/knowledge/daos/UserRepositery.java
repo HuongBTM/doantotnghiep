@@ -2,6 +2,7 @@ package com.edu.knowledge.daos;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -38,4 +39,7 @@ public interface UserRepositery extends JpaRepository<User, Integer>{
 	@Modifying
 	@Query("DELETE FROM User u WHERE u.userId=?1")
 	int deleteUser(int id);
+	
+	@Query("SELECT u FROM User u JOIN fetch u.role r WHERE r.roleId=5 ORDER BY u.points DESC")
+	List<User> findTopFiveExpect(Pageable pageable);
 }

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,9 +53,13 @@ public class QuestionService {
 		return questionRepositery.findAllByUser(userId);
 	}
 	
-	//TODO
-	public List<Question> findLast(int limit) {
-		return questionRepositery.findLast(limit);
+	@SuppressWarnings("deprecation")
+	public List<Question> findTopNew(int limit) {
+		return questionRepositery.findLastNew(new PageRequest(0,limit));
+	}
+	@SuppressWarnings("deprecation")
+	public List<Question> findTopVote(int limit) {
+		return questionRepositery.findTopVote(new PageRequest(0,limit));
 	}
 	
 	@Transactional

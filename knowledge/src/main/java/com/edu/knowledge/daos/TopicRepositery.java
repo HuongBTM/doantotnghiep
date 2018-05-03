@@ -1,5 +1,8 @@
 package com.edu.knowledge.daos;
 
+import java.util.List;
+
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -32,4 +35,7 @@ public interface TopicRepositery extends JpaRepository<Topic, Integer>{
 	@Modifying
 	@Query("DELETE FROM Topic p WHERE p.topicId=?1")
 	int deleteTopic(int topicId);
+	
+	@Query("SELECT p FROM Topic p ORDER BY p.topicId DESC")
+	List<Topic> findTopTen(Pageable pageable);
 }

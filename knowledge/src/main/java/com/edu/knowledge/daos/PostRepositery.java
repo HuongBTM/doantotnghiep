@@ -2,6 +2,7 @@ package com.edu.knowledge.daos;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -33,6 +34,9 @@ public interface PostRepositery extends JpaRepository<Post, Integer>{
 	@Query("SELECT p FROM Post p WHERE p.postTitle LIKE CONCAT('%',:q,'%') OR p.postContent LIKE CONCAT('%',:q,'%')")
 	List<Post> search(@Param("q") String q);
 	
+	@Query("SELECT p FROM Post p ORDER BY p.upvotes DESC")
+	List<Post> findTopVote(Pageable pageable);
+	
 	@Query("SELECT p FROM Post p ORDER BY p.postId DESC")
-	List<Post> findLast(int limit);
+	List<Post> findTopNew(Pageable pageable);
 }

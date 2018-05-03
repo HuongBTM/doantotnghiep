@@ -12,9 +12,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.edu.knowledge.entities.Post;
 import com.edu.knowledge.entities.Question;
 import com.edu.knowledge.entities.Topic;
+import com.edu.knowledge.entities.User;
 import com.edu.knowledge.services.PostService;
 import com.edu.knowledge.services.QuestionService;
 import com.edu.knowledge.services.TopicService;
+import com.edu.knowledge.services.UserService;
 import com.edu.knowledge.utils.Constant;
 
 @Controller
@@ -30,39 +32,51 @@ public class HomeController {
 	@Autowired
 	private TopicService topicService;
 	
+	@Autowired
+	private UserService userService;
+	
 	@RequestMapping(value="/home/question")
 	public ModelAndView getNewQuestion() {
 		ModelAndView mav = new ModelAndView("feed_new_question");
-		List<Question> questions = questionService.findLast(Constant.QUESTION_LIMIT);
-		List<Topic> topics = topicService.findAll();
+		List<Question> questions = questionService.findTopNew(Constant.FEED_NEW_LIMIT);
+		List<Topic> topics = topicService.findTopTen();
+		List<User> users = userService.findTopFiveExpect();
 		mav.addObject("questions", questions);
 		mav.addObject("topics", topics);
+		mav.addObject("users", users);
 		return mav;
 	}
 	
 	@RequestMapping(value={"/home/feed", "/"})
 	public ModelAndView getFeed() {
 		ModelAndView mav = new ModelAndView("feed");
-		List<Question> questions = questionService.findLast(Constant.QUESTION_LIMIT);
-		List<Topic> topics = topicService.findAll();
+		List<Question> questions = questionService.findTopVote(Constant.FEED_TOP_LIMIT);
+		List<Post> posts = postService.findTopVote(Constant.FEED_TOP_LIMIT);
+		List<Topic> topics = topicService.findTopTen();
+		List<User> users = userService.findTopFiveExpect();
 		mav.addObject("questions", questions);
+		mav.addObject("posts", posts);
 		mav.addObject("topics", topics);
+		mav.addObject("users", users);
 		return mav;
 	}
 	
 	@RequestMapping(value="/home/post")
 	public ModelAndView getNewPost() {
 		ModelAndView mav = new ModelAndView("feed_new_post");
-		List<Post> posts = postService.findLast(Constant.QUESTION_LIMIT);
-		List<Topic> topics = topicService.findAll();
+		List<Post> posts = postService.findTopNew(Constant.FEED_NEW_LIMIT);
+		List<Topic> topics = topicService.findTopTen();
+		List<User> users = userService.findTopFiveExpect();
 		mav.addObject("posts", posts);
 		mav.addObject("topics", topics);
+		mav.addObject("users", users);
 		return mav;
 	}
 	
 	@RequestMapping(value="/user/{id}/notify", method=RequestMethod.GET)
 	public ModelAndView notification(@PathVariable("id") int id) {
 		ModelAndView mav = new ModelAndView("user_notification");
+		//TODO
 		return mav;
 	}
 }

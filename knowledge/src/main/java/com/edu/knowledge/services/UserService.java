@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +14,7 @@ import com.edu.knowledge.entities.Role;
 import com.edu.knowledge.entities.Sector;
 import com.edu.knowledge.entities.User;
 import com.edu.knowledge.utils.Common;
+import com.edu.knowledge.utils.Constant;
 
 @Service("userService")
 @Transactional
@@ -74,5 +76,10 @@ public class UserService {
 	@Transactional
 	public int deleteUser(int id) {
 		return userRepositery.deleteUser(id);
+	}
+	
+	@SuppressWarnings("deprecation")
+	public List<User> findTopFiveExpect() {
+		return userRepositery.findTopFiveExpect(new PageRequest(0, Constant.TOP_USER));
 	}
 }

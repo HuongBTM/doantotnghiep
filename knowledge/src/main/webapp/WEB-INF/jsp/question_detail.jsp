@@ -41,7 +41,7 @@
     					<div class="grid mb0 fw-wrap ai-start jc-end gs8 gsy" style="clear: both">
     						<div class="grid--cell mr16" style="flex: 1 1 100px;">
 								<div class="post-menu">
-									<a href="/app/question/${question.questionId}/edit" class="suggest-edit-post" title="revise and improve this post">Chỉnh sửa</a>
+									<c:if test="${CURRENT_USER.userId eq question.user.userId }"><a href="/app/question/${question.questionId}/edit" class="suggest-edit-post" title="revise and improve this post">Chỉnh sửa</a></c:if>
 								</div>        
     						</div>
 							<div class="post-signature owner grid--cell fl0">
@@ -55,7 +55,12 @@
 								    <div class="user-details">
 								        <a href="/app/user/${question.user.userId }/info">${question.user.fullname}</a>
 								        <div class="-flair">
-								            <span class="reputation-score" title="reputation score " dir="ltr">68</span>
+								        	<c:choose>
+								        		<c:when test="${question.user.admin }"><button class="btn btn-danger" style="height: 16px; font-size: 11px; padding: 0px;">Admin</button></c:when>
+								        		<c:when test="${question.user.expect }"><button class="btn btn-warning" style="height: 16px; font-size: 11px; padding: 0px;">Chuyên gia</button></c:when>
+								        		<c:otherwise><button class="btn btn-success" style="height: 16px; font-size: 11px; padding: 0px;">Member</button></c:otherwise>
+								        	</c:choose>
+								            <span class="reputation-score" title="reputation score " dir="ltr">${question.user.points}</span>
 								            
 								        </div>
 								    </div>
@@ -121,9 +126,9 @@
 							        <input type="hidden" name="_id_" value="43652564">
 									<div><button class="btn btn-default" style="width: 45px; height: 45px; padding: 0px;"><div>
 										<i class="glyphicon glyphicon-triangle-top" style="font-size: 25px; color: #7b7676"></i></div>
-										<span><strong> ${question.upvotes }</strong></span></button></div>
+										<span><strong> ${answer.upvotes }</strong></span></button></div>
 									<div style="clear: both; padding-top: 10px"><button class="btn btn-default" style="width: 45px; height: 45px; padding: 0px;">
-										<span><strong> ${question.downvotes }</strong></span>
+										<span><strong> ${answer.downvotes }</strong></span>
 										<i class="glyphicon glyphicon-triangle-bottom" style="font-size: 25px; color: #7b7676"></i></button></div>								
 								</div>
 							</div>
@@ -134,7 +139,7 @@
 							    <div class="grid mb0 fw-wrap ai-start jc-end gs8 gsy">
 							    	<div class="grid--cell mr16" style="flex: 1 1 100px;">
 										<div class="post-menu">
-											<a href="/edit" class="suggest-edit-post" title="revise and improve this post">Chỉnh sửa</a>
+											<c:if test="${CURRENT_USER.userId eq answer.user.userId }"><a href="/edit" class="suggest-edit-post" title="revise and improve this post">Chỉnh sửa</a></c:if>
 										</div>                    
 									</div>
 									<div class="post-signature grid--cell fl0">
@@ -148,7 +153,12 @@
 										    <div class="user-details">
 										        <a href="/app/user/${answer.user.userId }/info">${answer.user.fullname }</a>
 										        <div class="-flair">
-										            <span class="reputation-score" title="reputation score " dir="ltr">847</span>
+										            <c:choose>
+										        		<c:when test="${answer.user.admin }"><button class="btn btn-danger" style="height: 16px; font-size: 11px; padding: 0px;">Admin</button></c:when>
+										        		<c:when test="${answer.user.expect }"><button class="btn btn-warning" style="height: 16px; font-size: 11px; padding: 0px;">Chuyên gia</button></c:when>
+										        		<c:otherwise><button class="btn btn-success" style="height: 16px; font-size: 11px; padding: 0px;">Member</button></c:otherwise>
+										        	</c:choose>
+								            		<span class="reputation-score" title="reputation score " dir="ltr">${answer.user.points}</span>
 										        </div>
 										    </div>
 										</div>

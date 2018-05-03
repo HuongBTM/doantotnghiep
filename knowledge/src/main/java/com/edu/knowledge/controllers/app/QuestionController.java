@@ -50,7 +50,7 @@ public class QuestionController {
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	public ModelAndView allQuestion(){
 		ModelAndView model = new ModelAndView("question_list");
-		List<Question> newQuestions = questionService.findAll();
+		List<Question> newQuestions = questionService.findAllChecked();
 		model.addObject("newQuestions", newQuestions);
 		return model;
 	}

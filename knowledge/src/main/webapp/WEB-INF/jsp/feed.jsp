@@ -25,7 +25,46 @@
 				</div>
 			</div>
 			<div class="layout_3col_center" id="home_feed_center_col">
-			<div class="question-desc">Post</div>
+			<div class="question-desc">Bài viết nổi bật</div>
+				<div id="new-questions">
+			        <c:forEach var="post" items="${posts}">
+			          <article class="question question-type-normal">
+			            <h2>
+			              <a href="<c:url value="/app/post/${post.postId}/detail" />">${post.postTitle}</a>
+			            </h2>
+			            <div class="question-author">
+			              <a href="<c:url value="/app/user/${post.user.userId}/info" />" title="${post.user.fullname}" class="question-author-img tooltip-n">
+			                <span></span><img alt="" src="<c:url value="/resources/assets/img/${post.user.image}" />">
+			              </a>
+			            </div>
+			            <div class="question-inner">
+			              <div class="clearfix"></div>
+			              <div class="question-desc">${post.summary}
+			              </div>
+			              <div id="tag-lst" style="width: 400px; float: left">
+				              <span class="question-category">
+				              	<c:forEach var="topic" items="${post.topics}">
+						            <button type="button" class="btn btn-default btn-xs" style="background-color: #ccc">
+						              <a href="/app/topic/${topic.topicId }/detail"><i class="fa fa-tag"></i> ${topic.topicName}</a>
+						            </button>
+						          </c:forEach>
+				              </span>
+			              </div>
+			              <div id="noti" style="clear: both; padding-top: 10px;">
+			              	 <span class="question-upvote"><i class="glyphicon glyphicon-arrow-up"></i> ${post.upvotes } upvote</span>
+			              	 <span class="question-downvote"><i class="glyphicon glyphicon-arrow-down"></i> ${post.downvotes } downvote</span>
+				              <span class="question-date"><i class="fa fa-clock-o"></i> ${post.ago}</span>
+				              <span class="question-comment">
+				                  <i class="fa fa-comment"></i> ${fn:length(post.questions)} câu hỏi
+				              </span>
+				              <span class="question-view"><i class="fa fa-eye"></i> ${post.views} lượt xem</span>
+				              <div class="clearfix"></div>
+			              </div>
+			            </div>
+			          </article>
+			        </c:forEach>
+			      </div>
+			<div class="question-desc">Câu hỏi nổi bật</div>
 				<div id="new-questions">
 			        <c:forEach var="question" items="${questions}">
 			          <article class="question question-type-normal">
@@ -64,21 +103,17 @@
 			          </article>
 			        </c:forEach>
 			      </div>
-					<div class="question-desc">Câu hỏi</div>
-					<div class="question-desc">Câu trả lời</div>
+					
+					
 					</div>
 					<!-- right column -->
 					<div id="sidebar" class="show-votes" role="complementary" aria-label="sidebar">  
 		       		<div class="module community-bulletin" data-tracker="cb=1">
 					<div class="widget widget_tag_cloud">
 					  <h3 class="widget_title">Chủ đề</h3>
-					  <%-- <c:forEach var="tag" items=""> --%>
-					    <a href="<c:url value="/tag/" />">Trí tuệ nhân tạo</a>
-					    <a href="<c:url value="/tag/" />">Java</a>
-					    <a href="<c:url value="/tag/" />">Question</a>
-					    <a href="<c:url value="/tag/" />">Test</a>
-					    <a href="<c:url value="/tag/" />">Cuộc đua số</a>
-					  <%-- </c:forEach> --%>
+					  <c:forEach var="topic" items="${topics}">
+					    <a href="<c:url value="/app/topic/${topic.topicId }/detail" />">${topic.topicName }</a>
+					  </c:forEach>
 					</div>
 		         	</div>                        
 					<div class="module community-bulletin" data-tracker="cb=1">
@@ -86,17 +121,17 @@
 						<div class="sidebar-related">
 		                    <h3 class="widget_title">Chuyên gia hàng đầu</h3>
 							  <ul>
-							    <%-- <c:forEach var="topUser" items=""> --%>
+							    <c:forEach var="user" items="${users }">
 							    <li>
 							      <div class="author-img">
-							        <a href="<c:url value="/user/" />">
-							          <%-- <img width="60" height="60" src="<c:url value="/upload/" />" alt=""> --%>
+							        <a href="<c:url value="/app/user/${user.userId}/info" />">
+							          <img width="60" height="60" src="<c:url value="/resources/assets/img/${user.image }" />" alt="">
 							        </a>
 							      </div> 
-							      <h6><a href="<c:url value="/user/" />">User name</a></h6>
+							      <h6><a href="<c:url value="/app/user/${user.userId}/info" />">${user.username }</a></h6>
 							      <span class="comment"> point</span>
 							    </li>
-							    <%-- </c:forEach> --%>
+							    </c:forEach>
 							  </ul>
 						</div>
 					</div>
