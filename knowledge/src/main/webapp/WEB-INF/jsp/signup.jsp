@@ -33,7 +33,7 @@
                         <div class="col-sm-4 col-sm-offset-4 form-box">
                         	<div class="form-top">
                         		<div class="form-top-left">
-                        			<h3>Signup to our site</h3>              
+                        			<h3>Đăng ký tài khoản</h3>              
                         		</div>
 
                             </div>
@@ -41,13 +41,13 @@
 								<form:form action="/register" method="post" class="login-form" modelAttribute="user">
 									<form:errors path="email" cssStyle="color:red;display:block"></form:errors>
 									<div class="form-group">
-										<label class="sr-only" for="form-fullname">Fullname</label>
+										<label class="sr-only" for="form-fullname">Họ tên</label>
 										<form:input path="fullname" type="text" name="form-fullname" placeholder="Họ tên..." 
 												title="Hãy nhập 8-25 ký tự. e.g: Bùi Hương" 
 												class="form-username form-control" id="l-form-fullname" />
 									</div>
 									<div class="form-group">
-										<label class="sr-only" for="form-username">Username</label>
+										<label class="sr-only" for="form-username">Tên hiển thị</label>
 										<form:input path="username" type="text" name="form-username" placeholder="Tên hiển thị..."
 												title="Hãy nhập 8-25 ký tự. e.g: HuongBTM" 
 												class="form-username form-control" id="l-form-username" />
@@ -60,20 +60,20 @@
 												class="form-username form-control" id="l-form-email" />
 									</div>
 									<div class="form-group">
-										<label class="sr-only" for="l-form-password">Password</label>
+										<label class="sr-only" for="l-form-password">Mật khẩu</label>
 										<form:input path="password" type="password" name="form-password" placeholder="Mật khẩu..." 
 												pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"  
 												title="Mật khẩu phải chứa ký tự hoa, ký tự thường, chữ số và ít nhất 8 ký tự"
 												class="form-password form-control" id="l-form-password" />
 									</div>
 									<div class="form-group">
-										<label class="sr-only" for="l-form-password-confirm">ConfimPassword</label>
+										<label class="sr-only" for="l-form-password-confirm">Nhập lại mật khẩu</label>
 										<form:input path="confirmpassword" type="password" name="form-password" placeholder="Nhập lại mật khẩu..." 
 												class="form-password form-control" id="l-form-password-confirm" />
 									</div>
 									<label class="validation-message"><c:out value="${errMessage}"></c:out></label>
 									
-									<button type="submit" class="btn">Sign me up!</button>
+									<button type="submit" class="btn">Đăng ký!</button>
 							</form:form>
 						</div>
                         </div>
@@ -81,7 +81,7 @@
 					<div class="row">
 						<div class="col-sm-4 col-sm-offset-4 social-login">
 							<p class="change_link">
-								Already a member? <a href="/login" class="to_register">Đăng nhập </a>
+								Bạn đã có tài khoản? <a href="/login" class="to_register">Đăng nhập </a>
 							</p>
 						</div>
 					</div>

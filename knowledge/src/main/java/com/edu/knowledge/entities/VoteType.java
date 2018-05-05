@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="tbl_vote_type")
+@Table(name="tbl_loai_vote")
 public class VoteType implements Serializable{
 
 	/**
@@ -27,7 +27,7 @@ public class VoteType implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id_vote_type")
+	@Column(name="id_loai_vote")
 	private int voteTypeId;
 	
 	@Column(name="ten_loai_vote")

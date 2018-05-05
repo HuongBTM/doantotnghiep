@@ -26,7 +26,7 @@ public class Bookmark implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="")
+	@Column(name="id_bookmark")
 	private int bookmarkId;
 	
 	@Column(name="thoi_gian_bookmark")

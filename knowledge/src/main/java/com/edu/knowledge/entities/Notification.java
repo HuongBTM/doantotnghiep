@@ -40,7 +40,7 @@ public class Notification implements Serializable{
 	private Date notiAtDate;
 	
 	@Column(name="check_da_xem")
-	private boolean checkSeen;
+	private boolean checkSeen = false;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_thanh_vien")

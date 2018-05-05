@@ -33,18 +33,18 @@
                         <div class="col-sm-4 col-sm-offset-4 form-box">
                         	<div class="form-top">
                         		<div class="form-top-left">
-                        			<h3>Login to our site</h3>              
+                        			<h3 align="center">Đăng nhập</h3>              
                         		</div>
                             </div>
                             <c:if test="${param.error != null}">
 						        <div class="alert alert-danger">
-						          <p>Invalid email or password</p>
+						          <p>Email hoặc mật khẩu không đúng</p>
 						        </div>
 						      </c:if>
 						
 						      <c:if test="${param.logout != null}">
 						        <div class="alert alert-success">
-						          <p>Logout successfully</p>
+						          <p>Bạn đã đăng xuất!</p>
 						        </div>
 						      </c:if>
 						      
@@ -63,7 +63,7 @@
 												class="form-username form-control" id="l-form-username" />
 									</div>
 									<div class="form-group"> 
-										<label class="sr-only" for="password">Password</label>
+										<label class="sr-only" for="password">Mật khẩu</label>
 										<form:input path="password" type="password" name="password" placeholder="Password..." 
 												pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"  
 												title="Mật khẩu phải chứa ký tự hoa, ký tự thường, chữ số và ít nhất 8 ký tự"
@@ -74,14 +74,14 @@
 										<label class="validation-message"><c:out value="${emailmessage}"></c:out></label>
 									</c:if> 
 									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-									<button type="submit" class="btn">Sign in!</button>
+									<button type="submit" class="btn">Đăng nhập!</button>
 							</form:form>
 						</div>
                         </div>
                     </div>
                     <div class="row login_with">
                         <div class="col-sm-4 col-sm-offset-4 social-login">
-                        	<h3>...or login with:</h3>
+                        	<h3>...Đăng nhập với:</h3>
                         	<div class="social-login-buttons">
 	                        	<a class="btn btn-link-2 btn-link-1-facebook" href="#">
 	                        		<i class="fa fa-facebook"></i>
@@ -98,7 +98,7 @@
 					<div class="row">
 						<div class="col-sm-4 col-sm-offset-4 social-login">
 							<p class="change_link">
-								Not a member yet? <a href="/register" class="to_register"> Đăng ký </a>
+								Bạn chưa phải thành viên? <a href="/register" class="to_register"> Đăng ký </a>
 							</p>
 							<p></p>
 						</div>

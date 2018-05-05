@@ -19,7 +19,7 @@
       <div class="box box-primary">
         <div class="box-body box-profile">
           <img class="profile-user-img img-responsive img-circle" 
-               src="<c:url value="/resources/assets/img/1.png" />" alt="avata">
+               src="<c:url value="/resources/assets/img/${user.image }" />" alt="avata">
 
           <h3 class="profile-username text-center">${user.fullname}</h3>
 
