@@ -62,18 +62,18 @@
 					   </div>
 						<div class="action_bar_inner u-flex">
 							<span id="rgptQp" style="margin-right: 10px">
-								<a class="icon_action_bar-button blue_icon btn btn btn-default" href="#" onClick="AnswerUpvote" target="{"aid": 80102891, "type": "answer"}" id="upBtn">
+								<a class="upvote icon_action_bar-button blue_icon btn btn btn-default" href="#?pid=${post.postId}&oid=${post.user.userId}&uid=${CURRENT_USER.userId}&action=upvote" id="upBtn">
 									<div class="icon_action_bar-label">
 										<span class="glyphicon glyphicon-arrow-up">Upvote |</span>
-										<span class="icon_action_bar-count">${post.upvotes }</span>
+										<span id="upvote_count" class="upvote icon_action_bar-count">${post.upvotes }</span>
 									</div>
 								</a>
 							</span>
 							<span id="rgptQp" style="margin-right: 10px">
-								<a class="secondary_action icon_action_bar-button btn btn btn-default" href="#" onClick="AnswerDownvote" target="{"aid": 80102891, "type": "answer"}" id="upBtn">
+								<a class="downvote secondary_action icon_action_bar-button btn btn btn-default" href="#?pid=${post.postId}&oid=${post.user.userId}&uid=${CURRENT_USER.userId}&action=downvote" id="downBtn">
 									<div class="icon_action_bar-label">
 										<span class="glyphicon glyphicon-arrow-down">Downvote |</span>
-										<span class="icon_action_bar-count">${post.downvotes }</span>
+										<span id="downvote_count" class="downvote icon_action_bar-count">${post.downvotes }</span>
 									</div>
 								</a>
 							</span>
@@ -139,7 +139,7 @@
        	<div id="sidebar" class="show-votes" role="complementary" aria-label="sidebar">                          
 			<div class="module community-bulletin widget" data-tracker="cb=1">
 				<div class="sidebar-related">
-                    <h3>Thông tin chuyên gia hỏi</h3>
+                    <h3>Thông tin chuyên gia</h3>
                     <div class="related js-gps-related-questions" data-tracker="rq=1"></div>
                 </div>
 	            <!-- thông tin -->
@@ -179,5 +179,56 @@
     </div>
 </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function () {
 
+	$("#upBtn").click(function (e) {
+		var upvote = parseInt($("#upvote_count").text());
+		var href = $(this).attr('href');
+    	var pid = getURLParameter(href, 'pid');
+    	var oid = getURLParameter(href, 'oid');
+    	var uid = getURLParameter(href, 'uid');
+    	var action = getURLParameter(href, 'action');
+		var url = "<c:url value="/app/post/vote" />";
+		
+		$.ajax({
+			type: "GET",
+      		contentType: "application/json",
+      		url: url,
+      		data: {pid: pid, oid: oid, uid: uid, action: action},
+      		success: function (response) {
+      			console.log(response);
+      			// set background-color
+      			$(this).css('background-color','#26ca6d');
+      			$("#upvote_count").text(upvote+1);
+      		}
+		})
+	});
+	
+	$("#downBtn").click(function (e) {
+		var downvote = parseInt($("#downvote_count").text());
+		var href = $(this).attr('href');
+    	var pid = getURLParameter(href, 'pid');
+    	var oid = getURLParameter(href, 'oid');
+    	var uid = getURLParameter(href, 'uid');
+    	var action = getURLParameter(href, 'action');
+		var url = "<c:url value="/app/post/vote" />";
+		
+		$.ajax({
+			type: "GET",
+      		contentType: "application/json",
+      		url: url,
+      		data: {pid: pid, oid: oid, uid: uid, action: action},
+      		success: function (response) {
+      			console.log(response);
+      			$(this).css('background-color','#26ca6d');
+      			$("#downvote_count").text(downvote+1);
+      		}
+		})
+	});
+	function getURLParameter(url, name) {
+    	return (RegExp(name + '=' + '(.+?)(&|$)').exec(url)||[,null])[1];
+  	}
+});
+</script>
 <jsp:include page="footer.jsp"></jsp:include>

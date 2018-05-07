@@ -106,11 +106,11 @@ public class User implements Serializable{
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Post> posts;
 	
-    @ManyToMany(fetch = FetchType.LAZY)
+    /*@ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "tbl_chi_tiet_vote", 
              joinColumns = { @JoinColumn(name = "id_thanh_vien") }, 
              inverseJoinColumns = { @JoinColumn(name = "id_vote_type") })
-	private Set<VoteType> voteTypes;
+	private Set<VoteType> voteTypes;*/
 	
     /*@Transient
 	public MultipartFile getAvata_file() {
@@ -289,13 +289,13 @@ public class User implements Serializable{
 		this.userId = userId;
 	}
 
-	public Set<VoteType> getVoteTypes() {
+	/*public Set<VoteType> getVoteTypes() {
 		return voteTypes;
 	}
 
 	public void setVoteTypes(Set<VoteType> voteTypes) {
 		this.voteTypes = voteTypes;
-	}
+	}*/
 
 	public boolean isAdmin() {
 		if (role.getRoleName().equals("ROLE_ADMIN")) {
@@ -318,7 +318,7 @@ public class User implements Serializable{
 	public User(String username, String password, @NotEmpty String confirmpassword, String fullname, String email,
 			Date createDate, Date lastVisit, Integer phoneNum, String address, String abouts, String image, Role role,
 			Set<Sector> sectors, Set<Notification> notifications, Set<Bookmark> bookmarks, Set<Question> questions,
-			Set<Answer> answers, Set<Comment> comments, Set<Post> posts, Set<VoteType> voteTypes) {
+			Set<Answer> answers, Set<Comment> comments, Set<Post> posts) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -339,7 +339,6 @@ public class User implements Serializable{
 		this.answers = answers;
 		this.comments = comments;
 		this.posts = posts;
-		this.voteTypes = voteTypes;
 	}
 	
 }

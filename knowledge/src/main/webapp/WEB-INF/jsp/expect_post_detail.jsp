@@ -122,49 +122,7 @@
 			                            </c:choose>
 			                           </div>
 			                         </div>
-          						<div class="tab-pane" id="noanswers">
-			                        <%-- <c:choose>
-							            <c:when test="${empty questions}">
-							              <p>Không có câu hỏi nào cho bài viết này</p>
-							            </c:when>
-							            <c:otherwise>
-			                             <table width="100%" id="dataTables-topic-question" class="table table-bordered table-striped table-hover">
-							                <thead>
-							                  <tr>
-							                    <th align="center">ID</th>
-							                    <th align="center">Tiêu đề</th>
-							                    <th align="center">Nội dung</th>
-							                    <th align="center">Người đăng</th>
-							                    <th align="center">Ngày đăng</th>
-							                    <th align="center">Lượt xem</th>
-							                    <th align="center">Bình chọn</th>
-							                    <th align="center">Số câu trả lời</th>
-							                    <th align="center">Trả lời</th>
-							                  </tr>
-							                </thead>
-							                <tbody>
-							                  <c:forEach items="${questions}" var="question" >
-							                    <tr>
-							                      <td align="right">${question.questionId}</td>
-							                      <td>${question.title}</td>
-							                      <td>${question.questionContent}</td>
-							                      <td align="left">${question.creatAt}</td>
-							                      <td>${question.user.fullname}</td>
-							                      <td align="right">${question.views}</td>
-							                      <td align="right">${question.upvotes}</td>
-							                      <td align="right">${fn:length(question.answers)}</td>
-							                      <td align="center">
-							                        <a href="<c:url value="/expect/question/detail/${question.questionId}" />" title="Xem chi tiết và trả lời">
-							                          <i class="fa fa-reply"></i></a>
-							                      </td>
-							                    </tr>
-							                  </c:forEach>
-							                </tbody>
-							              </table>
-			                            <!-- /.table-responsive -->
-			                            </c:otherwise>
-			                            </c:choose> --%>
-			                       </div>
+          						
                         	</div>
                         <!-- /.panel-body -->
                     </div>

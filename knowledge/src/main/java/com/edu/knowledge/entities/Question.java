@@ -85,11 +85,11 @@ public class Question implements Serializable {
              inverseJoinColumns = { @JoinColumn(name = "id_chu_de") })
 	private Set<Topic> topics;
 	
-    @ManyToMany(fetch = FetchType.LAZY)
+    /*@ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "tbl_chi_tiet_vote", 
              joinColumns = { @JoinColumn(name = "id_cau_hoi") }, 
              inverseJoinColumns = { @JoinColumn(name = "id_vote_type") })
-	private Set<VoteType> voteTypes;
+	private Set<VoteType> voteTypes;*/
 	
 	public int getCheck() {
 		return check;
@@ -107,13 +107,13 @@ public class Question implements Serializable {
 		this.questionId = questionId;
 	}
 
-	public Set<VoteType> getVoteTypes() {
+	/*public Set<VoteType> getVoteTypes() {
 		return voteTypes;
 	}
 
 	public void setVoteTypes(Set<VoteType> voteTypes) {
 		this.voteTypes = voteTypes;
-	}
+	}*/
 
 	public Post getPost() {
 		return post;

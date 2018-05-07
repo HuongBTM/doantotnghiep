@@ -7,13 +7,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.edu.knowledge.entities.Post;
 import com.edu.knowledge.entities.Question;
 import com.edu.knowledge.entities.Topic;
+import com.edu.knowledge.entities.VoteDetail;
 import com.edu.knowledge.services.PostService;
 import com.edu.knowledge.services.TopicService;
+import com.edu.knowledge.services.UserService;
+import com.edu.knowledge.services.VoteDetailService;
+import com.edu.knowledge.utils.Constant;
 
 @Controller
 @RequestMapping("/app/post")
@@ -24,13 +30,18 @@ public class PostController {
 	
 	@Autowired
 	private TopicService topicService;
+	
+	@Autowired
+	private VoteDetailService voteDetailService;
+	
+	@Autowired
+	private UserService userService;
 
 	@RequestMapping(value = "/{id}/detail", method = RequestMethod.GET)
 	public ModelAndView postDetail(@PathVariable("id") int id) {
 		ModelAndView model = new ModelAndView("post_detail");
 		Post post = postService.getOne(id);
 		postService.updateView(post.getViews() + 1, id);
-		post.setViews(post.getViews() + 1);
 		Question question = new Question();
 		List<Topic> topics = topicService.findTopTen();
 		model.addObject("post", post);
@@ -45,5 +56,30 @@ public class PostController {
 		List<Post> newPosts = postService.findAll();
 		mav.addObject("newPosts", newPosts);
 		return mav;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/vote")
+	@ResponseBody
+	public String postVote(@RequestParam("pid") int postId, @RequestParam("oid") int ownerId,
+			@RequestParam("uid") int userId, @RequestParam("action") String action) {
+		VoteDetail voteDetail = new VoteDetail();
+		voteDetail.setPostId(postId);
+		voteDetail.setUserId(userId);
+		if(action.equals(Constant.ACTION_UPVOTE)) {
+			voteDetail.setVoteTypeId(Constant.UPVOTE_ID);
+			voteDetailService.createVoteDetail(voteDetail);
+			postService.updateUpvotes(postId);
+			userService.updatePoints(Constant.POINTS_POST_OR_QUESTION_UPVOTED, ownerId);
+		} else {
+			voteDetail.setVoteTypeId(Constant.DOWNVOTE_ID);
+			voteDetailService.createVoteDetail(voteDetail);
+			postService.updateDownvotes(postId);
+			userService.updatePoints(Constant.POINTS_DOWNVOTED, ownerId);
+		}
+		return "success";
 	}
 }

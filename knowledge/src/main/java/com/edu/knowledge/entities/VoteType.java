@@ -1,20 +1,14 @@
 package com.edu.knowledge.entities;
 
 import java.io.Serializable;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="tbl_loai_vote")
@@ -34,7 +28,7 @@ public class VoteType implements Serializable{
 	@NotNull
 	private String voteTypeName;
 	
-	@JsonIgnore
+	/*@JsonIgnore
 	@ManyToMany(mappedBy = "voteTypes", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Post> posts;
 	
@@ -48,7 +42,7 @@ public class VoteType implements Serializable{
 	
 	@JsonIgnore
 	@ManyToMany(mappedBy = "voteTypes", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Set<User> users;
+	private Set<User> users;*/
 	
 	public VoteType() {
 	}
@@ -74,7 +68,7 @@ public class VoteType implements Serializable{
 		this.voteTypeName = voteTypeName;
 	}
 
-	public Set<Post> getPosts() {
+	/*public Set<Post> getPosts() {
 		return posts;
 	}
 
@@ -104,7 +98,7 @@ public class VoteType implements Serializable{
 
 	public void setUsers(Set<User> users) {
 		this.users = users;
-	}
+	}*/
 
 	@Override
 	public String toString() {

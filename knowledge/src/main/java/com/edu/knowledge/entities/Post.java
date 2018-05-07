@@ -85,11 +85,11 @@ public class Post implements Serializable{
              inverseJoinColumns = { @JoinColumn(name = "id_chu_de") })
 	private Set<Topic> topics;
 	
-    @ManyToMany(fetch = FetchType.LAZY)
+    /*@ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "tbl_chi_tiet_vote", 
              joinColumns = { @JoinColumn(name = "id_bai_viet") }, 
              inverseJoinColumns = { @JoinColumn(name = "id_vote_type") })
-	private Set<VoteType> voteTypes;
+	private Set<VoteType> voteTypes;*/
 	
 	public Post() {
 	}
@@ -199,13 +199,13 @@ public class Post implements Serializable{
 		this.postId = postId;
 	}
 
-	public Set<VoteType> getVoteTypes() {
+	/*public Set<VoteType> getVoteTypes() {
 		return voteTypes;
 	}
 
 	public void setVoteTypes(Set<VoteType> voteTypes) {
 		this.voteTypes = voteTypes;
-	}
+	}*/
 	
 	public String getAgo() throws ParseException {
         return TimeUtil.ago(creatAt);

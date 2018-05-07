@@ -72,4 +72,12 @@ public class PostService {
 	public List<Post> findTopNew(int limit) {
 		return postRepositery.findTopNew(new PageRequest(0, limit));
 	}
+	
+	public int updateUpvotes(int postId) {
+		return postRepositery.updateUpvotes(postId);
+	}
+	
+	public int updateDownvotes(int postId) {
+		return postRepositery.updateDownvotes(postId);
+	}
 }

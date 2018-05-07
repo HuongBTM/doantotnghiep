@@ -82,4 +82,8 @@ public class UserService {
 	public List<User> findTopFiveExpect() {
 		return userRepositery.findTopFiveExpect(new PageRequest(0, Constant.TOP_USER));
 	}
+	
+	public int updatePoints(int points, int userId) {
+		return userRepositery.updatePoint(points, userId);
+	}
 }

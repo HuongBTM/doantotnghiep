@@ -13,8 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
@@ -67,11 +65,11 @@ public class Answer implements Serializable{
 	@OrderBy("creatAt ASC")
 	private Set<Comment> comments;
 	
-    @ManyToMany(fetch = FetchType.LAZY)
+    /*@ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "tbl_chi_tiet_vote", 
              joinColumns = { @JoinColumn(name = "id_cau_tra_loi") }, 
              inverseJoinColumns = { @JoinColumn(name = "id_vote_type") })
-	private Set<VoteType> voteTypes;
+	private Set<VoteType> voteTypes;*/
 	
 	public Answer() {
 	}
@@ -161,13 +159,13 @@ public class Answer implements Serializable{
 		this.comments = comments;
 	}
 
-	public Set<VoteType> getVoteTypes() {
+	/*public Set<VoteType> getVoteTypes() {
 		return voteTypes;
 	}
 
 	public void setVoteTypes(Set<VoteType> voteTypes) {
 		this.voteTypes = voteTypes;
-	}
+	}*/
 	
 	public String getAgo() throws ParseException {
         return TimeUtil.ago(creatAt);
