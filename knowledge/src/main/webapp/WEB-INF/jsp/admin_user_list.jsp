@@ -44,11 +44,14 @@
                              <table width="100%" id="dataTables-user" class="table table-bordered table-striped table-hover">
 				                <thead>
 				                  <tr>
+				                  	<th align="center">STT</th>
 				                    <th align="center">ID</th>
-				                    <th align="center">Tên hiển thị</th>
+				                    <th align="center">Tên đăng nhập</th>
+				                    <th align="center">Tên hiển thị</th>
 				                    <th align="center">Email</th>
 				                    <th align="center">Số điện thoại</th>
 				                    <th align="center">Ngày đăng ký</th>
+				                    <th align="center">Địa chỉ</th>
 				                    <th align="center">Quyền</th>
 				                    <th></th>
 				                  </tr>
@@ -56,14 +59,17 @@
 				                <tbody>
 				                  <c:forEach items="${users}" var="user" varStatus="userId">
 				                    <tr>
+				                    	<td align="right">${userId.index+1}</td>
 				                      <td align="right">${user.userId}</td>
 				                      <td>
 				                        <img src="<c:url value='/resources/assets/img/${user.image}' />" class="avatar-table" alt="User avatar">
-				                        <a href="<c:url value="/admin/user/${user.userId}" />">${user.fullname}</a>
+				                        <a href="<c:url value="/admin/user/${user.userId}" />">${user.username}</a>
 				                      </td>
+				                      <td align="left">${user.fullname}</td>
 				                      <td>${user.email}</td>
 				                      <td align="right">${user.phoneNum}</td>
 				                      <td align="left">${user.createDate}</td>
+				                      <td align="left">${user.address}</td>
 				                      <td align="center">
 				                        <c:choose>
 				                          <c:when test="${user.admin}">

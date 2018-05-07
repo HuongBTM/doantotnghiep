@@ -23,7 +23,7 @@ public class UserValidator implements Validator{
 		User user = (User) arg0;
 		
 		if(!user.getConfirmpassword().equals(user.getPassword())) {
-			error.rejectValue("confirmpassword", "user.confirmpassword.errors", "Confirm password not match!");
+			error.rejectValue("confirmpassword", "user.confirmpassword.errors", "Mật khẩu không khớp!");
 		}
 		
 		User dbUser = userService.getUserByEmail(user.getEmail());

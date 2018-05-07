@@ -41,6 +41,7 @@
                              <table width="100%" id="datatable-buttons" class="table table-bordered table-striped table-hover">
 				                <thead>
 				                  <tr>
+				                    <th align="center">STT</th>
 				                  	<th align="center">ID</th>
 				                  	<th align="center">Nội dung</th>
 				                    <th align="center">Người đăng</th>
@@ -50,9 +51,10 @@
 				                  </tr>
 				                </thead>
 				                <tbody>
-				                  <c:forEach var="answer" items="${answers}">
+				                  <c:forEach var="answer" items="${answers}" varStatus=answerId">
 				                  	
 				                    <tr>
+				                    	<td align="right">${answerId.index+1}</td>
 				                    	<td align="right">${answer.answerId}</td>
 				                    	<td> ${answer.answerContent} </td>
 				                      <td align="center">

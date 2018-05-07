@@ -45,7 +45,6 @@ public class ExpectPostController {
 	public ModelAndView getAllPost(HttpSession session) {
 		ModelAndView mav = new ModelAndView("expect_post_list");
 		User user = (User) session.getAttribute(Constant.CURRENT_USER);
-		System.out.println("ID="+user.getUserId());
 		List<Post> posts = postService.findAllByUser(user.getUserId());
 		mav.addObject("posts", posts);
 		return mav;
@@ -100,9 +99,10 @@ public class ExpectPostController {
 	}
 	
 	@RequestMapping(value ="/print", method=RequestMethod.GET)
-	public ModelAndView print() {
+	public ModelAndView print(HttpSession session) {
 		ModelAndView mav = new ModelAndView("expect_post_print");
-		List<Post> posts = postService.findAll();
+		User user = (User) session.getAttribute(Constant.CURRENT_USER);
+		List<Post> posts = postService.findAllByUser(user.getUserId());
 		mav.addObject("posts", posts);
 		return mav;
 	}

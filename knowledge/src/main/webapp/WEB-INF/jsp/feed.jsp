@@ -129,7 +129,8 @@
 							        </a>
 							      </div> 
 							      <h6><a href="<c:url value="/app/user/${user.userId}/info" />">${user.username }</a></h6>
-							      <span class="comment"> point</span>
+							      
+							      <span class="comment"> ${user.points }</span>
 							    </li>
 							    </c:forEach>
 							  </ul>

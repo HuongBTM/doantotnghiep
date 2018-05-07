@@ -40,6 +40,7 @@
                              <table width="100%" id="datatable-buttons" class="table table-bordered table-striped table-hover">
 				                <thead>
 				                  <tr>
+				                    <th align="center">STT</th>
 				                    <th align="center">ID</th>
 				                    <th align="center">Tên hiển thị</th>
 				                    <th align="center">Email</th>
@@ -53,6 +54,7 @@
 				                <tbody>
 				                  <c:forEach items="${users}" var="user" varStatus="userId">
 				                    <tr>
+				                    <td align="right">${userId.index+1}</td>
 				                      <td align="right">${user.userId}</td>
 				                      <td>
 				                        <img src="<c:url value='/resources/assets/img/${user.image}' />" class="avatar-table" alt="User avatar">

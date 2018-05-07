@@ -50,6 +50,7 @@
                              <table width="100%" id="dataTables-topic-post" class="table table-bordered table-striped table-hover">
 				                <thead>
 				                  <tr>
+				                  	<th align="center">STT</th>
 				                    <th align="center">ID</th>
 				                    <th align="center">Tiêu đề</th>
 				                    <th align="center">Người đăng</th>
@@ -62,8 +63,9 @@
 				                  </tr>
 				                </thead>
 				                <tbody>
-				                  <c:forEach items="${posts}" var="post" >
+				                  <c:forEach items="${posts}" var="post" varStatus="postId">
 				                    <tr>
+				                    	<td align="right">${postId.index+1}</td>
 				                      <td align="right">${post.postId}</td>
 				                      <td>${post.postTitle}</td>
 				                      <td align="center">

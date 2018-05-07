@@ -97,7 +97,7 @@
                         </label>
                         <div class="col-xs-9">
                           <form:input id="pendingContent" class="form-control col-md-7 col-xs-12" name="pendingName" placeholder="Tên trạng thái..." required="required" type="text" path="pendingContent"></form:input>
-                        	<div class="error" hidden="hidden"></div>
+                        	
                         </div>
                       </div>
                       <div class="item form-group">

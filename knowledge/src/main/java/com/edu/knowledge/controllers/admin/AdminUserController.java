@@ -141,12 +141,13 @@ public class AdminUserController {
 			userService.createUser(user , dbRole);
 		} else {
 			User userdb = userService.getOne(user.getUserId());
+			
 			user.setImage(userdb.getImage());
+			user.setPoints(userdb.getPoints());
 			if(!userService.updateUser(user, dbRole)) {
 				redirect.addFlashAttribute("error", "Saved user " + user.getFullname() + " error!");
 				return modelAndView;
-			}
-			if(user.isExpect()) {
+			} else if(user.isExpect()) {
 				userService.updateSector(user.getSectors(), user);
 			}
 		}

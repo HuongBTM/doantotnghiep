@@ -38,6 +38,7 @@
                              <table width="100%" id="datatable-buttons" class="table table-bordered table-striped table-hover">
 				                <thead>
 				                  <tr>
+				                  <th align="center">STT</th>
 				                    <th align="center">ID</th>
 				                    <th align="center">Tiêu đề</th>
 				                    <th align="center">Nội dung</th>
@@ -49,8 +50,9 @@
 				                  </tr>
 				                </thead>
 				                <tbody>
-				                  <c:forEach items="${questions}" var="question" >
+				                  <c:forEach items="${questions}" var="question" varStatus="questionId">
 				                    <tr>
+				                     <td align="right">${questionId.index+1}</td>
 				                      <td align="right">${question.questionId}</td>
 				                      <td>${question.title}</td>
 				                      <td>${question.questionContent}</td>

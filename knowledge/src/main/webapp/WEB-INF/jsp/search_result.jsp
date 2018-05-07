@@ -56,7 +56,7 @@
 		                <div class="tags t-java t-nullpointerexception">
 							<c:forEach items="${question.topics}" var="topic">
 							<a href="/app/topic/${topic.topicId }/detail"
-								class="post-tag" title="" rel="tag"><i class="fa fa-tag"></i>${topic.topicName }</a> 
+								class="btn btn btn-default btn-xs" style="background-color: #b4d3ea" title="" rel="tag"><i class="fa fa-tag"></i>${topic.topicName }</a> 
 							</c:forEach>
 						</div>
 		                <div id="noti" style="clear: both; padding-top: 10px;">
@@ -133,9 +133,7 @@
 		        </div>
 		        <!-- /.tab-content -->
 		      </div>
-            
-            
-        	
+    	
      	</div>
      	
      	<!-- right content -->

@@ -106,7 +106,7 @@
                 <h3>Giao diện</h3>
                 <ul class="nav side-menu">
                   <li><a href="/app/home/feed"><i class="fa fa-bug"></i> Giao diện ứng dụng </a></li>
-                  <li><a href="#"><i class="fa fa-bug"></i> Giao diện chuyên gia </a></li>
+                  <li><a href="/expect/post/all"><i class="fa fa-bug"></i> Giao diện chuyên gia </a></li>
                   <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Thống kê <span class="label label-success pull-right">Coming Soon</span></a></li>
                 </ul>
               </div>
@@ -148,7 +148,7 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="/admin/user/${CURRENT_USER.userId}/profile">Profile</a></li>
+                    <li><a href="/admin/user/${CURRENT_USER.userId}">Profile</a></li>
                     <li><a href="/admin/user/${CURRENT_USER.userId}/changeprofile">Cài đặt</a></li>
                     <li><a href="javascript:;">Trợ giúp</a></li>
                     <li><a href="/login"><i class="fa fa-sign-out pull-right"></i>Đăng xuất</a></li>

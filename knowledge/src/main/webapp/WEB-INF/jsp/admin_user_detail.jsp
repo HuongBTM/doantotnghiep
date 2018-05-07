@@ -27,21 +27,49 @@
                src="<c:url value="/resources/assets/img/${user.image}" />" alt="User profile picture">
 
           <h3 class="profile-username text-center">${user.fullname}</h3>
-
-          <ul class="list-group list-group-unbordered">
-            <li class="list-group-item">
-              <b>Questions</b> 
+          <h5 class="profile-username text-center">${user.address}</h5>
+			<h5 class="profile-username text-center">
+			<c:choose>
+                <c:when test="${user.admin}">
+                  <span class="label bg-red">Quản trị viên</span>
+                </c:when>
+                <c:when test="${user.expect}">
+                  <span class="label bg-yellow">Chuyên gia</span>
+                </c:when>
+                <c:otherwise>
+                  <span class="label bg-green">Thành viên</span>
+                </c:otherwise>
+              </c:choose>
+			</h5>
+			
+			<div style="background-color: #6bc7e8; text-align: center">Điểm uy tín: ${user.points}</div>
+			
+          <ul class="list-group list-group-unbordered" style="margin-bottom: 0px; padding-top: 5px;">
+          	<c:if test="${user.expect }"><li class="list-group-item">
+				<i class="fa fa-graduation-cap">
+				<b><c:forEach items="${user.sectors}" var="sector">
+					<c:out value="${sector.sectorName},"></c:out>
+				</c:forEach></b></i>
+			</li></c:if>
+             <li class="list-group-item">
+              <b>Câu hỏi</b> 
               <span class="pull-right badge bg-blue">${fn:length(questions)}</span>
             </li>
             <li class="list-group-item">
-              <b>Answers</b>
+              <b>Câu trả lời</b>
               <span class="pull-right badge bg-yellow">${fn:length(answers)}</span>
             </li>
             <li class="list-group-item">
-              <b>Posts</b> 
+              <b>Bài viết</b> 
               <span class="pull-right badge bg-green">${fn:length(posts)}</span>
             </li>
+           <c:if test="${not empty user.abouts }"><li class="list-group-item">
+              ${user.abouts }
+            </li></c:if>
           </ul>
+          <c:if test="${CURRENT_USER.userId eq user.userId }">
+          <div style="padding-top: 5px; text-align: center"><a href="/admin/user/${user.userId}/changeprofile">
+          	<i class="fa fa-pencil"></i> Cập nhật thông tin cá nhân</a></div></c:if>
         </div>
         <!-- /.box-body -->
       </div>
