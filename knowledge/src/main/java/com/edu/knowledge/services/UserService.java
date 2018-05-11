@@ -82,6 +82,10 @@ public class UserService {
 	public List<User> findTopFiveExpect() {
 		return userRepositery.findTopFiveExpect(new PageRequest(0, Constant.TOP_USER));
 	}
+	@SuppressWarnings("deprecation")
+	public List<User> findTopNineExpect() {
+		return userRepositery.findTopFiveExpect(new PageRequest(0, Constant.TOP_USER_REQUEST));
+	}
 	
 	public int updatePoints(int points, int userId) {
 		return userRepositery.updatePoint(points, userId);

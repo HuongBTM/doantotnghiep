@@ -37,4 +37,20 @@ public class AnswerService {
 		answer.setCreatAt(new Date());
 		return answerRepositery.save(answer);
 	}
+	
+	public int updateUpvotes(int answerId) {
+		return answerRepositery.updateUpvotes(answerId);
+	}
+	
+	public int removeUpvotes(int answerId) {
+		return answerRepositery.removeUpvotes(answerId);
+	}
+	
+	public int updateDownvotes(int answerId) {
+		return answerRepositery.updateDownvotes(answerId);
+	}
+	
+	public int removeDownvotes(int answerId) {
+		return answerRepositery.removeDownvotes(answerId);
+	}
 }

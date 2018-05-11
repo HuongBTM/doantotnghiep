@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -25,10 +27,12 @@ import com.edu.knowledge.entities.Post;
 import com.edu.knowledge.entities.Question;
 import com.edu.knowledge.entities.Topic;
 import com.edu.knowledge.entities.User;
+import com.edu.knowledge.entities.VoteDetail;
 import com.edu.knowledge.services.PostService;
 import com.edu.knowledge.services.QuestionService;
 import com.edu.knowledge.services.TopicService;
 import com.edu.knowledge.services.UserService;
+import com.edu.knowledge.services.VoteDetailService;
 import com.edu.knowledge.utils.Constant;
 
 @Controller
@@ -46,6 +50,9 @@ public class QuestionController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private VoteDetailService voteDetailService;
 	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	public ModelAndView allQuestion(){
@@ -91,7 +98,6 @@ public class QuestionController {
 			question.setUser(user);
 			question.setCheck(0);
 			questionService.createQuestion(question);
-			// TODO redirect to request chuyên gia
 			model.setViewName("redirect:/app/question/"+question.getQuestionId()+"/detail");
 		}
 		redirect.addFlashAttribute("success", "Your question has been posted successfully!");
@@ -103,12 +109,18 @@ public class QuestionController {
 		ModelAndView model = new ModelAndView("question_detail");
 		Question question = questionService.getOne(id);
 		questionService.updateViews(question.getViews()+1, id);
-		question.setViews(question.getViews()+1);
+		List<Topic> topics = topicService.findTopTen();
+		List<User> users = userService.findTopFiveExpect();
+		List<User> expects = userService.findTopNineExpect();
+		System.out.println(expects.size());
 		Answer answer = new Answer();
 		Comment comment = new Comment();
 		model.addObject("question", question);
 		model.addObject("answer", answer);
 		model.addObject("comment",comment);
+		model.addObject("topics", topics);
+		model.addObject("users", users);
+		model.addObject("expects", expects);
 		return model;
 	}
 	
@@ -127,8 +139,49 @@ public class QuestionController {
 		question.setUser(user);
 		question.setCheck(0);
 		questionService.createQuestion(question);
-		// TODO redirect sang yêu cầu chuyên gia
 		model.setViewName("redirect:/app/question/"+question.getQuestionId()+"/detail");
 		return model;
+	}
+	
+	/**
+	 * 
+	 * @param questionId id câu hỏi
+	 * @param ownerId id người đăng bài viết
+	 * @param userId id thành viên vote
+	 * @param action upvote/ downvote
+	 * @return success/ voted
+	 */
+	@RequestMapping("/vote")
+	@ResponseBody
+	public String questionVote(@RequestParam("qid") int questionId, @RequestParam("oid") int ownerId,
+			@RequestParam("uid") int userId, @RequestParam("action") String action) {
+		VoteDetail voteDetail = new VoteDetail();
+		voteDetail.setQuestionId(questionId);
+		voteDetail.setUserId(userId);
+		VoteDetail voteDetailDb = voteDetailService.findByQuestionIdAndUserId(questionId, userId);
+		if(voteDetailDb == null) {
+			voteDetailService.createVoteDetail(voteDetail);
+			if(action.equals(Constant.ACTION_UPVOTE)) {				
+				voteDetail.setVoteTypeId(Constant.UPVOTE_ID);
+				questionService.updateUpvotes(questionId);
+				userService.updatePoints(Constant.POINTS_POST_OR_QUESTION_UPVOTED, ownerId);
+			} else {
+				voteDetail.setVoteTypeId(Constant.DOWNVOTE_ID);
+				questionService.updateDownvotes(questionId);
+				userService.updatePoints(Constant.POINTS_DOWNVOTED, ownerId);
+			}
+			return "success";
+		} else {
+			voteDetailService.deleteVote(voteDetailDb.getId());
+			if(action.equals(Constant.ACTION_UPVOTE)) {				
+				questionService.removeUpvotes(questionId);
+				userService.updatePoints(Constant.REMOVE_POST_OR_QUESTION_UPVOTE_POINT, ownerId);
+			} else {
+				questionService.removeDownvotes(questionId);
+				userService.updatePoints(Constant.REMOVE_POST_OR_QUESTION_DOWNVOTE_POINT, ownerId);
+			}
+			return "voted";
+		}
+		
 	}
 }

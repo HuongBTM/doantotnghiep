@@ -53,4 +53,20 @@ public interface QuestionRepositery extends JpaRepository<Question, Integer>{
 	
 	@Query("SELECT q FROM Question q WHERE q.check=1")
 	List<Question> findAllChecked();
+	
+	@Modifying
+	@Query("UPDATE Question p SET p.upvotes=p.upvotes+1 WHERE p.questionId=?1")
+	int updateUpvotes(int questionId);
+	
+	@Modifying
+	@Query("UPDATE Question p SET p.upvotes=p.upvotes-1 WHERE p.questionId=?1")
+	int removeUpvotes(int questionId);
+	
+	@Modifying
+	@Query("UPDATE Question p SET p.downvotes=p.downvotes+1 WHERE p.questionId=?1")
+	int updateDownvotes(int questionId);
+	
+	@Modifying
+	@Query("UPDATE Question p SET p.downvotes=p.downvotes-1 WHERE p.questionId=?1")
+	int removeDownvotes(int questionId);
 }

@@ -17,4 +17,20 @@ public class VoteDetailService {
 	public void createVoteDetail(VoteDetail voteDetail) {
 		voteDetailRepositery.save(voteDetail);
 	}
+	
+	public VoteDetail findByPostIdAndUserId(int postId, int userId) {
+		return voteDetailRepositery.findByPostIdAndUserId(postId, userId);
+	}
+	
+	public int deleteVote(int voteDetailId) {
+		return voteDetailRepositery.deleteVote(voteDetailId);
+	}
+	
+	public VoteDetail findByQuestionIdAndUserId(int questionId, int userId) {
+		return voteDetailRepositery.findByQuestionIdAndUserId(questionId, userId);
+	}
+	
+	public VoteDetail findByAnswerIdAndUserId(int answerId, int userId) {
+		return voteDetailRepositery.findByAnswerIdAndUserId(answerId, userId);
+	}
 }

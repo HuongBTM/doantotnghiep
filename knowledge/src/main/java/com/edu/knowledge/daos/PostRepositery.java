@@ -45,6 +45,14 @@ public interface PostRepositery extends JpaRepository<Post, Integer>{
 	int updateUpvotes(int postId);
 	
 	@Modifying
+	@Query("UPDATE Post p SET p.upvotes=p.upvotes-1 WHERE p.postId=?1")
+	int removeUpvotes(int postId);
+	
+	@Modifying
 	@Query("UPDATE Post p SET p.downvotes=p.downvotes+1 WHERE p.postId=?1")
 	int updateDownvotes(int postId);
+	
+	@Modifying
+	@Query("UPDATE Post p SET p.downvotes=p.downvotes-1 WHERE p.postId=?1")
+	int removeDownvotes(int postId);
 }

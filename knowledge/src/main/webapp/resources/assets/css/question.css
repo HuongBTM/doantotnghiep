@@ -285,10 +285,6 @@
 .float-right, .fr {
     float: right !important;
 }
-.user-info .user-details {
-    float: left;
-    width: 100%;
-}
 
 .user-details {
     line-height: 17px;

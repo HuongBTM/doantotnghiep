@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.edu.knowledge.entities.Answer;
+import com.edu.knowledge.entities.Post;
 import com.edu.knowledge.entities.Question;
 import com.edu.knowledge.entities.User;
 import com.edu.knowledge.services.AnswerService;
+import com.edu.knowledge.services.PostService;
 import com.edu.knowledge.services.QuestionService;
 import com.edu.knowledge.services.UserService;
 
@@ -21,6 +23,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private PostService postService;
 	
 	@Autowired
 	private QuestionService questionService;
@@ -40,9 +45,11 @@ public class UserController {
 	public ModelAndView userInfo(@PathVariable("id") int id) {
 		ModelAndView mav = new ModelAndView("user_info");
 		User user = userService.getOne(id);
+		List<Post> posts = postService.findAllByUser(id);
 		List<Question> questions = questionService.findAllByUser(id);
 		List<Answer> answers = answerService.findAllByUser(id);
 		mav.addObject("user", user);
+		mav.addObject("posts", posts);
 		mav.addObject("questions", questions);
 		mav.addObject("answers",answers);
 		return mav;

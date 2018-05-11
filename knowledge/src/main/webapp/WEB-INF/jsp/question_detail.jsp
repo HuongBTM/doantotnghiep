@@ -69,18 +69,18 @@
 					   </div>
 						<div class="action_bar_inner u-flex">
 							<span id="rgptQp" style="margin-right: 10px">
-								<a class="icon_action_bar-button blue_icon btn btn btn-default" href="#" onClick="AnswerUpvote" target="{"aid": 80102891, "type": "answer"}" id="upBtn">
+								<a class="icon_action_bar-button blue_icon btn btn btn-default" href="#?qid=${question.questionId}&oid=${question.user.userId}&uid=${CURRENT_USER.userId}&action=upvote" id="upQuestionBtn">
 									<div class="icon_action_bar-label">
 										<span class="glyphicon glyphicon-arrow-up">Upvote |</span>
-										<span class="icon_action_bar-count">${question.upvotes }</span>
+										<span id="up_question_count" class="icon_action_bar-count">${question.upvotes }</span>
 									</div>
 								</a>
 							</span>
 							<span id="rgptQp" style="margin-right: 10px">
-								<a class="secondary_action icon_action_bar-button btn btn btn-default" href="#" onClick="AnswerDownvote" target="{"aid": 80102891, "type": "answer"}" id="upBtn">
+								<a class="secondary_action icon_action_bar-button btn btn btn-default" href="#?qid=${question.questionId}&oid=${question.user.userId}&uid=${CURRENT_USER.userId}&action=downvote" id="downQuestionBtn">
 									<div class="icon_action_bar-label">
 										<span class="glyphicon glyphicon-arrow-down">Downvote |</span>
-										<span class="icon_action_bar-count">${question.downvotes }</span>
+										<span id="down_question_count" class="icon_action_bar-count">${question.downvotes }</span>
 									</div>
 								</a>
 							</span>
@@ -98,6 +98,36 @@
     			</div>        
     		</div>
 		</div>
+		
+		<c:if test="${CURRENT_USER.userId eq question.user.userId }">
+		<div class="request-expect" data-questionid="43651814" id="question">
+		<h3 style="margin-top: 0px;">Lựa chọn chuyên gia trả lời câu hỏi của bạn?</h3>
+			<div class="grid-layout">
+				<c:forEach var="expect" items="${expects}">
+				<div class="grid-layout--cell user-info ">
+				<button id="expect-${expect.userId }" class="btn btn-default request-user" onclick="sendRequest(${CURRENT_USER.userId }, ${expect.userId}, ${question.questionId})">
+					<div class="user-gravatar48">
+						<div class="gravatar-wrapper-48"><img alt="" src="/resources/assets/img/${expect.image}"></div>
+					</div>
+					<div class="user-details" style="width: calc(100% - 64px);">
+						<a href="/app/user/${expect.userId}/info">${expect.fullname}</a>
+						<span class="user-location">${expect.address }</span>
+						<div class="-flair">
+							<span class="reputation-score">${expect.points }</span>
+						</div>
+					</div>
+					<div class="user-tags">
+					<c:forEach items="${expect.sectors}" var="sector">
+						<c:out value="${sector.sectorName},"></c:out>
+					</c:forEach>
+					</div>
+				</button>
+				</div>
+				</c:forEach>
+			</div>
+		</div>
+		</c:if>
+		
         	<div id="answers">
 				<a name="tab-top"></a>
 	             <div id="answers-header">
@@ -124,12 +154,13 @@
 	        				<div class="votecell post-layout--left">
 	            				<div class="vote">
 							        <input type="hidden" name="_id_" value="43652564">
-									<div><button class="btn btn-default" style="width: 45px; height: 45px; padding: 0px;"><div>
+									<div><a id="upAnswerBtn-${answer.answerId}" class="upvote btn btn-default" href="#?aid=${answer.answerId}&oid=${answer.user.userId}&uid=${CURRENT_USER.userId}&action=upvote" style="width: 45px; height: 45px; padding: 0px;"><div>
 										<i class="glyphicon glyphicon-triangle-top" style="font-size: 25px; color: #7b7676"></i></div>
-										<span><strong> ${answer.upvotes }</strong></span></button></div>
-									<div style="clear: both; padding-top: 10px"><button class="btn btn-default" style="width: 45px; height: 45px; padding: 0px;">
-										<span><strong> ${answer.downvotes }</strong></span>
-										<i class="glyphicon glyphicon-triangle-bottom" style="font-size: 25px; color: #7b7676"></i></button></div>								
+										<span id="up_answer_count_${answer.answerId}"><strong> ${answer.upvotes }</strong></span></a></div>
+									<div style="clear: both; padding-top: 10px">
+										<a id="downAnswerBtn-${answer.answerId}" class="downvote btn btn-default" href="#?aid=${answer.answerId}&oid=${answer.user.userId}&uid=${CURRENT_USER.userId}&action=downvote" style="width: 45px; height: 45px; padding: 0px;">
+										<span id="down_answer_count_${answer.answerId}"><strong> ${answer.downvotes }</strong></span>
+										<i class="glyphicon glyphicon-triangle-bottom" style="font-size: 25px; color: #7b7676"></i></a></div>								
 								</div>
 							</div>
 							<div class="answercell post-layout--right">
@@ -191,6 +222,7 @@
 				        			</ul>
 				 				</div>
 				
+								<c:if test="${not empty CURRENT_USER}">
 			 					<div id="comments-link-43652564" data-rep="50" data-reg="true" style="padding-left: 25px;">
 			 						<form:form id="comment-form" action="/app/question/${question.questionId}/answer/${answer.answerId}/comment/${CURRENT_USER.userId }/add" method="POST" modelAttribute="comment">
 			 						<button id="send" type="submit" class="btn btn-success">Comment</button>
@@ -199,19 +231,18 @@
 						              		 required="required" type="text"/>
 						            </div>
 						            </form:form>
-						        </div>         
+						        </div> 
+						        </c:if>        
 							</div>    				
 						
 						
 						</div>
 					</div>
 				</c:forEach>	
-				<!-- <a name="48025451"></a>
-				<div id="answer-48025451" class="answer" data-answerid="48025451" itemscope="" itemtype="http://schema.org/Answer">
-	 				<div class="post-layout">
-	 				</div>
-				</div> -->
+				
 				<a name="new-answer"></a>
+				<c:choose>
+				<c:when test="${not empty CURRENT_USER }">
 				<h3 class="space">Câu trả lời của bạn</h3>
 	            <form:form id="post-form" action="/app/question/${question.questionId }/answer/${CURRENT_USER.userId }/add" method="post" modelAttribute="answer">
 	            <form:textarea required="required" class="form-control" id="comment-contents" path="answerContent" cols="50" rows="8"></form:textarea>
@@ -236,6 +267,11 @@
 	                      <input id="submit-button" class="btn btn-primary" type="submit" value="Đăng câu trả lời" tabindex="110">
 	                  </div>
 	             </form:form>
+	             </c:when>
+	             <c:otherwise>
+	             <h3 class="space" style="color: #2d2c2c">Bạn phải <a href="/login">đăng nhập</a> để trả lời và bình chọn câu hỏi này</h3>
+	             </c:otherwise>
+	             </c:choose>
 	     	</div>
      	</div>
      	
@@ -251,31 +287,28 @@
 			<div class="module community-bulletin" data-tracker="cb=1">
 			<div class="widget widget_tag_cloud">
 			  <h3 class="widget_title">Chủ đề</h3>
-			  <%-- <c:forEach var="tag" items=""> --%>
-			    <a href="<c:url value="/tag/" />">Test</a>
-			    <a href="<c:url value="/tag/" />">Java</a>
-			    <a href="<c:url value="/tag/" />">Question</a>
-			    <a href="<c:url value="/tag/" />">Test</a>
-			    <a href="<c:url value="/tag/" />">Cuộc đua số</a>
-			  <%-- </c:forEach> --%>
+			  <c:forEach var="topic" items="${topics}">
+			    	<a href="<c:url value="/app/topic/${topic.topicId }/detail" />">${topic.topicName }</a>
+			  </c:forEach>
 			</div>
          	</div>
 			<div class="module community-bulletin" data-tracker="cb=1">
 			<div class="widget widget_highest_points">
 				<div class="sidebar-related">
-                    <h3 class="widget_title">Top Point</h3>
+                    <h3 class="widget_title">Chuyên gia hàng đầu</h3>
 					  <ul>
-					    <%-- <c:forEach var="topUser" items=""> --%>
+					    <c:forEach var="user" items="${users}">
 					    <li>
 					      <div class="author-img">
-					        <a href="<c:url value="/user/" />">
-					          <img width="60" height="60" src="<c:url value="/upload/" />" alt="">
+					        <a href="<c:url value="/app/user/${user.userId}/info" />">
+					          <img width="60" height="60" src="<c:url value="/resources/assets/img/${user.image }" />" alt="">
 					        </a>
 					      </div> 
-					      <h6><a href="<c:url value="/user/" />">User name</a></h6>
-					      <span class="comment"> point</span>
+					      <h6><a href="<c:url value="/app/user/${user.userId}/info" />">${user.username }</a></h6>
+					      
+					      <span class="comment"> ${user.points }</span>
 					    </li>
-					    <%-- </c:forEach> --%>
+					    </c:forEach>
 					  </ul>
 				</div>
 			</div>
@@ -285,4 +318,136 @@
 </div>
 </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function () {
+
+	$("#upQuestionBtn").click(function (e) {
+		var upvote = parseInt($("#up_question_count").text());
+		var href = $(this).attr('href');
+    	var qid = getURLParameter(href, 'qid');
+    	var oid = getURLParameter(href, 'oid');
+    	var uid = getURLParameter(href, 'uid');
+    	var action = getURLParameter(href, 'action');
+		var url = "<c:url value="/app/question/vote" />";
+		
+		$.ajax({
+			type: "GET",
+      		contentType: "application/json",
+      		url: url,
+      		data: {qid: qid, oid: oid, uid: uid, action: action},
+      		success: function (response) {
+      			if(response=="success") {
+	      			document.getElementById('upQuestionBtn').style.backgroundColor='#1bc364';
+	      			document.getElementById('downQuestionBtn').setAttribute('disabled','disabled');
+	      			$("#up_question_count").text(upvote+1);
+      			} else {
+	      			document.getElementById('upQuestionBtn').style.backgroundColor='#fff';
+	      			document.getElementById('downQuestionBtn').removeAttribute("disabled");
+	      			$("#up_question_count").text(upvote-1);
+      			}
+      		}
+		})
+	});
+	
+	$("#downQuestionBtn").click(function (e) {
+		var downvote = parseInt($("#down_question_count").text());
+		var href = $(this).attr('href');
+    	var qid = getURLParameter(href, 'qid');
+    	var oid = getURLParameter(href, 'oid');
+    	var uid = getURLParameter(href, 'uid');
+    	var action = getURLParameter(href, 'action');
+		var url = "<c:url value="/app/question/vote" />";
+		
+		$.ajax({
+			type: "GET",
+      		contentType: "application/json",
+      		url: url,
+      		data: {qid: qid, oid: oid, uid: uid, action: action},
+      		success: function (response) {
+      			if(response=="success") {
+	      			document.getElementById('downQuestionBtn').style.backgroundColor='#1bc364';
+	      			document.getElementById('upQuestionBtn').setAttribute('disabled','disabled');
+	      			$("#down_question_count").text(downvote+1);
+      			} else {
+      				document.getElementById('downQuestionBtn').style.backgroundColor='#fff';
+	      			document.getElementById('upQuestionBtn').removeAttribute("disabled");
+	      			$("#down_question_count").text(downvote-1);
+      			}
+      		}
+		})
+	});
+	
+	$("a.upvote").click(function (e) {
+		var href = $(this).attr('href');
+    	var aid = getURLParameter(href, 'aid');
+    	var oid = getURLParameter(href, 'oid');
+    	var uid = getURLParameter(href, 'uid');
+    	var action = getURLParameter(href, 'action');
+		var url = "<c:url value="/app/answer/vote" />";
+		var upvote = parseInt($("#up_answer_count_"+aid).text());
+		$.ajax({
+			type: "GET",
+      		contentType: "application/json",
+      		url: url,
+      		data: {aid: aid, oid: oid, uid: uid, action: action},
+      		success: function (response) {
+      			if(response=="success") {
+	      			document.getElementById("upAnswerBtn-"+aid).style.backgroundColor='#1bc364';
+	      			document.getElementById("downAnswerBtn-"+aid).setAttribute('disabled','disabled');
+	      			$("#up_answer_count_"+aid).text(upvote+1);
+      			} else {
+	      			document.getElementById("upAnswerBtn-"+aid).style.backgroundColor='#fff';
+	      			document.getElementById("downAnswerBtn-"+aid).removeAttribute("disabled");
+	      			$("#up_answer_count_"+aid).text(upvote-1);
+      			}
+      		}
+		})
+	});
+	$("a.downvote").click(function (e) {
+		
+		var href = $(this).attr('href');
+    	var aid = getURLParameter(href, 'aid');
+    	var oid = getURLParameter(href, 'oid');
+    	var uid = getURLParameter(href, 'uid');
+    	var action = getURLParameter(href, 'action');
+		var url = "<c:url value="/app/answer/vote" />";
+		var downvote = parseInt($("#down_answer_count_"+aid).text());
+		$.ajax({
+			type: "GET",
+      		contentType: "application/json",
+      		url: url,
+      		data: {aid: aid, oid: oid, uid: uid, action: action},
+      		success: function (response) {
+      			if(response=="success") {
+	      			document.getElementById("downAnswerBtn-"+aid).style.backgroundColor='#1bc364';
+	      			document.getElementById("upAnswerBtn-"+aid).setAttribute('disabled','disabled');
+	      			$("#down_answer_count_"+aid).text(downvote+1);
+      			} else {
+      				document.getElementById("downAnswerBtn-"+aid).style.backgroundColor='#fff';
+	      			document.getElementById("upAnswerBtn-"+aid).removeAttribute("disabled");
+	      			$("#down_answer_count_"+aid).text(downvote-1);
+      			}
+      		}
+		})
+	});
+	function getURLParameter(url, name) {
+    	return (RegExp(name + '=' + '(.+?)(&|$)').exec(url)||[,null])[1];
+  	}
+	
+});
+function sendRequest(oid, uid, qid) {
+ 	alert(oid+uid+qid);
+ 	document.getElementById("expect-"+uid).setAttibute('disabled','disabled');
+ 	/* var url = "<c:url value="/app/question/request" />";
+ 	$.ajax({
+ 		type: "GET",
+  		contentType: "application/json",
+  		url: url,
+  		data: {oid: oid, uid: uid, qid:qid},
+  		success: function (response) {
+  			
+  		}
+ 	}) */
+}
+</script>
 <jsp:include page="footer.jsp"></jsp:include>

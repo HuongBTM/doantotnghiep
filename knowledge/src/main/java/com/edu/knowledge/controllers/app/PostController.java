@@ -60,7 +60,11 @@ public class PostController {
 	
 	/**
 	 * 
-	 * @return
+	 * @param postId id bài viết
+	 * @param ownerId id người đăng bài viết
+	 * @param userId id thành viên vote
+	 * @param action upvote/ downvote
+	 * @return success/ voted
 	 */
 	@RequestMapping("/vote")
 	@ResponseBody
@@ -69,17 +73,30 @@ public class PostController {
 		VoteDetail voteDetail = new VoteDetail();
 		voteDetail.setPostId(postId);
 		voteDetail.setUserId(userId);
-		if(action.equals(Constant.ACTION_UPVOTE)) {
-			voteDetail.setVoteTypeId(Constant.UPVOTE_ID);
+		VoteDetail voteDetailDb = voteDetailService.findByPostIdAndUserId(postId, userId);
+		if(voteDetailDb == null) {
 			voteDetailService.createVoteDetail(voteDetail);
-			postService.updateUpvotes(postId);
-			userService.updatePoints(Constant.POINTS_POST_OR_QUESTION_UPVOTED, ownerId);
+			if(action.equals(Constant.ACTION_UPVOTE)) {				
+				voteDetail.setVoteTypeId(Constant.UPVOTE_ID);
+				postService.updateUpvotes(postId);
+				userService.updatePoints(Constant.POINTS_POST_OR_QUESTION_UPVOTED, ownerId);
+			} else {
+				voteDetail.setVoteTypeId(Constant.DOWNVOTE_ID);
+				postService.updateDownvotes(postId);
+				userService.updatePoints(Constant.POINTS_DOWNVOTED, ownerId);
+			}
+			return "success";
 		} else {
-			voteDetail.setVoteTypeId(Constant.DOWNVOTE_ID);
-			voteDetailService.createVoteDetail(voteDetail);
-			postService.updateDownvotes(postId);
-			userService.updatePoints(Constant.POINTS_DOWNVOTED, ownerId);
+			voteDetailService.deleteVote(voteDetailDb.getId());
+			if(action.equals(Constant.ACTION_UPVOTE)) {				
+				postService.removeUpvotes(postId);
+				userService.updatePoints(Constant.REMOVE_POST_OR_QUESTION_UPVOTE_POINT, ownerId);
+			} else {
+				postService.removeDownvotes(postId);
+				userService.updatePoints(Constant.REMOVE_POST_OR_QUESTION_DOWNVOTE_POINT, ownerId);
+			}
+			return "voted";
 		}
-		return "success";
+		
 	}
 }

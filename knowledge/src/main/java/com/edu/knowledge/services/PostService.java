@@ -77,7 +77,15 @@ public class PostService {
 		return postRepositery.updateUpvotes(postId);
 	}
 	
+	public int removeUpvotes(int postId) {
+		return postRepositery.removeUpvotes(postId);
+	}
+	
 	public int updateDownvotes(int postId) {
 		return postRepositery.updateDownvotes(postId);
+	}
+	
+	public int removeDownvotes(int postId) {
+		return postRepositery.removeDownvotes(postId);
 	}
 }

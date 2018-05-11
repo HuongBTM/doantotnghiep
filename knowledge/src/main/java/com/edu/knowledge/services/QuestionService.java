@@ -86,4 +86,20 @@ public class QuestionService {
 	public List<Question> findAllChecked() {
 		return questionRepositery.findAllChecked();
 	}
+	
+	public int updateUpvotes(int questionId) {
+		return questionRepositery.updateUpvotes(questionId);
+	}
+	
+	public int removeUpvotes(int questionId) {
+		return questionRepositery.removeUpvotes(questionId);
+	}
+	
+	public int updateDownvotes(int questionId) {
+		return questionRepositery.updateDownvotes(questionId);
+	}
+	
+	public int removeDownvotes(int questionId) {
+		return questionRepositery.removeDownvotes(questionId);
+	}
 }

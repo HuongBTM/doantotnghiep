@@ -94,6 +94,7 @@
         	<div id="answers">
 
 				<a name="new-answer"></a>
+				<c:if test="${not empty CURRENT_USER }">
 				<h3 class="space">Đặt câu hỏi về bài viết này?</h3>
 	            <form:form id="post-form" action="/app/question/post/${post.postId }/ask/${CURRENT_USER.userId}" method="post" modelAttribute="question">
 	            <div class="item form-group">
@@ -134,6 +135,10 @@
 		             </div>
 		           </div>
 	             </form:form>
+	             </c:if>
+	             <c:otherwise>
+	             <h3 class="space" style="color: #2d2c2c">Bạn phải <a href="/login">Đăng nhập</a> để câu hỏi về bài viết này</h3>
+	             </c:otherwise>
 	     	</div>
      	</div>
        	<div id="sidebar" class="show-votes" role="complementary" aria-label="sidebar">                          
@@ -197,10 +202,17 @@ $(document).ready(function () {
       		url: url,
       		data: {pid: pid, oid: oid, uid: uid, action: action},
       		success: function (response) {
-      			console.log(response);
-      			// set background-color
-      			$(this).css('background-color','#26ca6d');
-      			$("#upvote_count").text(upvote+1);
+      			if(response=="success") {
+	      			console.log(response);
+	      			document.getElementById('upBtn').style.backgroundColor='#1bc364';
+	      			document.getElementById('downBtn').setAttribute('disabled','disabled');
+	      			$("#upvote_count").text(upvote+1);
+      			} else {
+      				console.log(response);
+	      			document.getElementById('upBtn').style.backgroundColor='#fff';
+	      			document.getElementById('downBtn').removeAttribute("disabled");
+	      			$("#upvote_count").text(upvote-1);
+      			}
       		}
 		})
 	});
@@ -220,9 +232,17 @@ $(document).ready(function () {
       		url: url,
       		data: {pid: pid, oid: oid, uid: uid, action: action},
       		success: function (response) {
-      			console.log(response);
-      			$(this).css('background-color','#26ca6d');
-      			$("#downvote_count").text(downvote+1);
+      			if(response=="success") {
+	      			console.log(response);
+	      			document.getElementById('downBtn').style.backgroundColor='#1bc364';
+	      			document.getElementById('upBtn').setAttribute('disabled','disabled');
+	      			$("#downvote_count").text(downvote+1);
+      			} else {
+      				console.log(response);
+      				document.getElementById('downBtn').style.backgroundColor='#fff';
+	      			document.getElementById('upBtn').removeAttribute("disabled");
+	      			$("#downvote_count").text(downvote-1);
+      			}
       		}
 		})
 	});
