@@ -1349,12 +1349,12 @@ ul.comments-list .comment-text {
     float: left;
     display: block;
     overflow: hidden;
-    width: 71px;
-    height: 71px;
+    width: 60px;
+    height: 60px;
     position: relative;
     margin-right: 20px;
+    margin-top: 20px;
     overflow: hidden;
-    padding: 2px;
     border: 1px solid #dedede;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;

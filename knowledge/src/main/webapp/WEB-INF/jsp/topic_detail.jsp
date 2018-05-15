@@ -24,8 +24,8 @@
             <!-- nav-tab-custom -->
             <div class="nav-tabs-custom">
 		        <ul class="nav nav-tabs">
-		          <li class="active"><a href="#questions" data-toggle="tab">Câu hỏi</a></li>
-		          <li><a href="#posts" data-toggle="tab">Bài viết</a></li>
+		          <li class="active"><a href="#questions" data-toggle="tab">Câu hỏi (${fn:length(topic.questions)})</a></li>
+		          <li><a href="#posts" data-toggle="tab">Bài viết (${fn:length(topic.posts)})</a></li>
 		        </ul>
 		        <div class="tab-content">
 		          <div class="active tab-pane" id="questions" style="width: 100%">

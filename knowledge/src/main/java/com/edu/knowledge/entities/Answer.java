@@ -65,12 +65,6 @@ public class Answer implements Serializable{
 	@OrderBy("creatAt ASC")
 	private Set<Comment> comments;
 	
-    /*@ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "tbl_chi_tiet_vote", 
-             joinColumns = { @JoinColumn(name = "id_cau_tra_loi") }, 
-             inverseJoinColumns = { @JoinColumn(name = "id_vote_type") })
-	private Set<VoteType> voteTypes;*/
-	
 	public Answer() {
 	}
 
@@ -158,14 +152,6 @@ public class Answer implements Serializable{
 	public void setComments(Set<Comment> comments) {
 		this.comments = comments;
 	}
-
-	/*public Set<VoteType> getVoteTypes() {
-		return voteTypes;
-	}
-
-	public void setVoteTypes(Set<VoteType> voteTypes) {
-		this.voteTypes = voteTypes;
-	}*/
 	
 	public String getAgo() throws ParseException {
         return TimeUtil.ago(creatAt);

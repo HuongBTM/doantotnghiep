@@ -69,9 +69,9 @@
 			<div id="sidebar" class="show-votes" role="complementary" aria-label="sidebar">  
        		<div class="module community-bulletin" data-tracker="cb=1">
 			<div class="widget widget_tag_cloud">
-			  <h3 class="widget_title">Chủ đề</h3>
+			  <h3 class="widget_title">Chủ đề nổi bật</h3>
 			  <c:forEach var="topic" items="${topics}">
-			    <a href="<c:url value="/app/topic/${topic.topicId }/detail" />">${topic.topicName }</a>
+			    <a href="<c:url value="/app/topic/${topic.topicId }/detail" />">${topic.topicName } (${fn:length(topic.posts) + fn:length(topic.questions)})</a>
 			  </c:forEach>
 			</div>
          	</div>                        
@@ -88,7 +88,12 @@
 						        </a>
 						      </div> 
 						      <h6><a href="<c:url value="/app/user/${user.userId}/info" />">${user.username }</a></h6>
-						      <span class="comment"> point</span>
+						      <span class="comment"> ${user.points }</span>
+						      <div style="font-size: 13px; margin-left: 80px;">
+						      <c:forEach items="${user.sectors}" var="sector">
+									<c:out value="${sector.sectorName},"></c:out>
+								</c:forEach>
+								</div>
 						    </li>
 						 </c:forEach>
 					  </ul>

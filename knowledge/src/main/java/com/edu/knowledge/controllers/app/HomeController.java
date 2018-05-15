@@ -53,6 +53,7 @@ public class HomeController {
 		List<Question> questions = questionService.findTopVote(Constant.FEED_TOP_LIMIT);
 		List<Post> posts = postService.findTopVote(Constant.FEED_TOP_LIMIT);
 		List<Topic> topics = topicService.findTopTen();
+		System.out.println("topicSize="+topics.size());
 		List<User> users = userService.findTopFiveExpect();
 		mav.addObject("questions", questions);
 		mav.addObject("posts", posts);

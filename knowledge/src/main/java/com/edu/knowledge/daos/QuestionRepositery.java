@@ -31,9 +31,6 @@ public interface QuestionRepositery extends JpaRepository<Question, Integer>{
 	@Query("SELECT q FROM Question q WHERE q.check=1 ORDER BY q.upvotes DESC")
 	List<Question> findTopVote(Pageable pageable);
 	
-	/*@Query("SELECT q FROM Question q LEFT JOIN fetch Answer a LEFT JOIN fetch a.user u WHERE u.userId=?1")
-	List<Question> getQuestionHaveUserAnswer(int userId);*/
-	
 	@Modifying
 	@Query("UPDATE Question q SET q.views=?1 WHERE q.questionId=?2")
 	int updateView(int views, int questionId);
