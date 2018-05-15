@@ -1,5 +1,6 @@
 package com.edu.knowledge.controllers.app;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -25,11 +26,13 @@ import com.edu.knowledge.entities.Answer;
 import com.edu.knowledge.entities.Comment;
 import com.edu.knowledge.entities.Post;
 import com.edu.knowledge.entities.Question;
+import com.edu.knowledge.entities.RequestExpect;
 import com.edu.knowledge.entities.Topic;
 import com.edu.knowledge.entities.User;
 import com.edu.knowledge.entities.VoteDetail;
 import com.edu.knowledge.services.PostService;
 import com.edu.knowledge.services.QuestionService;
+import com.edu.knowledge.services.RequestService;
 import com.edu.knowledge.services.TopicService;
 import com.edu.knowledge.services.UserService;
 import com.edu.knowledge.services.VoteDetailService;
@@ -53,6 +56,9 @@ public class QuestionController {
 	
 	@Autowired
 	private VoteDetailService voteDetailService;
+	
+	@Autowired
+	private RequestService requestService;
 	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	public ModelAndView allQuestion(){
@@ -182,6 +188,22 @@ public class QuestionController {
 			}
 			return "voted";
 		}
-		
+	}
+
+	/**
+	 * 
+	 * @param ownerId người gửi yêu cầu
+	 * @param userId người nhận được yêu cầu
+	 * @param questionId câu hỏi yêu cầu
+	 * @return
+	 */
+	@RequestMapping("/request")
+	@ResponseBody
+	public String request(@RequestParam("oid") int ownerId, @RequestParam("uid") int userId,
+			@RequestParam("qid") int questionId) {
+		Question question = questionService.getOne(questionId);
+		RequestExpect requestExpect = new RequestExpect(question, userId, new Date());
+		requestService.createRequest(requestExpect);
+		return "success";
 	}
 }

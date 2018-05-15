@@ -25,15 +25,15 @@
 
           <ul class="list-group list-group-unbordered">
             <li class="list-group-item">
-              <b>Questions</b> 
+              <b>Câu hỏi</b> 
               <span class="pull-right badge bg-blue">${fn:length(questions)}</span>
             </li>
             <li class="list-group-item">
-              <b>Answers</b>
+              <b>Câu trả lời</b>
               <span class="pull-right badge bg-yellow">${fn:length(answers)}</span>
             </li>
             <li class="list-group-item">
-              <b>Posts</b> 
+              <b>Bài viết</b> 
               <span class="pull-right badge bg-green">${fn:length(posts)}</span>
             </li>
           </ul>
@@ -156,7 +156,7 @@
                   </span>
                 </div>
                 <!-- /.user-block -->
-                <p>${post.postContent}</p>
+                <p>${post.summary}</p>
                 <ul class="list-inline">
                   <li>
                     <a href="<c:url value="/admin/post/detail/${post.postId}" />" class="link-black text-sm">

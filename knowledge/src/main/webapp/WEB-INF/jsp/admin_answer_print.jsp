@@ -44,6 +44,7 @@
 				                    <th align="center">STT</th>
 				                  	<th align="center">ID</th>
 				                  	<th align="center">Nội dung</th>
+				                  	<th align="center">Tiêu đề câu hỏi</th>
 				                    <th align="center">Người đăng</th>
 				                    <th align="center">Ngày đăng</th>
 				                    <th align="center">Bình chọn</th>
@@ -51,12 +52,13 @@
 				                  </tr>
 				                </thead>
 				                <tbody>
-				                  <c:forEach var="answer" items="${answers}" varStatus=answerId">
+				                  <c:forEach var="answer" items="${answers}" varStatus="answerId">
 				                  	
 				                    <tr>
 				                    	<td align="right">${answerId.index+1}</td>
 				                    	<td align="right">${answer.answerId}</td>
 				                    	<td> ${answer.answerContent} </td>
+				                    	<td> ${answer.question.title} </td>
 				                      <td align="center">
 				                        <img class="img-circle img-sm" src="<c:url value="/resources/assets/img/${answer.user.image}" />"
 				                          alt="User Image" title="${answer.user.fullname}" />

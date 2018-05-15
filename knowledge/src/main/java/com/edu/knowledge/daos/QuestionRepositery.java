@@ -41,7 +41,8 @@ public interface QuestionRepositery extends JpaRepository<Question, Integer>{
 	@Query("SELECT q FROM Question q LEFT JOIN fetch q.topics t WHERE t.topicId=?1")
 	List<Question> findAllByTopic(int topicId);
 	
-	@Query("SELECT q FROM Question q WHERE q.title LIKE CONCAT('%',:q,'%') OR q.questionContent LIKE CONCAT('%',:q,'%')")
+	/*@Query("SELECT q FROM Question q WHERE q.title LIKE CONCAT('%',:q,'%') OR q.questionContent LIKE CONCAT('%',:q,'%')")*/
+	@Query("SELECT q FROM Question q WHERE q.title LIKE %:q% OR q.questionContent LIKE %:q%")
 	List<Question> search(@Param("q") String q);
 	
 	@Query("SELECT q FROM Question q WHERE q.check=?1")

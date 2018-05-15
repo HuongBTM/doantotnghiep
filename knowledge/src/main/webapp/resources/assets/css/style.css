@@ -473,7 +473,7 @@ div {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   margin-bottom: 8px;
-  padding: 15px;
+  padding: 10px;
   border: 1px solid #dedede;
   background: #FFF;
   -moz-box-shadow: 0 0 5px #dedede;
@@ -626,8 +626,9 @@ div {
   margin: 0 0 0px 100px;
   color: #474D5D;
   overflow: hidden;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: bold;
+  line-height: 25px;
 }
 .question h2 a {
   color: #6783c3;

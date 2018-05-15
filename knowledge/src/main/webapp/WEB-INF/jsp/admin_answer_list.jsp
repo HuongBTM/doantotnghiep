@@ -20,6 +20,7 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
+                	
                     <div class="panel panel-default">
                         <c:if test="${not empty success}">
 						    <div class="alert alert-success alert-dismissible">
@@ -37,13 +38,16 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                          <div>
+                        	<a href="/admin/answer/print" id="btnAddUser" class="btn btn-primary btn-xs addBtn" style="width: 100px; height: 30px; margin-bottom: 10px; padding-top: 5px;"><i class="fa fa-plus"></i> Thêm mới 
+                        	</a>
                         </div>
                              <table width="100%" id="dataTables-question" class="table table-bordered table-striped table-hover">
 				                <thead>
 				                  <tr>
 				                  <th align="center">STT</th>
 				                  	<th align="center">ID</th>
-				                  	<th align="center">Nội dung</th>
+				                  	<th align="center">Nội dung trả lời</th>
+				                  	<th align="center">Tiêu đề câu hỏi</th>
 				                    <th align="center">Người đăng</th>
 				                    <th align="center">Ngày đăng</th>
 				                    <th align="center">Bình chọn</th>
@@ -59,6 +63,7 @@
 				                    	<td align="right">${answerId.index+1}</td>
 				                    	<td align="right">${answer.answerId}</td>
 				                    	<td> ${answer.answerContent} </td>
+				                    	<td>${answer.question.title }</td>
 				                      <td align="center">
 				                        <img class="img-circle img-sm" src="<c:url value="/resources/assets/img/${answer.user.image}" />"
 				                          alt="User Image" title="${answer.user.fullname}" />

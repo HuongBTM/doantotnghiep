@@ -50,6 +50,7 @@
                              <table width="100%" id="dataTables-topic-post" class="table table-bordered table-striped table-hover">
 				                <thead>
 				                  <tr>
+				                  <th align="center">STT</th>
 				                    <th align="center">ID</th>
 				                    <th align="center">Tiêu đề</th>
 				                    <th align="center">Người đăng</th>
@@ -62,8 +63,9 @@
 				                  </tr>
 				                </thead>
 				                <tbody>
-				                  <c:forEach items="${posts}" var="post" >
+				                  <c:forEach items="${posts}" var="post" varStatus="postId">
 				                    <tr>
+				                    <td align="right">${postId.index+1}</td>
 				                      <td align="right">${post.postId}</td>
 				                      <td>${post.postTitle}</td>
 				                      <td align="center">
@@ -117,8 +119,8 @@
 	          <p>Bạn chắc chắn xóa bản ghi này?</p>
 	        </div>
 	        <div class="modal-footer">
-	        	<button type="button" class="btn btn-danger" id="delPostExBtn"> Delete </button>
-	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        	<button type="button" class="btn btn-danger" id="delPostExBtn"> Xóa </button>
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
 	        </div>
 	      </div>
 	      

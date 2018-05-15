@@ -57,6 +57,7 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
+                <li><a href="/expect/topic/all"><i class="fa fa-tags"></i> Danh sách chủ đề</a>
                   <li><a><i class="fa fa-file-text-o"></i> Bài viết của bạn<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="/expect/post/all">Danh sách bài viết</a></li>
@@ -64,11 +65,10 @@
                       <li><a href="/expect/post/print">In danh sách bài viết</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-question-circle"></i> Câu hỏi được yêu cầu</a>
-                  </li>
+                  <li><a href="/expect/request/all"><i class="fa fa-question-circle"></i> Câu hỏi được yêu cầu</a></li>
+                  <li><a href="/app/home/feed"><i class="fa fa-globe"></i> Ghé thăm ứng dụng</a></li>
                 </ul>
               </div>
-             
 
             </div>
             <!-- /sidebar menu -->

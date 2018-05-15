@@ -94,7 +94,8 @@
         	<div id="answers">
 
 				<a name="new-answer"></a>
-				<c:if test="${not empty CURRENT_USER }">
+				<c:choose>
+				<c:when test="${not empty CURRENT_USER }">
 				<h3 class="space">Đặt câu hỏi về bài viết này?</h3>
 	            <form:form id="post-form" action="/app/question/post/${post.postId }/ask/${CURRENT_USER.userId}" method="post" modelAttribute="question">
 	            <div class="item form-group">
@@ -135,10 +136,11 @@
 		             </div>
 		           </div>
 	             </form:form>
-	             </c:if>
+	             </c:when>
 	             <c:otherwise>
-	             <h3 class="space" style="color: #2d2c2c">Bạn phải <a href="/login">Đăng nhập</a> để câu hỏi về bài viết này</h3>
+	             <h3 class="space" style="color: #2d2c2c">Bạn phải <a href="/login">Đăng nhập</a> để đặt câu hỏi về bài viết này</h3>
 	             </c:otherwise>
+	             </c:choose>
 	     	</div>
      	</div>
        	<div id="sidebar" class="show-votes" role="complementary" aria-label="sidebar">                          

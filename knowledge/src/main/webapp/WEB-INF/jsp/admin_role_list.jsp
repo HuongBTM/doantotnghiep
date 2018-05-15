@@ -128,8 +128,8 @@
 	          <p>Bạn chắc chắn xóa quyền này?</p>
 	        </div>
 	        <div class="modal-footer">
-	        	<button type="button" class="btn btn-danger" id="delRoleBtn"> Delete </button>
-	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        	<button type="button" class="btn btn-danger" id="delRoleBtn"> Xóa </button>
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
 	        </div>
 	      </div>
 	      

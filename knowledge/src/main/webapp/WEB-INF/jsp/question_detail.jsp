@@ -437,17 +437,17 @@ $(document).ready(function () {
 });
 function sendRequest(oid, uid, qid) {
  	alert(oid+uid+qid);
- 	document.getElementById("expect-"+uid).setAttibute('disabled','disabled');
- 	/* var url = "<c:url value="/app/question/request" />";
+ 	alert(uid);
+ 	var url = "<c:url value="/app/question/request" />";
  	$.ajax({
  		type: "GET",
   		contentType: "application/json",
   		url: url,
   		data: {oid: oid, uid: uid, qid:qid},
   		success: function (response) {
-  			
+  			document.getElementById("expect-"+uid).setAttribute('disabled','disabled');
   		}
- 	}) */
+ 	})
 }
 </script>
 <jsp:include page="footer.jsp"></jsp:include>

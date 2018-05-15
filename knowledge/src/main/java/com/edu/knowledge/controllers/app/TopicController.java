@@ -52,6 +52,7 @@ public class TopicController {
 	@RequestMapping(value="/search", method=RequestMethod.GET)
 	public ModelAndView searchResult(@RequestParam(value = "q", required = true) String q) {
 		ModelAndView model = new ModelAndView("search_result");
+		System.out.println("search=" +q);
 		List<Question> questions = questionService.search(q);
 		List<Post> posts = postService.search(q);
 		List<User> users = userService.findTopFiveExpect();

@@ -47,8 +47,8 @@
                                        <td><c:out value="${sector.sectorName}"></c:out></td>
                                        <td><c:out value="${sector.describeSector}"></c:out></td>
                                        <td align="center">
-			                            <a href="/admin/sector/editsector/${sector.sectorId}" data-id="${sector.sectorId}" class="btn btn-info btn-xs eBtn"><i class="fa fa-pencil"></i> Edit </a>
-			                            <a href="#" class="btn btn-danger btn-xs btnDeleteSector" data-id="${sector.sectorId}"><i class="fa fa-trash-o"></i> Delete </a>
+			                            <a href="/admin/sector/editsector/${sector.sectorId}" data-id="${sector.sectorId}" class="btn btn-info btn-xs eBtn"><i class="fa fa-pencil"></i> Sửa </a>
+			                            <a href="#" class="btn btn-danger btn-xs btnDeleteSector" data-id="${sector.sectorId}"><i class="fa fa-trash-o"></i> Xóa </a>
 			                          </td>
                                    </tr>
                                    </c:forEach>
@@ -86,8 +86,8 @@
 	          <p>Bạn chắc chắn xóa lĩnh vực này?</p>
 	        </div>
 	        <div class="modal-footer">
-	        	<button type="button" class="btn btn-danger" id="delSectorBtn"> Delete </button>
-	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        	<button type="button" class="btn btn-danger" id="delSectorBtn"> Xóa </button>
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
 	        </div>
 	      </div>
 	      
