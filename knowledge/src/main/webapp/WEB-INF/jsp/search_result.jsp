@@ -19,8 +19,8 @@
             <!-- nav-tab-custom -->
             <div class="nav-tabs-custom">
 		        <ul class="nav nav-tabs">
-		          <li class="active"><a href="#questions" data-toggle="tab">Câu hỏi</a></li>
-		          <li><a href="#posts" data-toggle="tab">Bài viết</a></li>
+		          <li class="active"><a href="#questions" data-toggle="tab">Câu hỏi ${fn:length(questions)}</a></li>
+		          <li><a href="#posts" data-toggle="tab">Bài viết ${fn:length(posts)}</a></li>
 		        </ul>
 		        <div class="tab-content">
 		          <div class="active tab-pane" id="questions" style="width: 100%">
@@ -140,28 +140,33 @@
        	<div id="sidebar" class="show-votes" role="complementary" aria-label="sidebar">  
        		<div class="module community-bulletin" data-tracker="cb=1">
 			<div class="widget widget_tag_cloud">
-			  <h3 class="widget_title">Chủ đề</h3>
+			  <h3 class="widget_title">Chủ đề nổi bật</h3>
 			  <c:forEach var="topic" items="${topics}">
-			    <a href="<c:url value="/app/topic/${topic.topicId }/detail" />">${topic.topicName }</a>
+			    <a href="<c:url value="/app/topic/${topic.topicId }/detail" />">${topic.topicName } (${fn:length(topic.questions) + fn:length(topic.posts)})</a>
 			  </c:forEach>
 			</div>
          	</div>                        
 			<div class="module community-bulletin" data-tracker="cb=1">
 			<div class="widget widget_highest_points">
 				<div class="sidebar-related">
-                    <h3 class="widget_title">Top Point</h3>
+                    <h3 class="widget_title">Chuyên gia hàng đầu</h3>
 					  <ul>
-					    <c:forEach var="user" items="${users }">
-						    <li>
-						      <div class="author-img">
-						        <a href="<c:url value="/app/user/${user.userId}/info" />">
-						          <img width="60" height="60" src="<c:url value="/resources/assets/img/${user.image }" />" alt="">
-						        </a>
-						      </div> 
-						      <h6><a href="<c:url value="/app/user/${user.userId}/info" />">${user.username }</a></h6>
-						      <span class="comment"> point</span>
-						    </li>
-						 </c:forEach>
+					    <c:forEach var="user" items="${users}">
+					    <li>
+					      <div class="author-img">
+					        <a href="<c:url value="/app/user/${user.userId}/info" />">
+					          <img width="60" height="60" src="<c:url value="/resources/assets/img/${user.image }" />" alt="">
+					        </a>
+					      </div> 
+					      <h6><a href="<c:url value="/app/user/${user.userId}/info" />">${user.username }</a></h6>
+					      <span class="comment"> ${user.points }</span>
+					      <div style="font-size: 13px; margin-left: 80px;">
+					      <c:forEach items="${user.sectors}" var="sector">
+								<c:out value="${sector.sectorName},"></c:out>
+							</c:forEach>
+							</div>
+					    </li>
+					    </c:forEach>
 					  </ul>
 				</div>
 			</div>

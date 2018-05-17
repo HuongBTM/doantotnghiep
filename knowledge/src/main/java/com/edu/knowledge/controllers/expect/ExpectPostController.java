@@ -21,6 +21,7 @@ import com.edu.knowledge.entities.Topic;
 import com.edu.knowledge.entities.User;
 import com.edu.knowledge.services.PostService;
 import com.edu.knowledge.services.TopicService;
+import com.edu.knowledge.services.UserService;
 import com.edu.knowledge.utils.Constant;
 
 @Controller
@@ -32,6 +33,9 @@ public class ExpectPostController {
 
 	@Autowired
 	private TopicService topicService;
+	
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping(value ="/detail/{id}", method=RequestMethod.GET)
 	public ModelAndView getOnePost(@PathVariable("id") int id) {
@@ -74,6 +78,7 @@ public class ExpectPostController {
 			User user = (User) session.getAttribute(Constant.CURRENT_USER);
 			post.setUser(user);
 			postService.createPost(post);
+			userService.updatePoints(Constant.POINTS_NEW_POST, user.getUserId());
 		} else {
 			Post postUpdate = postService.getOne(idHidden);
 			postUpdate.setPostTitle(post.getPostTitle());

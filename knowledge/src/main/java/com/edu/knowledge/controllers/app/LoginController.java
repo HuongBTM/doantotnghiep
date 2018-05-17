@@ -16,6 +16,7 @@ import com.edu.knowledge.entities.Role;
 import com.edu.knowledge.entities.User;
 import com.edu.knowledge.services.RoleService;
 import com.edu.knowledge.services.UserService;
+import com.edu.knowledge.utils.Constant;
 
 @Controller
 public class LoginController {
@@ -104,5 +105,13 @@ public class LoginController {
 			map.addAttribute("errMessage", errMessage);
 		}
 		return model;
+	}
+	
+	@RequestMapping("/logout")
+	public ModelAndView logout(HttpSession session) {
+		ModelAndView mav = new ModelAndView("login");
+		session.removeAttribute(Constant.CURRENT_USER);
+		mav.setViewName("redirect:/login");
+		return mav;
 	}
 }

@@ -74,6 +74,14 @@ public class HomeController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/home/topic")
+	public ModelAndView getTopic() {
+		ModelAndView mav = new ModelAndView("feed_topic");
+		List<Topic> topics = topicService.findAllOrderBy();
+		mav.addObject("topics", topics);
+		return mav;
+	}
+	
 	@RequestMapping(value="/user/{id}/notify", method=RequestMethod.GET)
 	public ModelAndView notification(@PathVariable("id") int id) {
 		ModelAndView mav = new ModelAndView("user_notification");

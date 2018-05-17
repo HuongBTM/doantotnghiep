@@ -25,11 +25,17 @@ public interface QuestionRepositery extends JpaRepository<Question, Integer>{
 	@Query("SELECT q FROM Question q WHERE q.user.userId=?1")
 	List<Question> findAllByUser(int userId);
 	
-	@Query("SELECT q FROM Question q WHERE q.check=1 ORDER BY q.questionId DESC")
+	@Query("SELECT q FROM Question q WHERE q.check=1 ORDER BY q.creatAt DESC")
 	List<Question> findLastNew(Pageable pageable);
 	
 	@Query("SELECT q FROM Question q WHERE q.check=1 ORDER BY q.upvotes DESC")
 	List<Question> findTopVote(Pageable pageable);
+	
+	@Query("SELECT q FROM Question q WHERE q.check=1 ORDER BY q.answers.size DESC")
+	List<Question> findTopAnswer(Pageable pageable);
+	
+	@Query("SELECT q FROM Question q WHERE q.check=1 AND q.answers.size=0")
+	List<Question> findNoAnswer();
 	
 	@Modifying
 	@Query("UPDATE Question q SET q.views=?1 WHERE q.questionId=?2")
@@ -38,6 +44,7 @@ public interface QuestionRepositery extends JpaRepository<Question, Integer>{
 	@Query("SELECT q FROM Question q LEFT JOIN fetch q.topics t WHERE t.topicId=?1")
 	List<Question> findAllByTopic(int topicId);
 	
+	// TODO search
 	/*@Query("SELECT q FROM Question q WHERE q.title LIKE CONCAT('%',:q,'%') OR q.questionContent LIKE CONCAT('%',:q,'%')")*/
 	@Query("SELECT q FROM Question q WHERE q.title LIKE %:q% OR q.questionContent LIKE %:q%")
 	List<Question> search(@Param("q") String q);

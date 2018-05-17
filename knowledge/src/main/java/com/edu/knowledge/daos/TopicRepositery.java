@@ -41,4 +41,7 @@ public interface TopicRepositery extends JpaRepository<Topic, Integer>{
 	
 	@Query("SELECT p FROM Topic p ORDER BY p.posts.size DESC, p.questions.size DESC")
 	List<Topic> findTopTen(Pageable pageable);
+	
+	@Query("SELECT p FROM Topic p ORDER BY p.posts.size DESC, p.questions.size DESC")
+	List<Topic> findAllOrderBy();
 }

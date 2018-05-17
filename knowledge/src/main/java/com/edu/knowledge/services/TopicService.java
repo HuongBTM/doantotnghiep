@@ -58,4 +58,8 @@ public class TopicService {
 	public List<Topic> findTopTen() {
 		return topicRepositery.findTopTen(new PageRequest(0, Constant.FEED_TOP_LIMIT));
 	}
+	
+	public List<Topic> findAllOrderBy() {
+		return topicRepositery.findAllOrderBy();
+	}
 }

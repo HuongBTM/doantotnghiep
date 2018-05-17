@@ -125,7 +125,7 @@
               <a data-toggle="tooltip" data-placement="top" title="Lock">
                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="/login">
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="/logout">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
             </div>
@@ -151,7 +151,7 @@
                     <li><a href="/admin/user/${CURRENT_USER.userId}">Profile</a></li>
                     <li><a href="/admin/user/${CURRENT_USER.userId}/changeprofile">Cài đặt</a></li>
                     <li><a href="javascript:;">Trợ giúp</a></li>
-                    <li><a href="/login"><i class="fa fa-sign-out pull-right"></i>Đăng xuất</a></li>
+                    <li><a href="/logout"><i class="fa fa-sign-out pull-right"></i>Đăng xuất</a></li>
                   </ul>
                 </li>
 

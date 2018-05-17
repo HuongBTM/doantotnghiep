@@ -63,8 +63,18 @@ public class QuestionController {
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	public ModelAndView allQuestion(){
 		ModelAndView model = new ModelAndView("question_list");
-		List<Question> newQuestions = questionService.findAllChecked();
+		List<Question> allQuestions = questionService.findAllChecked();
+		List<Question> newQuestions = questionService.findTopNew(Constant.QUESTION_LIST_LIMIT);
+		List<Question> hotQuestions = questionService.findTopAnswer(Constant.QUESTION_LIST_LIMIT);
+		List<Question> noanswers = questionService.findNoAnswer();
+		List<Topic> topics = topicService.findTopTen();
+		List<User> users = userService.findTopFiveExpect();
+		model.addObject("topics", topics);
+		model.addObject("users", users);
+		model.addObject("allQuestions", allQuestions);
 		model.addObject("newQuestions", newQuestions);
+		model.addObject("hotQuestions", hotQuestions);
+		model.addObject("noanswers", noanswers);
 		return model;
 	}
 	
@@ -101,6 +111,7 @@ public class QuestionController {
 			model.setViewName("question_form");
 		} else {
 			User user = userService.getOne(userId);
+			userService.updatePoints(Constant.POINTS_NEW_QUESTION, userId);
 			question.setUser(user);
 			question.setCheck(0);
 			questionService.createQuestion(question);
@@ -111,16 +122,20 @@ public class QuestionController {
 	}
 	
 	@RequestMapping(value="/{id}/detail", method=RequestMethod.GET)
-	public ModelAndView questionDetail(@PathVariable("id") int id) {
+	public ModelAndView questionDetail(@PathVariable("id") int id, HttpSession session) {
 		ModelAndView model = new ModelAndView("question_detail");
 		Question question = questionService.getOne(id);
 		questionService.updateViews(question.getViews()+1, id);
 		List<Topic> topics = topicService.findTopTen();
 		List<User> users = userService.findTopFiveExpect();
 		List<User> expects = userService.findTopNineExpect();
-		System.out.println(expects.size());
 		Answer answer = new Answer();
 		Comment comment = new Comment();
+		if(session.getAttribute(Constant.CURRENT_USER) !=null) {
+			User user= (User) session.getAttribute(Constant.CURRENT_USER);
+			VoteDetail voteDetail = voteDetailService.findByQuestionIdAndUserId(id, user.getUserId());
+			model.addObject("voteDetail", voteDetail);
+		}
 		model.addObject("question", question);
 		model.addObject("answer", answer);
 		model.addObject("comment",comment);
@@ -142,6 +157,7 @@ public class QuestionController {
 		}
 		question.setTopics(questionTopics);
 		User user = userService.getOne(userId);
+		userService.updatePoints(Constant.POINTS_NEW_QUESTION, userId);
 		question.setUser(user);
 		question.setCheck(0);
 		questionService.createQuestion(question);

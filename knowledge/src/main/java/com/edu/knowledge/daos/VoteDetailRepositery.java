@@ -22,4 +22,5 @@ public interface VoteDetailRepositery extends JpaRepository<VoteDetail, Integer>
 	
 	@Query("SELECT v FROM VoteDetail v WHERE v.answerId=?1 AND v.userId=?2")
 	VoteDetail findByAnswerIdAndUserId(int answerId, int userId);
+	
 }

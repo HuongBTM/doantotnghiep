@@ -45,6 +45,7 @@ public class AnswerController {
 		answer.setUser(user);
 		answer.setQuestion(question);
 		answerService.createAnswer(answer);
+		userService.updatePoints(Constant.POINTS_MEMBER_NEW_ANSWER, userId);
 		mav.setViewName("redirect:/app/question/"+questionId+"/detail");
 		return mav;
 	}

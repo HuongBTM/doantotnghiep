@@ -47,36 +47,72 @@
 								        <a href="/app/user/${post.user.userId }/info">${post.user.fullname }</a>
 								        <div class="-flair">
 								            <span class="reputation-score" title="reputation score " dir="ltr">68</span>
-								            <!-- <span title="3 silver badges">
-									            <span class="badge2"></span>
-									            <span class="badgecount">lĩnh vực chuyên gia</span>
-								            </span>
-								            <span title="9 bronze badges">
-								            	<span class="badge3"></span>
-								            	<span class="badgecount">9</span>
-								            </span> -->
 								        </div>
 								    </div>
 								</div>
 						    </div>
 					   </div>
 						<div class="action_bar_inner u-flex">
-							<span id="rgptQp" style="margin-right: 10px">
-								<a class="upvote icon_action_bar-button blue_icon btn btn btn-default" href="#?pid=${post.postId}&oid=${post.user.userId}&uid=${CURRENT_USER.userId}&action=upvote" id="upBtn">
-									<div class="icon_action_bar-label">
-										<span class="glyphicon glyphicon-arrow-up">Upvote |</span>
-										<span id="upvote_count" class="upvote icon_action_bar-count">${post.upvotes }</span>
-									</div>
-								</a>
-							</span>
-							<span id="rgptQp" style="margin-right: 10px">
-								<a class="downvote secondary_action icon_action_bar-button btn btn btn-default" href="#?pid=${post.postId}&oid=${post.user.userId}&uid=${CURRENT_USER.userId}&action=downvote" id="downBtn">
-									<div class="icon_action_bar-label">
-										<span class="glyphicon glyphicon-arrow-down">Downvote |</span>
-										<span id="downvote_count" class="downvote icon_action_bar-count">${post.downvotes }</span>
-									</div>
-								</a>
-							</span>
+						<c:choose>
+							<c:when test="${voteDetail.voteTypeId == 1}">
+								<span id="rgptQp" style="margin-right: 10px">
+									<a class="upvote icon_action_bar-button blue_icon btn btn btn-default" style="background-color: #1bc364"
+											href="#?pid=${post.postId}&oid=${post.user.userId}&uid=${CURRENT_USER.userId}&action=upvote" id="upBtn">
+										<div class="icon_action_bar-label">
+											<span class="glyphicon glyphicon-arrow-up">Upvote |</span>
+											<span id="upvote_count" class="upvote icon_action_bar-count">${post.upvotes }</span>
+										</div>
+									</a>
+								</span>
+								<span id="rgptQp" style="margin-right: 10px">
+									<a class="downvote secondary_action icon_action_bar-button btn btn btn-default" disabled="disabled"
+											href="#?pid=${post.postId}&oid=${post.user.userId}&uid=${CURRENT_USER.userId}&action=downvote" id="downBtn">
+										<div class="icon_action_bar-label">
+											<span class="glyphicon glyphicon-arrow-down">Downvote |</span>
+											<span id="downvote_count" class="downvote icon_action_bar-count">${post.downvotes }</span>
+										</div>
+									</a>
+								</span>
+							</c:when>
+							<c:when test="${voteDetail.voteTypeId == 2}">
+								<span id="rgptQp" style="margin-right: 10px">
+									<a class="upvote icon_action_bar-button blue_icon btn btn btn-default" disabled="disabled"
+											href="#?pid=${post.postId}&oid=${post.user.userId}&uid=${CURRENT_USER.userId}&action=upvote" id="upBtn">
+										<div class="icon_action_bar-label">
+											<span class="glyphicon glyphicon-arrow-up">Upvote |</span>
+											<span id="upvote_count" class="upvote icon_action_bar-count">${post.upvotes }</span>
+										</div>
+									</a>
+								</span>
+								<span id="rgptQp" style="margin-right: 10px">
+									<a class="downvote secondary_action icon_action_bar-button btn btn btn-default" style="background-color: #1bc364"
+											href="#?pid=${post.postId}&oid=${post.user.userId}&uid=${CURRENT_USER.userId}&action=downvote" id="downBtn">
+										<div class="icon_action_bar-label">
+											<span class="glyphicon glyphicon-arrow-down">Downvote |</span>
+											<span id="downvote_count" class="downvote icon_action_bar-count">${post.downvotes }</span>
+										</div>
+									</a>
+								</span>
+							</c:when>
+							<c:otherwise>
+								<span id="rgptQp" style="margin-right: 10px">
+									<a class="upvote icon_action_bar-button blue_icon btn btn btn-default" href="#?pid=${post.postId}&oid=${post.user.userId}&uid=${CURRENT_USER.userId}&action=upvote" id="upBtn">
+										<div class="icon_action_bar-label">
+											<span class="glyphicon glyphicon-arrow-up">Upvote |</span>
+											<span id="upvote_count" class="upvote icon_action_bar-count">${post.upvotes }</span>
+										</div>
+									</a>
+								</span>
+								<span id="rgptQp" style="margin-right: 10px">
+									<a class="downvote secondary_action icon_action_bar-button btn btn btn-default" href="#?pid=${post.postId}&oid=${post.user.userId}&uid=${CURRENT_USER.userId}&action=downvote" id="downBtn">
+										<div class="icon_action_bar-label">
+											<span class="glyphicon glyphicon-arrow-down">Downvote |</span>
+											<span id="downvote_count" class="downvote icon_action_bar-count">${post.downvotes }</span>
+										</div>
+									</a>
+								</span>
+							</c:otherwise>
+						</c:choose>
 							<span class="question-date"><i class="fa fa-clock-o"></i> ${post.ago}</span>
 				              <span class="question-comment">
 				                  <i class="fa fa-comment"></i> ${fn:length(post.questions)} câu hỏi
@@ -146,8 +182,49 @@
        	<div id="sidebar" class="show-votes" role="complementary" aria-label="sidebar">                          
 			<div class="module community-bulletin widget" data-tracker="cb=1">
 				<div class="sidebar-related">
-                    <h3>Thông tin chuyên gia</h3>
-                    <div class="related js-gps-related-questions" data-tracker="rq=1"></div>
+                    <img class="profile-user-img img-responsive img-circle" 
+               			src="<c:url value="/resources/assets/img/${post.user.image}" />" alt="User profile picture">
+                    <h3 class="profile-username text-center">${post.user.fullname}</h3>
+			          <h5 class="profile-username text-center">${post.user.address}</h5>
+						<h5 class="profile-username text-center">
+						<c:choose>
+			                <c:when test="${post.user.admin}">
+			                  <span class="label bg-red" style="color: red">Quản trị viên</span>
+			                </c:when>
+			                <c:when test="${post.user.expect}">
+			                  <span class="label bg-yellow" style="color: green">Chuyên gia</span>
+			                </c:when>
+			                <c:otherwise>
+			                  <span class="label bg-green" style="color: blue">Thành viên</span>
+			                </c:otherwise>
+			              </c:choose>
+						</h5>
+			
+						<div style="background-color: #6bc7e8; text-align: center">Điểm uy tín: ${post.user.points}</div>
+			
+			          <ul class="list-group list-group-unbordered" style="margin-bottom: 0px; padding-top: 5px;">
+			          	<c:if test="${post.user.expect }"><li class="list-group-item">
+							<i class="fa fa-graduation-cap">
+							<b><c:forEach items="${post.user.sectors}" var="sector">
+								<c:out value="${sector.sectorName},"></c:out>
+							</c:forEach></b></i>
+						</li></c:if>
+			             <li class="list-group-item">
+			              <b>Câu hỏi</b> 
+			              <span class="pull-right badge bg-blue">${fn:length(post.user.questions)}</span>
+			            </li>
+			            <li class="list-group-item">
+			              <b>Câu trả lời</b>
+			              <span class="pull-right badge bg-yellow">${fn:length(post.user.answers)}</span>
+			            </li>
+			            <li class="list-group-item">
+			              <b>Bài viết</b> 
+			              <span class="pull-right badge bg-green">${fn:length(post.user.posts)}</span>
+			            </li>
+			           <c:if test="${not empty post.user.abouts }"><li class="list-group-item">
+			              ${post.user.abouts }
+			            </li></c:if>
+			          </ul>
                 </div>
 	            <!-- thông tin -->
 			</div>
@@ -177,7 +254,7 @@
 			
          <div class="module community-bulletin" data-tracker="cb=1">
 			<div class="widget widget_tag_cloud">
-			  <h3 class="widget_title">Tags</h3>
+			  <h3 class="widget_title">Chủ đề nổi bật</h3>
 			  <c:forEach var="topic" items="${topics}">
 			    <a href="<c:url value="/app/topic/${topic.topicId }/detail" />">${topic.topicName }</a>
 			  </c:forEach>

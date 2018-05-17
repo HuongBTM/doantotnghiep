@@ -61,6 +61,13 @@ public class QuestionService {
 	public List<Question> findTopVote(int limit) {
 		return questionRepositery.findTopVote(new PageRequest(0,limit));
 	}
+	@SuppressWarnings("deprecation")
+	public List<Question> findTopAnswer(int limit) {
+		return questionRepositery.findTopAnswer(new PageRequest(0,limit));
+	}
+	public List<Question> findNoAnswer() {
+		return questionRepositery.findNoAnswer();
+	}
 	
 	@Transactional
 	public int updateViews(int views, int questionId) {

@@ -1280,7 +1280,7 @@ ul.comments-list .comment-text {
 .module.community-bulletin {
 	width: 290px;
     padding: 15px 15px 10px;
-    background-color: #c7cec9;
+    background-color: #dbdcdb;
     border: 1px solid #e6e6e1;
 }
 .module {
@@ -1342,7 +1342,7 @@ ul.comments-list .comment-text {
     font-size: 16px;
     font-weight: bold;
     padding: 20px 0 10px;
-    border-bottom: 2px solid #dedede;
+    border-bottom: 2px solid #f7f2f2;
     position: relative;
 }
 .author-img {
@@ -1353,7 +1353,7 @@ ul.comments-list .comment-text {
     height: 60px;
     position: relative;
     margin-right: 20px;
-    margin-top: 20px;
+    margin-top: 10px;
     overflow: hidden;
     border: 1px solid #dedede;
     -moz-border-radius: 50%;
@@ -1379,9 +1379,9 @@ ul.comments-list .comment-text {
 
 .widget ul li {
     position: relative;
-    overflow: hidden;
     font-size: 14px;
     padding-bottom: 10px;
+    line-height: 16px;
 }
 .widget ul li h6 {
     font-size: 14px;
@@ -1668,8 +1668,8 @@ ul.msg_list li a .message {
 }
 .grid-layout {
     display: grid;
-    grid-gap: 8px;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }
 .grid-layout>.grid-layout--cell {
     flex: 1 1 25%;

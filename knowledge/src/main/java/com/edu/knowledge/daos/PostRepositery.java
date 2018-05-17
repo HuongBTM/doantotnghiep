@@ -31,13 +31,14 @@ public interface PostRepositery extends JpaRepository<Post, Integer>{
 	@Query("SELECT p FROM Post p LEFT JOIN FETCH  p.topics t WHERE t.topicId=?1")
 	List<Post> findAllByTopic(int topicId);
 	
+	// TODO search
 	@Query("SELECT p FROM Post p WHERE p.postTitle LIKE CONCAT('%',:q,'%') OR p.postContent LIKE CONCAT('%',:q,'%')")
 	List<Post> search(@Param("q") String q);
 	
 	@Query("SELECT p FROM Post p ORDER BY p.upvotes DESC")
 	List<Post> findTopVote(Pageable pageable);
 	
-	@Query("SELECT p FROM Post p ORDER BY p.postId DESC")
+	@Query("SELECT p FROM Post p ORDER BY p.creatAt DESC")
 	List<Post> findTopNew(Pageable pageable);
 	
 	@Modifying

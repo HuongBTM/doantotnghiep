@@ -16,6 +16,7 @@ import com.edu.knowledge.services.AnswerService;
 import com.edu.knowledge.services.CommentService;
 import com.edu.knowledge.services.QuestionService;
 import com.edu.knowledge.services.UserService;
+import com.edu.knowledge.utils.Constant;
 
 @Controller
 @RequestMapping("/expect/question")
@@ -55,6 +56,7 @@ public class ExpectQuestionController {
 		answer.setUser(user);
 		answer.setQuestion(question);
 		answerService.createAnswer(answer);
+		userService.updatePoints(Constant.POINTS_EXPECT_NEW_ANSWER, userId);
 		mav.setViewName("redirect:/expect/question/detail/"+questionId);
 		return mav;
 	}

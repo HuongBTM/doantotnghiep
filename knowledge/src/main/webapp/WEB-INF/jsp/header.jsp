@@ -38,6 +38,7 @@
           <li><a href="/app/home/feed"><i class="fa fa-home"></i> Home</a><div></div></li>
           <li><a href="/app/question/all"><i class="fa fa-question-circle"></i> Câu hỏi</a><div></div></li>
           <li><a href="/app/post/all"><i class= "fa fa-file-text-o"></i> Bài viết</a></li>
+          <c:if test="${not empty CURRENT_USER}">
           <li role="presentation" class="navbar-nav dropdown">
               <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                 <i class="fa fa-bell"></i> Thông báo
@@ -65,7 +66,7 @@
                   </div>
                 </li>
                </ul>
-            </li>
+            </li></c:if>
           </ul>
        	 
        	 <ul class="nav navbar-nav navbar-right">
@@ -87,7 +88,7 @@
 		          <li><a href="/app/user/${CURRENT_USER.userId }/changeprofile">Cập nhật thông tin</a></li>
 		          <li><a href="/app/user/${CURRENT_USER.userId }/bookmark">Đánh dấu</a></li>
 		          <li role="separator" class="divider"></li>
-                 <li><a href="/login">Đăng xuất &nbsp;<i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+                 <li><a href="/logout">Đăng xuất &nbsp;<i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
 	        </ul>
 	      </li>
 	      </c:if>

@@ -21,6 +21,7 @@
 						<a href="/app/home/feed" class="nav-tabs-dropdown btn btn-block btn-success">Feed</a>
 						<a href="/app/home/question" class="nav-tabs-dropdown btn btn-block btn-default">Câu hỏi mới</a>
 						<a href="/app/home/post" class="nav-tabs-dropdown btn btn-block btn-default">Bài viết mới</a>
+						<a href="/app/home/topic" class="nav-tabs-dropdown btn btn-block btn-default">Danh sách chủ đề</a>
 					</div>
 				</div>
 			</div>

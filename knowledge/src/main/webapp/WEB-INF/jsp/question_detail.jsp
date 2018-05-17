@@ -15,7 +15,7 @@
            <h1 itemprop="name"><b>${question.title}</b></h1>
            <c:if test="${question.check==0 }"><button class="btn btn-default" style="height: 35px">Câu hỏi chờ phê duyệt</button></c:if>
            <c:if test="${question.check==2 }"><button class="btn btn-danger" style="height: 35px">Câu hỏi bị xóa vì vi phạm chính sách hệ thống</button></c:if>
-           <c:if test="${question.check==2 }"><button class="btn btn-success" style="height: 35px">Đang thảo luận</button></c:if>
+           <c:if test="${question.check==1 }"><button class="btn btn-success" style="height: 35px">Đang thảo luận</button></c:if>
 		</div>
         <div id="mainbar" role="main" aria-label="question and answers">
             <div class="question-detail" data-questionid="43651814" id="question">
@@ -61,15 +61,17 @@
 								        		<c:otherwise><button class="btn btn-success" style="height: 16px; font-size: 11px; padding: 0px;">Member</button></c:otherwise>
 								        	</c:choose>
 								            <span class="reputation-score" title="reputation score " dir="ltr">${question.user.points}</span>
-								            
 								        </div>
 								    </div>
 								</div>
 						    </div>
 					   </div>
 						<div class="action_bar_inner u-flex">
+						<c:choose>
+						<c:when test="${voteDetail.voteTypeId == 1}">
 							<span id="rgptQp" style="margin-right: 10px">
-								<a class="icon_action_bar-button blue_icon btn btn btn-default" href="#?qid=${question.questionId}&oid=${question.user.userId}&uid=${CURRENT_USER.userId}&action=upvote" id="upQuestionBtn">
+								<a class="icon_action_bar-button blue_icon btn btn btn-default" style="background-color: #1bc364"
+									href="#?qid=${question.questionId}&oid=${question.user.userId}&uid=${CURRENT_USER.userId}&action=upvote" id="upQuestionBtn">
 									<div class="icon_action_bar-label">
 										<span class="glyphicon glyphicon-arrow-up">Upvote |</span>
 										<span id="up_question_count" class="icon_action_bar-count">${question.upvotes }</span>
@@ -77,13 +79,56 @@
 								</a>
 							</span>
 							<span id="rgptQp" style="margin-right: 10px">
-								<a class="secondary_action icon_action_bar-button btn btn btn-default" href="#?qid=${question.questionId}&oid=${question.user.userId}&uid=${CURRENT_USER.userId}&action=downvote" id="downQuestionBtn">
+								<a class="secondary_action icon_action_bar-button btn btn btn-default" disabled="disabled"
+									href="#?qid=${question.questionId}&oid=${question.user.userId}&uid=${CURRENT_USER.userId}&action=downvote" id="downQuestionBtn">
 									<div class="icon_action_bar-label">
 										<span class="glyphicon glyphicon-arrow-down">Downvote |</span>
 										<span id="down_question_count" class="icon_action_bar-count">${question.downvotes }</span>
 									</div>
 								</a>
 							</span>
+						</c:when>
+						<c:when test="">
+							<span id="rgptQp" style="margin-right: 10px">
+								<a class="icon_action_bar-button blue_icon btn btn btn-default" disabled="disabled"
+									href="#?qid=${question.questionId}&oid=${question.user.userId}&uid=${CURRENT_USER.userId}&action=upvote" id="upQuestionBtn">
+									<div class="icon_action_bar-label">
+										<span class="glyphicon glyphicon-arrow-up">Upvote |</span>
+										<span id="up_question_count" class="icon_action_bar-count">${question.upvotes }</span>
+									</div>
+								</a>
+							</span>
+							<span id="rgptQp" style="margin-right: 10px">
+								<a class="secondary_action icon_action_bar-button btn btn btn-default" style="background-color: #1bc364"
+									href="#?qid=${question.questionId}&oid=${question.user.userId}&uid=${CURRENT_USER.userId}&action=downvote" id="downQuestionBtn">
+									<div class="icon_action_bar-label">
+										<span class="glyphicon glyphicon-arrow-down">Downvote |</span>
+										<span id="down_question_count" class="icon_action_bar-count">${question.downvotes }</span>
+									</div>
+								</a>
+							</span>
+						</c:when>
+						<c:otherwise>
+							<span id="rgptQp" style="margin-right: 10px">
+								<a class="icon_action_bar-button blue_icon btn btn btn-default"
+									href="#?qid=${question.questionId}&oid=${question.user.userId}&uid=${CURRENT_USER.userId}&action=upvote" id="upQuestionBtn">
+									<div class="icon_action_bar-label">
+										<span class="glyphicon glyphicon-arrow-up">Upvote |</span>
+										<span id="up_question_count" class="icon_action_bar-count">${question.upvotes }</span>
+									</div>
+								</a>
+							</span>
+							<span id="rgptQp" style="margin-right: 10px">
+								<a class="secondary_action icon_action_bar-button btn btn btn-default"
+									href="#?qid=${question.questionId}&oid=${question.user.userId}&uid=${CURRENT_USER.userId}&action=downvote" id="downQuestionBtn">
+									<div class="icon_action_bar-label">
+										<span class="glyphicon glyphicon-arrow-down">Downvote |</span>
+										<span id="down_question_count" class="icon_action_bar-count">${question.downvotes }</span>
+									</div>
+								</a>
+							</span>
+						</c:otherwise>
+						</c:choose>
 							<span class="question-date"><i class="fa fa-clock-o"></i> ${question.ago}</span>
 				              <span class="question-comment">
 				                  <i class="fa fa-comment"></i> ${fn:length(question.answers)} câu trả lời
@@ -154,11 +199,13 @@
 	        				<div class="votecell post-layout--left">
 	            				<div class="vote">
 							        <input type="hidden" name="_id_" value="43652564">
-									<div><a id="upAnswerBtn-${answer.answerId}" class="upvote btn btn-default" href="#?aid=${answer.answerId}&oid=${answer.user.userId}&uid=${CURRENT_USER.userId}&action=upvote" style="width: 45px; height: 45px; padding: 0px;"><div>
+									<div><a id="upAnswerBtn-${answer.answerId}" class="upvote btn btn-default" href="#?aid=${answer.answerId}&oid=${answer.user.userId}&uid=${CURRENT_USER.userId}&action=upvote" 
+											style="width: 45px; height: 45px; padding: 0px;" title="Upvote câu trả lời hữu ích"><div>
 										<i class="glyphicon glyphicon-triangle-top" style="font-size: 25px; color: #7b7676"></i></div>
 										<span id="up_answer_count_${answer.answerId}"><strong> ${answer.upvotes }</strong></span></a></div>
 									<div style="clear: both; padding-top: 10px">
-										<a id="downAnswerBtn-${answer.answerId}" class="downvote btn btn-default" href="#?aid=${answer.answerId}&oid=${answer.user.userId}&uid=${CURRENT_USER.userId}&action=downvote" style="width: 45px; height: 45px; padding: 0px;">
+										<a id="downAnswerBtn-${answer.answerId}" class="downvote btn btn-default" href="#?aid=${answer.answerId}&oid=${answer.user.userId}&uid=${CURRENT_USER.userId}&action=downvote" 
+											style="width: 45px; height: 45px; padding: 0px;" title="Downvote câu trả lời không hợp lý">
 										<span id="down_answer_count_${answer.answerId}"><strong> ${answer.downvotes }</strong></span>
 										<i class="glyphicon glyphicon-triangle-bottom" style="font-size: 25px; color: #7b7676"></i></a></div>								
 								</div>
@@ -234,19 +281,16 @@
 						        </div> 
 						        </c:if>        
 							</div>    				
-						
-						
 						</div>
 					</div>
 				</c:forEach>	
 				
 				<a name="new-answer"></a>
 				<c:choose>
-				<c:when test="${not empty CURRENT_USER }">
+				<c:when test="${not empty CURRENT_USER and question.check==1}">
 				<h3 class="space">Câu trả lời của bạn</h3>
 	            <form:form id="post-form" action="/app/question/${question.questionId }/answer/${CURRENT_USER.userId }/add" method="post" modelAttribute="answer">
 	            <form:textarea required="required" class="form-control" id="comment-contents" path="answerContent" cols="50" rows="8"></form:textarea>
-	                 
 	                 <div style="position: relative;">
                  	<div class="col-md-10 col-sm-3 col-xs-12">
 			            <script src="<c:url value="/resources/ckeditor/ckeditor.js" />"></script>
@@ -261,12 +305,17 @@
 			              </span>
 			            </c:if>
 			          </div>
-				          
 	                 </div>
 	                 <div class="form-submit cbt">
 	                      <input id="submit-button" class="btn btn-primary" type="submit" value="Đăng câu trả lời" tabindex="110">
 	                  </div>
 	             </form:form>
+	             </c:when>
+	             <c:when test="${not empty CURRENT_USER and question.check==0}">
+	             	<h3 class="space" style="color: #2d2c2c">Câu hỏi đang chờ phê duyệt, chưa thể tham gia thảo luận</h3>
+	             </c:when>
+	             <c:when test="${not empty CURRENT_USER and question.check==2}">
+	             	<h3 class="space" style="color: #2d2c2c">Câu hỏi đã bị xóa, không thể tham gia thảo luận</h3>
 	             </c:when>
 	             <c:otherwise>
 	             <h3 class="space" style="color: #2d2c2c">Bạn phải <a href="/login">đăng nhập</a> để trả lời và bình chọn câu hỏi này</h3>
@@ -276,19 +325,58 @@
      	</div>
      	
        	<div id="sidebar" class="show-votes" role="complementary" aria-label="sidebar">                          
-			
          	<div class="module community-bulletin widget" data-tracker="cb=1">
 				<div class="sidebar-related">
-                    <h3>Thông tin người hỏi</h3>
-                    <div class="related js-gps-related-questions" data-tracker="rq=1"></div>
+                    <img class="profile-user-img img-responsive img-circle" 
+               			src="<c:url value="/resources/assets/img/${question.user.image}" />" alt="User profile picture">
+                    <h3 class="profile-username text-center">${question.user.fullname}</h3>
+			          <h5 class="profile-username text-center">${question.user.address}</h5>
+						<h5 class="profile-username text-center">
+						<c:choose>
+			                <c:when test="${question.user.admin}">
+			                  <span class="label bg-red" style="color: red">Quản trị viên</span>
+			                </c:when>
+			                <c:when test="${question.user.expect}">
+			                  <span class="label bg-yellow" style="color: green">Chuyên gia</span>
+			                </c:when>
+			                <c:otherwise>
+			                  <span class="label bg-green" style="color: blue">Thành viên</span>
+			                </c:otherwise>
+			              </c:choose>
+						</h5>
+						<div style="background-color: #6bc7e8; text-align: center">Điểm uy tín: ${question.user.points}</div>
+			
+			          <ul class="list-group list-group-unbordered" style="margin-bottom: 0px; padding-top: 5px;">
+			          	<c:if test="${question.user.expect }"><li class="list-group-item">
+							<i class="fa fa-graduation-cap">
+							<b><c:forEach items="${question.user.sectors}" var="sector">
+								<c:out value="${sector.sectorName},"></c:out>
+							</c:forEach></b></i>
+						</li></c:if>
+			             <li class="list-group-item">
+			              <b>Câu hỏi</b> 
+			              <span class="pull-right badge bg-blue">${fn:length(question.user.questions)}</span>
+			            </li>
+			            <li class="list-group-item">
+			              <b>Câu trả lời</b>
+			              <span class="pull-right badge bg-yellow">${fn:length(question.user.answers)}</span>
+			            </li>
+			            <li class="list-group-item">
+			              <b>Bài viết</b> 
+			              <span class="pull-right badge bg-green">${fn:length(question.user.posts)}</span>
+			            </li>
+			           <c:if test="${not empty question.user.abouts }"><li class="list-group-item">
+			              ${question.user.abouts }
+			            </li></c:if>
+			          </ul>
                 </div>
 	            <!-- thông tin -->
 			</div>
 			<div class="module community-bulletin" data-tracker="cb=1">
 			<div class="widget widget_tag_cloud">
-			  <h3 class="widget_title">Chủ đề</h3>
+			  <h3 class="widget_title">Chủ đề nổi bật</h3>
 			  <c:forEach var="topic" items="${topics}">
-			    	<a href="<c:url value="/app/topic/${topic.topicId }/detail" />">${topic.topicName }</a>
+			    	<a href="<c:url value="/app/topic/${topic.topicId }/detail" />">${topic.topicName } (${fn:length(topic.questions) + fn:length(topic.posts)})</a>
 			  </c:forEach>
 			</div>
          	</div>
@@ -305,8 +393,12 @@
 					        </a>
 					      </div> 
 					      <h6><a href="<c:url value="/app/user/${user.userId}/info" />">${user.username }</a></h6>
-					      
 					      <span class="comment"> ${user.points }</span>
+					      <div style="font-size: 13px; margin-left: 80px;">
+					      <c:forEach items="${user.sectors}" var="sector">
+								<c:out value="${sector.sectorName},"></c:out>
+							</c:forEach>
+							</div>
 					    </li>
 					    </c:forEach>
 					  </ul>
@@ -329,7 +421,6 @@ $(document).ready(function () {
     	var uid = getURLParameter(href, 'uid');
     	var action = getURLParameter(href, 'action');
 		var url = "<c:url value="/app/question/vote" />";
-		
 		$.ajax({
 			type: "GET",
       		contentType: "application/json",
@@ -357,7 +448,6 @@ $(document).ready(function () {
     	var uid = getURLParameter(href, 'uid');
     	var action = getURLParameter(href, 'action');
 		var url = "<c:url value="/app/question/vote" />";
-		
 		$.ajax({
 			type: "GET",
       		contentType: "application/json",
