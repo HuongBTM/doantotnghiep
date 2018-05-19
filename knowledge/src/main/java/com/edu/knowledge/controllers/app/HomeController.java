@@ -4,9 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.edu.knowledge.entities.Post;
@@ -82,10 +80,4 @@ public class HomeController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/user/{id}/notify", method=RequestMethod.GET)
-	public ModelAndView notification(@PathVariable("id") int id) {
-		ModelAndView mav = new ModelAndView("user_notification");
-		//TODO
-		return mav;
-	}
 }

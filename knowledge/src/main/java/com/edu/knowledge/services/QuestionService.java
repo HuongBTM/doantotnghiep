@@ -79,7 +79,7 @@ public class QuestionService {
 	}
 	
 	public List<Question> search(String q) {
-		return questionRepositery.search(q);
+		return questionRepositery.search("%"+q+"%");
 	}
 	
 	public List<Question> getQuestionByCheck(int check) {

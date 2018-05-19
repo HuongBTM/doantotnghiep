@@ -35,6 +35,7 @@
                                     	<th align="center">STT</th>
                                         <th align="center">ID</th>
                                         <th align="center">Tên loại vote</th>
+                                        <th align="center">Chi tiết</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -44,6 +45,7 @@
                                     	<td align="center"><c:out value="${voteTypeId.index+1}"></c:out></td>
                                         <td align="center"><c:out value="${voteType.voteTypeId}"></c:out></td>
                                         <td><c:out value="${voteType.voteTypeName}"></c:out></td>
+                                        <td align="center"><a href="/admin/votetype/votedetail/${voteType.voteTypeId}" class="btn btn-info btn-xs" title="Xem chi tiết"><i class="fa fa-eye"></i> </a></td>
                                         <td align="center">
 				                            <a href="/admin/votetype/findone/${voteType.voteTypeId}" id="editVoteType" data-id="${voteType.voteTypeId}" class="btn btn-info btn-xs eVoteBtn"><i class="fa fa-pencil"></i> Sửa </a>
 				                            <a href="#" class="btn btn-danger btn-xs delVoteTypeBtn" id="delete" data-id="${voteType.voteTypeId}"><i class="fa fa-trash-o"></i> Xóa </a>

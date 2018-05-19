@@ -15,7 +15,7 @@
     <h3 class="page-header">Cập nhật thông tin cá nhân</h3>
 
     <div class="form-style form-style-3" id="question-submit">
-      <form:form class="form-horizontal form-label-left" action="/admin/user/save" method="post" modelAttribute="user">
+      <form:form class="form-horizontal form-label-left" action="/app/user/save" method="post" modelAttribute="user">
 			<input type="hidden" name="idHidden" value="${user.userId}">
              <div class="item form-group">
                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fullname">Tên hiển thị <span class="required">*</span>

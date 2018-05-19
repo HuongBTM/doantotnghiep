@@ -182,4 +182,24 @@ public class AdminUserController {
 		mav.addObject("user", user);
 		return mav;
 	}
+	
+	@RequestMapping(value="/save/profile", method= RequestMethod.POST)
+	public ModelAndView save(@ModelAttribute("user") User user, BindingResult result,  HttpSession session, RedirectAttributes redirect) {
+		ModelAndView mav = new ModelAndView("admin_chamge_profile");
+		User userDB = (User) session.getAttribute(Constant.CURRENT_USER);
+		user.setUserId(userDB.getUserId());
+		user.setPoints(userDB.getPoints());
+		user.setImage(userDB.getImage());
+		userValidator.validate(user, result);
+		if(result.hasErrors()) {
+			return mav;
+		}
+		if(!userService.updateUser(user, userDB.getRole())) {
+			redirect.addFlashAttribute("error", "Saved user " + user.getFullname() + " error!");
+			return mav;
+		}
+		redirect.addFlashAttribute("success", "Saved user " + user.getFullname() + " successfully!");
+		mav.setViewName("redirect:/admin/user/"+user.getUserId());
+		return mav;
+	}
 }

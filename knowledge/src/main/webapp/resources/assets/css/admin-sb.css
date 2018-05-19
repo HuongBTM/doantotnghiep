@@ -1431,3 +1431,34 @@ ul.comments-list .comment-text, ul.comments-list comment-form, ul.comments-list 
 ul.comments-list .comment>* {
     border-bottom: 1px solid #eff0f1;
 }
+.list-unstyled, .chart-legend, .contacts-list, .users-list, .mailbox-attachments {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.users-list > li {
+    width: 25%;
+    float: left;
+    padding: 10px;
+    text-align: center;
+}
+.users-list > li img {
+    border-radius: 50%;
+    max-width: 100%;
+    height: auto;
+}
+.user-profile-img {
+    width: 85px;
+    float: left;
+    margin-right: 15px;
+    padding: 2px;
+    border: 1px solid #e0e0e0;
+    background-color: #FFF;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.user-profile-img img {
+    width: 100%;
+	border-radius: 50%;
+}

@@ -86,6 +86,10 @@ public class UserService {
 	public List<User> findTopNineExpect() {
 		return userRepositery.findTopFiveExpect(new PageRequest(0, Constant.TOP_USER_REQUEST));
 	}
+	@SuppressWarnings("deprecation")
+	public List<User> findTopNew() {
+		return userRepositery.findTopNew(new PageRequest(0, Constant.DASBOARD_TOP_USER));
+	}
 	
 	public int updatePoints(int points, int userId) {
 		return userRepositery.updatePoint(points, userId);

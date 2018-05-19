@@ -1717,3 +1717,7 @@ ul.msg_list li a .message {
 	text-align: left;
     border-color: #fff;
 }
+.error {
+	color: #ff0000;
+	font-size: 13px;
+}

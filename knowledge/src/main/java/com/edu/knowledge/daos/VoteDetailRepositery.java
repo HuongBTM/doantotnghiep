@@ -1,5 +1,7 @@
 package com.edu.knowledge.daos;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -23,4 +25,5 @@ public interface VoteDetailRepositery extends JpaRepository<VoteDetail, Integer>
 	@Query("SELECT v FROM VoteDetail v WHERE v.answerId=?1 AND v.userId=?2")
 	VoteDetail findByAnswerIdAndUserId(int answerId, int userId);
 	
+	List<VoteDetail> findAllByVoteTypeId(int voteTypeId);
 }

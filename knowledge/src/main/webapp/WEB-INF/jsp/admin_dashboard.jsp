@@ -110,48 +110,70 @@
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-8">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            
-                        </div>
-                       <!--  /.panel-heading -->
-                        <div class="panel-body">
-                            <div id="morris-area-chart"></div>
-                        </div>
-                       <!--  /.panel-body -->
-                    </div>
-                   <!--  /.panel -->
-                   
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-8 -->
-                <div class="col-lg-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bell fa-fw"></i> Thông báo
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item">
-                                    
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    
-                               </a>
-                            </div>
-                            <!-- /.list-group -->
-                            <a href="#" class="btn btn-default btn-block">Xem tất cả</a>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                   <!--  /.panel -->
-                    
-                   <!--  /.panel .chat-panel -->
-                </div>
-                <!-- /.col-lg-4 -->
-            </div>
+			    <div class="col-md-8">
+			      <!-- LATEST QUESTIONS -->
+			      <div class="box box-info">
+			        <div class="box-header with-border">
+			          <h3 class="box-title">Câu hỏi mới</h3>
+			        </div>
+			        <!-- /.box-header -->
+			        <div class="box-body">
+			          <div class="table-responsive">
+			            <table class="table no-margin">
+			              <thead>
+			                <tr>
+			                  <th>Tiêu đề</th>
+			                  <th>Người đăng</th>
+			                </tr>
+			              </thead>
+			              <tbody>
+			                <c:forEach var="question" items="${newQuestions}">
+			                    <tr>
+			                      <td><a href="<c:url value="/admin/question/detail/${question.questionId}" />">${question.title}</a></td>
+			                      <td><a href="<c:url value="/admin/user/${question.user.userId}" />">${question.user.fullname}</a></td>
+			                    </tr>
+			                </c:forEach>
+			              </tbody>
+			            </table>
+			          </div>
+			          <!-- /.table-responsive -->
+			        </div>
+			        <!-- /.box-body -->
+			        <div class="box-footer clearfix">
+			          <a href="<c:url value="/admin/question/allquestion" />" class="btn btn-sm btn-default btn-flat pull-right">Xem chi tiết</a>
+			        </div>
+			        <!-- /.box-footer -->
+			      </div>
+			      <!-- /.box -->
+			    </div>
+			
+			    <div class="col-md-4">
+			      <!-- USERS LIST -->
+			      <div class="box box-danger">
+			        <div class="box-header with-border">
+			          <h3 class="box-title">Thành viên mới</h3>
+			        </div>
+			        <!-- /.box-header -->
+			        <div class="box-body no-padding">
+			          <ul class="users-list clearfix">
+			            <c:forEach var="user" items="${newUsers}">
+			            <li style="margin-top: 15px">
+			              <img src="<c:url value="/resources/assets/img/${user.image}" />" style="width: 66px; height: 66px" alt="User Image">
+			              <a class="countUsers-list-name" href="<c:url value="/admin/user/${user.userId}" />">${user.fullname}</a>
+			            </li>
+			            </c:forEach>
+			          </ul>
+			          <!-- /.countUsers-list -->
+			        </div>
+			        <!-- /.box-body -->
+			        <div class="box-footer text-center">
+			          <a href="<c:url value="/admin/user/alluser" />" class="uppercase">Xem chi tiết</a>
+			        </div>
+			        <!-- /.box-footer -->
+			      </div>
+			      <!--/.box -->
+			    </div>
+			  </div>
            <!--  /.row -->
         </div>
         <!-- /#page-wrapper -->

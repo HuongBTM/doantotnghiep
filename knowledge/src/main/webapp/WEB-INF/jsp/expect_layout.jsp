@@ -107,9 +107,8 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="/info">Profile</a></li>
-                    <li><a href="/changeprofile">Cài đặt</a></li>
-                    <li><a href="javascript:;">Trợ giúp</a></li>
+                    <li><a href="/expect/user/${CURRENT_USER.userId}/info">Profile</a></li>
+                    <li><a href="/expect/user/changeprofile">Cập nhật thông tin</a></li>
                     <li><a href="/logout"><i class="fa fa-sign-out pull-right"></i>Đăng xuất</a></li>
                   </ul>
                 </li>

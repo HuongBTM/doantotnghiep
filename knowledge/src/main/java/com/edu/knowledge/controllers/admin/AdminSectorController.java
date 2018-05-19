@@ -92,4 +92,12 @@ public class AdminSectorController {
 		}
 		return Constant.ERROR;
 	}
+	
+	@RequestMapping(value="/user/{id}")
+	public ModelAndView listUser(@PathVariable("id") int sectorId) {
+		ModelAndView mav = new ModelAndView("admin_sector_user");
+		Sector sector = sectorService.getOne(sectorId);
+		mav.addObject("sector", sector);
+		return mav;
+	}
 }

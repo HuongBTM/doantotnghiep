@@ -38,8 +38,9 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                          <div>
-                        	<a href="/admin/answer/print" id="btnAddUser" class="btn btn-primary btn-xs addBtn" style="width: 100px; height: 30px; margin-bottom: 10px; padding-top: 5px;"><i class="fa fa-plus"></i> Thêm mới 
+                        	<a href="/admin/answer/print" id="btnAddUser" class="btn btn-primary btn-xs addBtn" style="width: 100px; height: 30px; margin-bottom: 10px; padding-top: 5px;"><i class="fa fa-print"></i> In danh sách 
                         	</a>
+                        	
                         </div>
                              <table width="100%" id="dataTables-question" class="table table-bordered table-striped table-hover">
 				                <thead>

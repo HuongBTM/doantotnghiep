@@ -43,6 +43,9 @@ public interface UserRepositery extends JpaRepository<User, Integer>{
 	@Query("SELECT u FROM User u JOIN fetch u.role r WHERE r.roleId=5 ORDER BY u.points DESC")
 	List<User> findTopFiveExpect(Pageable pageable);
 	
+	@Query("SELECT u FROM User u JOIN fetch u.role r ORDER BY u.createDate DESC")
+	List<User> findTopNew(Pageable pageable);
+	
 	@Modifying
 	@Query("UPDATE User u SET u.points=u.points+?1 WHERE u.userId=?2")
 	int updatePoint(int points, int userId);

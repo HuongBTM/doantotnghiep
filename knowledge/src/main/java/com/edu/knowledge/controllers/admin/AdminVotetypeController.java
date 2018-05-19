@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.edu.knowledge.entities.VoteDetail;
 import com.edu.knowledge.entities.VoteType;
+import com.edu.knowledge.services.VoteDetailService;
 import com.edu.knowledge.services.VoteTypeService;
 import com.edu.knowledge.utils.Constant;
 
@@ -25,6 +27,9 @@ public class AdminVotetypeController {
 
 	@Autowired
 	private VoteTypeService voteTypeService;
+	
+	@Autowired
+	private VoteDetailService voteDetailService;
 	
 	@RequestMapping(value = "/allvotetype", method = RequestMethod.GET)
 	public ModelAndView getAllVoteType() {
@@ -76,5 +81,13 @@ public class AdminVotetypeController {
 			return Constant.SUCCESS;
 		}
 		return Constant.ERROR;
+	}
+	
+	@RequestMapping(value="/votedetail/{id}")
+	public ModelAndView detailVote(@PathVariable("id") int voteTypeId) {
+		ModelAndView mav = new ModelAndView("admin_vote_detail");
+		List<VoteDetail> voteDetails = voteDetailService.findAllByVoteTypeId(voteTypeId);
+		mav.addObject("voteDetails",voteDetails);
+		return mav;
 	}
 }

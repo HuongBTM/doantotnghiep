@@ -36,6 +36,7 @@
                                        <th align="center">ID</th>
                                        <th align="center">Tên lĩnh vực</th>
                                        <th align="center">Mô tả</th>
+                                       <th>Chi tiết</th>
                                        <th></th>
                                    </tr>
                                </thead>
@@ -46,6 +47,7 @@
                                        <td align="right"><c:out value="${sector.sectorId}"></c:out></td>
                                        <td><c:out value="${sector.sectorName}"></c:out></td>
                                        <td><c:out value="${sector.describeSector}"></c:out></td>
+                                       <td align="center"><a href="/admin/sector/user/${sector.sectorId}" data-id="${sector.sectorId}" class="btn btn-info btn-xs eBtn" title="Danh sách thành viên thuộc lĩnh vực"><i class="fa fa-eye"></i> </a></td>
                                        <td align="center">
 			                            <a href="/admin/sector/editsector/${sector.sectorId}" data-id="${sector.sectorId}" class="btn btn-info btn-xs eBtn"><i class="fa fa-pencil"></i> Sửa </a>
 			                            <a href="#" class="btn btn-danger btn-xs btnDeleteSector" data-id="${sector.sectorId}"><i class="fa fa-trash-o"></i> Xóa </a>

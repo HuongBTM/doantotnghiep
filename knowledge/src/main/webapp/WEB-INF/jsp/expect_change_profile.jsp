@@ -5,7 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
-<jsp:include page="admin_layout.jsp"></jsp:include>
+<jsp:include page="expect_layout.jsp"></jsp:include>
 <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
@@ -22,7 +22,7 @@
                         <div class="panel-heading">
 						</div>
 					    <div class="panel-body">
-					      <form:form class="form-horizontal form-label-left" action="/admin/user/save/profile" method="post" modelAttribute="user">
+					      <form:form class="form-horizontal form-label-left" action="/expect/user/save/profile" method="post" modelAttribute="user">
 								<input type="hidden" name="idHidden" value="${user.userId}">
 					             <div class="item form-group">
 					               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fullname">Tên hiển thị <span class="required">*</span>
@@ -103,7 +103,7 @@
 					               <div class="col-md-8 col-md-offset-3">
 					                 <button id="send" type="submit" class="btn btn-success">Lưu</button>
 					                 <button type="reset" class="btn btn-primary">Reset</button>
-					                 <a href="/admin/user/${CURRENT_USER.userId }" class="btn btn-primary">Hủy</a>
+					                 <a href="/expect/user/${CURRENT_USER.userId }/info" class="btn btn-primary">Hủy</a>
 					               </div>
 					             </div>
 					           </form:form>

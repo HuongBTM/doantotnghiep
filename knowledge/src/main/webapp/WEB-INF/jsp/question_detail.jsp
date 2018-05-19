@@ -147,7 +147,7 @@
 		<c:if test="${CURRENT_USER.userId eq question.user.userId }">
 		<div class="request-expect" data-questionid="43651814" id="question">
 		<h3 style="margin-top: 0px;">Lựa chọn chuyên gia trả lời câu hỏi của bạn?</h3>
-			<div class="grid-layout">
+			<div class="grid-layout" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">
 				<c:forEach var="expect" items="${expects}">
 				<div class="grid-layout--cell user-info ">
 				<button id="expect-${expect.userId }" class="btn btn-default request-user" onclick="sendRequest(${CURRENT_USER.userId }, ${expect.userId}, ${question.questionId})">
@@ -410,6 +410,49 @@
 </div>
 </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="modalUpdateQuestion" topic="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content no 1-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Chỉnh sửa câu hỏi</h4>
+        </div>
+        <!-- ./modal-header -->
+        <div class="modal-body">
+         <form:form id="updateTopicForm" action="/admin/topic/savetopic" method="post" modelAttribute="topic" class="form-horizontal">
+	          <div class="login-box-body">
+			    <input type="hidden" id="idHidden" name="idHidden" value="${question.questionId}">
+			    <div class="item form-group">
+                       <label class="control-label col-xs-3" for="topicName">Tên chủ đề<span class="required">*</span>
+                       </label>
+                       <div class="col-xs-9">
+                         <form:input id="topicName" class="form-control col-md-7 col-xs-12" name="topicName" placeholder="Tên chủ đề..." required="required" type="text" path="topicName"></form:input>
+                       	<div class="error" hidden="hidden"></div>
+                      </div>
+                 </div>
+                 <div class="item form-group">
+                      <label class="control-label col-xs-3" for="topicDescribe">Mô tả chủ đề
+                      </label>
+                      <div class="col-xs-9">
+                        <form:textarea id="topicDescribe" name="topicDescribe" rows="5" cols="30" placeholder="Mô tả chủ đề..." class="form-control col-md-7 col-xs-12" path="topicDescribe"></form:textarea>
+                      </div>
+                  </div>
+	        </div>
+	        <!-- /.modal-body -->
+	        <div class="modal-footer">
+	 			<button type="submit" class="btn btn-danger" id="btnSave">Lưu</button>
+	 			<button type="button" class="btn btn-basic" data-dismiss="modal">Hủy</button>
+	 		</div>
+ 		</form:form>
+ 		<!-- /.modal-footer -->
+      </div>
+      <!-- ./modal-content -->
+      
+    </div>
+ 	</div>
+ 	</div>
 <script type="text/javascript">
 $(document).ready(function () {
 

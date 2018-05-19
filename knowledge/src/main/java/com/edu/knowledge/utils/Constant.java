@@ -5,6 +5,8 @@ public class Constant {
 	public static final String SUCCESS = "SUCCESS";
 	public static final String ERROR = "ERROR";
 	public static final String CURRENT_USER = "CURRENT_USER";
+	public static final int DASBOARD_TOP_QUESTION = 10; 
+	public static final int DASBOARD_TOP_USER = 8; 
 	public static final int FEED_TOP_LIMIT = 10; 
 	public static final int FEED_NEW_LIMIT = 10; // update to 20
 	public static final int QUESTION_LIST_LIMIT = 10; // update to 30 or 40

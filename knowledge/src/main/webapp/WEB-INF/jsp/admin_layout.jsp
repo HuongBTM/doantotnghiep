@@ -150,7 +150,6 @@
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a href="/admin/user/${CURRENT_USER.userId}">Profile</a></li>
                     <li><a href="/admin/user/${CURRENT_USER.userId}/changeprofile">Cài đặt</a></li>
-                    <li><a href="javascript:;">Trợ giúp</a></li>
                     <li><a href="/logout"><i class="fa fa-sign-out pull-right"></i>Đăng xuất</a></li>
                   </ul>
                 </li>

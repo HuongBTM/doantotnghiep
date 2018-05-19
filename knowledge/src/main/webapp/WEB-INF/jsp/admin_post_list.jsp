@@ -41,6 +41,8 @@
                          <div>
                         	<a href="/admin/post/addpost" id="btnAddPost" class="btn btn-primary btn-xs addBtn" style="width: 100px; height: 30px; margin-bottom: 10px; padding-top: 5px;"><i class="fa fa-plus"></i> Thêm mới 
                         	</a>
+                        	<a href="/admin/post/print" id="btnPrintPost" class="btn btn-primary btn-xs addBtn" style="width: 100px; height: 30px; margin-bottom: 10px; padding-top: 5px;"><i class="fa fa-print"></i> In danh sách 
+                        	</a>
                         </div>
                         <c:choose>
 				            <c:when test="${empty posts}">
