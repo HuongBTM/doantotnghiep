@@ -30,6 +30,7 @@ import com.edu.knowledge.entities.RequestExpect;
 import com.edu.knowledge.entities.Topic;
 import com.edu.knowledge.entities.User;
 import com.edu.knowledge.entities.VoteDetail;
+import com.edu.knowledge.services.AnswerService;
 import com.edu.knowledge.services.PostService;
 import com.edu.knowledge.services.QuestionService;
 import com.edu.knowledge.services.RequestService;
@@ -59,6 +60,9 @@ public class QuestionController {
 	
 	@Autowired
 	private RequestService requestService;
+	
+	@Autowired
+	private AnswerService answerService;
 	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	public ModelAndView allQuestion(){
@@ -129,6 +133,7 @@ public class QuestionController {
 		List<Topic> topics = topicService.findTopTen();
 		List<User> users = userService.findTopFiveExpect();
 		List<User> expects = userService.findTopNineExpect();
+		int countBestAnswer = answerService.countBestAnswer(question.getUser().getUserId());
 		Answer answer = new Answer();
 		Comment comment = new Comment();
 		if(session.getAttribute(Constant.CURRENT_USER) !=null) {
@@ -142,6 +147,7 @@ public class QuestionController {
 		model.addObject("topics", topics);
 		model.addObject("users", users);
 		model.addObject("expects", expects);
+		model.addObject("countBestAnswer", countBestAnswer);
 		return model;
 	}
 	

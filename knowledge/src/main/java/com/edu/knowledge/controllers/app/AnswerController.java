@@ -91,4 +91,19 @@ public class AnswerController {
 		}
 		
 	}
+	
+	/**
+	 * 
+	 * @param qid id câu hỏi
+	 * @param aid id câu trả lời
+	 * @param uid người trả lời, dk set point
+	 * @return
+	 */
+	@RequestMapping(value="/answer/setbest")
+	@ResponseBody
+	public String setBest(@RequestParam("qid") int qid, 
+			  @RequestParam("aid") int aid, @RequestParam("oid") int oid) {
+		answerService.setBest(qid, aid, oid);
+		return "success";
+	}
 }

@@ -20,6 +20,7 @@ public class Constant {
 	public static final int REMOVE_ANSWER_DOWNVOTE_POINT = 1;
 	public static final int UPVOTE_ID = 1;
 	public static final int DOWNVOTE_ID = 2;
+	public static final int POINTS_BEST_ANSWER = 5;
 	public static final int POINTS_NEW_POST = 5; // cộng 5 điểm cho chuyên gia khi đăng bài viết mới
 	public static final int POINTS_NEW_QUESTION = 2; // cộng 2 điểm khi đăng câu hỏi mới
 	public static final int POINTS_EXPECT_NEW_ANSWER = 2; // cộng 2 điểm cho câu trả lời mới của chuyên gia

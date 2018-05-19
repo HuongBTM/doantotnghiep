@@ -221,6 +221,10 @@
 			              <b>Bài viết</b> 
 			              <span class="pull-right badge bg-green">${fn:length(post.user.posts)}</span>
 			            </li>
+			            <li class="list-group-item">
+			              <b>Câu trả lời hữu ích</b> 
+			              <span class="pull-right badge bg-green">${countBestAnswer}</span>
+			            </li>
 			           <c:if test="${not empty post.user.abouts }"><li class="list-group-item">
 			              ${post.user.abouts }
 			            </li></c:if>

@@ -34,4 +34,18 @@ public interface AnswerRepositery extends JpaRepository<Answer, Integer>{
 	@Modifying
 	@Query("UPDATE Answer a SET a.downvotes=a.downvotes-1 WHERE a.answerId=?1")
 	int removeDownvotes(int answerId);
+	
+	@Query("SELECT a FROM Answer a LEFT JOIN fetch a.question q WHERE q.questionId=?1 and a.best=1")
+	Answer findBestAnswer(int questionId);
+	
+	@Modifying
+	@Query("UPDATE Answer a SET a.best=0 WHERE a.question.questionId=?1")
+	void resetBest(int questionId);
+	
+	@Modifying
+	@Query("UPDATE Answer a SET a.best=1 WHERE a.answerId=?1")
+	void setBest(int answerId);
+	
+	@Query("SELECT COUNT(*) FROM Answer a WHERE a.user.userId=?1 and a.best=1")
+	int countBestAnswer(int userId);
 }

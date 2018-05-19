@@ -15,7 +15,8 @@
            <h1 itemprop="name"><b>${question.title}</b></h1>
            <c:if test="${question.check==0 }"><button class="btn btn-default" style="height: 35px">Câu hỏi chờ phê duyệt</button></c:if>
            <c:if test="${question.check==2 }"><button class="btn btn-danger" style="height: 35px">Câu hỏi bị xóa vì vi phạm chính sách hệ thống</button></c:if>
-           <c:if test="${question.check==1 }"><button class="btn btn-success" style="height: 35px">Đang thảo luận</button></c:if>
+           <c:if test="${question.check==1 }"><button class="btn btn-primary" style="height: 35px">Đang thảo luận</button></c:if>
+           <c:if test="${question.check==3 }"><button class="btn btn-success" style="height: 35px">Đã giải quyết</button></c:if>
 		</div>
         <div id="mainbar" role="main" aria-label="question and answers">
             <div class="question-detail" data-questionid="43651814" id="question">
@@ -207,7 +208,11 @@
 										<a id="downAnswerBtn-${answer.answerId}" class="downvote btn btn-default" href="#?aid=${answer.answerId}&oid=${answer.user.userId}&uid=${CURRENT_USER.userId}&action=downvote" 
 											style="width: 45px; height: 45px; padding: 0px;" title="Downvote câu trả lời không hợp lý">
 										<span id="down_answer_count_${answer.answerId}"><strong> ${answer.downvotes }</strong></span>
-										<i class="glyphicon glyphicon-triangle-bottom" style="font-size: 25px; color: #7b7676"></i></a></div>								
+										<i class="glyphicon glyphicon-triangle-bottom" style="font-size: 25px; color: #7b7676"></i></a></div>	
+									<c:if test="${answer.best eq true }"><div style="clear: both; padding-top: 10px; font-size: 30px; color: green;" title="Câu trả lời hữu ích">
+										<i class="fa fa-check"></i></div></c:if>
+									<c:if test="${answer.best eq false }"><div id="best-${answer.answerId}" style="clear: both; padding-top: 10px; font-size: 30px; color: green;" title="Câu trả lời hữu ích" hidden="hidden">
+										<i class="fa fa-check"></i></div></c:if>							
 								</div>
 							</div>
 							<div class="answercell post-layout--right">
@@ -218,7 +223,10 @@
 							    	<div class="grid--cell mr16" style="flex: 1 1 100px;">
 										<div class="post-menu">
 											<c:if test="${CURRENT_USER.userId eq answer.user.userId }"><a href="/edit" class="suggest-edit-post" title="revise and improve this post">Chỉnh sửa</a></c:if>
-										</div>                    
+										</div>   
+										<div class="post-menu">
+											<c:if test="${answer.best eq false}"><a href="#?qid=${question.questionId}&aid=${answer.answerId}&oid=${answer.user.userId}" class="best-answer btn btn-default" title="Chọn câu trả lời hữu ích">Câu trả lời có hữu ích với bạn không?</a></c:if>
+										</div>                 
 									</div>
 									<div class="post-signature grid--cell fl0">
 										<div class="user-info ">
@@ -365,6 +373,10 @@
 			              <b>Bài viết</b> 
 			              <span class="pull-right badge bg-green">${fn:length(question.user.posts)}</span>
 			            </li>
+			            <li class="list-group-item">
+			              <b>Câu trả lời hữu ích</b> 
+			              <span class="pull-right badge bg-green">${countBestAnswer}</span>
+			            </li>
 			           <c:if test="${not empty question.user.abouts }"><li class="list-group-item">
 			              ${question.user.abouts }
 			            </li></c:if>
@@ -411,7 +423,7 @@
 </div>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="modalUpdateQuestion" topic="dialog">
+<%-- <div class="modal fade" id="modalUpdateQuestion" topic="dialog">
     <div class="modal-dialog">
       <!-- Modal content no 1-->
       <div class="modal-content">
@@ -452,7 +464,7 @@
       
     </div>
  	</div>
- 	</div>
+ 	</div> --%>
 <script type="text/javascript">
 $(document).ready(function () {
 
@@ -559,6 +571,26 @@ $(document).ready(function () {
       				document.getElementById("downAnswerBtn-"+aid).style.backgroundColor='#fff';
 	      			document.getElementById("upAnswerBtn-"+aid).removeAttribute("disabled");
 	      			$("#down_answer_count_"+aid).text(downvote-1);
+      			}
+      		}
+		})
+	});
+	
+	$("a.best-answer").click(function (e) {
+		
+		var href = $(this).attr('href');
+		var qid = getURLParameter(href, 'qid');
+    	var aid = getURLParameter(href, 'aid');
+    	var oid = getURLParameter(href, 'oid');
+		var url = "<c:url value="/app/answer/setbest" />";
+		$.ajax({
+			type: "GET",
+      		contentType: "application/json",
+      		url: url,
+      		data: {qid: qid, aid: aid, oid: oid},
+      		success: function (response) {
+      			if(response=="success") {
+      				document.getElementById("best-"+aid).removeAttribute("hidden");
       			}
       		}
 		})

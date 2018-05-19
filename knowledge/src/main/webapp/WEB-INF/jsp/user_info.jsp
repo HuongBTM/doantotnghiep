@@ -58,6 +58,10 @@
               <b>Bài viết</b> 
               <span class="pull-right badge bg-green">${fn:length(user.posts)}</span>
             </li>
+            <li class="list-group-item">
+              <b>Câu trả lời hữu ích</b> 
+              <span class="pull-right badge bg-green">${countBestAnswer}</span>
+            </li>
            <c:if test="${not empty user.abouts }"><li class="list-group-item">
               ${user.abouts }
             </li></c:if>
@@ -75,9 +79,9 @@
     <div class="col-md-9">
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#questions" data-toggle="tab">Câu hỏi</a></li>
-          <li><a href="#answers" data-toggle="tab">Câu trả lời</a></li>
-          <li><a href="#posts" data-toggle="tab">Bài viết</a></li>
+          <li class="active"><a href="#questions" data-toggle="tab">Câu hỏi ${fn:length(user.questions)}</a></li>
+          <li><a href="#answers" data-toggle="tab">Câu trả lời ${fn:length(user.answers)}</a></li>
+          <li><a href="#posts" data-toggle="tab">Bài viết ${fn:length(user.posts)}</a></li>
         </ul>
         <div class="tab-content">
           <div class="active tab-pane" id="questions">

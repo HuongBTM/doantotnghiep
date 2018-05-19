@@ -51,17 +51,19 @@ public class UserController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/app/user/{id}/info", method=RequestMethod.GET)
+	@RequestMapping(value = "/app/user/{id}/info", method = RequestMethod.GET)
 	public ModelAndView userInfo(@PathVariable("id") int id) {
 		ModelAndView mav = new ModelAndView("user_info");
 		User user = userService.getOne(id);
 		List<Post> posts = postService.findAllByUser(id);
 		List<Question> questions = questionService.findAllByUser(id);
 		List<Answer> answers = answerService.findAllByUser(id);
+		int countBestAnswer = answerService.countBestAnswer(id);
 		mav.addObject("user", user);
 		mav.addObject("posts", posts);
 		mav.addObject("questions", questions);
-		mav.addObject("answers",answers);
+		mav.addObject("answers", answers);
+		mav.addObject("countBestAnswer", countBestAnswer);
 		return mav;
 	}
 	
@@ -73,7 +75,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/app/user/save", method=RequestMethod.POST)
-	public ModelAndView changeProfile(@ModelAttribute("user") User user, BindingResult result,  HttpSession session, RedirectAttributes redirect) {
+	public ModelAndView changeProfile(@ModelAttribute("user") User user, BindingResult result,  
+			HttpSession session, RedirectAttributes redirect) {
 		ModelAndView mav = new ModelAndView("user_change_profile");
 		User userDB = (User) session.getAttribute(Constant.CURRENT_USER);
 		user.setUserId(userDB.getUserId());

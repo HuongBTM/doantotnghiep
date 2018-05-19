@@ -75,7 +75,7 @@ public class Question implements Serializable {
 	private Post post;
 	
 	@OneToMany(mappedBy = "question", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@OrderBy("upvotes DESC")
+	@OrderBy("best DESC, upvotes DESC")
 	private Set<Answer> answers;
 	
 	@NotEmpty

@@ -53,6 +53,9 @@ public class Answer implements Serializable{
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date lastEditAt;
 	
+	@Column(name="is_best")
+	private boolean best= false;
+	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_thanh_vien")
 	private User user;
@@ -156,5 +159,13 @@ public class Answer implements Serializable{
 	public String getAgo() throws ParseException {
         return TimeUtil.ago(creatAt);
     }
-	
+
+	public boolean isBest() {
+		return best;
+	}
+
+	public void setBest(boolean best) {
+		this.best = best;
+	}
+
 }

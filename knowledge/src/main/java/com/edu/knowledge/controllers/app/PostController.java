@@ -18,6 +18,7 @@ import com.edu.knowledge.entities.Question;
 import com.edu.knowledge.entities.Topic;
 import com.edu.knowledge.entities.User;
 import com.edu.knowledge.entities.VoteDetail;
+import com.edu.knowledge.services.AnswerService;
 import com.edu.knowledge.services.PostService;
 import com.edu.knowledge.services.TopicService;
 import com.edu.knowledge.services.UserService;
@@ -39,6 +40,9 @@ public class PostController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private AnswerService answerService;
 
 	@RequestMapping(value = "/{id}/detail", method = RequestMethod.GET)
 	public ModelAndView postDetail(@PathVariable("id") int id, HttpSession session) {
@@ -47,6 +51,7 @@ public class PostController {
 		postService.updateView(post.getViews() + 1, id);
 		Question question = new Question();
 		List<Topic> topics = topicService.findTopTen();
+		int countBestAnswer = answerService.countBestAnswer(post.getUser().getUserId());
 		if(session.getAttribute(Constant.CURRENT_USER) !=null) {
 			User user = (User) session.getAttribute(Constant.CURRENT_USER);
 			VoteDetail voteDetail = voteDetailService.findByPostIdAndUserId(id, user.getUserId());
@@ -55,6 +60,7 @@ public class PostController {
 		model.addObject("post", post);
 		model.addObject("question", question);
 		model.addObject("topics", topics);
+		model.addObject("countBestAnswer", countBestAnswer);
 		return model;
 	}
 	
