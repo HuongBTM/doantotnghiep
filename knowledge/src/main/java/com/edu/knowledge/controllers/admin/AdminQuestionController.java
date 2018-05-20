@@ -97,7 +97,7 @@ public class AdminQuestionController {
 			questionUpdate.setTitle(question.getTitle());
 			questionUpdate.setQuestionContent(question.getQuestionContent());
 			questionUpdate.setTopics(question.getTopics());
-			questionUpdate.setCheck(1);
+			questionUpdate.setCheck(questionUpdate.getCheck());
 			questionService.updateQuestion(questionUpdate);
 		}
 		model.setViewName("redirect:/admin/question/allquestion");

@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -227,5 +228,28 @@ public class QuestionController {
 		RequestExpect requestExpect = new RequestExpect(question, userId, new Date());
 		requestService.createRequest(requestExpect);
 		return "success";
+	}
+	
+	@RequestMapping(value="/savequestion")
+	@ResponseBody
+	public String saveQuestion(@ModelAttribute("question") Question question, HttpServletRequest request) {
+		int idHidden = Integer.parseInt(request.getParameter("idHidden"));
+		Question questionDB = questionService.getOne(idHidden);
+		questionDB.setTitle(question.getTitle());
+		questionDB.setQuestionContent(question.getQuestionContent());
+		questionDB.setTopics(question.getTopics());
+		questionDB.setCheck(questionDB.getCheck());
+		questionService.updateQuestion(questionDB);
+		return "success";
+	}
+	
+	@RequestMapping(value = "/deletequestion", method=RequestMethod.GET)
+	@ResponseBody
+	public String deleteQuestion(HttpServletRequest request) {
+		int questionId = Integer.parseInt(request.getParameter("questionid").toString());
+		if(questionService.deleteQuestion(questionId) ==1) {
+			return Constant.SUCCESS;
+		}
+		return Constant.ERROR;
 	}
 }

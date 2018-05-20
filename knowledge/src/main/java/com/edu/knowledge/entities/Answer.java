@@ -21,9 +21,12 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.edu.knowledge.utils.TimeUtil;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="tbl_cau_tra_loi")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Answer implements Serializable{
 
 	/**
@@ -132,6 +135,7 @@ public class Answer implements Serializable{
 		this.lastEditAt = lastEditAt;
 	}
 
+	@JsonIgnore
 	public User getUser() {
 		return user;
 	}
@@ -140,6 +144,7 @@ public class Answer implements Serializable{
 		this.user = user;
 	}
 
+	@JsonIgnore
 	public Question getQuestion() {
 		return question;
 	}
@@ -148,6 +153,7 @@ public class Answer implements Serializable{
 		this.question = question;
 	}
 
+	@JsonIgnore
 	public Set<Comment> getComments() {
 		return comments;
 	}
@@ -166,6 +172,13 @@ public class Answer implements Serializable{
 
 	public void setBest(boolean best) {
 		this.best = best;
+	}
+
+	@Override
+	public String toString() {
+		return "Answer [answerId=" + answerId + ", answerContent=" + answerContent + ", upvotes=" + upvotes
+				+ ", downvotes=" + downvotes + ", creatAt=" + creatAt + ", lastEditAt=" + lastEditAt + ", best=" + best
+				+ "]";
 	}
 
 }

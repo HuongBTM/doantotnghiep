@@ -42,7 +42,7 @@
     					<div class="grid mb0 fw-wrap ai-start jc-end gs8 gsy" style="clear: both">
     						<div class="grid--cell mr16" style="flex: 1 1 100px;">
 								<div class="post-menu">
-									<c:if test="${CURRENT_USER.userId eq question.user.userId }"><a href="/app/question/${question.questionId}/edit" class="suggest-edit-post" title="revise and improve this post">Chỉnh sửa</a></c:if>
+									<c:if test="${CURRENT_USER.userId eq question.user.userId }"><a href="#" data-id="${question.questionId}" class="suggest-edit-post equestionBtn" title="revise and improve this post">Chỉnh sửa</a></c:if>
 								</div>        
     						</div>
 							<div class="post-signature owner grid--cell fl0">
@@ -145,7 +145,7 @@
     		</div>
 		</div>
 		
-		<c:if test="${CURRENT_USER.userId eq question.user.userId }">
+		<c:if test="${CURRENT_USER.userId eq question.user.userId and question.check==1}">
 		<div class="request-expect" data-questionid="43651814" id="question">
 		<h3 style="margin-top: 0px;">Lựa chọn chuyên gia trả lời câu hỏi của bạn?</h3>
 			<div class="grid-layout" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">
@@ -222,7 +222,7 @@
 							    <div class="grid mb0 fw-wrap ai-start jc-end gs8 gsy">
 							    	<div class="grid--cell mr16" style="flex: 1 1 100px;">
 										<div class="post-menu">
-											<c:if test="${CURRENT_USER.userId eq answer.user.userId }"><a href="/edit" class="suggest-edit-post" title="revise and improve this post">Chỉnh sửa</a></c:if>
+											<c:if test="${CURRENT_USER.userId eq answer.user.userId }"><a href="/app/answer/findone/${answer.answerId}" data-id="${question.questionId}" class="edit-answer suggest-edit-post" title="Chỉnh sửa câu trả lời">Chỉnh sửa</a></c:if>
 										</div>   
 										<div class="post-menu">
 											<c:if test="${answer.best eq false}"><a href="#?qid=${question.questionId}&aid=${answer.answerId}&oid=${answer.user.userId}" class="best-answer btn btn-default" title="Chọn câu trả lời hữu ích">Câu trả lời có hữu ích với bạn không?</a></c:if>
@@ -295,7 +295,7 @@
 				
 				<a name="new-answer"></a>
 				<c:choose>
-				<c:when test="${not empty CURRENT_USER and question.check==1}">
+				<c:when test="${not empty CURRENT_USER and (question.check==1 or question.check==3)}">
 				<h3 class="space">Câu trả lời của bạn</h3>
 	            <form:form id="post-form" action="/app/question/${question.questionId }/answer/${CURRENT_USER.userId }/add" method="post" modelAttribute="answer">
 	            <form:textarea required="required" class="form-control" id="comment-contents" path="answerContent" cols="50" rows="8"></form:textarea>
@@ -423,7 +423,7 @@
 </div>
 </div>
 <!-- Modal -->
-<%-- <div class="modal fade" id="modalUpdateQuestion" topic="dialog">
+<div class="modal fade" id="modalUpdateQuestion" topic="dialog">
     <div class="modal-dialog">
       <!-- Modal content no 1-->
       <div class="modal-content">
@@ -433,24 +433,44 @@
         </div>
         <!-- ./modal-header -->
         <div class="modal-body">
-         <form:form id="updateTopicForm" action="/admin/topic/savetopic" method="post" modelAttribute="topic" class="form-horizontal">
+         <form:form id="updateQuestionForm" action="/app/question/savequestion" method="post" modelAttribute="question" class="form-horizontal">
 	          <div class="login-box-body">
 			    <input type="hidden" id="idHidden" name="idHidden" value="${question.questionId}">
-			    <div class="item form-group">
-                       <label class="control-label col-xs-3" for="topicName">Tên chủ đề<span class="required">*</span>
-                       </label>
-                       <div class="col-xs-9">
-                         <form:input id="topicName" class="form-control col-md-7 col-xs-12" name="topicName" placeholder="Tên chủ đề..." required="required" type="text" path="topicName"></form:input>
-                       	<div class="error" hidden="hidden"></div>
-                      </div>
-                 </div>
-                 <div class="item form-group">
-                      <label class="control-label col-xs-3" for="topicDescribe">Mô tả chủ đề
-                      </label>
-                      <div class="col-xs-9">
-                        <form:textarea id="topicDescribe" name="topicDescribe" rows="5" cols="30" placeholder="Mô tả chủ đề..." class="form-control col-md-7 col-xs-12" path="topicDescribe"></form:textarea>
-                      </div>
-                  </div>
+                  <div class="item form-group">
+		            <label class="required control-label col-md-2 col-sm-1 col-xs-12" for="title" style="text-align: left">Tiêu đề <span class="required">*</span>
+		            </label>
+		            <div class="col-md-10 col-sm-3 col-xs-12">
+		              <form:input id="title" class="form-control" name="title" placeholder="Tiêu đề..."
+		              		 required="required" type="text" path="title" title="Hãy nhập tiêu đề câu hỏi"></form:input>
+		            	<form:errors path="title" cssClass="error" delimiter="<br><i class='fa fa-exclamation-circle'></i> "></form:errors>
+		            </div>
+		          </div>
+		          <div class="item form-group">
+		            <label class="required control-label col-md-2 col-sm-1 col-xs-12" for="topics" style="text-align: left">Chủ đề <span class="required">*</span>
+		            </label>
+		            <div class="col-md-10 col-sm-3 col-xs-12">
+		              	<form:select required="required" class="form-control" path="topics" multiple="true" items="${topics}" itemValue="topicId" itemLabel="topicName" style="height:150px;"/>
+		            	<form:errors path="topics" cssClass="error" delimiter="<br><i class='fa fa-exclamation-circle'></i> "></form:errors>
+		            </div>
+		          </div>
+		        
+		        <div id="form-textarea" class="item form-group">
+		            <label class="required control-label col-md-2 col-sm-1 col-xs-12" style="text-align: left">Nội dung <span>*</span></label>
+		            <div class="col-md-10 col-sm-3 col-xs-12">
+		            <form:textarea required="required" class="form-control" path="questionContent" id="question-details" cols="58" rows="8" />
+			            <script src="<c:url value="/resources/ckeditor/ckeditor.js" />"></script>
+			            <script>
+			              CKEDITOR.replace('question-details');
+			            </script>
+			            <c:set var="contentError"><form:errors path="questionContent"/></c:set>
+			            <c:if test="${not empty contentError}">
+			              <span class="form-description">
+			                <i class="icon-exclamation-sign"></i> 
+			                <form:errors path="questionContent" cssClass="field-error" />
+			              </span>
+			            </c:if>
+			          </div>
+		        </div>
 	        </div>
 	        <!-- /.modal-body -->
 	        <div class="modal-footer">
@@ -464,7 +484,54 @@
       
     </div>
  	</div>
- 	</div> --%>
+ 	</div>
+ 	
+ 	
+ <div class="modal fade" id="modalUpdateAnswer" topic="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content no 1-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Chỉnh sửa câu trả lời</h4>
+        </div>
+        <!-- ./modal-header -->
+        <div class="modal-body">
+         <form:form id="updateAnswerForm" action="/app/answer/saveanswer" method="post" modelAttribute="answer" class="form-horizontal">
+	          <div class="login-box-body">
+			    <input type="hidden" id="idAnswerHidden" name="idAnswerHidden" value="${answer.answerId}">
+			    <input type="hidden" id="idQuestionHidden" name="idQuestionHidden" value="${answer.answerId}">
+		        <div id="form-textarea" class="item form-group">
+		            <label class="required control-label col-md-2 col-sm-1 col-xs-12" style="text-align: left">Nội dung <span>*</span></label>
+		            <div class="col-md-10 col-sm-3 col-xs-12">
+		            <form:textarea required="required" class="form-control" path="answerContent" id="answerContent" cols="58" rows="8" />
+			            <script src="<c:url value="/resources/ckeditor/ckeditor.js" />"></script>
+			            <script>
+			              CKEDITOR.replace('answerContent');
+			            </script>
+			            <c:set var="contentError"><form:errors path="answerContent"/></c:set>
+			            <c:if test="${not empty contentError}">
+			              <span class="form-description">
+			                <i class="icon-exclamation-sign"></i> 
+			                <form:errors path="answerContent" cssClass="field-error" />
+			              </span>
+			            </c:if>
+			          </div>
+		        </div>
+	        </div>
+	        <!-- /.modal-body -->
+	        <div class="modal-footer">
+	 			<button type="submit" class="btn btn-danger" id="btnSave">Lưu</button>
+	 			<button type="button" class="btn btn-basic" data-dismiss="modal">Hủy</button>
+	 		</div>
+ 		</form:form>
+ 		<!-- /.modal-footer -->
+      </div>
+      <!-- ./modal-content -->
+      
+    </div>
+ 	</div>
+ 	</div>
 <script type="text/javascript">
 $(document).ready(function () {
 

@@ -23,6 +23,7 @@
     
     <!-- Custom Theme Scripts -->
   	<script src="/resources/assets/js/custom.js"></script>
+  	<script src="/resources/assets/js/app.js"></script>
   	
 </body>
 </html>

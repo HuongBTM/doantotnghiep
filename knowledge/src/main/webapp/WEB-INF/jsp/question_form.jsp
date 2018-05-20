@@ -55,9 +55,9 @@
         </div>
         <div class="form-group">
              <div class="col-md-6 col-md-offset-4">
-               <button id="send" type="submit" class="btn btn-success">Post</button>
+               <button id="send" type="submit" class="btn btn-success">Đăng câu hỏi</button>
                <button type="reset" class="btn btn-primary">Reset</button>
-               <a href="/app/home/feed" class="btn btn-primary">Cancel</a>
+               <a href="/app/home/feed" class="btn btn-primary">Hủy</a>
              </div>
            </div>
       </form:form>

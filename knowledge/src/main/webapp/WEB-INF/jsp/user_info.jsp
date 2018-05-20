@@ -79,9 +79,9 @@
     <div class="col-md-9">
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#questions" data-toggle="tab">Câu hỏi ${fn:length(user.questions)}</a></li>
-          <li><a href="#answers" data-toggle="tab">Câu trả lời ${fn:length(user.answers)}</a></li>
-          <li><a href="#posts" data-toggle="tab">Bài viết ${fn:length(user.posts)}</a></li>
+          <li class="active"><a href="#questions" data-toggle="tab">Câu hỏi (${fn:length(user.questions)})</a></li>
+          <li><a href="#answers" data-toggle="tab">Câu trả lời (${fn:length(user.answers)})</a></li>
+          <li><a href="#posts" data-toggle="tab">Bài viết (${fn:length(user.posts)})</a></li>
         </ul>
         <div class="tab-content">
           <div class="active tab-pane" id="questions">
@@ -175,7 +175,7 @@
           <c:otherwise>
             <c:forEach var="post" items="${posts}">
               <!-- Post -->
-              <div class="post">
+              <div class="post" style="margin-bottom: 0px; margin-left: 10px; margin-right: 10px;">
                 <div class="user-block">
                   <img class="img-circle img-bordered-sm" 
                        src="<c:url value="/resources/assets/img/${post.user.image}" />" alt="user image">
@@ -196,6 +196,17 @@
                     </a>
                   </li>
                 </ul>
+                <div id="noti" style="clear: both; padding-top: 10px;">
+	              	 <span class="question-upvote"><i class="glyphicon glyphicon-arrow-up"></i> ${post.upvotes } upvote</span>
+	              	 <span class="question-downvote"><i class="glyphicon glyphicon-arrow-down"></i> ${post.downvotes } downvote</span>
+		              <span class="question-date"><i class="fa fa-clock-o"></i> ${post.ago}</span>
+		              <span class="question-comment">
+		                  <i class="fa fa-comment"></i> ${fn:length(post.questions)} câu hỏi
+		              </span>
+		              <span class="question-view" style="float: right"><a href="#"><i class="fa fa-trash-o"></i></a></span>
+		              <span class="question-view" style="float: right"><a href="#"><i class="fa fa-pencil"></i></a></span>
+		              <div class="clearfix" style="background-color: #dedcdc;"></div>
+	              </div>
               </div>
               <!-- /.post -->
             </c:forEach>

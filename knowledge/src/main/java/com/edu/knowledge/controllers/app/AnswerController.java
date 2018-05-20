@@ -1,5 +1,7 @@
 package com.edu.knowledge.controllers.app;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -105,5 +107,31 @@ public class AnswerController {
 			  @RequestParam("aid") int aid, @RequestParam("oid") int oid) {
 		answerService.setBest(qid, aid, oid);
 		return "success";
+	}
+	
+	@RequestMapping(value="/answer/saveanswer", method=RequestMethod.POST)
+	@ResponseBody
+	public String saveAnswer(@ModelAttribute("answer") Answer answer, HttpServletRequest request) {
+		int idHidden = Integer.parseInt(request.getParameter("idAnswerHidden"));
+		Answer answerDB = answerService.getOne(idHidden);
+		answerDB.setAnswerContent(answer.getAnswerContent());
+		answerService.updateAnswer(answerDB);
+		return "success";
+	}
+	
+	@RequestMapping(value = "/answer/deleteanswer", method=RequestMethod.GET)
+	@ResponseBody
+	public String deleteAnswer(HttpServletRequest request) {
+		int answerId = Integer.parseInt(request.getParameter("answerid").toString());
+		if(answerService.deleteAnswer(answerId) ==1) {
+			return Constant.SUCCESS;
+		}
+		return Constant.ERROR;
+	}
+	
+	@RequestMapping(value = "/answer/findone/{id}", method = RequestMethod.GET)
+	@ResponseBody
+	public Answer getOneById(@PathVariable("id") int id) {
+		return answerService.getOne(id);
 	}
 }

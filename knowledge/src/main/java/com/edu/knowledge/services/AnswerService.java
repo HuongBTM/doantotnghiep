@@ -76,4 +76,9 @@ public class AnswerService {
 	public int countBestAnswer(int userId) {
 		return answerRepositery.countBestAnswer(userId);
 	}
+	
+	public Answer updateAnswer(Answer answer) {
+		answer.setLastEditAt(new Date());
+		return answerRepositery.save(answer);
+	}
 }

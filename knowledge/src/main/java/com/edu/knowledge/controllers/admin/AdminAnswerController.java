@@ -25,7 +25,7 @@ public class AdminAnswerController {
 	private AnswerService answerService;
 	
 	@RequestMapping(value="/detail/{id}", method = RequestMethod.GET)
-	public ModelAndView getOneQuestion(@PathVariable("id") int id) {
+	public ModelAndView getOneAnswer(@PathVariable("id") int id) {
 		ModelAndView mav = new ModelAndView("admin_answer_detail");
 		Answer answer = answerService.getOne(id);
 		mav.addObject("answer",answer);
