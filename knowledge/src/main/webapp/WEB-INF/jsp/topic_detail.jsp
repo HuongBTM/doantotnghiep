@@ -55,9 +55,9 @@
 		                </ul>
 		                <div id="tag-lst" style="width: 400px; float: left">
 				              <span class="question-category">
-				              	<c:forEach var="topic" items="${question.topics}">
+				              	<c:forEach var="qtopic" items="${question.topics}">
 						            <button type="button" class="btn btn-default btn-xs" style="background-color: #ccc">
-						              <a href="/app/topic/${topic.topicId }/detail"><i class="fa fa-tag"></i> ${topic.topicName}</a>
+						              <a href="/app/topic/${qtopic.topicId }/detail"><i class="fa fa-tag"></i> ${qtopic.topicName}</a>
 						            </button>
 						          </c:forEach>
 				              </span>
@@ -104,9 +104,9 @@
 		                </ul>
 		                <div id="tag-lst" style="width: 400px; float: left">
 				              <span class="question-category">
-				              	<c:forEach var="topic" items="${post.topics}">
+				              	<c:forEach var="ptopic" items="${post.topics}">
 						            <button type="button" class="btn btn-default btn-xs" style="background-color: #b4d3ea; border-color: #b4d3ea;">
-						              <a href="/app/topic/${topic.topicId }/detail"><i class="fa fa-tag"></i> ${topic.topicName}</a>
+						              <a href="/app/topic/${ptopic.topicId }/detail"><i class="fa fa-tag"></i> ${ptopic.topicName}</a>
 						            </button>
 						          </c:forEach>
 				              </span>

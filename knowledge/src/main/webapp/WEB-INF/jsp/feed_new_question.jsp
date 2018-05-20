@@ -42,7 +42,7 @@
 			              <div class="clearfix"></div>
 			              <div class="question-desc">${question.summary}
 			              </div>
-			              <div id="tag-lst" style="width: 400px; float: left">
+			              <div id="tag-lst" style="width: 500px; float: left">
 				              <span class="question-category">
 				              	<c:forEach var="topic" items="${question.topics}">
 						            <button type="button" class="btn btn-default btn-xs" style="background-color: #ccc">

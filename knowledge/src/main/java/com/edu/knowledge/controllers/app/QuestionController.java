@@ -252,4 +252,10 @@ public class QuestionController {
 		}
 		return Constant.ERROR;
 	}
+	
+	@RequestMapping(value="/findone/{id}")
+	@ResponseBody
+	public Question getOne(@PathVariable("id") int id) {
+		return questionService.getOne(id);
+	}
 }

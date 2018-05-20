@@ -59,11 +59,17 @@ public class UserController {
 		List<Question> questions = questionService.findAllByUser(id);
 		List<Answer> answers = answerService.findAllByUser(id);
 		int countBestAnswer = answerService.countBestAnswer(id);
+		Question question = new Question();
+		Answer answer = new Answer();
+		Post post = new Post();
 		mav.addObject("user", user);
 		mav.addObject("posts", posts);
 		mav.addObject("questions", questions);
 		mav.addObject("answers", answers);
 		mav.addObject("countBestAnswer", countBestAnswer);
+		mav.addObject("question", question);
+		mav.addObject("answer", answer);
+		mav.addObject("post", post);
 		return mav;
 	}
 	

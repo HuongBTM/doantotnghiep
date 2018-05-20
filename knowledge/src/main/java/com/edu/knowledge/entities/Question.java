@@ -25,9 +25,12 @@ import javax.validation.constraints.NotEmpty;
 
 import com.edu.knowledge.utils.Constant;
 import com.edu.knowledge.utils.TimeUtil;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="tbl_cau_hoi")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Question implements Serializable {
 
 	/**
@@ -101,6 +104,7 @@ public class Question implements Serializable {
 		this.questionId = questionId;
 	}
 
+	@JsonIgnore
 	public Post getPost() {
 		return post;
 	}
@@ -109,6 +113,7 @@ public class Question implements Serializable {
 		this.post = post;
 	}
 
+	@JsonIgnore
 	public Set<Answer> getAnswers() {
 		return answers;
 	}
@@ -117,6 +122,7 @@ public class Question implements Serializable {
 		this.answers = answers;
 	}
 
+	@JsonIgnore
 	public Set<Topic> getTopics() {
 		return topics;
 	}
@@ -192,6 +198,7 @@ public class Question implements Serializable {
 		this.lastEditAt = lastEditAt;
 	}
 
+	@JsonIgnore
 	public User getUser() {
 		return user;
 	}

@@ -30,7 +30,7 @@
 								<em>Linh bài viết:<a href="/app/post/${question.post.postId }/detail"> ${question.post.postTitle}</a></em>
 	    					</div>
     					</c:if>
-    					<div id="tag-lst" style="width: 400px; float: left">
+    					<div id="tag-lst" style="width: 700px; float: left">
 				              <span class="question-category">
 				              	<c:forEach var="topic" items="${question.topics}">
 						            <button type="button" class="btn btn-default btn-xs" style="background-color: #b4d3ea; border-color: #b4d3ea;">

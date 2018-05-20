@@ -94,7 +94,7 @@
               <!-- Post -->
               <div class="post" style="margin-bottom: 0px; margin-left: 10px; margin-right: 10px;">
                 <h4><b>${question.title }</b></h4>
-                <p>${question.questionContent}</p>
+                <p>${question.summary}</p>
                 
                 <ul class="list-inline">
                   <li>
@@ -120,8 +120,8 @@
 		                  <i class="fa fa-comment"></i> ${fn:length(question.answers)} câu trả lời
 		              </span>
 		              <span class="question-view"><i class="fa fa-eye"></i> ${question.views} lượt xem</span>
-		              <span class="question-view" style="float: right"><a href="/app/user/${question.user.userId }/delete/question/${question.questionId}"><i class="fa fa-trash-o"></i></a></span>
-		              <span class="question-view" style="float: right"><a href="/app/user/${question.user.userId }/edit/question/${question.questionId}"><i class="fa fa-pencil"></i></a></span>
+		              <span class="question-view" style="float: right"><a href="#" data-id="${question.questionId}" class="delQuestionBtn"><i class="fa fa-trash-o"></i></a></span>
+		              <span class="question-view" style="float: right"><a href="/app/question/findone/${question.questionId}" data-id="${question.user.userId}" class="editQuestionBtn"><i class="fa fa-pencil"></i></a></span>
 		              <div class="clearfix" style="background-color: #dedcdc;"></div>
 	              </div>
               </div>
@@ -155,8 +155,10 @@
 		              <span class="question-comment">
 		                  <i class="fa fa-comment"></i> ${fn:length(answer.comments)} comment
 		              </span>
-		              <span class="question-view" style="float: right"><a href="/app/user/${answer.user.userId }/delete/answer/${answer.answerId}"><i class="fa fa-trash-o"></i></a></span>
-		              <span class="question-view" style="float: right"><a href="/app/user/${answer.user.userId }/edit/answer/${answer.answerId}"><i class="fa fa-pencil"></i></a></span>
+		              <span class="question-view" style="float: right">
+		              		<a href="#" data-id="${user.userId}" class="delAnswerBtn"><i class="fa fa-trash-o"></i></a></span>
+		              <span class="question-view" style="float: right">
+		              		<a href="/app/answer/findone/${answer.answerId }" data-id="${user.userId}" class="editAnswerBtn"><i class="fa fa-pencil"></i></a></span>
 		              <div class="clearfix" style="background-color: #dedcdc;"></div>
 	              </div>
 	            </div>
@@ -203,8 +205,8 @@
 		              <span class="question-comment">
 		                  <i class="fa fa-comment"></i> ${fn:length(post.questions)} câu hỏi
 		              </span>
-		              <span class="question-view" style="float: right"><a href="#"><i class="fa fa-trash-o"></i></a></span>
-		              <span class="question-view" style="float: right"><a href="#"><i class="fa fa-pencil"></i></a></span>
+		              <span class="question-view" style="float: right"><a href="#" data-id="${post.postId}" class="delPostBtn"><i class="fa fa-trash-o"></i></a></span>
+		              <span class="question-view" style="float: right"><a href="#" data-id="${post.postId}" class="editPostBtn"><i class="fa fa-pencil"></i></a></span>
 		              <div class="clearfix" style="background-color: #dedcdc;"></div>
 	              </div>
               </div>
@@ -225,4 +227,151 @@
   </div>
   </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalUpdateQuestionInfo" topic="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content no 1-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Chỉnh sửa câu hỏi</h4>
+        </div>
+        <!-- ./modal-header -->
+        <div class="modal-body">
+         <form:form id="updateQuestionInfoForm" action="/app/question/savequestion" method="post" modelAttribute="question" class="form-horizontal">
+	          <div class="login-box-body">
+			    <input type="hidden" id="idHidden" name="idHidden" value="${question.questionId}">
+			    <input type="hidden" id="idUserHidden" name="idUserHidden" value="${question.questionId}">
+                  <div class="item form-group">
+		            <label class="required control-label col-md-2 col-sm-1 col-xs-12" for="title" style="text-align: left">Tiêu đề <span class="required">*</span>
+		            </label>
+		            <div class="col-md-10 col-sm-3 col-xs-12">
+		              <form:input id="title" class="form-control" name="title" placeholder="Tiêu đề..."
+		              		 required="required" type="text" path="title" title="Hãy nhập tiêu đề câu hỏi"></form:input>
+		            	<form:errors path="title" cssClass="error" delimiter="<br><i class='fa fa-exclamation-circle'></i> "></form:errors>
+		            </div>
+		          </div>
+		        
+		        <div id="form-textarea" class="item form-group">
+		            <label class="required control-label col-md-2 col-sm-1 col-xs-12" style="text-align: left">Nội dung <span>*</span></label>
+		            <div class="col-md-10 col-sm-3 col-xs-12">
+		            <form:textarea required="required" class="form-control" path="questionContent" id="question-details" cols="58" rows="8" />
+			            <script src="<c:url value="/resources/ckeditor/ckeditor.js" />"></script>
+			            <script>
+			              CKEDITOR.replace('question-details');
+			            </script>
+			            <c:set var="contentError"><form:errors path="questionContent"/></c:set>
+			            <c:if test="${not empty contentError}">
+			              <span class="form-description">
+			                <i class="icon-exclamation-sign"></i> 
+			                <form:errors path="questionContent" cssClass="field-error" />
+			              </span>
+			            </c:if>
+			          </div>
+		        </div>
+	        </div>
+	        <!-- /.modal-body -->
+	        <div class="modal-footer">
+	 			<button type="submit" class="btn btn-danger" id="btnSave">Lưu</button>
+	 			<button type="button" class="btn btn-basic" data-dismiss="modal">Hủy</button>
+	 		</div>
+ 		</form:form>
+ 		<!-- /.modal-footer -->
+      </div>
+      <!-- ./modal-content -->
+      
+    </div>
+ </div>
+</div>
+ 	 	
+ <div class="modal fade" id="modalUpdateAnswerInfo" topic="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content no 1-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Chỉnh sửa câu trả lời</h4>
+        </div>
+        <!-- ./modal-header -->
+        <div class="modal-body">
+         <form:form id="updateAnswerInfoForm" action="/app/answer/saveanswer" method="post" modelAttribute="answer" class="form-horizontal">
+	          <div class="login-box-body">
+			    <input type="hidden" id="idAnswerHidden" name="idAnswerHidden" value="${answer.answerId}">
+			    <input type="hidden" id="idUserAnswerHidden" name="idUserHidden" value="${answer.answerId}">
+		        <div id="form-textarea" class="item form-group">
+		            <label class="required control-label col-md-2 col-sm-1 col-xs-12" style="text-align: left">Nội dung <span>*</span></label>
+		            <div class="col-md-10 col-sm-3 col-xs-12">
+		            <form:textarea required="required" class="form-control" path="answerContent" id="answerContent" cols="58" rows="8" />
+			            <script src="<c:url value="/resources/ckeditor/ckeditor.js" />"></script>
+			            <script>
+			              CKEDITOR.replace('answerContent');
+			            </script>
+			            <c:set var="contentError"><form:errors path="answerContent"/></c:set>
+			            <c:if test="${not empty contentError}">
+			              <span class="form-description">
+			                <i class="icon-exclamation-sign"></i> 
+			                <form:errors path="answerContent" cssClass="field-error" />
+			              </span>
+			            </c:if>
+			          </div>
+		        </div>
+	        </div>
+	        <!-- /.modal-body -->
+	        <div class="modal-footer">
+	 			<button type="submit" class="btn btn-danger" id="btnSave">Lưu</button>
+	 			<button type="button" class="btn btn-basic" data-dismiss="modal">Hủy</button>
+	 		</div>
+ 		</form:form>
+ 		<!-- /.modal-footer -->
+      </div>
+      <!-- ./modal-content -->
+      
+    </div>
+ 	</div>
+ 	</div>
+ 
+<div class="modal fade" id="delQuestionModal" topic="dialog">
+	    <div class="modal-dialog">
+	    
+	      <!-- Modal content-->
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">Xóa câu hỏi</h4>
+	        </div>
+	        <div class="modal-body">
+	        	<input type="hidden" id="idQuestionHidden" name="idQuestionHidden" value="0">
+	          <p>Bạn chắc chắn xóa câu hỏi này?</p>
+	        </div>
+	        <div class="modal-footer">
+	        	<button type="button" class="btn btn-danger" id="delQuestionBtn"> Xóa </button>
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+	        </div>
+	      </div>
+	      
+	    </div>
+	  </div>
+<div class="modal fade" id="delAnswerModal" topic="dialog">
+	    <div class="modal-dialog">
+	    
+	      <!-- Modal content-->
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">Xóa câu trả lời</h4>
+	        </div>
+	        <div class="modal-body">
+	        	<input type="hidden" id="idAnswerHidden" name="idAnswerHidden" value="0">
+	          <p>Bạn chắc chắn xóa câu trả lời này?</p>
+	        </div>
+	        <div class="modal-footer">
+	        	<button type="button" class="btn btn-danger" id="delAnswerBtn"> Xóa </button>
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+	        </div>
+	      </div>
+	      
+	    </div>
+	  </div>
 <jsp:include page="footer.jsp"></jsp:include>
