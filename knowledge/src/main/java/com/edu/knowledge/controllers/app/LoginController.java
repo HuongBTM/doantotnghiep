@@ -114,4 +114,10 @@ public class LoginController {
 		mav.setViewName("redirect:/login");
 		return mav;
 	}
+	
+	@RequestMapping("/403")
+	public ModelAndView accessDenied() {
+		ModelAndView mav = new ModelAndView("403");
+		return mav;
+	}
 }

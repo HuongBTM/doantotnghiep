@@ -225,7 +225,7 @@
 											<c:if test="${CURRENT_USER.userId eq answer.user.userId }"><a href="/app/answer/findone/${answer.answerId}" data-id="${question.questionId}" class="edit-answer suggest-edit-post" title="Chỉnh sửa câu trả lời">Chỉnh sửa</a></c:if>
 										</div>   
 										<div class="post-menu">
-											<c:if test="${answer.best eq false}"><a href="#?qid=${question.questionId}&aid=${answer.answerId}&oid=${answer.user.userId}" class="best-answer btn btn-default" title="Chọn câu trả lời hữu ích">Câu trả lời có hữu ích với bạn không?</a></c:if>
+											<c:if test="${answer.best eq false}"><a href="#?qid=${question.questionId}&aid=${answer.answerId}&oid=${answer.user.userId}" class="best-answer btn btn-default" title="Chọn câu trả lời hữu ích">Chọn câu trả lời hữu ích</a></c:if>
 										</div>                 
 									</div>
 									<div class="post-signature grid--cell fl0">
