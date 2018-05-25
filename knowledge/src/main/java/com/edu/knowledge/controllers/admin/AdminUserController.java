@@ -99,10 +99,12 @@ public class AdminUserController {
 		List<Question> questions = questionService.findAllByUser(userId);
 		List<Answer> answers = answerService.findAllByUser(userId);
 		List<Post> posts = postService.findAllByUser(userId);
+		int countBestAnswer = answerService.countBestAnswer(userId);
 		mav.addObject("questions", questions);
 		mav.addObject("answers", answers);
 		mav.addObject("posts", posts);
 		mav.addObject("user",user);
+		mav.addObject("countBestAnswer", countBestAnswer);
 		return mav;
 	}
 	

@@ -60,8 +60,12 @@
               <span class="pull-right badge bg-yellow">${fn:length(answers)}</span>
             </li>
             <li class="list-group-item">
-              <b>Bài viết</b> 
+              <b>Bài viết</b>  
               <span class="pull-right badge bg-green">${fn:length(posts)}</span>
+            </li>
+            <li class="list-group-item">
+              <b>Câu trả lời hữu ích</b> 
+              <span class="pull-right badge bg-green">${countBestAnswer}</span>
             </li>
            <c:if test="${not empty user.abouts }"><li class="list-group-item">
               ${user.abouts }
